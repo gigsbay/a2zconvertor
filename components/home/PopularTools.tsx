@@ -24,8 +24,8 @@ export default function PopularTools() {
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {popularTools.map((tool) => (
             <a
-              key={tool.name}
-              href={tool.href}
+              key={tool.slug}
+href={`/convert/${tool.slug}`}
               className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60 hover:bg-slate-900"
             >
               <h3 className="mb-2 text-xl font-bold">{tool.name}</h3>
