@@ -47,6 +47,30 @@ export const tools = [
     outputLabel: "PNG",
     category: "Image Tools",
   },
+  {
+  slug: "jpg-to-webp",
+  name: "JPG to WEBP",
+  title: "JPG to WEBP Converter",
+  description:
+    "Convert JPG images into WEBP format online for free.",
+  inputFormat: "jpeg",
+  inputLabel: "JPG",
+  outputFormat: "webp",
+  outputLabel: "WEBP",
+  category: "Image Tools",
+},
+{
+  slug: "png-to-webp",
+  name: "PNG to WEBP",
+  title: "PNG to WEBP Converter",
+  description:
+    "Convert PNG images into WEBP format online for free.",
+  inputFormat: "png",
+  inputLabel: "PNG",
+  outputFormat: "webp",
+  outputLabel: "WEBP",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
