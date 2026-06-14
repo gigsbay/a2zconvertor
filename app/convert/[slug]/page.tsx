@@ -1,9 +1,28 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ImageConverter from "@/components/converters/ImageConverter";
 import { getToolBySlug, tools } from "@/data/tools";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const tool = getToolBySlug(slug);
 
+  if (!tool) {
+    return {
+      title: "Tool Not Found | A2ZConvertor",
+    };
+  }
+
+  return {
+    title: `${tool.title} - Free Online Tool | A2ZConvertor`,
+    description: tool.description,
+  };
+}
 export default async function ConvertPage({
   params,
 }: {
@@ -89,6 +108,42 @@ export default async function ConvertPage({
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
+            <section className="px-6 py-20">
+  <div className="mx-auto max-w-4xl">
+    <h2 className="mb-8 text-3xl font-black">
+      Frequently Asked Questions
+    </h2>
+
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+        <h3 className="mb-2 font-bold">
+          Is this {tool.title} free?
+        </h3>
+        <p className="text-slate-400">
+          Yes. This tool is free to use online with no software installation required.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+        <h3 className="mb-2 font-bold">
+          Are my files uploaded to a server?
+        </h3>
+        <p className="text-slate-400">
+          Image conversions are processed directly in your browser where possible, helping keep the process fast and private.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+        <h3 className="mb-2 font-bold">
+          Why convert {tool.inputLabel} to {tool.outputLabel}?
+        </h3>
+        <p className="text-slate-400">
+          Converting {tool.inputLabel} to {tool.outputLabel} can help with compatibility, sharing, website uploads and file format requirements.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
           <h2 className="mb-8 text-3xl font-black">
             Related Tools
           </h2>
