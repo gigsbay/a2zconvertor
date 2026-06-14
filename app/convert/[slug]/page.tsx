@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ImageConverter from "@/components/converters/ImageConverter";
+import ImageCompressor from "@/components/ImageCompressor";
 import { getToolBySlug, tools } from "@/data/tools";
 export async function generateMetadata({
   params,
@@ -11,6 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const tool = getToolBySlug(slug);
+  console.log("CURRENT SLUG:", slug);
+console.log("ALL TOOLS:", tools.map((tool) => tool.slug));
+console.log("FOUND TOOL:", tool);
 
   if (!tool) {
     return {
@@ -49,17 +53,21 @@ export default async function ConvertPage({
       <Navbar />
 
       <section className="px-6 py-24">
-        <div className="mx-auto max-w-4xl">
-          <ImageConverter
-            title={tool.title}
-            inputFormat={tool.inputFormat}
-            inputLabel={tool.inputLabel}
-            outputFormat={tool.outputFormat}
-            outputLabel={tool.outputLabel}
-            description={tool.description}
-          />
-        </div>
-      </section>
+  <div className="mx-auto max-w-4xl">
+    {tool.slug === "compress-image" ? (
+      <ImageCompressor />
+    ) : (
+      <ImageConverter
+        title={tool.title}
+        inputFormat={tool.inputFormat}
+        inputLabel={tool.inputLabel}
+        outputFormat={tool.outputFormat}
+        outputLabel={tool.outputLabel}
+        description={tool.description}
+      />
+    )}
+  </div>
+</section>
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">

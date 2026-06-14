@@ -71,6 +71,18 @@ export const tools = [
   outputLabel: "WEBP",
   category: "Image Tools",
 },
+{
+  slug: "compress-image",
+  name: "Compress Image",
+  title: "Compress Image Online",
+  description:
+    "Reduce image file size online for free while keeping good quality.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "compressed",
+  outputLabel: "Compressed Image",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
