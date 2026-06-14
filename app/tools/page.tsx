@@ -23,8 +23,8 @@ export default function ToolsPage() {
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {tools.map((tool) => (
               <a
-                key={tool.href}
-                href={tool.href}
+                key={tool.slug}
+href={`/convert/${tool.slug}`}
                 className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60 hover:bg-slate-900"
               >
                 <div className="mb-3 text-sm font-semibold text-blue-400">
