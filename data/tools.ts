@@ -95,6 +95,66 @@ export const tools = [
   outputLabel: "Resized Image",
   category: "Image Tools",
 },
+{
+  slug: "crop-image",
+  name: "Crop Image",
+  title: "Crop Image Online",
+  description:
+    "Crop images online for free. Select a custom area and download the cropped image instantly.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "cropped",
+  outputLabel: "Cropped Image",
+  category: "Image Tools",
+},
+{
+  slug: "rotate-image",
+  name: "Rotate Image",
+  title: "Rotate Image Online",
+  description:
+    "Rotate images online for free. Turn JPG, PNG or WEBP images 90, 180 or 270 degrees and download instantly.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "rotated",
+  outputLabel: "Rotated Image",
+  category: "Image Tools",
+},
+{
+  slug: "image-to-base64",
+  name: "Image to Base64",
+  title: "Image to Base64 Converter",
+  description:
+    "Convert images to Base64 online for free. Encode JPG, PNG or WEBP images into Base64 text instantly.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "base64",
+  outputLabel: "Base64",
+  category: "Image Tools",
+},
+{
+  slug: "image-to-ico",
+  name: "Image to ICO",
+  title: "Image to ICO Converter",
+  description:
+    "Convert PNG, JPG or WEBP images to ICO format online for free. Create favicon icons instantly.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "ico",
+  outputLabel: "ICO",
+  category: "Image Tools",
+},
+{
+  slug: "image-to-pdf",
+  name: "Image to PDF",
+  title: "Image to PDF Converter",
+  description:
+    "Convert JPG, PNG or WEBP images to PDF online for free.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "pdf",
+  outputLabel: "PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;
