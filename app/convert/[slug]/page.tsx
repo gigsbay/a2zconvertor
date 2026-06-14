@@ -1,0 +1,119 @@
+import { notFound } from "next/navigation";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ImageConverter from "@/components/converters/ImageConverter";
+import { getToolBySlug, tools } from "@/data/tools";
+
+export default async function ConvertPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const tool = getToolBySlug(slug);
+
+  if (!tool) {
+    notFound();
+  }
+
+  const relatedTools = tools
+    .filter(
+      (item) =>
+        item.category === tool.category &&
+        item.slug !== tool.slug
+    )
+    .slice(0, 3);
+
+  return (
+    <main className="min-h-screen bg-slate-950 text-white">
+      <Navbar />
+
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-4xl">
+          <ImageConverter
+            title={tool.title}
+            inputFormat={tool.inputFormat}
+            inputLabel={tool.inputLabel}
+            outputFormat={tool.outputFormat}
+            outputLabel={tool.outputLabel}
+            description={tool.description}
+          />
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
+              <h3 className="mb-2 font-bold">1. Upload</h3>
+              <p className="text-slate-400">
+                Select your {tool.inputLabel} file from your computer.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
+              <h3 className="mb-2 font-bold">2. Convert</h3>
+              <p className="text-slate-400">
+                A2ZConvertor converts your image securely in your browser.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
+              <h3 className="mb-2 font-bold">3. Download</h3>
+              <p className="text-slate-400">
+                Download your new {tool.outputLabel} file instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-slate-900/70 p-8">
+          <h2 className="mb-4 text-3xl font-black">
+            Why use this {tool.title}?
+          </h2>
+
+          <p className="mb-4 text-slate-400">
+            This free online converter helps you change {tool.inputLabel} files
+            into {tool.outputLabel} format quickly without installing software.
+          </p>
+
+          <p className="text-slate-400">
+            Your image is processed directly in your browser where possible,
+            making the conversion fast and private.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-8 text-3xl font-black">
+            Related Tools
+          </h2>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {relatedTools.map((related) => (
+              <a
+                key={related.slug}
+                href={`/convert/${related.slug}`}
+                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60"
+              >
+                <h3 className="mb-2 text-xl font-bold">
+                  {related.name}
+                </h3>
+
+                <p className="text-slate-400">
+                  {related.description}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}
