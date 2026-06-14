@@ -48,7 +48,30 @@ export default async function ConvertPage({
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: tool.title,
+      applicationCategory: "WebApplication",
+      operatingSystem: "Any",
+      description: tool.description,
+      url: `https://a2zconvertor.co.uk/convert/${tool.slug}`,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "GBP",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "A2ZConvertor",
+        url: "https://a2zconvertor.co.uk",
+      },
+    }),
+  }}
+/>
       <section className="px-6 py-24">
   <div className="mx-auto max-w-4xl">
     {tool.slug === "compress-image" ? (
