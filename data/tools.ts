@@ -83,6 +83,18 @@ export const tools = [
   outputLabel: "Compressed Image",
   category: "Image Tools",
 },
+{
+  slug: "resize-image",
+  name: "Resize Image",
+  title: "Resize Image Online",
+  description:
+    "Resize images online for free. Change image width and height while maintaining quality.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "resized",
+  outputLabel: "Resized Image",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
