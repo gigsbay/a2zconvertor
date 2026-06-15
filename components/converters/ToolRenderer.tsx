@@ -1,11 +1,14 @@
+import FaviconGenerator from "@/components/FaviconGenerator";
 import ImageConverter from "@/components/converters/ImageConverter";
 import ImageCompressor from "@/components/ImageCompressor";
 import ImageResizer from "@/components/ImageResizer";
 import ImageCropper from "@/components/ImageCropper";
 import ImageRotator from "@/components/ImageRotator";
 import ImageToBase64 from "@/components/ImageToBase64";
-import ImageToIco from "@/components/ImageToIco";
 import ImageToPdf from "@/components/ImageToPdf";
+import ImageWatermark from "@/components/ImageWatermark";
+import ImageFlipper from "@/components/ImageFlipper";
+import PdfToImage from "@/components/PdfToImage";
 
 type Tool = {
   slug: string;
@@ -24,8 +27,11 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "crop-image": <ImageCropper />,
   "rotate-image": <ImageRotator />,
   "image-to-base64": <ImageToBase64 />,
-  "image-to-ico": <ImageToIco />,
+  "favicon-generator": <FaviconGenerator />,
   "image-to-pdf": <ImageToPdf />,
+  "watermark-image": <ImageWatermark />,
+  "flip-image": <ImageFlipper />,
+  "pdf-to-image": <PdfToImage />,
 };
   return (
     customTools[tool.slug] ?? (

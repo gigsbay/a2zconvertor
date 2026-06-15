@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function ImageToIco() {
+export default function FaviconGenerator() {
   const [file, setFile] = useState<File | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ export default function ImageToIco() {
   return (
     <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8">
       <h1 className="mb-4 text-4xl font-black">
-        Image to ICO Converter
+        Image to Favicon Generator
       </h1>
 
       <p className="mb-8 text-slate-400">
@@ -56,7 +56,7 @@ export default function ImageToIco() {
           disabled={!file}
           className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Generate Icon
+          Generate Favicon
         </button>
 
         {downloadUrl && (
@@ -65,7 +65,7 @@ export default function ImageToIco() {
             download="favicon.ico"
             className="block w-full rounded-xl bg-green-500 px-6 py-3 text-center font-semibold text-black"
           >
-            Download ICO
+            Download Favicon
           </a>
         )}
       </div>

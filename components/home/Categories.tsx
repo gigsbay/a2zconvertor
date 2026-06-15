@@ -28,7 +28,7 @@ export default function Categories() {
           {categories.map((category) => (
             <a
               key={category.name}
-              href={category.slug}
+              href="/tools"
               className="group rounded-3xl border border-white/10 bg-slate-900/70 p-8 transition hover:-translate-y-2 hover:border-blue-500/60 hover:bg-slate-900"
             >
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600/15 text-3xl">

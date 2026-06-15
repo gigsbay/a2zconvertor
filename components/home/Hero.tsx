@@ -1,9 +1,35 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { tools } from "@/data/tools";
+
 export default function Hero() {
+  const [query, setQuery] = useState("");
+
+  const filteredTools = useMemo(() => {
+    const search = query.toLowerCase().trim();
+
+    if (!search) return [];
+
+    return tools
+      .filter((tool) => {
+        return (
+          tool.name.toLowerCase().includes(search) ||
+          tool.title.toLowerCase().includes(search) ||
+          tool.description.toLowerCase().includes(search) ||
+          tool.slug.toLowerCase().includes(search) ||
+          tool.category.toLowerCase().includes(search)
+        );
+      })
+      .slice(0, 6);
+  }, [query]);
+
   return (
     <section className="px-6 py-28 text-center">
       <div className="mx-auto max-w-5xl">
         <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
-          100+ free online file tools coming soon
+          The Ultimate - Free File Toolkit
         </div>
 
         <h1 className="mb-6 text-5xl font-black tracking-tight md:text-7xl">
@@ -15,23 +41,55 @@ export default function Hero() {
           audio files and documents.
         </p>
 
-        <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-slate-900/80 p-3 shadow-2xl">
-          <input
-            placeholder="Search JPG to PNG, Compress PDF, MP4 to GIF..."
-            className="w-full rounded-xl bg-slate-950 px-6 py-5 text-white outline-none placeholder:text-slate-500"
-          />
+        <div className="relative mx-auto max-w-3xl">
+          <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-3 shadow-2xl">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search JPG to PNG, Compress Image, Resize Image..."
+              className="w-full rounded-xl bg-slate-950 px-6 py-5 text-white outline-none placeholder:text-slate-500"
+            />
+          </div>
+
+          {filteredTools.length > 0 && (
+            <div className="absolute left-0 right-0 z-20 mt-3 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 text-left shadow-2xl">
+              {filteredTools.map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={`/convert/${tool.slug}`}
+                  className="block border-b border-white/10 p-4 transition last:border-b-0 hover:bg-white/5"
+                >
+                  <div className="font-bold text-white">{tool.name}</div>
+                  <div className="text-sm text-slate-400">
+                    {tool.description}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-slate-400">
-          <span className="rounded-full border border-white/10 px-4 py-2">
+          <Link
+            href="/convert/jpg-to-png"
+            className="rounded-full border border-white/10 px-4 py-2 transition hover:border-blue-500/60"
+          >
             JPG to PNG
-          </span>
-          <span className="rounded-full border border-white/10 px-4 py-2">
-            Compress PDF
-          </span>
-          <span className="rounded-full border border-white/10 px-4 py-2">
-            MP4 to GIF
-          </span>
+          </Link>
+
+          <Link
+            href="/convert/compress-image"
+            className="rounded-full border border-white/10 px-4 py-2 transition hover:border-blue-500/60"
+          >
+            Compress Image
+          </Link>
+
+          <Link
+            href="/convert/image-to-pdf"
+            className="rounded-full border border-white/10 px-4 py-2 transition hover:border-blue-500/60"
+          >
+            Image to PDF
+          </Link>
         </div>
       </div>
     </section>

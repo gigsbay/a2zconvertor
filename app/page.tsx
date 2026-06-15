@@ -10,32 +10,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "A2ZConvertor",
-      url: "https://a2zconvertor.co.uk",
-      description:
-        "Free online image conversion, compression and resizing tools.",
-      publisher: {
-        "@type": "Organization",
-        name: "A2ZConvertor",
-        url: "https://a2zconvertor.co.uk",
-      },
-    }),
-  }}
-/>
       <Hero />
-
       <FeaturedTools />
       <Stats />
 
       <Categories />
       <PopularTools />
-
       <Footer />
     </main>
   );

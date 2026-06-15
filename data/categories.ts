@@ -1,32 +1,16 @@
-export const categories = [
-  {
-    name: "Image Tools",
-    slug: "/image-tools",
-    tools: 25,
-  },
-  {
-    name: "PDF Tools",
-    slug: "/pdf-tools",
-    tools: 15,
-  },
-  {
-    name: "Video Tools",
-    slug: "/video-tools",
-    tools: 10,
-  },
-  {
-    name: "Audio Tools",
-    slug: "/audio-tools",
-    tools: 10,
-  },
-  {
-    name: "Document Tools",
-    slug: "/document-tools",
-    tools: 10,
-  },
-  {
-    name: "AI Tools",
-    slug: "/ai-tools",
-    tools: 20,
-  },
+import { tools } from "./tools";
+
+const categoryNames = [
+  "Image Tools",
+  "PDF Tools",
+  "Video Tools",
+  "Audio Tools",
+  "Document Tools",
+  "AI Tools",
 ];
+
+export const categories = categoryNames.map((category) => ({
+  name: category,
+  slug: `/${category.toLowerCase().replace(/\s+/g, "-")}`,
+  tools: tools.filter((tool) => tool.category === category).length,
+}));

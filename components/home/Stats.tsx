@@ -1,7 +1,7 @@
 export default function Stats() {
   const stats = [
     {
-      value: "7+",
+      value: "14+",
       label: "Free Tools",
     },
     {
