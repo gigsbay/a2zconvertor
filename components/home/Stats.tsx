@@ -1,7 +1,9 @@
+import { tools } from "@/data/tools";
+
 export default function Stats() {
   const stats = [
     {
-      value: "14+",
+      value: `${tools.length}+`,
       label: "Free Tools",
     },
     {

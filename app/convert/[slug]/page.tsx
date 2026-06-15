@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolRenderer from "@/components/converters/ToolRenderer";
 import { getToolBySlug, tools } from "@/data/tools";
+import { getToolFaqs } from "@/data/toolFaqs";
 export async function generateMetadata({
   params,
 }: {
@@ -42,6 +44,7 @@ export default async function ConvertPage({
         item.slug !== tool.slug
     )
     .slice(0, 3);
+  const faqs = getToolFaqs(tool.slug, tool);
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -68,6 +71,23 @@ export default async function ConvertPage({
         name: "A2ZConvertor",
         url: "https://a2zconvertor.co.uk",
       },
+    }),
+  }}
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
     }),
   }}
 />
@@ -124,49 +144,29 @@ export default async function ConvertPage({
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
-            <section className="px-6 py-20">
-  <div className="mx-auto max-w-4xl">
-    <h2 className="mb-8 text-3xl font-black">
-      Frequently Asked Questions
-    </h2>
+          <h2 className="mb-8 text-3xl font-black">
+            Frequently Asked Questions
+          </h2>
 
-    <div className="space-y-4">
-      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
-        <h3 className="mb-2 font-bold">
-          Is this {tool.title} free?
-        </h3>
-        <p className="text-slate-400">
-          Yes. This tool is free to use online with no software installation required.
-        </p>
-      </div>
+          <div className="mb-16 space-y-4">
+            {faqs.map((faq) => (
+              <div
+                key={faq.question}
+                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+              >
+                <h3 className="mb-2 font-bold">{faq.question}</h3>
+                <p className="text-slate-400">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
 
-      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
-        <h3 className="mb-2 font-bold">
-          Are my files uploaded to a server?
-        </h3>
-        <p className="text-slate-400">
-          Image conversions are processed directly in your browser where possible, helping keep the process fast and private.
-        </p>
-      </div>
-
-      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
-        <h3 className="mb-2 font-bold">
-          Why convert {tool.inputLabel} to {tool.outputLabel}?
-        </h3>
-        <p className="text-slate-400">
-          Converting {tool.inputLabel} to {tool.outputLabel} can help with compatibility, sharing, website uploads and file format requirements.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
           <h2 className="mb-8 text-3xl font-black">
             Related Tools
           </h2>
 
           <div className="grid gap-5 md:grid-cols-3">
             {relatedTools.map((related) => (
-              <a
+              <Link
                 key={related.slug}
                 href={`/convert/${related.slug}`}
                 className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60"
@@ -178,7 +178,7 @@ export default async function ConvertPage({
                 <p className="text-slate-400">
                   {related.description}
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

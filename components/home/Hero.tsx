@@ -6,6 +6,7 @@ import { tools } from "@/data/tools";
 
 export default function Hero() {
   const [query, setQuery] = useState("");
+  const toolCount = tools.length;
 
   const filteredTools = useMemo(() => {
     const search = query.toLowerCase().trim();
@@ -29,7 +30,7 @@ export default function Hero() {
     <section className="px-6 py-28 text-center">
       <div className="mx-auto max-w-5xl">
         <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
-          The Ultimate - Free File Toolkit
+          {toolCount}+ free tools for everyday file tasks
         </div>
 
         <h1 className="mb-6 text-5xl font-black tracking-tight md:text-7xl">
