@@ -10,11 +10,8 @@ export default function Navbar() {
 
         <div className="hidden gap-8 text-sm text-slate-300 md:flex">
           <Link href="/tools">All Tools</Link>
-          <Link href="/image-tools">Images</Link>
-          <Link href="/pdf-tools">PDF</Link>
-          <Link href="/video-tools">Video</Link>
-          <Link href="/audio-tools">Audio</Link>
-          <Link href="/ai-tools">AI Tools</Link>
+          <Link href="/tools">Images</Link>
+          <Link href="/tools">PDF</Link>
         </div>
 
         <Link
