@@ -191,6 +191,18 @@ export const tools = [
   outputLabel: "PNG",
   category: "PDF Tools",
 },
+{
+  slug: "pdf-merge",
+  name: "PDF Merge",
+  title: "PDF Merge Tool",
+  description:
+    "Merge multiple PDF files into one PDF online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Merged PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;
