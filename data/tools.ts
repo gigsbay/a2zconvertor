@@ -203,6 +203,18 @@ export const tools = [
   outputLabel: "Merged PDF",
   category: "PDF Tools",
 },
+{
+  slug: "pdf-split",
+  name: "PDF Split",
+  title: "PDF Split Tool",
+  description:
+    "Split a PDF by page ranges or selected pages online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Split PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;

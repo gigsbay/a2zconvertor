@@ -299,6 +299,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "Yes. You can select multiple PDF files and they will be combined into a single PDF in the selected order.",
     },
   ],
+  "pdf-split": [
+    {
+      question: "How do I split a PDF by page range?",
+      answer:
+        "Upload one PDF, enter a range like 1-3, and download a new PDF containing only those selected pages.",
+    },
+    {
+      question: "Can I export separate pages and ranges together?",
+      answer:
+        "Yes. You can use mixed input such as 1-3,6,8-10 to export ranges and individual pages into one new PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded when splitting?",
+      answer:
+        "No. The PDF is read and split in your browser, so the selected file does not need to be uploaded for processing.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
