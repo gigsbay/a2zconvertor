@@ -1,13 +1,6 @@
 import { tools } from "./tools";
 
-const categoryNames = [
-  "Image Tools",
-  "PDF Tools",
-  "Video Tools",
-  "Audio Tools",
-  "Document Tools",
-  "AI Tools",
-];
+const categoryNames = Array.from(new Set(tools.map((tool) => tool.category)));
 
 export const categories = categoryNames.map((category) => ({
   name: category,
