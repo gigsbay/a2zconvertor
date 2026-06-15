@@ -215,6 +215,18 @@ export const tools = [
   outputLabel: "Split PDF",
   category: "PDF Tools",
 },
+{
+  slug: "compress-pdf",
+  name: "Compress PDF",
+  title: "Compress PDF Online",
+  description:
+    "Compress and optimize PDF files online for free where possible.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Compressed PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;

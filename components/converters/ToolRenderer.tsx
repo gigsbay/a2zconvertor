@@ -11,6 +11,7 @@ import ImageFlipper from "@/components/ImageFlipper";
 import PdfToImage from "@/components/PdfToImage";
 import PdfMerge from "@/components/PdfMerge";
 import PdfSplit from "@/components/PdfSplit";
+import PdfCompress from "@/components/PdfCompress";
 
 type Tool = {
   slug: string;
@@ -36,6 +37,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "pdf-to-image": <PdfToImage />,
   "pdf-merge": <PdfMerge />,
   "pdf-split": <PdfSplit />,
+  "compress-pdf": <PdfCompress />,
 };
   return (
     customTools[tool.slug] ?? (

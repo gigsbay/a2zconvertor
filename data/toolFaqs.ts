@@ -316,6 +316,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. The PDF is read and split in your browser, so the selected file does not need to be uploaded for processing.",
     },
   ],
+  "compress-pdf": [
+    {
+      question: "How does PDF compression work?",
+      answer:
+        "This tool rebuilds and optimizes the PDF structure in your browser, which can reduce file size when the original PDF has removable overhead.",
+    },
+    {
+      question: "Will every PDF become smaller?",
+      answer:
+        "Not always. Some PDFs are already optimized or contain large images that cannot be reduced without changing image quality.",
+    },
+    {
+      question: "Are my PDFs uploaded while compressing?",
+      answer:
+        "No. The PDF is processed in your browser, so the selected file does not need to be uploaded to a server.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
