@@ -282,6 +282,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "Yes. PDF pages can be rendered as images so you can download page previews from the document.",
     },
   ],
+  "pdf-merge": [
+    {
+      question: "How do I merge PDF files online?",
+      answer:
+        "Select two or more PDF files, keep them in the order you want, then merge them into one downloadable PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded to a server?",
+      answer:
+        "The merge happens in your browser, so your selected PDF files do not need to be uploaded for processing.",
+    },
+    {
+      question: "Can I merge more than two PDFs?",
+      answer:
+        "Yes. You can select multiple PDF files and they will be combined into a single PDF in the selected order.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

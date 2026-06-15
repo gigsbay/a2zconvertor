@@ -9,6 +9,7 @@ import ImageToPdf from "@/components/ImageToPdf";
 import ImageWatermark from "@/components/ImageWatermark";
 import ImageFlipper from "@/components/ImageFlipper";
 import PdfToImage from "@/components/PdfToImage";
+import PdfMerge from "@/components/PdfMerge";
 
 type Tool = {
   slug: string;
@@ -32,6 +33,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "watermark-image": <ImageWatermark />,
   "flip-image": <ImageFlipper />,
   "pdf-to-image": <PdfToImage />,
+  "pdf-merge": <PdfMerge />,
 };
   return (
     customTools[tool.slug] ?? (
