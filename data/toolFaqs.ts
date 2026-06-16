@@ -318,19 +318,19 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   ],
   "compress-pdf": [
     {
-      question: "How does this PDF optimizer work?",
+      question: "How does this PDF compressor work?",
       answer:
-        "It rebuilds the PDF structure in your browser and saves with object streams, which can reduce file size when the original has removable overhead.",
+        "It renders each PDF page to a canvas, converts the page image to JPEG at your selected quality, and rebuilds a new PDF.",
     },
     {
-      question: "Will every PDF become smaller?",
+      question: "Will selectable PDF text remain editable?",
       answer:
-        "No. Image-heavy or scanned PDFs often need image recompression, which is not supported by the current client-side library.",
+        "No. Because pages are rendered as optimized images, selectable text and vector content may become flattened in the compressed PDF.",
     },
     {
-      question: "Are my PDFs uploaded while optimizing?",
+      question: "Are my PDFs uploaded while compressing?",
       answer:
-        "No. The PDF is processed in your browser, so the selected file does not need to be uploaded to a server.",
+        "No. The PDF is rendered, compressed and rebuilt in your browser, so the selected file does not need to be uploaded to a server.",
     },
   ],
   "extract-pdf-pages": [
