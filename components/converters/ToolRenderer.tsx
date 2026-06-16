@@ -12,6 +12,9 @@ import PdfToImage from "@/components/PdfToImage";
 import PdfMerge from "@/components/PdfMerge";
 import PdfSplit from "@/components/PdfSplit";
 import PdfCompress from "@/components/PdfCompress";
+import PdfExtractPages from "@/components/PdfExtractPages";
+import PdfRotate from "@/components/PdfRotate";
+import PdfDeletePages from "@/components/PdfDeletePages";
 
 type Tool = {
   slug: string;
@@ -38,6 +41,9 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "pdf-merge": <PdfMerge />,
   "pdf-split": <PdfSplit />,
   "compress-pdf": <PdfCompress />,
+  "extract-pdf-pages": <PdfExtractPages />,
+  "rotate-pdf": <PdfRotate />,
+  "delete-pdf-pages": <PdfDeletePages />,
 };
   return (
     customTools[tool.slug] ?? (
