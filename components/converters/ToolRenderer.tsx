@@ -15,6 +15,7 @@ import PdfCompress from "@/components/PdfCompress";
 import PdfExtractPages from "@/components/PdfExtractPages";
 import PdfRotate from "@/components/PdfRotate";
 import PdfDeletePages from "@/components/PdfDeletePages";
+import ImageGrayscale from "@/components/ImageGrayscale";
 
 type Tool = {
   slug: string;
@@ -44,6 +45,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "extract-pdf-pages": <PdfExtractPages />,
   "rotate-pdf": <PdfRotate />,
   "delete-pdf-pages": <PdfDeletePages />,
+  "grayscale-image": <ImageGrayscale />,
 };
   return (
     customTools[tool.slug] ?? (

@@ -263,6 +263,18 @@ export const tools = [
   outputLabel: "Updated PDF",
   category: "PDF Tools",
 },
+{
+  slug: "grayscale-image",
+  name: "Grayscale Image",
+  title: "Grayscale Image Tool",
+  description:
+    "Convert JPG, PNG or WEBP images to grayscale online for free.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "png",
+  outputLabel: "Grayscale PNG",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
