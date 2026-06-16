@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 px-6 py-16">
@@ -35,15 +37,27 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-bold">Company</h4>
           <ul className="space-y-2 text-slate-400">
-            <li>Privacy Policy</li>
-            <li>Terms of Service</li>
-            <li>Contact</li>
+            <li>
+              <Link href="/privacy-policy" className="transition hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="transition hover:text-white">
+                Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="transition hover:text-white">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-8 text-sm text-slate-500">
-        © 2026 A2ZConvertor. All rights reserved.
+        &copy; 2026 A2ZConvertor. All rights reserved.
       </div>
     </footer>
   );
