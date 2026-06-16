@@ -401,6 +401,40 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. The grayscale conversion uses your browser canvas, so the selected image does not need to be uploaded to a server.",
     },
   ],
+  "watermark-pdf": [
+    {
+      question: "How do I add a watermark to a PDF?",
+      answer:
+        "Upload one PDF, enter the watermark text you want, and download a new PDF with that text applied to every page.",
+    },
+    {
+      question: "Does the watermark apply to every page?",
+      answer:
+        "Yes. This tool draws the same text watermark across all pages in the uploaded PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded when adding a watermark?",
+      answer:
+        "No. The watermark is added in your browser, so the selected PDF does not need to be uploaded to a server.",
+    },
+  ],
+  "add-page-numbers-pdf": [
+    {
+      question: "How do I add page numbers to a PDF?",
+      answer:
+        "Upload one PDF and create a new copy with page numbers added to the bottom center of each page.",
+    },
+    {
+      question: "Will every page get a number?",
+      answer:
+        "Yes. The tool labels each page in order using a Page 1 of N style format.",
+    },
+    {
+      question: "Are my PDFs uploaded when adding page numbers?",
+      answer:
+        "No. Page numbers are added in your browser, so the selected PDF does not need to be uploaded for processing.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

@@ -275,6 +275,30 @@ export const tools = [
   outputLabel: "Grayscale PNG",
   category: "Image Tools",
 },
+{
+  slug: "watermark-pdf",
+  name: "PDF Watermark",
+  title: "PDF Watermark Tool",
+  description:
+    "Add a text watermark to every PDF page online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Watermarked PDF",
+  category: "PDF Tools",
+},
+{
+  slug: "add-page-numbers-pdf",
+  name: "Add Page Numbers to PDF",
+  title: "Add Page Numbers to PDF",
+  description:
+    "Add page numbers to each PDF page online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Numbered PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;
