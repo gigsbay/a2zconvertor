@@ -333,6 +333,57 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. The PDF is processed in your browser, so the selected file does not need to be uploaded to a server.",
     },
   ],
+  "extract-pdf-pages": [
+    {
+      question: "How do I extract pages from a PDF?",
+      answer:
+        "Upload one PDF, enter pages like 1,3,5 or a range like 2-4, then download a new PDF containing only those pages.",
+    },
+    {
+      question: "Can I combine page ranges and single pages?",
+      answer:
+        "Yes. You can enter mixed selections such as 1-3,6,8-10 to export those pages into one new PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded when extracting pages?",
+      answer:
+        "No. The selected PDF is processed in your browser, so it does not need to be uploaded to a server.",
+    },
+  ],
+  "rotate-pdf": [
+    {
+      question: "How do I rotate a PDF online?",
+      answer:
+        "Upload one PDF, choose 90, 180 or 270 degrees, then download a rotated copy of the PDF.",
+    },
+    {
+      question: "Does PDF Rotate rotate every page?",
+      answer:
+        "Yes. This tool applies the selected rotation to all pages in the uploaded PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded when rotating?",
+      answer:
+        "No. The PDF is rotated in your browser, so the selected file does not need to be uploaded for processing.",
+    },
+  ],
+  "delete-pdf-pages": [
+    {
+      question: "How do I delete pages from a PDF?",
+      answer:
+        "Upload one PDF, enter pages to remove such as 2,4,7 or 3-5, then download a new PDF with the remaining pages.",
+    },
+    {
+      question: "Can I delete a range of PDF pages?",
+      answer:
+        "Yes. Use a range like 3-5, individual pages like 2,4,7, or mixed input such as 1,3-5,9.",
+    },
+    {
+      question: "Are my PDFs uploaded when deleting pages?",
+      answer:
+        "No. Page deletion happens in your browser, so the PDF does not need to be uploaded to a server.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

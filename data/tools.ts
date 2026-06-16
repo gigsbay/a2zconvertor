@@ -227,6 +227,42 @@ export const tools = [
   outputLabel: "Optimized PDF",
   category: "PDF Tools",
 },
+{
+  slug: "extract-pdf-pages",
+  name: "PDF Extract Pages",
+  title: "PDF Extract Pages Tool",
+  description:
+    "Extract selected PDF pages into a new PDF online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Extracted PDF",
+  category: "PDF Tools",
+},
+{
+  slug: "rotate-pdf",
+  name: "PDF Rotate",
+  title: "PDF Rotate Tool",
+  description:
+    "Rotate all PDF pages 90, 180 or 270 degrees online for free.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Rotated PDF",
+  category: "PDF Tools",
+},
+{
+  slug: "delete-pdf-pages",
+  name: "PDF Delete Pages",
+  title: "PDF Delete Pages Tool",
+  description:
+    "Delete selected pages from a PDF and download the remaining pages.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Updated PDF",
+  category: "PDF Tools",
+},
 ];
 
 export const popularTools = tools;
