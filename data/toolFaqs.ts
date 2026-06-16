@@ -318,17 +318,17 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   ],
   "compress-pdf": [
     {
-      question: "How does PDF compression work?",
+      question: "How does this PDF optimizer work?",
       answer:
-        "This tool rebuilds and optimizes the PDF structure in your browser, which can reduce file size when the original PDF has removable overhead.",
+        "It rebuilds the PDF structure in your browser and saves with object streams, which can reduce file size when the original has removable overhead.",
     },
     {
       question: "Will every PDF become smaller?",
       answer:
-        "Not always. Some PDFs are already optimized or contain large images that cannot be reduced without changing image quality.",
+        "No. Image-heavy or scanned PDFs often need image recompression, which is not supported by the current client-side library.",
     },
     {
-      question: "Are my PDFs uploaded while compressing?",
+      question: "Are my PDFs uploaded while optimizing?",
       answer:
         "No. The PDF is processed in your browser, so the selected file does not need to be uploaded to a server.",
     },

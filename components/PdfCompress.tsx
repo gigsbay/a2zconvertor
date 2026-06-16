@@ -11,16 +11,23 @@ type CompressionResult = {
 
 function formatFileSize(bytes: number) {
   if (bytes < 1024 * 1024) {
-    return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+    return `${Math.max(0.1, bytes / 1024).toFixed(1)} KB`;
   }
 
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
 function getReductionPercent(originalSize: number, compressedSize: number) {
-  if (originalSize === 0) return 0;
+  if (originalSize === 0 || compressedSize >= originalSize) return 0;
 
-  return Math.max(0, Math.round(((originalSize - compressedSize) / originalSize) * 100));
+  return ((originalSize - compressedSize) / originalSize) * 100;
+}
+
+function formatReduction(percent: number) {
+  if (percent === 0) return "0%";
+  if (percent < 0.1) return "<0.1%";
+
+  return `${percent.toFixed(1)}%`;
 }
 
 export default function PdfCompress() {
@@ -77,7 +84,7 @@ export default function PdfCompress() {
       );
 
       copiedPages.forEach((page) => compressedPdf.addPage(page));
-      compressedPdf.setProducer("A2ZConvertor");
+      compressedPdf.setProducer("A2ZConvertor PDF Optimizer");
       compressedPdf.setCreator("A2ZConvertor");
 
       const compressedBytes = await compressedPdf.save({
@@ -108,14 +115,21 @@ export default function PdfCompress() {
 
   return (
     <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8">
-      <h1 className="mb-4 text-4xl font-black">PDF Compress Tool</h1>
+      <h1 className="mb-4 text-4xl font-black">PDF Optimizer</h1>
 
       <p className="mb-8 text-slate-400">
-        Optimize a PDF in your browser and download a smaller file where
-        compression is possible.
+        Clean and rewrite a PDF in your browser to reduce file size where
+        structural optimization is possible.
       </p>
 
       <div className="space-y-6">
+        <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 p-4 text-sm text-blue-100">
+          This browser tool can remove unused PDF structure and save with object
+          streams. It cannot recompress embedded images or scanned page content
+          with the current client-side library, so image-heavy PDFs may not get
+          smaller.
+        </div>
+
         <input
           type="file"
           accept="application/pdf,.pdf"
@@ -144,7 +158,7 @@ export default function PdfCompress() {
           disabled={!file || isCompressing}
           className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isCompressing ? "Compressing PDF..." : "Compress PDF"}
+          {isCompressing ? "Optimizing PDF..." : "Optimize PDF"}
         </button>
 
         {result && (
@@ -158,33 +172,38 @@ export default function PdfCompress() {
               </div>
 
               <div>
-                <p className="text-sm text-slate-500">Compressed</p>
+                <p className="text-sm text-slate-500">Optimized output</p>
                 <p className="text-xl font-bold text-white">
                   {formatFileSize(result.compressedSize)}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-slate-500">Saved</p>
-                <p className="text-xl font-bold text-green-300">
-                  {reduction}%
+                <p className="text-sm text-slate-500">Reduction</p>
+                <p
+                  className={`text-xl font-bold ${
+                    reduction > 0 ? "text-green-300" : "text-slate-300"
+                  }`}
+                >
+                  {formatReduction(reduction)}
                 </p>
               </div>
             </div>
 
             {result.compressedSize >= result.originalSize && (
               <p className="rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-yellow-100">
-                This PDF was already well optimized, so the output may not be
-                smaller than the original.
+                No smaller PDF could be produced in the browser for this file.
+                It may already be optimized, or most of its size may come from
+                embedded images that this client-side optimizer cannot recompress.
               </p>
             )}
 
             <a
               href={result.url}
-              download="compressed.pdf"
+              download="optimized.pdf"
               className="block w-full rounded-xl bg-green-500 px-6 py-3 text-center font-semibold text-black"
             >
-              Download Compressed PDF
+              Download Optimized PDF
             </a>
           </div>
         )}
