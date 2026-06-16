@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://a2zconvertor.co.uk"),
 
   title: {
-    default: "A2ZConvertor - Free Online Image Conversion Tools",
+    default: "A2ZConvertor - Free Online Image and PDF Tools",
     template: "%s | A2ZConvertor",
   },
 
   description:
-    "A2ZConvertor offers free online image conversion and compression tools including JPG to PNG, PNG to JPG, WEBP converters and image compressor tools.",
+    "A2ZConvertor offers free online image and PDF tools including image converters, image compression, PDF merge, PDF split and PDF compression.",
 
   keywords: [
     "image converter",
@@ -32,14 +32,22 @@ export const metadata: Metadata = {
     "webp to png",
     "compress image",
     "image compressor",
+    "pdf tools",
+    "compress pdf",
+    "merge pdf",
+    "split pdf",
     "free online tools",
     "A2ZConvertor",
   ],
 
+  alternates: {
+    canonical: "/",
+  },
+
   openGraph: {
-    title: "A2ZConvertor - Free Online Image Conversion Tools",
+    title: "A2ZConvertor - Free Online Image and PDF Tools",
     description:
-      "Convert and compress images online for free with fast, browser-based tools.",
+      "Convert, compress and edit images and PDFs online for free with fast, browser-based tools.",
     url: "https://a2zconvertor.co.uk",
     siteName: "A2ZConvertor",
     type: "website",
@@ -48,9 +56,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "A2ZConvertor - Free Online Image Conversion Tools",
+    title: "A2ZConvertor - Free Online Image and PDF Tools",
     description:
-      "Convert JPG, PNG, WEBP and compress images online for free.",
+      "Convert, compress and edit images and PDFs online for free.",
   },
 
   robots: {
