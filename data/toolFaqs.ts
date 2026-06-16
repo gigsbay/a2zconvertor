@@ -384,6 +384,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Page deletion happens in your browser, so the PDF does not need to be uploaded to a server.",
     },
   ],
+  "grayscale-image": [
+    {
+      question: "How do I convert an image to grayscale?",
+      answer:
+        "Upload a JPG, PNG or WEBP image, convert it in your browser, then download the grayscale result as a PNG.",
+    },
+    {
+      question: "What format is the grayscale image download?",
+      answer:
+        "The converted grayscale image downloads as a PNG for broad compatibility and consistent quality.",
+    },
+    {
+      question: "Are my images uploaded when converting to grayscale?",
+      answer:
+        "No. The grayscale conversion uses your browser canvas, so the selected image does not need to be uploaded to a server.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
