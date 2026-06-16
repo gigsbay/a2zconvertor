@@ -16,6 +16,8 @@ import PdfExtractPages from "@/components/PdfExtractPages";
 import PdfRotate from "@/components/PdfRotate";
 import PdfDeletePages from "@/components/PdfDeletePages";
 import ImageGrayscale from "@/components/ImageGrayscale";
+import PdfWatermark from "@/components/PdfWatermark";
+import PdfPageNumbers from "@/components/PdfPageNumbers";
 
 type Tool = {
   slug: string;
@@ -46,6 +48,8 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "rotate-pdf": <PdfRotate />,
   "delete-pdf-pages": <PdfDeletePages />,
   "grayscale-image": <ImageGrayscale />,
+  "watermark-pdf": <PdfWatermark />,
+  "add-page-numbers-pdf": <PdfPageNumbers />,
 };
   return (
     customTools[tool.slug] ?? (
