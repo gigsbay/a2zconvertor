@@ -217,14 +217,14 @@ export const tools = [
 },
 {
   slug: "compress-pdf",
-  name: "Optimize PDF",
-  title: "Optimize PDF Online",
+  name: "Compress PDF",
+  title: "Compress PDF Online",
   description:
-    "Optimize PDF structure online for free and reduce file size where possible.",
+    "Compress PDF pages as optimized images online for free.",
   inputFormat: "pdf",
   inputLabel: "PDF",
   outputFormat: "pdf",
-  outputLabel: "Optimized PDF",
+  outputLabel: "Compressed PDF",
   category: "PDF Tools",
 },
 {
