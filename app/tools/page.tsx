@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolsBrowser from "@/components/tools/ToolsBrowser";
@@ -20,7 +21,15 @@ export default function ToolsPage() {
             </p>
           </div>
 
-          <ToolsBrowser />
+          <Suspense
+            fallback={
+              <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 text-slate-400">
+                Loading tools...
+              </div>
+            }
+          >
+            <ToolsBrowser />
+          </Suspense>
         </div>
       </section>
 

@@ -13,19 +13,23 @@ export default function TermsPage() {
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
 
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="mb-6 text-5xl font-black tracking-tight">
-            Terms of Service
-          </h1>
-
-          <div className="space-y-8 text-slate-300">
-            <p className="rounded-2xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-yellow-100">
-              This page is provided for launch transparency and is not legal
-              advice. You should review it with a qualified legal professional
-              for your specific business and compliance needs.
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-10 rounded-3xl border border-white/10 bg-slate-900/70 p-8">
+            <p className="mb-3 text-sm font-semibold uppercase text-blue-300">
+              Last updated: June 17, 2026
             </p>
+            <h1 className="mb-4 text-5xl font-black tracking-tight">
+              Terms of Service
+            </h1>
+            <p className="max-w-3xl text-lg leading-8 text-slate-300">
+              These terms explain responsible use of A2ZConvertor, including
+              browser-based processing, file responsibility and service
+              availability.
+            </p>
+          </div>
 
+          <div className="grid gap-5 text-slate-300">
             <TermsSection title="Using A2ZConvertor">
               <p>
                 A2ZConvertor provides free online tools for file conversion,
@@ -129,9 +133,9 @@ function TermsSection({
   children: React.ReactNode;
 }) {
   return (
-    <section>
+    <section className="rounded-2xl border border-white/10 bg-slate-900/60 p-6">
       <h2 className="mb-3 text-2xl font-bold text-white">{title}</h2>
-      <div className="space-y-4 leading-7">{children}</div>
+      <div className="space-y-4 leading-7 text-slate-300">{children}</div>
     </section>
   );
 }

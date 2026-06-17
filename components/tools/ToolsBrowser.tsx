@@ -2,13 +2,30 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { tools } from "@/data/tools";
 
-const categories = ["All", ...Array.from(new Set(tools.map((tool) => tool.category)))];
+const preferredCategories = [
+  "All",
+  "Image Tools",
+  "PDF Tools",
+  "Video Tools",
+  "Audio Tools",
+  "AI Tools",
+];
+
+const discoveredCategories = Array.from(
+  new Set(tools.map((tool) => tool.category))
+).filter((category) => !preferredCategories.includes(category));
+
+const categories = [...preferredCategories, ...discoveredCategories];
 
 export default function ToolsBrowser() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const activeCategory =
+    categoryParam && categories.includes(categoryParam) ? categoryParam : "All";
 
   const filteredTools = useMemo(() => {
     const search = query.toLowerCase().trim();
@@ -29,6 +46,9 @@ export default function ToolsBrowser() {
     });
   }, [query, activeCategory]);
 
+  const hasCategoryFilter = activeCategory !== "All";
+  const emptyCategory = hasCategoryFilter && !query.trim();
+
   return (
     <>
       <div className="mb-8">
@@ -43,9 +63,13 @@ export default function ToolsBrowser() {
 
       <div className="mb-10 flex flex-wrap gap-3">
         {categories.map((category) => (
-          <button
+          <Link
             key={category}
-            onClick={() => setActiveCategory(category)}
+            href={
+              category === "All"
+                ? "/tools"
+                : `/tools?category=${encodeURIComponent(category)}`
+            }
             className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${
               activeCategory === category
                 ? "border-blue-500 bg-blue-500 text-white"
@@ -53,7 +77,7 @@ export default function ToolsBrowser() {
             }`}
           >
             {category}
-          </button>
+          </Link>
         ))}
       </div>
 
@@ -76,9 +100,19 @@ export default function ToolsBrowser() {
       </div>
 
       {filteredTools.length === 0 && (
-        <p className="mt-10 text-center text-slate-400">
-          No tools found. Try another search.
-        </p>
+        <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-white/10 bg-slate-900/70 p-6 text-center">
+          <p className="text-slate-300">
+            {emptyCategory
+              ? "Tools in this category are coming soon. You can request one."
+              : "No tools found. Try another search or request a new tool."}
+          </p>
+          <Link
+            href="/request-tool"
+            className="mt-4 inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+          >
+            Request a Tool
+          </Link>
+        </div>
       )}
     </>
   );
