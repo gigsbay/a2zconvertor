@@ -435,6 +435,142 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Page numbers are added in your browser, so the selected PDF does not need to be uploaded for processing.",
     },
   ],
+  "video-metadata": [
+    {
+      question: "What metadata can I view from a video?",
+      answer:
+        "This tool shows file name, file size, duration, resolution, video width and video height for supported browser video files.",
+    },
+    {
+      question: "Are videos uploaded to a server?",
+      answer:
+        "No. Video metadata is read in your browser using the video element, so the selected file does not need to be uploaded.",
+    },
+    {
+      question: "Which video formats are supported?",
+      answer:
+        "The tool accepts MP4, WEBM and MOV files when your browser can read their metadata.",
+    },
+  ],
+  "audio-metadata": [
+    {
+      question: "What audio metadata does this show?",
+      answer:
+        "This tool shows file name, file size and duration for supported audio files.",
+    },
+    {
+      question: "Are audio files uploaded to a server?",
+      answer:
+        "No. Audio metadata is read in your browser using the audio element, so the selected file does not need to be uploaded.",
+    },
+    {
+      question: "Which audio formats are supported?",
+      answer:
+        "The tool accepts MP3, WAV, OGG and M4A files when your browser can read their metadata.",
+    },
+  ],
+  "mp4-to-mp3": [
+    {
+      question: "Does this tool create MP3 files?",
+      answer:
+        "No. Browser-native MP3 encoding is not reliable without a heavier encoder, so this tool extracts supported MP4 audio and exports WAV.",
+    },
+    {
+      question: "Is the audio extracted on my device?",
+      answer:
+        "Yes. The MP4 is decoded in your browser and the extracted audio is downloaded as a WAV file.",
+    },
+    {
+      question: "Why does some MP4 audio fail to extract?",
+      answer:
+        "Browser support depends on the audio codec inside the MP4. If your browser cannot decode it, the tool cannot extract it client-side.",
+    },
+  ],
+  "mp3-cutter": [
+    {
+      question: "Does MP3 Cutter export MP3?",
+      answer:
+        "No. Precise MP3 stream cutting is not available through standard browser APIs, so the trimmed selection downloads as WAV.",
+    },
+    {
+      question: "How do I trim an MP3?",
+      answer:
+        "Upload an MP3, enter start and end times in seconds, then export the selected audio as a WAV file.",
+    },
+    {
+      question: "Are my audio files uploaded while trimming?",
+      answer:
+        "No. The MP3 is decoded and trimmed in your browser using the Web Audio API.",
+    },
+  ],
+  "change-audio-volume": [
+    {
+      question: "Can I make audio louder or quieter?",
+      answer:
+        "Yes. Use the volume slider from 10% to 200%, then export the adjusted audio as WAV.",
+    },
+    {
+      question: "Does this preserve MP3 output?",
+      answer:
+        "No. Browser-native MP3 encoding is not reliable without a heavier encoder, so adjusted audio downloads as WAV.",
+    },
+    {
+      question: "Is volume processing browser-based?",
+      answer:
+        "Yes. Volume adjustment uses the Web Audio API in your browser without server processing.",
+    },
+  ],
+  "video-to-gif": [
+    {
+      question: "Does this tool create a GIF?",
+      answer:
+        "No. Real GIF encoding is heavy without a dedicated encoder, so this MVP exports a short animated WebM clip instead.",
+    },
+    {
+      question: "How do I make a short animated clip?",
+      answer:
+        "Upload MP4 or WEBM video, choose a start time and duration, then export the selected segment as WebM.",
+    },
+    {
+      question: "Are videos uploaded while creating the clip?",
+      answer:
+        "No. The clip is rendered and recorded in your browser using canvas and MediaRecorder.",
+    },
+  ],
+  "compress-video": [
+    {
+      question: "Does Video Optimizer compress MP4 files?",
+      answer:
+        "It does not create optimized MP4 output. It uses browser-native recording to export a WebM version and shows the real output size.",
+    },
+    {
+      question: "Can the optimized video be larger?",
+      answer:
+        "Yes. If the selected quality or source video does not reduce well, the tool shows the accurate output size and saved percentage.",
+    },
+    {
+      question: "Are videos uploaded when optimizing?",
+      answer:
+        "No. The video frames are processed in your browser with canvas and MediaRecorder.",
+    },
+  ],
+  "audio-converter": [
+    {
+      question: "What format does Audio Converter create?",
+      answer:
+        "This tool converts supported audio files to WAV using browser audio decoding.",
+    },
+    {
+      question: "Can it export MP3 or OGG?",
+      answer:
+        "No. Reliable MP3 or OGG encoding would require an additional encoder, so this launch version clearly exports WAV.",
+    },
+    {
+      question: "Are audio files uploaded while converting?",
+      answer:
+        "No. Audio conversion runs in your browser with the Web Audio API.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

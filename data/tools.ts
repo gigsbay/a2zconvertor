@@ -299,6 +299,102 @@ export const tools = [
   outputLabel: "Numbered PDF",
   category: "PDF Tools",
 },
+{
+  slug: "video-metadata",
+  name: "Video Metadata Viewer",
+  title: "Video Metadata Viewer",
+  description:
+    "View MP4, WEBM and MOV metadata including duration, file size and resolution.",
+  inputFormat: "video",
+  inputLabel: "Video",
+  outputFormat: "metadata",
+  outputLabel: "Metadata",
+  category: "Video Tools",
+},
+{
+  slug: "audio-metadata",
+  name: "Audio Metadata Viewer",
+  title: "Audio Metadata Viewer",
+  description:
+    "View MP3, WAV, OGG and M4A metadata including duration and file size.",
+  inputFormat: "audio",
+  inputLabel: "Audio",
+  outputFormat: "metadata",
+  outputLabel: "Metadata",
+  category: "Audio Tools",
+},
+{
+  slug: "mp4-to-mp3",
+  name: "Extract Audio from MP4",
+  title: "Extract Audio from MP4",
+  description:
+    "Extract audio from MP4 video in your browser and download it as WAV.",
+  inputFormat: "mp4",
+  inputLabel: "MP4",
+  outputFormat: "wav",
+  outputLabel: "WAV Audio",
+  category: "Video Tools",
+},
+{
+  slug: "mp3-cutter",
+  name: "MP3 Cutter",
+  title: "MP3 Cutter",
+  description:
+    "Trim MP3 audio by start and end time in your browser and export WAV.",
+  inputFormat: "mp3",
+  inputLabel: "MP3",
+  outputFormat: "wav",
+  outputLabel: "Trimmed WAV",
+  category: "Audio Tools",
+},
+{
+  slug: "change-audio-volume",
+  name: "Change Audio Volume",
+  title: "Change Audio Volume",
+  description:
+    "Adjust MP3, WAV or OGG volume in your browser and export WAV audio.",
+  inputFormat: "audio",
+  inputLabel: "Audio",
+  outputFormat: "wav",
+  outputLabel: "Adjusted WAV",
+  category: "Audio Tools",
+},
+{
+  slug: "video-to-gif",
+  name: "Video to Animated WebM",
+  title: "Video to Animated WebM",
+  description:
+    "Create a short animated WebM preview from MP4 or WEBM video without claiming GIF output.",
+  inputFormat: "video",
+  inputLabel: "Video",
+  outputFormat: "webm",
+  outputLabel: "Animated WebM",
+  category: "Video Tools",
+},
+{
+  slug: "compress-video",
+  name: "Video Optimizer",
+  title: "Video Optimizer",
+  description:
+    "Recompress MP4 or WEBM video to browser-native WebM and show accurate size results.",
+  inputFormat: "video",
+  inputLabel: "Video",
+  outputFormat: "webm",
+  outputLabel: "Optimized WebM",
+  category: "Video Tools",
+},
+{
+  slug: "audio-converter",
+  name: "Convert Audio to WAV",
+  title: "Convert Audio to WAV",
+  description:
+    "Convert MP3, WAV, OGG or M4A audio to WAV in your browser.",
+  inputFormat: "audio",
+  inputLabel: "Audio",
+  outputFormat: "wav",
+  outputLabel: "WAV",
+  category: "Audio Tools",
+},
 ];
 
 export const popularTools = tools;

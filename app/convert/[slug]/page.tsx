@@ -129,7 +129,8 @@ export default async function ConvertPage({
             <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
               <h3 className="mb-2 font-bold">2. Convert</h3>
               <p className="text-slate-400">
-                A2ZConvertor converts your image securely in your browser.
+                A2ZConvertor processes your file in your browser where
+                possible.
               </p>
             </div>
 
@@ -155,7 +156,7 @@ export default async function ConvertPage({
           </p>
 
           <p className="text-slate-400">
-            Your image is processed directly in your browser where possible,
+            Your file is processed directly in your browser where possible,
             making the conversion fast and private.
           </p>
         </div>
