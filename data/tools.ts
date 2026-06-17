@@ -491,6 +491,30 @@ export const tools = [
   outputLabel: "Converted Text",
   category: "Text Tools",
 },
+{
+  slug: "avif-to-png",
+  name: "AVIF to PNG",
+  title: "AVIF to PNG Converter",
+  description:
+    "Convert AVIF images to PNG in your browser using native image decoding.",
+  inputFormat: "avif",
+  inputLabel: "AVIF",
+  outputFormat: "png",
+  outputLabel: "PNG",
+  category: "Image Tools",
+},
+{
+  slug: "avif-to-jpg",
+  name: "AVIF to JPG",
+  title: "AVIF to JPG Converter",
+  description:
+    "Convert AVIF images to JPG in your browser using native image decoding.",
+  inputFormat: "avif",
+  inputLabel: "AVIF",
+  outputFormat: "jpg",
+  outputLabel: "JPG",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
