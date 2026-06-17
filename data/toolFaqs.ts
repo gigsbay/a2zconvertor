@@ -452,6 +452,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Page thumbnails, reordering and PDF rebuilding happen in your browser using PDF.js and pdf-lib.",
     },
   ],
+  "crop-pdf": [
+    {
+      question: "How does Crop PDF work?",
+      answer:
+        "It applies top, right, bottom and left margins to each page's PDF crop box using pdf-lib in your browser.",
+    },
+    {
+      question: "Does cropping delete the hidden content?",
+      answer:
+        "No. Crop boxes change the visible page area. The original page content may still exist inside the PDF file.",
+    },
+    {
+      question: "Are my PDFs uploaded while cropping?",
+      answer:
+        "No. The PDF is read, cropped and rebuilt locally in your browser.",
+    },
+  ],
   "meme-generator": [
     {
       question: "How do I make a meme image?",
