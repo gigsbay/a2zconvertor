@@ -452,6 +452,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Page thumbnails, reordering and PDF rebuilding happen in your browser using PDF.js and pdf-lib.",
     },
   ],
+  "meme-generator": [
+    {
+      question: "How do I make a meme image?",
+      answer:
+        "Upload a JPG, PNG or WEBP image, add top and bottom text, adjust the font size and download the final meme as a PNG.",
+    },
+    {
+      question: "What style does the meme text use?",
+      answer:
+        "The text is centered, uppercase, bold, white filled and drawn with a black stroke for the classic meme look.",
+    },
+    {
+      question: "Are images uploaded when making a meme?",
+      answer:
+        "No. The meme preview and PNG export are created in your browser using canvas.",
+    },
+  ],
   "video-metadata": [
     {
       question: "What metadata can I view from a video?",
