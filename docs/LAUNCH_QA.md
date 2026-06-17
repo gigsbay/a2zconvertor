@@ -31,6 +31,14 @@ and confirm the output opens in a normal viewer.
 | Grayscale Image | `/convert/grayscale-image` | JPG, PNG or WEBP image | Grayscale PNG image | Upload image; convert; preview/download result; confirm output is grayscale. |  |  |
 | PDF Watermark | `/convert/watermark-pdf` | PDF document | Watermarked PDF document | Upload PDF; enter watermark text; apply; download result; confirm watermark appears on every page. |  |  |
 | Add Page Numbers to PDF | `/convert/add-page-numbers-pdf` | PDF document | Numbered PDF document | Upload PDF; add page numbers; download result; confirm every page shows the correct page number. |  |  |
+| Video Metadata Viewer | `/convert/video-metadata` | MP4, WEBM or MOV video | Metadata display | Upload video; confirm file name, size, duration, resolution, width and height are shown. |  |  |
+| Audio Metadata Viewer | `/convert/audio-metadata` | MP3, WAV, OGG or M4A audio | Metadata display | Upload audio; confirm file name, size and duration are shown. |  |  |
+| Extract Audio from MP4 | `/convert/mp4-to-mp3` | MP4 video | WAV audio | Upload MP4; extract audio; download WAV; confirm output opens and UI does not claim MP3 output. |  |  |
+| MP3 Cutter | `/convert/mp3-cutter` | MP3 audio | Trimmed WAV audio | Upload MP3; set start and end times; trim; download WAV; confirm duration matches selection. |  |  |
+| Change Audio Volume | `/convert/change-audio-volume` | MP3, WAV or OGG audio | Adjusted WAV audio | Upload audio; set volume slider; export WAV; confirm output opens and volume changes. |  |  |
+| Video to Animated WebM | `/convert/video-to-gif` | MP4 or WEBM video | Animated WebM video | Upload video; set start and duration; export WebM; confirm UI does not claim GIF output. |  |  |
+| Video Optimizer | `/convert/compress-video` | MP4 or WEBM video | Optimized WebM video | Upload video; set quality; optimize; confirm original/output sizes are accurate and output opens. |  |  |
+| Convert Audio to WAV | `/convert/audio-converter` | MP3, WAV, OGG or M4A audio | WAV audio | Upload audio; convert to WAV; download result; confirm output opens. |  |  |
 
 ## Site-Wide Launch Checks
 
