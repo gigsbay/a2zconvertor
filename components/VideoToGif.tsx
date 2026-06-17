@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatDuration, formatFileSize } from "@/components/mediaTools";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function VideoToGif() {
   const [file, setFile] = useState<File | null>(null);
@@ -11,6 +12,8 @@ export default function VideoToGif() {
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputInfo, setOutputInfo] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -19,6 +22,8 @@ export default function VideoToGif() {
       return null;
     });
     setOutputInfo(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function handleFile(selectedFile: File | null) {
@@ -86,10 +91,16 @@ export default function VideoToGif() {
       setIsProcessing(true);
       setError(null);
       clearOutput();
+      setProgress(5);
+      setProgressLabel("Preparing video");
 
-      const blob = await recordVideoToWebm(file, start, clipDuration, 0.8);
+      const blob = await recordVideoToWebm(file, start, clipDuration, 0.8, (percent) => {
+        setProgress(percent);
+        setProgressLabel("Recording animated WebM");
+      });
       setOutputUrl(URL.createObjectURL(blob));
       setOutputInfo(`${formatDuration(clipDuration)} animated WebM, ${formatFileSize(blob.size)}`);
+      setProgress(100);
     } catch (processError) {
       console.error(processError);
       setError("Could not create an animated WebM from this video in your browser.");
@@ -168,6 +179,10 @@ export default function VideoToGif() {
           </p>
         )}
 
+        {isProcessing && (
+          <ProcessingProgress label={progressLabel} value={progress} />
+        )}
+
         <button
           type="button"
           onClick={createAnimatedWebm}
@@ -198,7 +213,8 @@ async function recordVideoToWebm(
   file: File,
   startSeconds: number,
   durationSeconds: number,
-  quality: number
+  quality: number,
+  onProgress: (percent: number) => void
 ) {
   const video = document.createElement("video");
   const canvas = document.createElement("canvas");
@@ -218,6 +234,7 @@ async function recordVideoToWebm(
 
     video.currentTime = Math.min(startSeconds, Math.max(0, video.duration - 0.1));
     await waitForSeek(video);
+    onProgress(15);
 
     const maxWidth = 640;
     const scale = Math.min(1, maxWidth / video.videoWidth);
@@ -254,7 +271,13 @@ async function recordVideoToWebm(
     recorder.start();
     await video.play();
     drawFrame();
+    const startedAt = performance.now();
+    const progressTimer = window.setInterval(() => {
+      const elapsed = (performance.now() - startedAt) / 1000;
+      onProgress(15 + Math.min(1, elapsed / durationSeconds) * 80);
+    }, 200);
     await new Promise((resolve) => setTimeout(resolve, durationSeconds * 1000));
+    window.clearInterval(progressTimer);
     video.pause();
     recorder.stop();
 

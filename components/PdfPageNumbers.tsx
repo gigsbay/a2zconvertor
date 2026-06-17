@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -12,6 +13,8 @@ export default function PdfPageNumbers() {
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isNumbering, setIsNumbering] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -19,6 +22,8 @@ export default function PdfPageNumbers() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -63,11 +68,14 @@ export default function PdfPageNumbers() {
       setIsNumbering(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const pdf = await PDFDocument.load(await file.arrayBuffer());
       const font = await pdf.embedFont(StandardFonts.Helvetica);
       const pages = pdf.getPages();
       const totalPages = pages.length;
+      setProgressLabel("Adding page numbers");
 
       pages.forEach((page, index) => {
         const { width } = page.getSize();
@@ -82,14 +90,18 @@ export default function PdfPageNumbers() {
           font,
           color: rgb(0.35, 0.39, 0.46),
         });
+        setProgress(20 + ((index + 1) / totalPages) * 60);
       });
 
+      setProgress(85);
+      setProgressLabel("Saving numbered PDF");
       const outputBytes = await pdf.save({ useObjectStreams: true });
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
         type: "application/pdf",
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (numberError) {
       console.error(numberError);
       setError("Failed to add page numbers. Please try a standard, unlocked PDF file.");
@@ -135,6 +147,10 @@ export default function PdfPageNumbers() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isNumbering && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

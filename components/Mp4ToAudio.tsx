@@ -7,12 +7,15 @@ import {
   formatDuration,
   formatFileSize,
 } from "@/components/mediaTools";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function Mp4ToAudio() {
   const [file, setFile] = useState<File | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [audioInfo, setAudioInfo] = useState<string | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -21,6 +24,8 @@ export default function Mp4ToAudio() {
       return null;
     });
     setAudioInfo(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function handleFile(selectedFile: File | null) {
@@ -54,8 +59,12 @@ export default function Mp4ToAudio() {
       setIsExtracting(true);
       setError(null);
       clearOutput();
+      setProgress(15);
+      setProgressLabel("Decoding MP4 audio");
 
       const audioBuffer = await decodeAudioFile(file);
+      setProgress(75);
+      setProgressLabel("Encoding WAV");
       const wavBuffer = audioBufferToWav(audioBuffer);
       const blob = new Blob([wavBuffer], { type: "audio/wav" });
 
@@ -65,6 +74,7 @@ export default function Mp4ToAudio() {
           blob.size
         )}`
       );
+      setProgress(100);
     } catch (extractError) {
       console.error(extractError);
       setError(
@@ -104,6 +114,10 @@ export default function Mp4ToAudio() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isExtracting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

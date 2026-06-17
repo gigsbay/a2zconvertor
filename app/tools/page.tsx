@@ -1,7 +1,11 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolsBrowser from "@/components/tools/ToolsBrowser";
+import { tools } from "@/data/tools";
+
+const categories = Array.from(new Set(tools.map((tool) => tool.category)));
 
 export default function ToolsPage() {
   return (
@@ -23,9 +27,7 @@ export default function ToolsPage() {
 
           <Suspense
             fallback={
-              <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 text-slate-400">
-                Loading tools...
-              </div>
+              <StaticToolsFallback />
             }
           >
             <ToolsBrowser />
@@ -35,5 +37,45 @@ export default function ToolsPage() {
 
       <Footer />
     </main>
+  );
+}
+
+function StaticToolsFallback() {
+  return (
+    <div>
+      <div className="mb-10 flex flex-wrap gap-3">
+        <Link
+          href="/tools"
+          className="rounded-full border border-blue-500 bg-blue-500 px-5 py-2 text-sm font-semibold text-white"
+        >
+          All
+        </Link>
+        {categories.map((category) => (
+          <Link
+            key={category}
+            href={`/tools?category=${encodeURIComponent(category)}`}
+            className="rounded-full border border-white/10 bg-slate-900 px-5 py-2 text-sm font-semibold text-slate-300"
+          >
+            {category}
+          </Link>
+        ))}
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {tools.map((tool) => (
+          <Link
+            key={tool.slug}
+            href={`/convert/${tool.slug}`}
+            className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+          >
+            <div className="mb-3 text-sm font-semibold text-blue-400">
+              {tool.category}
+            </div>
+            <h2 className="mb-2 text-2xl font-bold">{tool.name}</h2>
+            <p className="text-slate-400">{tool.description}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

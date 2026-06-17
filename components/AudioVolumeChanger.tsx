@@ -7,6 +7,7 @@ import {
   formatDuration,
   formatFileSize,
 } from "@/components/mediaTools";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 const ACCEPTED_AUDIO_TYPES = [
   "audio/mpeg",
@@ -43,6 +44,8 @@ export default function AudioVolumeChanger() {
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputInfo, setOutputInfo] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -66,6 +69,8 @@ export default function AudioVolumeChanger() {
       return null;
     });
     setOutputInfo(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function clearOriginalPreview() {
@@ -108,8 +113,12 @@ export default function AudioVolumeChanger() {
       setIsProcessing(true);
       setError(null);
       clearOutput();
+      setProgress(15);
+      setProgressLabel("Decoding audio");
 
       const sourceBuffer = await decodeAudioFile(file);
+      setProgress(45);
+      setProgressLabel("Applying volume");
       const outputBuffer = new AudioBuffer({
         length: sourceBuffer.length,
         numberOfChannels: sourceBuffer.numberOfChannels,
@@ -124,8 +133,11 @@ export default function AudioVolumeChanger() {
         for (let index = 0; index < input.length; index += 1) {
           output[index] = Math.max(-1, Math.min(1, input[index] * multiplier));
         }
+        setProgress(45 + ((channel + 1) / sourceBuffer.numberOfChannels) * 30);
       }
 
+      setProgress(82);
+      setProgressLabel("Encoding WAV");
       const wavBuffer = audioBufferToWav(outputBuffer);
       const blob = new Blob([wavBuffer], { type: "audio/wav" });
 
@@ -133,6 +145,7 @@ export default function AudioVolumeChanger() {
       setOutputInfo(
         `${formatDuration(outputBuffer.duration)} WAV, ${formatFileSize(blob.size)}`
       );
+      setProgress(100);
     } catch (volumeError) {
       console.error(volumeError);
       setError(
@@ -206,6 +219,10 @@ export default function AudioVolumeChanger() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isProcessing && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

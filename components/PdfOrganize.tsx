@@ -2,6 +2,7 @@
 
 import { DragEvent, useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -21,7 +22,8 @@ export default function PdfOrganize() {
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [progress, setProgress] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -39,7 +41,8 @@ export default function PdfOrganize() {
 
   async function handleFile(selectedFile: File | null) {
     setError(null);
-    setProgress(null);
+    setProgress(0);
+    setProgressLabel("");
     clearOutput();
     clearThumbnails(pages);
     setPages([]);
@@ -62,7 +65,8 @@ export default function PdfOrganize() {
     try {
       setIsLoading(true);
       setFile(selectedFile);
-      setProgress("Reading PDF pages...");
+      setProgress(5);
+      setProgressLabel("Reading PDF pages");
 
       const pdfjsLib = await import("pdfjs-dist");
       pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.mjs";
@@ -73,7 +77,8 @@ export default function PdfOrganize() {
       const renderedPages: PdfPageItem[] = [];
 
       for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-        setProgress(`Rendering thumbnail ${pageNumber} of ${pdf.numPages}`);
+        setProgressLabel(`Rendering thumbnail ${pageNumber} of ${pdf.numPages}`);
+        setProgress(10 + ((pageNumber - 1) / pdf.numPages) * 85);
         const page = await pdf.getPage(pageNumber);
         const viewport = page.getViewport({ scale: 0.28 });
         const canvas = document.createElement("canvas");
@@ -106,16 +111,18 @@ export default function PdfOrganize() {
           pageNumber,
           thumbnailUrl,
         });
+        setProgress(10 + (pageNumber / pdf.numPages) * 85);
       }
 
       setPages(renderedPages);
-      setProgress(null);
+      setProgress(100);
     } catch (loadError) {
       console.error(loadError);
       setFile(null);
       setPages([]);
       setError("Failed to read this PDF. Please try a standard, unlocked PDF file.");
-      setProgress(null);
+      setProgress(0);
+      setProgressLabel("");
     } finally {
       setIsLoading(false);
     }
@@ -174,6 +181,8 @@ export default function PdfOrganize() {
       setIsSaving(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Rebuilding PDF");
 
       const sourcePdf = await PDFDocument.load(await file.arrayBuffer());
       const outputPdf = await PDFDocument.create();
@@ -183,6 +192,8 @@ export default function PdfOrganize() {
       );
 
       copiedPages.forEach((page) => outputPdf.addPage(page));
+      setProgress(75);
+      setProgressLabel("Saving organized PDF");
 
       const outputBytes = await outputPdf.save({ useObjectStreams: true });
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
@@ -190,6 +201,7 @@ export default function PdfOrganize() {
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (saveError) {
       console.error(saveError);
       setError("Failed to rebuild this PDF. Please try a standard, unlocked PDF file.");
@@ -227,10 +239,8 @@ export default function PdfOrganize() {
           </div>
         )}
 
-        {progress && (
-          <p className="rounded-xl border border-white/10 bg-black/20 p-4 text-sm text-slate-300">
-            {progress}
-          </p>
+        {(isLoading || isSaving) && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         {error && (

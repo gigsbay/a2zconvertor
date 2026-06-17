@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { degrees, PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -15,6 +16,8 @@ export default function PdfRotate() {
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isRotating, setIsRotating] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -22,6 +25,8 @@ export default function PdfRotate() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -66,20 +71,27 @@ export default function PdfRotate() {
       setIsRotating(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const pdf = await PDFDocument.load(await file.arrayBuffer());
 
-      pdf.getPages().forEach((page) => {
+      const pages = pdf.getPages();
+      pages.forEach((page, index) => {
         const currentAngle = page.getRotation().angle;
         page.setRotation(degrees((currentAngle + rotation) % 360));
+        setProgress(20 + ((index + 1) / pages.length) * 60);
       });
 
+      setProgress(85);
+      setProgressLabel("Saving rotated PDF");
       const outputBytes = await pdf.save({ useObjectStreams: true });
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
         type: "application/pdf",
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (rotateError) {
       console.error(rotateError);
       setError("Failed to rotate this PDF. Please try a standard, unlocked PDF file.");
@@ -150,6 +162,10 @@ export default function PdfRotate() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isRotating && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button
