@@ -4,6 +4,7 @@ import FeaturedTools from "@/components/home/FeaturedTools";
 import Stats from "@/components/home/Stats";
 import Categories from "@/components/home/Categories";
 import PopularTools from "@/components/home/PopularTools";
+import RequestToolCTA from "@/components/home/RequestToolCTA";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
 
       <Categories />
       <PopularTools />
+      <RequestToolCTA />
       <Footer />
     </main>
   );
