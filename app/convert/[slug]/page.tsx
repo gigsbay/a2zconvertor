@@ -19,9 +19,28 @@ export async function generateMetadata({
     };
   }
 
+  const canonicalPath = `/convert/${tool.slug}`;
+  const canonicalUrl = `https://a2zconvertor.co.uk${canonicalPath}`;
+
   return {
     title: `${tool.title} - Free Online Tool | A2ZConvertor`,
     description: tool.description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title: `${tool.title} - Free Online Tool`,
+      description: tool.description,
+      url: canonicalUrl,
+      siteName: "A2ZConvertor",
+      type: "website",
+      locale: "en_GB",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.title} - Free Online Tool`,
+      description: tool.description,
+    },
   };
 }
 export default async function ConvertPage({
