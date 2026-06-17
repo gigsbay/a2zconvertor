@@ -622,6 +622,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Audio conversion runs in your browser with the Web Audio API.",
     },
   ],
+  "video-thumbnail-extractor": [
+    {
+      question: "How do I extract a thumbnail from a video?",
+      answer:
+        "Upload an MP4, WEBM or MOV video, choose the timestamp you want, then capture and download that frame as PNG or JPG.",
+    },
+    {
+      question: "Are videos uploaded when extracting thumbnails?",
+      answer:
+        "No. The video is previewed and captured in your browser using the video element and canvas.",
+    },
+    {
+      question: "Why might a MOV file not work?",
+      answer:
+        "MOV support depends on the codecs your browser can decode. If the video cannot play in the browser, the tool cannot capture a frame from it.",
+    },
+  ],
   "hashtag-generator": [
     {
       question: "How does Hashtag Generator create ideas?",
