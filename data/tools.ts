@@ -376,7 +376,7 @@ export const tools = [
   name: "Change Audio Volume",
   title: "Change Audio Volume",
   description:
-    "Adjust MP3, WAV or OGG volume in your browser and export WAV audio.",
+    "Adjust MP3, WAV, OGG or M4A volume in your browser and export WAV audio.",
   inputFormat: "audio",
   inputLabel: "Audio",
   outputFormat: "wav",

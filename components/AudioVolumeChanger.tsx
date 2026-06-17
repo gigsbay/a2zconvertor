@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   audioBufferToWav,
   decodeAudioFile,
@@ -8,24 +8,79 @@ import {
   formatFileSize,
 } from "@/components/mediaTools";
 
-export default function ChangeAudioVolume() {
+const ACCEPTED_AUDIO_TYPES = [
+  "audio/mpeg",
+  "audio/mp3",
+  "audio/wav",
+  "audio/x-wav",
+  "audio/ogg",
+  "audio/mp4",
+  "audio/x-m4a",
+];
+
+function isSupportedAudio(file: File) {
+  return (
+    ACCEPTED_AUDIO_TYPES.includes(file.type) ||
+    /\.(mp3|wav|ogg|m4a)$/i.test(file.name)
+  );
+}
+
+function getDownloadName(file: File | null) {
+  if (!file) {
+    return "volume-adjusted.wav";
+  }
+
+  const baseName = file.name.replace(/\.[^.]+$/, "") || "audio";
+  return `${baseName}-volume-adjusted.wav`;
+}
+
+export default function AudioVolumeChanger() {
   const [file, setFile] = useState<File | null>(null);
+  const [originalPreviewUrl, setOriginalPreviewUrl] = useState<string | null>(
+    null
+  );
   const [volume, setVolume] = useState(100);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputInfo, setOutputInfo] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (originalPreviewUrl) {
+        URL.revokeObjectURL(originalPreviewUrl);
+      }
+
+      if (outputUrl) {
+        URL.revokeObjectURL(outputUrl);
+      }
+    };
+  }, [originalPreviewUrl, outputUrl]);
+
   function clearOutput() {
     setOutputUrl((currentUrl) => {
-      if (currentUrl) URL.revokeObjectURL(currentUrl);
+      if (currentUrl) {
+        URL.revokeObjectURL(currentUrl);
+      }
+
       return null;
     });
     setOutputInfo(null);
   }
 
+  function clearOriginalPreview() {
+    setOriginalPreviewUrl((currentUrl) => {
+      if (currentUrl) {
+        URL.revokeObjectURL(currentUrl);
+      }
+
+      return null;
+    });
+  }
+
   function handleFile(selectedFile: File | null) {
     clearOutput();
+    clearOriginalPreview();
     setError(null);
 
     if (!selectedFile) {
@@ -33,17 +88,14 @@ export default function ChangeAudioVolume() {
       return;
     }
 
-    const isAudio =
-      ["audio/mpeg", "audio/wav", "audio/ogg"].includes(selectedFile.type) ||
-      /\.(mp3|wav|ogg)$/i.test(selectedFile.name);
-
-    if (!isAudio) {
+    if (!isSupportedAudio(selectedFile)) {
       setFile(null);
-      setError("Please upload an MP3, WAV or OGG audio file.");
+      setError("Please upload an MP3, WAV, OGG or M4A audio file.");
       return;
     }
 
     setFile(selectedFile);
+    setOriginalPreviewUrl(URL.createObjectURL(selectedFile));
   }
 
   async function adjustVolume() {
@@ -79,13 +131,13 @@ export default function ChangeAudioVolume() {
 
       setOutputUrl(URL.createObjectURL(blob));
       setOutputInfo(
-        `${formatDuration(outputBuffer.duration)} adjusted WAV, ${formatFileSize(
-          blob.size
-        )}`
+        `${formatDuration(outputBuffer.duration)} WAV, ${formatFileSize(blob.size)}`
       );
     } catch (volumeError) {
       console.error(volumeError);
-      setError("Could not adjust this audio file in your browser.");
+      setError(
+        "Could not adjust this audio file in your browser. Some M4A or OGG codecs may not be supported by every browser."
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -95,25 +147,42 @@ export default function ChangeAudioVolume() {
     <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8">
       <h1 className="mb-4 text-4xl font-black">Change Audio Volume</h1>
       <p className="mb-4 text-slate-400">
-        Increase or reduce audio volume with the Web Audio API.
+        Upload MP3, WAV, OGG or M4A audio, adjust the volume from 10% to
+        200%, and export the result as a WAV file.
       </p>
       <p className="mb-8 rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-100">
-        Browser-native MP3 output is not reliable without a heavier encoder.
-        This tool exports adjusted audio as WAV.
+        Browser-native MP3 and M4A encoding is not reliable without heavier
+        dependencies. This tool processes audio locally and downloads the
+        adjusted result as WAV.
       </p>
 
       <div className="space-y-6">
         <input
           type="file"
-          accept="audio/mpeg,audio/wav,audio/ogg,.mp3,.wav,.ogg"
+          accept="audio/mpeg,audio/mp3,audio/wav,audio/x-wav,audio/ogg,audio/mp4,audio/x-m4a,.mp3,.wav,.ogg,.m4a"
           onChange={(event) => handleFile(event.target.files?.[0] ?? null)}
           className="block w-full cursor-pointer rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-slate-300"
         />
 
         {file && (
-          <p className="rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-slate-300">
-            {file.name} · {formatFileSize(file.size)}
-          </p>
+          <div className="space-y-3 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-slate-300">
+            <p>
+              {file.name} - {formatFileSize(file.size)}
+            </p>
+            {originalPreviewUrl && (
+              <div>
+                <p className="mb-2 font-semibold text-slate-200">
+                  Original preview
+                </p>
+                <audio
+                  controls
+                  src={originalPreviewUrl}
+                  className="w-full"
+                  preload="metadata"
+                />
+              </div>
+            )}
+          </div>
         )}
 
         <label className="block">
@@ -149,11 +218,21 @@ export default function ChangeAudioVolume() {
         </button>
 
         {outputUrl && (
-          <div className="space-y-3">
-            {outputInfo && <p className="text-sm text-slate-400">{outputInfo}</p>}
+          <div className="space-y-4 rounded-2xl border border-green-500/20 bg-green-500/10 p-4">
+            {outputInfo && (
+              <p className="text-sm text-green-100">
+                Adjusted output: {outputInfo}
+              </p>
+            )}
+            <div>
+              <p className="mb-2 text-sm font-semibold text-green-50">
+                Adjusted WAV preview
+              </p>
+              <audio controls src={outputUrl} className="w-full" />
+            </div>
             <a
               href={outputUrl}
-              download="volume-adjusted.wav"
+              download={getDownloadName(file)}
               className="block w-full rounded-xl bg-green-500 px-6 py-3 text-center font-semibold text-black"
             >
               Download Adjusted WAV
