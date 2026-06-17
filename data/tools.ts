@@ -312,6 +312,18 @@ export const tools = [
   category: "PDF Tools",
 },
 {
+  slug: "crop-pdf",
+  name: "Crop PDF",
+  title: "Crop PDF Tool",
+  description:
+    "Crop PDF page margins online by adjusting page crop boxes in your browser.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Cropped PDF",
+  category: "PDF Tools",
+},
+{
   slug: "meme-generator",
   name: "Meme Generator",
   title: "Meme Generator",
