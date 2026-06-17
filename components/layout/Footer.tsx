@@ -30,13 +30,29 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-bold">Categories</h4>
           <ul className="space-y-2 text-slate-400">
+            <li>
+              <Link href="/tools" className="transition hover:text-white">
+                All Tools
+              </Link>
+            </li>
             {categories.map((category) => (
               <li key={category.name}>
-                <Link href="/tools" className="transition hover:text-white">
+                <Link
+                  href={`/tools?category=${encodeURIComponent(category.name)}`}
+                  className="transition hover:text-white"
+                >
                   {category.name}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/tools?category=AI%20Tools"
+                className="transition hover:text-white"
+              >
+                AI Tools
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -80,6 +96,15 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
+          <p className="mt-4 text-sm text-slate-500">
+            Email:{" "}
+            <a
+              href="mailto:support@a2zconvertor.co.uk"
+              className="text-slate-400 transition hover:text-white"
+            >
+              support@a2zconvertor.co.uk
+            </a>
+          </p>
         </div>
       </div>
 

@@ -22,25 +22,30 @@ export default function PrivacyPolicyPage() {
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
 
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="mb-6 text-5xl font-black tracking-tight">
-            Privacy Policy
-          </h1>
-
-          <div className="space-y-8 text-slate-300">
-            <p className="rounded-2xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-yellow-100">
-              This page is provided for launch transparency and is not legal
-              advice. You should review it with a qualified legal professional
-              for your specific business and compliance needs.
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-10 rounded-3xl border border-white/10 bg-slate-900/70 p-8">
+            <p className="mb-3 text-sm font-semibold uppercase text-blue-300">
+              Last updated: June 17, 2026
             </p>
+            <h1 className="mb-4 text-5xl font-black tracking-tight">
+              Privacy Policy
+            </h1>
+            <p className="max-w-3xl text-lg leading-8 text-slate-300">
+              A2ZConvertor is designed around browser-based file tools where
+              possible, no account requirement, and clear contact options for
+              privacy and support questions.
+            </p>
+          </div>
+
+          <div className="grid gap-5 text-slate-300">
 
             <PolicySection title="Who operates A2ZConvertor">
               <p>
                 A2ZConvertor is an online file conversion and editing website
                 available at a2zconvertor.co.uk. For privacy questions, contact{" "}
-                <EmailLink email="privacy@a2zconvertor.co.uk" /> or{" "}
-                <EmailLink email="info@a2zconvertor.co.uk" />.
+                <EmailLink email="contact@a2zconvertor.co.uk" /> or{" "}
+                <EmailLink email="support@a2zconvertor.co.uk" />.
               </p>
             </PolicySection>
 
@@ -83,7 +88,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </PolicySection>
 
-            <PolicySection title="Analytics placeholder">
+            <PolicySection title="Future analytics">
               <p>
                 A2ZConvertor may add privacy-conscious analytics in the future
                 to understand page usage and improve tools. If added, we will
@@ -104,7 +109,7 @@ export default function PrivacyPolicyPage() {
               </ul>
               <p className="mt-4">
                 To make a request, email{" "}
-                <EmailLink email="privacy@a2zconvertor.co.uk" />.
+                <EmailLink email="contact@a2zconvertor.co.uk" />.
               </p>
             </PolicySection>
 
@@ -122,7 +127,7 @@ export default function PrivacyPolicyPage() {
               <p>
                 A2ZConvertor is not directed to children. If you believe a child
                 has provided personal data to us, contact{" "}
-                <EmailLink email="privacy@a2zconvertor.co.uk" /> so we can
+                <EmailLink email="support@a2zconvertor.co.uk" /> so we can
                 review and delete it where appropriate.
               </p>
             </PolicySection>
@@ -142,8 +147,7 @@ export default function PrivacyPolicyPage() {
                 <br />
                 Support: <EmailLink email="support@a2zconvertor.co.uk" />
                 <br />
-                Privacy requests:{" "}
-                <EmailLink email="privacy@a2zconvertor.co.uk" />
+                Privacy requests: <EmailLink email="contact@a2zconvertor.co.uk" />
               </p>
             </PolicySection>
           </div>
@@ -163,9 +167,9 @@ function PolicySection({
   children: React.ReactNode;
 }) {
   return (
-    <section>
+    <section className="rounded-2xl border border-white/10 bg-slate-900/60 p-6">
       <h2 className="mb-3 text-2xl font-bold text-white">{title}</h2>
-      <div className="space-y-4 leading-7">{children}</div>
+      <div className="space-y-4 leading-7 text-slate-300">{children}</div>
     </section>
   );
 }
