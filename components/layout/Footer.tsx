@@ -45,14 +45,6 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/tools?category=AI%20Tools"
-                className="transition hover:text-white"
-              >
-                AI Tools
-              </Link>
-            </li>
           </ul>
         </div>
 
