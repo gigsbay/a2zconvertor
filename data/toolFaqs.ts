@@ -541,17 +541,17 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I make audio louder or quieter?",
       answer:
-        "Yes. Use the volume slider from 10% to 200%, then export the adjusted audio as WAV.",
+        "Yes. Upload MP3, WAV, OGG or M4A audio, use the volume slider from 10% to 200%, then export the adjusted audio as WAV.",
     },
     {
-      question: "Does this preserve MP3 output?",
+      question: "Does this export MP3 or M4A?",
       answer:
-        "No. Browser-native MP3 encoding is not reliable without a heavier encoder, so adjusted audio downloads as WAV.",
+        "No. Browser-native MP3 and M4A encoding is not reliable without heavier encoders, so adjusted audio downloads as WAV.",
     },
     {
-      question: "Is volume processing browser-based?",
+      question: "Can I preview the audio before downloading?",
       answer:
-        "Yes. Volume adjustment uses the Web Audio API in your browser without server processing.",
+        "Yes. You can preview the original audio and the adjusted WAV output in your browser before downloading.",
     },
   ],
   "video-to-gif": [

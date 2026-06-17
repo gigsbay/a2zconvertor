@@ -24,7 +24,7 @@ import VideoMetadataViewer from "@/components/VideoMetadataViewer";
 import AudioMetadataViewer from "@/components/AudioMetadataViewer";
 import Mp4ToAudio from "@/components/Mp4ToAudio";
 import Mp3Cutter from "@/components/Mp3Cutter";
-import ChangeAudioVolume from "@/components/ChangeAudioVolume";
+import AudioVolumeChanger from "@/components/AudioVolumeChanger";
 import VideoToGif from "@/components/VideoToGif";
 import VideoCompressor from "@/components/VideoCompressor";
 import AudioConverter from "@/components/AudioConverter";
@@ -66,7 +66,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "audio-metadata": <AudioMetadataViewer />,
   "mp4-to-mp3": <Mp4ToAudio />,
   "mp3-cutter": <Mp3Cutter />,
-  "change-audio-volume": <ChangeAudioVolume />,
+  "change-audio-volume": <AudioVolumeChanger />,
   "video-to-gif": <VideoToGif />,
   "compress-video": <VideoCompressor />,
   "audio-converter": <AudioConverter />,
