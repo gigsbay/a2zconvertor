@@ -300,6 +300,18 @@ export const tools = [
   category: "PDF Tools",
 },
 {
+  slug: "organize-pdf",
+  name: "Organize PDF",
+  title: "Organize PDF Tool",
+  description:
+    "Reorder and remove PDF pages online, then download an organized PDF.",
+  inputFormat: "pdf",
+  inputLabel: "PDF",
+  outputFormat: "pdf",
+  outputLabel: "Organized PDF",
+  category: "PDF Tools",
+},
+{
   slug: "video-metadata",
   name: "Video Metadata Viewer",
   title: "Video Metadata Viewer",

@@ -435,6 +435,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Page numbers are added in your browser, so the selected PDF does not need to be uploaded for processing.",
     },
   ],
+  "organize-pdf": [
+    {
+      question: "How do I reorder PDF pages?",
+      answer:
+        "Upload one PDF, drag the page cards into the order you want, then rebuild and download the organized PDF.",
+    },
+    {
+      question: "Can I delete pages while organizing a PDF?",
+      answer:
+        "Yes. Use the remove button on a page card to leave that page out of the downloaded PDF.",
+    },
+    {
+      question: "Are my PDFs uploaded when organizing pages?",
+      answer:
+        "No. Page thumbnails, reordering and PDF rebuilding happen in your browser using PDF.js and pdf-lib.",
+    },
+  ],
   "video-metadata": [
     {
       question: "What metadata can I view from a video?",

@@ -18,6 +18,7 @@ import PdfDeletePages from "@/components/PdfDeletePages";
 import ImageGrayscale from "@/components/ImageGrayscale";
 import PdfWatermark from "@/components/PdfWatermark";
 import PdfPageNumbers from "@/components/PdfPageNumbers";
+import PdfOrganize from "@/components/PdfOrganize";
 import VideoMetadataViewer from "@/components/VideoMetadataViewer";
 import AudioMetadataViewer from "@/components/AudioMetadataViewer";
 import Mp4ToAudio from "@/components/Mp4ToAudio";
@@ -58,6 +59,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "grayscale-image": <ImageGrayscale />,
   "watermark-pdf": <PdfWatermark />,
   "add-page-numbers-pdf": <PdfPageNumbers />,
+  "organize-pdf": <PdfOrganize />,
   "video-metadata": <VideoMetadataViewer />,
   "audio-metadata": <AudioMetadataViewer />,
   "mp4-to-mp3": <Mp4ToAudio />,
