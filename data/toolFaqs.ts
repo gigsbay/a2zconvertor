@@ -707,6 +707,40 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "Yes. Use the Copy Output button to copy the converted text to your clipboard.",
     },
   ],
+  "avif-to-png": [
+    {
+      question: "Does this tool create AVIF files?",
+      answer:
+        "No. This launch version decodes AVIF images in your browser and exports PNG because AVIF canvas export is not reliable enough to promise.",
+    },
+    {
+      question: "Are AVIF images uploaded to a server?",
+      answer:
+        "No. The AVIF image is decoded and converted locally in your browser using canvas.",
+    },
+    {
+      question: "What if my AVIF file does not preview?",
+      answer:
+        "Your browser must support AVIF image decoding. Try an up-to-date Chrome, Firefox, Edge or Safari browser.",
+    },
+  ],
+  "avif-to-jpg": [
+    {
+      question: "Does AVIF to JPG keep transparency?",
+      answer:
+        "No. JPG does not support transparency, so transparent AVIF areas are flattened onto a white background.",
+    },
+    {
+      question: "Are AVIF images uploaded to a server?",
+      answer:
+        "No. The AVIF image is decoded and converted locally in your browser using canvas.",
+    },
+    {
+      question: "Why is there no JPG to AVIF tool?",
+      answer:
+        "Browser canvas AVIF export is not reliable enough for a dependable converter, so this tool only converts AVIF into JPG.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

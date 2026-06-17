@@ -34,6 +34,7 @@ import BlogTitleGenerator from "@/components/BlogTitleGenerator";
 import EmailTemplateGenerator from "@/components/EmailTemplateGenerator";
 import TextSummarizer from "@/components/TextSummarizer";
 import TextCaseConverter from "@/components/TextCaseConverter";
+import AvifConverter from "@/components/AvifConverter";
 
 type Tool = {
   slug: string;
@@ -82,6 +83,8 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "email-template-generator": <EmailTemplateGenerator />,
   "text-summarizer": <TextSummarizer />,
   "text-case-converter": <TextCaseConverter />,
+  "avif-to-png": <AvifConverter output="png" />,
+  "avif-to-jpg": <AvifConverter output="jpg" />,
 };
   return (
     customTools[tool.slug] ?? (
