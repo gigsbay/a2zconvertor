@@ -74,6 +74,11 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link href="/request-tool" className="transition hover:text-white">
+                Request a Tool
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
