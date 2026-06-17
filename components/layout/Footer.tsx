@@ -1,4 +1,17 @@
 import Link from "next/link";
+import { categories } from "@/data/categories";
+import { tools } from "@/data/tools";
+
+const popularFooterSlugs = [
+  "jpg-to-png",
+  "compress-image",
+  "pdf-merge",
+  "compress-pdf",
+];
+
+const popularFooterTools = popularFooterSlugs
+  .map((slug) => tools.find((tool) => tool.slug === slug))
+  .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
 
 export default function Footer() {
   return (
@@ -17,20 +30,29 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-bold">Categories</h4>
           <ul className="space-y-2 text-slate-400">
-            <li>Image Tools</li>
-            <li>PDF Tools</li>
-            <li>Video Tools</li>
-            <li>Audio Tools</li>
+            {categories.map((category) => (
+              <li key={category.name}>
+                <Link href="/tools" className="transition hover:text-white">
+                  {category.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h4 className="mb-4 font-bold">Popular Tools</h4>
           <ul className="space-y-2 text-slate-400">
-            <li>JPG to PNG</li>
-            <li>Compress PDF</li>
-            <li>PDF to Word</li>
-            <li>MP4 to GIF</li>
+            {popularFooterTools.map((tool) => (
+              <li key={tool.slug}>
+                <Link
+                  href={`/convert/${tool.slug}`}
+                  className="transition hover:text-white"
+                >
+                  {tool.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
