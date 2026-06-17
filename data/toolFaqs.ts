@@ -150,7 +150,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "What does cropping an image do?",
       answer:
-        "Cropping removes unwanted outer areas so the image focuses on the part you want to keep.",
+        "Cropping removes unwanted outer areas so the image focuses on the part you want to keep. Use the visual crop box to choose the area.",
     },
     {
       question: "Does cropping change image dimensions?",
@@ -160,7 +160,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "When is cropping useful?",
       answer:
-        "Cropping is useful for profile photos, product images, thumbnails and removing distracting edges.",
+        "Cropping is useful for profile photos, product images, thumbnails and removing distracting edges. You can drag and resize the crop area before downloading.",
     },
   ],
   "rotate-image": [
