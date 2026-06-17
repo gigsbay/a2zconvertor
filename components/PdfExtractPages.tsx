@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -14,6 +15,8 @@ export default function PdfExtractPages() {
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -21,6 +24,8 @@ export default function PdfExtractPages() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -67,16 +72,22 @@ export default function PdfExtractPages() {
       setIsExtracting(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const sourcePdf = await PDFDocument.load(await file.arrayBuffer());
       const selectedPages = parsePageSelection(pageSelection, sourcePdf.getPageCount());
       const outputPdf = await PDFDocument.create();
+      setProgress(35);
+      setProgressLabel(`Copying ${selectedPages.length} page${selectedPages.length === 1 ? "" : "s"}`);
       const copiedPages = await outputPdf.copyPages(
         sourcePdf,
         selectedPages.map((page) => page - 1)
       );
 
       copiedPages.forEach((page) => outputPdf.addPage(page));
+      setProgress(75);
+      setProgressLabel("Saving extracted PDF");
 
       const outputBytes = await outputPdf.save();
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
@@ -84,6 +95,7 @@ export default function PdfExtractPages() {
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (extractError) {
       console.error(extractError);
       setError(
@@ -154,6 +166,10 @@ export default function PdfExtractPages() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isExtracting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

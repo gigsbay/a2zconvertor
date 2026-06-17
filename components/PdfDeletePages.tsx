@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -14,6 +15,8 @@ export default function PdfDeletePages() {
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -21,6 +24,8 @@ export default function PdfDeletePages() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -66,6 +71,8 @@ export default function PdfDeletePages() {
       setIsDeleting(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const sourcePdf = await PDFDocument.load(await file.arrayBuffer());
       const sourcePageCount = sourcePdf.getPageCount();
@@ -79,9 +86,13 @@ export default function PdfDeletePages() {
       }
 
       const outputPdf = await PDFDocument.create();
+      setProgress(35);
+      setProgressLabel(`Copying ${keptPageIndexes.length} remaining page${keptPageIndexes.length === 1 ? "" : "s"}`);
       const copiedPages = await outputPdf.copyPages(sourcePdf, keptPageIndexes);
 
       copiedPages.forEach((page) => outputPdf.addPage(page));
+      setProgress(75);
+      setProgressLabel("Saving updated PDF");
 
       const outputBytes = await outputPdf.save();
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
@@ -89,6 +100,7 @@ export default function PdfDeletePages() {
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (deleteError) {
       console.error(deleteError);
       setError(
@@ -160,6 +172,10 @@ export default function PdfDeletePages() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isDeleting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

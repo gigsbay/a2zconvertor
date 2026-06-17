@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import jsPDF from "jspdf";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 type CompressionResult = {
   url: string;
@@ -36,7 +37,8 @@ export default function PdfCompress() {
   const [quality, setQuality] = useState(70);
   const [result, setResult] = useState<CompressionResult | null>(null);
   const [isCompressing, setIsCompressing] = useState(false);
-  const [progress, setProgress] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearResult() {
@@ -44,7 +46,8 @@ export default function PdfCompress() {
       if (currentResult) URL.revokeObjectURL(currentResult.url);
       return null;
     });
-    setProgress(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function handleFile(selectedFile: File | null) {
@@ -79,6 +82,8 @@ export default function PdfCompress() {
       setIsCompressing(true);
       setError(null);
       clearResult();
+      setProgress(5);
+      setProgressLabel("Loading PDF");
 
       const pdfjsLib = await import("pdfjs-dist");
       pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.mjs";
@@ -91,7 +96,8 @@ export default function PdfCompress() {
       const jpegQuality = quality / 100;
 
       for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-        setProgress(`Rendering page ${pageNumber} of ${pageCount}`);
+        setProgressLabel(`Rendering page ${pageNumber} of ${pageCount}`);
+        setProgress(10 + ((pageNumber - 1) / pageCount) * 75);
 
         const page = await sourcePdf.getPage(pageNumber);
         const viewport = page.getViewport({ scale: 1.5 });
@@ -137,12 +143,15 @@ export default function PdfCompress() {
           undefined,
           "FAST"
         );
+        setProgress(10 + (pageNumber / pageCount) * 75);
       }
 
       if (!outputPdf) {
         throw new Error("This PDF does not contain any pages.");
       }
 
+      setProgressLabel("Saving compressed PDF");
+      setProgress(92);
       const blob = outputPdf.output("blob");
 
       setResult({
@@ -151,13 +160,14 @@ export default function PdfCompress() {
         compressedSize: blob.size,
         pageCount,
       });
-      setProgress(null);
+      setProgress(100);
     } catch (compressError) {
       console.error(compressError);
       setError(
         "Failed to compress this PDF. Please try a standard, unlocked PDF file."
       );
-      setProgress(null);
+      setProgress(0);
+      setProgressLabel("");
     } finally {
       setIsCompressing(false);
     }
@@ -228,10 +238,8 @@ export default function PdfCompress() {
           </div>
         </label>
 
-        {progress && (
-          <p className="rounded-xl border border-white/10 bg-black/20 p-4 text-sm text-slate-300">
-            {progress}
-          </p>
+        {isCompressing && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         {error && (

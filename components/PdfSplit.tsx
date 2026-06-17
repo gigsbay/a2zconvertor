@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 function formatFileSize(bytes: number) {
   if (bytes < 1024 * 1024) {
@@ -70,6 +71,8 @@ export default function PdfSplit() {
   const [splitPdfUrl, setSplitPdfUrl] = useState<string | null>(null);
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [isSplitting, setIsSplitting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearResult() {
@@ -77,6 +80,8 @@ export default function PdfSplit() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -123,17 +128,23 @@ export default function PdfSplit() {
       setIsSplitting(true);
       setError(null);
       clearResult();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const sourcePdf = await PDFDocument.load(await file.arrayBuffer());
       const sourcePageCount = sourcePdf.getPageCount();
       const selectedPages = parsePageSelection(pageSelection, sourcePageCount);
       const outputPdf = await PDFDocument.create();
+      setProgress(35);
+      setProgressLabel(`Copying ${selectedPages.length} page${selectedPages.length === 1 ? "" : "s"}`);
       const copiedPages = await outputPdf.copyPages(
         sourcePdf,
         selectedPages.map((page) => page - 1)
       );
 
       copiedPages.forEach((page) => outputPdf.addPage(page));
+      setProgress(75);
+      setProgressLabel("Saving split PDF");
 
       const splitBytes = await outputPdf.save();
       const splitBuffer = new ArrayBuffer(splitBytes.byteLength);
@@ -141,6 +152,7 @@ export default function PdfSplit() {
       const blob = new Blob([splitBuffer], { type: "application/pdf" });
 
       setSplitPdfUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (splitError) {
       console.error(splitError);
       setError(
@@ -211,6 +223,10 @@ export default function PdfSplit() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isSplitting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

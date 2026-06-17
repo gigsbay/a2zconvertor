@@ -7,12 +7,15 @@ import {
   formatDuration,
   formatFileSize,
 } from "@/components/mediaTools";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function AudioConverter() {
   const [file, setFile] = useState<File | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputInfo, setOutputInfo] = useState<string | null>(null);
   const [isConverting, setIsConverting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -21,6 +24,8 @@ export default function AudioConverter() {
       return null;
     });
     setOutputInfo(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function handleFile(selectedFile: File | null) {
@@ -56,8 +61,12 @@ export default function AudioConverter() {
       setIsConverting(true);
       setError(null);
       clearOutput();
+      setProgress(15);
+      setProgressLabel("Decoding audio");
 
       const audioBuffer = await decodeAudioFile(file);
+      setProgress(70);
+      setProgressLabel("Encoding WAV");
       const wavBuffer = audioBufferToWav(audioBuffer);
       const blob = new Blob([wavBuffer], { type: "audio/wav" });
 
@@ -65,6 +74,7 @@ export default function AudioConverter() {
       setOutputInfo(
         `${formatDuration(audioBuffer.duration)} WAV, ${formatFileSize(blob.size)}`
       );
+      setProgress(100);
     } catch (convertError) {
       console.error(convertError);
       setError("Could not convert this audio file to WAV in your browser.");
@@ -99,6 +109,10 @@ export default function AudioConverter() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isConverting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

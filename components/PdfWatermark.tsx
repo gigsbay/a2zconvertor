@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 import {
   copyBytesToArrayBuffer,
   formatFileSize,
@@ -13,6 +14,8 @@ export default function PdfWatermark() {
   const [pageCount, setPageCount] = useState<number | null>(null);
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [isWatermarking, setIsWatermarking] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -20,6 +23,8 @@ export default function PdfWatermark() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
   }
 
   async function handleFile(selectedFile: File | null) {
@@ -71,11 +76,15 @@ export default function PdfWatermark() {
       setIsWatermarking(true);
       setError(null);
       clearOutput();
+      setProgress(10);
+      setProgressLabel("Reading PDF");
 
       const pdf = await PDFDocument.load(await file.arrayBuffer());
       const font = await pdf.embedFont(StandardFonts.HelveticaBold);
+      const pages = pdf.getPages();
+      setProgressLabel("Adding watermarks");
 
-      pdf.getPages().forEach((page) => {
+      pages.forEach((page, index) => {
         const { width, height } = page.getSize();
         const maxTextWidth = width * 0.72;
         const baseSize = Math.max(28, Math.min(width, height) * 0.1);
@@ -95,14 +104,18 @@ export default function PdfWatermark() {
           opacity: 0.28,
           rotate: degrees(-35),
         });
+        setProgress(20 + ((index + 1) / pages.length) * 60);
       });
 
+      setProgress(85);
+      setProgressLabel("Saving watermarked PDF");
       const outputBytes = await pdf.save({ useObjectStreams: true });
       const blob = new Blob([copyBytesToArrayBuffer(outputBytes)], {
         type: "application/pdf",
       });
 
       setOutputUrl(URL.createObjectURL(blob));
+      setProgress(100);
     } catch (watermarkError) {
       console.error(watermarkError);
       setError("Failed to watermark this PDF. Please try a standard, unlocked PDF file.");
@@ -164,6 +177,10 @@ export default function PdfWatermark() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isWatermarking && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button

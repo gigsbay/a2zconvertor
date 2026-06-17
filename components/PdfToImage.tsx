@@ -1,17 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function PdfToImage() {
   const [file, setFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isConverting, setIsConverting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
 
   async function convertPdfToImage() {
     if (!file) return;
 
     try {
       setIsConverting(true);
+      setProgress(10);
+      setProgressLabel("Loading PDF");
 
       const arrayBuffer = await file.arrayBuffer();
       const pdfjsLib = await import("pdfjs-dist");
@@ -20,6 +25,8 @@ export default function PdfToImage() {
       const pdf = await pdfjsLib.getDocument({
         data: arrayBuffer,
       }).promise;
+      setProgress(35);
+      setProgressLabel("Rendering first page");
 
       const page = await pdf.getPage(1);
 
@@ -40,9 +47,12 @@ export default function PdfToImage() {
   viewport,
   canvas,
 }).promise;
+      setProgress(80);
+      setProgressLabel("Creating PNG");
 
       const image = canvas.toDataURL("image/png");
       setImageUrl(image);
+      setProgress(100);
     } catch (error) {
       console.error(error);
       alert("Failed to convert PDF.");
@@ -74,6 +84,10 @@ export default function PdfToImage() {
         >
           {isConverting ? "Converting..." : "Convert PDF to Image"}
         </button>
+
+        {isConverting && (
+          <ProcessingProgress label={progressLabel} value={progress} />
+        )}
 
         {imageUrl && (
           <div className="space-y-4">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatFileSize } from "@/components/mediaTools";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function VideoCompressor() {
   const [file, setFile] = useState<File | null>(null);
@@ -9,6 +10,8 @@ export default function VideoCompressor() {
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [compressedSize, setCompressedSize] = useState<number | null>(null);
   const [isCompressing, setIsCompressing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   function clearOutput() {
@@ -17,6 +20,8 @@ export default function VideoCompressor() {
       return null;
     });
     setCompressedSize(null);
+    setProgress(0);
+    setProgressLabel("");
   }
 
   function handleFile(selectedFile: File | null) {
@@ -56,10 +61,16 @@ export default function VideoCompressor() {
       setIsCompressing(true);
       setError(null);
       clearOutput();
+      setProgress(5);
+      setProgressLabel("Preparing video");
 
-      const outputBlob = await recompressVideoToWebm(file, quality / 100);
+      const outputBlob = await recompressVideoToWebm(file, quality / 100, (percent) => {
+        setProgress(percent);
+        setProgressLabel("Recording optimized WebM");
+      });
       setCompressedSize(outputBlob.size);
       setOutputUrl(URL.createObjectURL(outputBlob));
+      setProgress(100);
     } catch (compressError) {
       console.error(compressError);
       setError("Could not optimize this video in your browser.");
@@ -123,6 +134,10 @@ export default function VideoCompressor() {
           </p>
         )}
 
+        {isCompressing && (
+          <ProcessingProgress label={progressLabel} value={progress} />
+        )}
+
         <button
           type="button"
           onClick={compressVideo}
@@ -161,7 +176,11 @@ export default function VideoCompressor() {
   );
 }
 
-async function recompressVideoToWebm(file: File, quality: number) {
+async function recompressVideoToWebm(
+  file: File,
+  quality: number,
+  onProgress: (percent: number) => void
+) {
   const video = document.createElement("video");
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
@@ -177,6 +196,7 @@ async function recompressVideoToWebm(file: File, quality: number) {
     video.playsInline = true;
     video.src = objectUrl;
     await waitForMetadata(video);
+    onProgress(12);
 
     const scale = Math.max(0.35, quality);
     canvas.width = Math.max(2, Math.round(video.videoWidth * scale));
@@ -205,6 +225,9 @@ async function recompressVideoToWebm(file: File, quality: number) {
     const drawFrame = () => {
       if (!video.paused && !video.ended) {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        if (Number.isFinite(video.duration) && video.duration > 0) {
+          onProgress(12 + Math.min(1, video.currentTime / video.duration) * 83);
+        }
         requestAnimationFrame(drawFrame);
       }
     };

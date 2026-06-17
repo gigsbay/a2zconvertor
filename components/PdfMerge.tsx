@@ -2,11 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ProcessingProgress from "@/components/ProcessingProgress";
 
 export default function PdfMerge() {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedPdfUrl, setMergedPdfUrl] = useState<string | null>(null);
   const [isMerging, setIsMerging] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const totalSize = useMemo(() => {
@@ -27,6 +30,8 @@ export default function PdfMerge() {
       if (currentUrl) URL.revokeObjectURL(currentUrl);
       return null;
     });
+    setProgress(0);
+    setProgressLabel("");
 
     const pdfFiles = Array.from(selectedFiles ?? []).filter(
       (file) =>
@@ -60,10 +65,13 @@ export default function PdfMerge() {
     try {
       setIsMerging(true);
       setError(null);
+      setProgress(5);
+      setProgressLabel("Preparing merge");
 
       const mergedPdf = await PDFDocument.create();
 
-      for (const file of files) {
+      for (const [fileIndex, file] of files.entries()) {
+        setProgressLabel(`Merging file ${fileIndex + 1} of ${files.length}`);
         const sourcePdf = await PDFDocument.load(await file.arrayBuffer());
         const copiedPages = await mergedPdf.copyPages(
           sourcePdf,
@@ -71,8 +79,11 @@ export default function PdfMerge() {
         );
 
         copiedPages.forEach((page) => mergedPdf.addPage(page));
+        setProgress(((fileIndex + 1) / files.length) * 85);
       }
 
+      setProgressLabel("Saving merged PDF");
+      setProgress(92);
       const mergedBytes = await mergedPdf.save();
       const mergedBuffer = new ArrayBuffer(mergedBytes.byteLength);
       new Uint8Array(mergedBuffer).set(mergedBytes);
@@ -82,6 +93,7 @@ export default function PdfMerge() {
         if (currentUrl) URL.revokeObjectURL(currentUrl);
         return URL.createObjectURL(blob);
       });
+      setProgress(100);
     } catch (mergeError) {
       console.error(mergeError);
       setError(
@@ -152,6 +164,10 @@ export default function PdfMerge() {
           <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
             {error}
           </p>
+        )}
+
+        {isMerging && (
+          <ProcessingProgress label={progressLabel} value={progress} />
         )}
 
         <button
