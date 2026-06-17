@@ -19,6 +19,7 @@ import ImageGrayscale from "@/components/ImageGrayscale";
 import PdfWatermark from "@/components/PdfWatermark";
 import PdfPageNumbers from "@/components/PdfPageNumbers";
 import PdfOrganize from "@/components/PdfOrganize";
+import MemeGenerator from "@/components/MemeGenerator";
 import VideoMetadataViewer from "@/components/VideoMetadataViewer";
 import AudioMetadataViewer from "@/components/AudioMetadataViewer";
 import Mp4ToAudio from "@/components/Mp4ToAudio";
@@ -60,6 +61,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "watermark-pdf": <PdfWatermark />,
   "add-page-numbers-pdf": <PdfPageNumbers />,
   "organize-pdf": <PdfOrganize />,
+  "meme-generator": <MemeGenerator />,
   "video-metadata": <VideoMetadataViewer />,
   "audio-metadata": <AudioMetadataViewer />,
   "mp4-to-mp3": <Mp4ToAudio />,

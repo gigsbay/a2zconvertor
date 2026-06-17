@@ -312,6 +312,18 @@ export const tools = [
   category: "PDF Tools",
 },
 {
+  slug: "meme-generator",
+  name: "Meme Generator",
+  title: "Meme Generator",
+  description:
+    "Create a classic meme image with top and bottom text online for free.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "png",
+  outputLabel: "Meme PNG",
+  category: "Image Tools",
+},
+{
   slug: "video-metadata",
   name: "Video Metadata Viewer",
   title: "Video Metadata Viewer",
