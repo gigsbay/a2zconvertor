@@ -432,6 +432,18 @@ export const tools = [
   category: "Audio Tools",
 },
 {
+  slug: "video-thumbnail-extractor",
+  name: "Video Thumbnail Extractor",
+  title: "Video Thumbnail Extractor",
+  description:
+    "Extract a selected video frame from MP4, WEBM or MOV and download it as PNG or JPG.",
+  inputFormat: "video",
+  inputLabel: "Video",
+  outputFormat: "image",
+  outputLabel: "Thumbnail",
+  category: "Video Tools",
+},
+{
   slug: "hashtag-generator",
   name: "Hashtag Generator",
   title: "Hashtag Generator",

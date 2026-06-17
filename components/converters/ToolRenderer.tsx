@@ -29,6 +29,7 @@ import AudioVolumeChanger from "@/components/AudioVolumeChanger";
 import VideoToGif from "@/components/VideoToGif";
 import VideoCompressor from "@/components/VideoCompressor";
 import AudioConverter from "@/components/AudioConverter";
+import VideoThumbnailExtractor from "@/components/VideoThumbnailExtractor";
 import HashtagGenerator from "@/components/HashtagGenerator";
 import BlogTitleGenerator from "@/components/BlogTitleGenerator";
 import EmailTemplateGenerator from "@/components/EmailTemplateGenerator";
@@ -77,6 +78,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "video-to-gif": <VideoToGif />,
   "compress-video": <VideoCompressor />,
   "audio-converter": <AudioConverter />,
+  "video-thumbnail-extractor": <VideoThumbnailExtractor />,
   "hashtag-generator": <HashtagGenerator />,
   "blog-title-generator": <BlogTitleGenerator />,
   "email-template-generator": <EmailTemplateGenerator />,
