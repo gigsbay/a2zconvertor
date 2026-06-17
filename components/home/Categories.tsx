@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { categories } from "@/data/categories";
 
 const icons: Record<string, string> = {
-  "Image Tools": "🖼️",
-  "PDF Tools": "📄",
-  "Video Tools": "🎬",
-  "Audio Tools": "🎧",
-  "Document Tools": "📝",
-  "AI Tools": "✨",
+  "Image Tools": "IMG",
+  "PDF Tools": "PDF",
+  "Video Tools": "VID",
+  "Audio Tools": "AUD",
+  "Text Tools": "TXT",
+  "Document Tools": "DOC",
 };
 
 export default function Categories() {
@@ -26,27 +27,23 @@ export default function Categories() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
-            <a
+            <Link
               key={category.name}
-              href="/tools"
+              href={`/tools?category=${encodeURIComponent(category.name)}`}
               className="group rounded-3xl border border-white/10 bg-slate-900/70 p-8 transition hover:-translate-y-2 hover:border-blue-500/60 hover:bg-slate-900"
             >
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600/15 text-3xl">
-                {icons[category.name]}
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600/15 text-lg font-black text-blue-200">
+                {icons[category.name] ?? "A2Z"}
               </div>
 
-              <h3 className="mb-3 text-2xl font-bold">
-                {category.name}
-              </h3>
+              <h3 className="mb-3 text-2xl font-bold">{category.name}</h3>
 
               <p className="mb-6 text-slate-400">
                 {category.tools}+ fast online tools for everyday file tasks.
               </p>
 
-              <span className="font-semibold text-blue-400">
-                Explore tools →
-              </span>
-            </a>
+              <span className="font-semibold text-blue-400">Explore tools</span>
+            </Link>
           ))}
         </div>
       </div>

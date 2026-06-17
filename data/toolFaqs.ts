@@ -605,6 +605,91 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. Audio conversion runs in your browser with the Web Audio API.",
     },
   ],
+  "hashtag-generator": [
+    {
+      question: "How does Hashtag Generator create ideas?",
+      answer:
+        "No. It uses keyword combinations, tone choices and preset hashtag banks to create quick suggestions in your browser.",
+    },
+    {
+      question: "How many hashtags does it generate?",
+      answer:
+        "It generates up to 30 hashtag ideas depending on the keywords, category and tone you choose.",
+    },
+    {
+      question: "Can I copy all hashtags at once?",
+      answer:
+        "Yes. Use the Copy All button to copy the generated hashtags as one ready-to-paste line.",
+    },
+  ],
+  "blog-title-generator": [
+    {
+      question: "How are blog titles generated?",
+      answer:
+        "The tool uses writing templates such as listicles, how-to guides, comparisons and questions. It does not use an external API.",
+    },
+    {
+      question: "Can I choose the title style?",
+      answer:
+        "Yes. Choose listicle, how-to, beginner guide, comparison or question style before copying a title.",
+    },
+    {
+      question: "Are the titles ready to publish?",
+      answer:
+        "They are quick starting points. You should edit them for your audience, brand voice and search intent.",
+    },
+  ],
+  "email-template-generator": [
+    {
+      question: "Does this send the email for me?",
+      answer:
+        "No. It creates a ready-to-edit email draft and subject line that you can copy into your email app.",
+    },
+    {
+      question: "How is the email draft created?",
+      answer:
+        "The tool uses local templates based on your purpose, recipient type and tone. No external service is contacted.",
+    },
+    {
+      question: "Can I customize the generated email?",
+      answer:
+        "Yes. The output includes editable placeholders for context, requested action, timeline and your name.",
+    },
+  ],
+  "text-summarizer": [
+    {
+      question: "How does this text summarizer work?",
+      answer:
+        "No. It creates a quick rule-based summary by scoring sentences with keyword frequency and extracting the strongest sentences.",
+    },
+    {
+      question: "How many sentences are included?",
+      answer:
+        "You can choose a summary length from 3 to 5 extracted sentences.",
+    },
+    {
+      question: "Is my text uploaded for summarizing?",
+      answer:
+        "No. The rule-based summary runs entirely in your browser.",
+    },
+  ],
+  "text-case-converter": [
+    {
+      question: "Which text cases can I convert to?",
+      answer:
+        "You can convert text to uppercase, lowercase, title case, sentence case and slug or kebab case.",
+    },
+    {
+      question: "Does this work offline after the page loads?",
+      answer:
+        "Yes. The conversion logic runs in your browser without an external API.",
+    },
+    {
+      question: "Can I copy the converted text?",
+      answer:
+        "Yes. Use the Copy Output button to copy the converted text to your clipboard.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {

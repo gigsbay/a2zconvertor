@@ -419,6 +419,66 @@ export const tools = [
   outputLabel: "WAV",
   category: "Audio Tools",
 },
+{
+  slug: "hashtag-generator",
+  name: "Hashtag Generator",
+  title: "Hashtag Generator",
+  description:
+    "Generate smart, template-based hashtags from topics and keywords.",
+  inputFormat: "text",
+  inputLabel: "Keywords",
+  outputFormat: "hashtags",
+  outputLabel: "Hashtags",
+  category: "Text Tools",
+},
+{
+  slug: "blog-title-generator",
+  name: "Blog Title Generator",
+  title: "Blog Title Generator",
+  description:
+    "Create quick blog title ideas from rule-based writing templates.",
+  inputFormat: "text",
+  inputLabel: "Topic",
+  outputFormat: "titles",
+  outputLabel: "Title Ideas",
+  category: "Text Tools",
+},
+{
+  slug: "email-template-generator",
+  name: "Email Template Generator",
+  title: "Email Template Generator",
+  description:
+    "Generate a ready-to-edit email draft with a subject line using templates.",
+  inputFormat: "text",
+  inputLabel: "Purpose",
+  outputFormat: "email",
+  outputLabel: "Email Draft",
+  category: "Text Tools",
+},
+{
+  slug: "text-summarizer",
+  name: "Text Summarizer",
+  title: "Rule-based Text Summarizer",
+  description:
+    "Create a quick rule-based summary by extracting important sentences.",
+  inputFormat: "text",
+  inputLabel: "Text",
+  outputFormat: "summary",
+  outputLabel: "Summary",
+  category: "Text Tools",
+},
+{
+  slug: "text-case-converter",
+  name: "Text Case Converter",
+  title: "Text Case Converter",
+  description:
+    "Convert text to uppercase, lowercase, title case, sentence case or slug case.",
+  inputFormat: "text",
+  inputLabel: "Text",
+  outputFormat: "text",
+  outputLabel: "Converted Text",
+  category: "Text Tools",
+},
 ];
 
 export const popularTools = tools;

@@ -11,7 +11,7 @@ const preferredCategories = [
   "PDF Tools",
   "Video Tools",
   "Audio Tools",
-  "AI Tools",
+  "Text Tools",
 ];
 
 const discoveredCategories = Array.from(

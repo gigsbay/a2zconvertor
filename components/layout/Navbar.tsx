@@ -9,7 +9,7 @@ const navLinks = [
   { label: "PDF Tools", href: "/tools?category=PDF%20Tools" },
   { label: "Video Tools", href: "/tools?category=Video%20Tools" },
   { label: "Audio Tools", href: "/tools?category=Audio%20Tools" },
-  { label: "AI Tools", href: "/tools?category=AI%20Tools" },
+  { label: "Text Tools", href: "/tools?category=Text%20Tools" },
 ];
 
 export default function Navbar() {
