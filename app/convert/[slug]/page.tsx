@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ToolRenderer from "@/components/converters/ToolRenderer";
 import { getToolBySlug, tools } from "@/data/tools";
 import { getToolFaqs } from "@/data/toolFaqs";
+import { getToolSeoContent } from "@/data/toolSeoContent";
 export async function generateMetadata({
   params,
 }: {
@@ -56,14 +57,16 @@ export default async function ConvertPage({
     notFound();
   }
 
-  const relatedTools = tools
-    .filter(
-      (item) =>
-        item.category === tool.category &&
-        item.slug !== tool.slug
-    )
-    .slice(0, 3);
+  const relatedTools = [
+    ...tools.filter(
+      (item) => item.category === tool.category && item.slug !== tool.slug
+    ),
+    ...tools.filter(
+      (item) => item.category !== tool.category && item.slug !== tool.slug
+    ),
+  ].slice(0, 3);
   const faqs = getToolFaqs(tool.slug, tool);
+  const seoContent = getToolSeoContent(tool);
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -118,28 +121,22 @@ export default async function ConvertPage({
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
+          <h2 className="mb-8 text-3xl font-black">
+            How to use this tool
+          </h2>
+
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
-              <h3 className="mb-2 font-bold">1. Upload</h3>
-              <p className="text-slate-400">
-                Select your {tool.inputLabel} file from your computer.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
-              <h3 className="mb-2 font-bold">2. Convert</h3>
-              <p className="text-slate-400">
-                A2ZConvertor processes your file in your browser where
-                possible.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-slate-900 p-6">
-              <h3 className="mb-2 font-bold">3. Download</h3>
-              <p className="text-slate-400">
-                Download your new {tool.outputLabel} file instantly.
-              </p>
-            </div>
+            {seoContent.howToSteps.map((step, index) => (
+              <div
+                key={step.title}
+                className="rounded-2xl border border-white/10 bg-slate-900 p-6"
+              >
+                <h3 className="mb-2 font-bold">
+                  {index + 1}. {step.title}
+                </h3>
+                <p className="text-slate-400">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -150,47 +147,30 @@ export default async function ConvertPage({
             Why use this {tool.title}?
           </h2>
 
-          <p className="mb-4 text-slate-400">
-            This free online converter helps you change {tool.inputLabel} files
-            into {tool.outputLabel} format quickly without installing software.
-          </p>
-
-          <p className="text-slate-400">
-            Your file is processed directly in your browser where possible,
-            making the conversion fast and private.
-          </p>
+          <div className="space-y-4 text-slate-400">
+            {seoContent.whyUse.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-3xl font-black">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="mb-16 space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
-              >
-                <h3 className="mb-2 font-bold">{faq.question}</h3>
-                <p className="text-slate-400">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-
-          <h2 className="mb-8 text-3xl font-black">
             Related Tools
           </h2>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="mb-16 grid gap-5 md:grid-cols-3">
             {relatedTools.map((related) => (
               <Link
                 key={related.slug}
                 href={`/convert/${related.slug}`}
                 className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60"
               >
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-300">
+                  {related.category}
+                </p>
                 <h3 className="mb-2 text-xl font-bold">
                   {related.name}
                 </h3>
@@ -199,6 +179,22 @@ export default async function ConvertPage({
                   {related.description}
                 </p>
               </Link>
+            ))}
+          </div>
+
+          <h2 className="mb-8 text-3xl font-black">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <div
+                key={faq.question}
+                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+              >
+                <h3 className="mb-2 font-bold">{faq.question}</h3>
+                <p className="text-slate-400">{faq.answer}</p>
+              </div>
             ))}
           </div>
         </div>
