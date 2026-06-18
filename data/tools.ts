@@ -539,6 +539,18 @@ export const tools = [
   outputLabel: "Color Values",
   category: "Image Tools",
 },
+{
+  slug: "remove-image-metadata",
+  name: "Remove Image Metadata",
+  title: "Remove Image Metadata",
+  description:
+    "Remove most EXIF and embedded metadata from JPG, PNG or WEBP images using a private browser-based canvas re-export.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "image",
+  outputLabel: "Cleaned Image",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;

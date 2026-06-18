@@ -37,6 +37,7 @@ import TextSummarizer from "@/components/TextSummarizer";
 import TextCaseConverter from "@/components/TextCaseConverter";
 import AvifConverter from "@/components/AvifConverter";
 import ImageColorPicker from "@/components/ImageColorPicker";
+import ImageMetadataRemover from "@/components/ImageMetadataRemover";
 
 type Tool = {
   slug: string;
@@ -89,6 +90,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "avif-to-png": <AvifConverter output="png" />,
   "avif-to-jpg": <AvifConverter output="jpg" />,
   "image-color-picker": <ImageColorPicker />,
+  "remove-image-metadata": <ImageMetadataRemover />,
 };
   return (
     customTools[tool.slug] ?? (
