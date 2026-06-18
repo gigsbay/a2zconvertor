@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
+import { categoryLandingPages } from "@/data/categoryLandingPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
@@ -49,5 +50,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...toolPages];
+  const categoryPages: MetadataRoute.Sitemap = categoryLandingPages.map(
+    (category) => ({
+      url: absoluteUrl(`/${category.slug}`),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    })
+  );
+
+  return [...staticPages, ...categoryPages, ...toolPages];
 }
