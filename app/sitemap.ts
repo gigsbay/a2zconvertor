@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
 import { categoryLandingPages } from "@/data/categoryLandingPages";
+import { comparisonPages } from "@/data/comparisonPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
@@ -59,5 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...staticPages, ...categoryPages, ...toolPages];
+  const comparisons: MetadataRoute.Sitemap = comparisonPages.map((page) => ({
+    url: absoluteUrl(`/compare/${page.slug}`),
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.65,
+  }));
+
+  return [...staticPages, ...categoryPages, ...comparisons, ...toolPages];
 }
