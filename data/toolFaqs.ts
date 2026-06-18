@@ -775,6 +775,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. The image is rendered and sampled locally in your browser using canvas.",
     },
   ],
+  "remove-image-metadata": [
+    {
+      question: "What image metadata does this tool remove?",
+      answer:
+        "Re-rendering through canvas removes most embedded metadata, including common EXIF camera, date and location details. It does not inspect or certify every possible proprietary metadata block.",
+    },
+    {
+      question: "Will removing metadata change my image?",
+      answer:
+        "The visible image is preserved, but re-exporting can change the format, compression quality or file size. JPG output replaces transparency with white.",
+    },
+    {
+      question: "Is my image uploaded while metadata is removed?",
+      answer:
+        "No. The image is decoded and re-exported locally in your browser.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
