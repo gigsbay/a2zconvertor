@@ -4,10 +4,11 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolRenderer from "@/components/converters/ToolRenderer";
-import { getToolBySlug, tools } from "@/data/tools";
+import { getToolBySlug } from "@/data/tools";
 import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
 import { absoluteUrl, SITE_URL } from "@/data/site";
+import { getRelatedTools } from "@/data/relatedTools";
 export async function generateMetadata({
   params,
 }: {
@@ -58,14 +59,7 @@ export default async function ConvertPage({
     notFound();
   }
 
-  const relatedTools = [
-    ...tools.filter(
-      (item) => item.category === tool.category && item.slug !== tool.slug
-    ),
-    ...tools.filter(
-      (item) => item.category !== tool.category && item.slug !== tool.slug
-    ),
-  ].slice(0, 3);
+  const relatedTools = getRelatedTools(tool);
   const faqs = getToolFaqs(tool.slug, tool);
   const seoContent = getToolSeoContent(tool);
 
@@ -157,17 +151,20 @@ export default async function ConvertPage({
       </section>
 
       <section className="px-6 py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-3xl font-black">
-            Related Tools
-          </h2>
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8">
+            <h2 className="text-3xl font-black">Related Tools</h2>
+            <p className="mt-3 max-w-2xl text-slate-400">
+              Continue with tools that match this format, category or workflow.
+            </p>
+          </div>
 
-          <div className="mb-16 grid gap-5 md:grid-cols-3">
+          <div className="mb-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {relatedTools.map((related) => (
               <Link
                 key={related.slug}
                 href={`/convert/${related.slug}`}
-                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60"
+                className="group flex min-h-56 flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60 hover:bg-slate-900"
               >
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-300">
                   {related.category}
@@ -176,27 +173,32 @@ export default async function ConvertPage({
                   {related.name}
                 </h3>
 
-                <p className="text-slate-400">
+                <p className="line-clamp-3 text-slate-400">
                   {related.description}
                 </p>
+                <span className="mt-auto pt-5 text-sm font-semibold text-blue-300 transition group-hover:text-blue-200">
+                  Open {related.name}
+                </span>
               </Link>
             ))}
           </div>
 
-          <h2 className="mb-8 text-3xl font-black">
-            Frequently Asked Questions
-          </h2>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-3xl font-black">
+              Frequently Asked Questions
+            </h2>
 
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
-              >
-                <h3 className="mb-2 font-bold">{faq.question}</h3>
-                <p className="text-slate-400">{faq.answer}</p>
-              </div>
-            ))}
+            <div className="space-y-4">
+              {faqs.map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+                >
+                  <h3 className="mb-2 font-bold">{faq.question}</h3>
+                  <p className="text-slate-400">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
