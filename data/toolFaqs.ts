@@ -456,7 +456,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Crop PDF work?",
       answer:
-        "It applies top, right, bottom and left margins to each page's PDF crop box using pdf-lib in your browser.",
+        "Drag and resize the crop area on the first-page preview or fine-tune the margin fields. The tool applies those margins to each page's PDF crop box in your browser.",
     },
     {
       question: "Does cropping delete the hidden content?",
