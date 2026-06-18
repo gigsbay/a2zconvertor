@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto max-w-4xl">
           <div className="mb-10 rounded-3xl border border-white/10 bg-slate-900/70 p-8">
             <p className="mb-3 text-sm font-semibold uppercase text-blue-300">
-              Last updated: June 17, 2026
+              Last updated: June 18, 2026
             </p>
             <h1 className="mb-4 text-5xl font-black tracking-tight">
               Privacy Policy
@@ -92,18 +92,18 @@ export default function PrivacyPolicyPage() {
               <p>
                 The site may use cookies or local storage for essential
                 functionality, preferences, performance and security. We do not
-                require an account to use the tools. If analytics are added
-                later, this policy should be updated to explain what analytics
-                service is used and how users can control it.
+                require an account to use the tools. Analytics services may set
+                or read browser identifiers when they are enabled.
               </p>
             </PolicySection>
 
-            <PolicySection title="Future analytics">
+            <PolicySection title="Analytics">
               <p>
-                A2ZConvertor may add privacy-conscious analytics in the future
-                to understand page usage and improve tools. If added, we will
-                update this policy with the provider name, data collected and
-                any available opt-out controls.
+                A2ZConvertor may use Google Analytics and Microsoft Clarity to
+                understand page usage, errors and interactions so we can improve
+                the site. These providers may process technical information such
+                as device details, approximate location, pages visited and
+                interaction data under their own privacy terms.
               </p>
             </PolicySection>
 
