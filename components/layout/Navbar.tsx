@@ -5,11 +5,11 @@ import { useState } from "react";
 
 const navLinks = [
   { label: "All Tools", href: "/tools" },
-  { label: "Image Tools", href: "/tools?category=Image%20Tools" },
-  { label: "PDF Tools", href: "/tools?category=PDF%20Tools" },
-  { label: "Video Tools", href: "/tools?category=Video%20Tools" },
-  { label: "Audio Tools", href: "/tools?category=Audio%20Tools" },
-  { label: "Text Tools", href: "/tools?category=Text%20Tools" },
+  { label: "Image Tools", href: "/image-tools" },
+  { label: "PDF Tools", href: "/pdf-tools" },
+  { label: "Video Tools", href: "/video-tools" },
+  { label: "Audio Tools", href: "/audio-tools" },
+  { label: "Text Tools", href: "/text-tools" },
 ];
 
 export default function Navbar() {

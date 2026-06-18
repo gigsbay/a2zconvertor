@@ -38,7 +38,7 @@ export default function Footer() {
             {categories.map((category) => (
               <li key={category.name}>
                 <Link
-                  href={`/tools?category=${encodeURIComponent(category.name)}`}
+                  href={category.slug}
                   className="transition hover:text-white"
                 >
                   {category.name}
