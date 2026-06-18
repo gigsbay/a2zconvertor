@@ -36,6 +36,7 @@ import EmailTemplateGenerator from "@/components/EmailTemplateGenerator";
 import TextSummarizer from "@/components/TextSummarizer";
 import TextCaseConverter from "@/components/TextCaseConverter";
 import AvifConverter from "@/components/AvifConverter";
+import ImageColorPicker from "@/components/ImageColorPicker";
 
 type Tool = {
   slug: string;
@@ -87,6 +88,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "text-case-converter": <TextCaseConverter />,
   "avif-to-png": <AvifConverter output="png" />,
   "avif-to-jpg": <AvifConverter output="jpg" />,
+  "image-color-picker": <ImageColorPicker />,
 };
   return (
     customTools[tool.slug] ?? (

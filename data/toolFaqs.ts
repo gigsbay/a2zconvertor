@@ -758,6 +758,23 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "Browser canvas AVIF export is not reliable enough for a dependable converter, so this tool only converts AVIF into JPG.",
     },
   ],
+  "image-color-picker": [
+    {
+      question: "How do I pick a color from an image?",
+      answer:
+        "Upload a JPG, PNG or WEBP image, then click or tap the pixel you want to inspect. The tool shows its HEX, RGB and HSL values.",
+    },
+    {
+      question: "Can I copy the selected color value?",
+      answer:
+        "Yes. Each HEX, RGB and HSL result has its own copy button so you can use the format you need.",
+    },
+    {
+      question: "Is my image uploaded to a server?",
+      answer:
+        "No. The image is rendered and sampled locally in your browser using canvas.",
+    },
+  ],
 };
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
