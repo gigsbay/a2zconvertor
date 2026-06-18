@@ -4,6 +4,7 @@ import PopularTools from "@/components/home/PopularTools";
 import WhyA2Z from "@/components/home/WhyA2Z";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import Footer from "@/components/layout/Footer";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <PopularTools />
+      <NewsletterSignup />
       <WhyA2Z />
       <HomeFAQ />
       <Footer />

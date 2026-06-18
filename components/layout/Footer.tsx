@@ -2,6 +2,7 @@ import Link from "next/link";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
 import { comparisonPages } from "@/data/comparisonPages";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const popularFooterSlugs = [
   "jpg-to-png",
@@ -17,6 +18,10 @@ const popularFooterTools = popularFooterSlugs
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 px-6 py-16">
+      <div className="mx-auto mb-12 max-w-7xl">
+        <NewsletterSignup compact />
+      </div>
+
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div>
           <h3 className="mb-4 text-2xl font-black">
