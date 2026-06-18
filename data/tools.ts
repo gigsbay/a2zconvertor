@@ -527,6 +527,18 @@ export const tools = [
   outputLabel: "JPG",
   category: "Image Tools",
 },
+{
+  slug: "image-color-picker",
+  name: "Image Color Picker",
+  title: "Image Color Picker",
+  description:
+    "Pick any pixel color from a JPG, PNG or WEBP image and copy HEX, RGB or HSL values.",
+  inputFormat: "image",
+  inputLabel: "Image",
+  outputFormat: "color",
+  outputLabel: "Color Values",
+  category: "Image Tools",
+},
 ];
 
 export const popularTools = tools;
