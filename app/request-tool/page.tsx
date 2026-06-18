@@ -2,11 +2,21 @@ import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import RequestToolForm from "@/components/RequestToolForm";
+import { absoluteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Request a Tool",
   description:
     "Request a new A2ZConvertor tool or suggest improvements to existing online file tools.",
+  alternates: {
+    canonical: absoluteUrl("/request-tool"),
+  },
+  openGraph: {
+    title: "Request a Tool | A2ZConvertor",
+    description:
+      "Request a new A2ZConvertor tool or suggest an improvement.",
+    url: absoluteUrl("/request-tool"),
+  },
 };
 
 export default function RequestToolPage() {

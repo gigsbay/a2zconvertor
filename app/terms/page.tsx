@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { absoluteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms of Service for A2ZConvertor's browser-based file conversion and editing tools.",
+  alternates: {
+    canonical: absoluteUrl("/terms"),
+  },
+  openGraph: {
+    title: "Terms of Service | A2ZConvertor",
+    description:
+      "Terms for using A2ZConvertor's browser-based file conversion and editing tools.",
+    url: absoluteUrl("/terms"),
+  },
 };
 
 export default function TermsPage() {

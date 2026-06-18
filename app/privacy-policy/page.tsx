@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { absoluteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy Policy for A2ZConvertor, including browser-based file processing, Cloudflare hosting, cookies and GDPR-style rights.",
+  alternates: {
+    canonical: absoluteUrl("/privacy-policy"),
+  },
+  openGraph: {
+    title: "Privacy Policy | A2ZConvertor",
+    description:
+      "Privacy information for A2ZConvertor's browser-based file tools.",
+    url: absoluteUrl("/privacy-policy"),
+  },
 };
 
 const rights = [
