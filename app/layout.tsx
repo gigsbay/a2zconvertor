@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_URL } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://a2zconvertor.co.uk"),
+  metadataBase: new URL(SITE_URL),
 
   title: {
     default: "A2ZConvertor - Free Online Image and PDF Tools",
@@ -41,14 +42,14 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
   },
 
   openGraph: {
     title: "A2ZConvertor - Free Online Image and PDF Tools",
     description:
       "Convert, compress and edit images and PDFs online for free with fast, browser-based tools.",
-    url: "https://a2zconvertor.co.uk",
+    url: SITE_URL,
     siteName: "A2ZConvertor",
     type: "website",
     locale: "en_GB",

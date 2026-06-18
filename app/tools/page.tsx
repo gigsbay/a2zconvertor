@@ -1,11 +1,28 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolsBrowser from "@/components/tools/ToolsBrowser";
 import { tools } from "@/data/tools";
+import { absoluteUrl } from "@/data/site";
 
 const categories = Array.from(new Set(tools.map((tool) => tool.category)));
+
+export const metadata: Metadata = {
+  title: "All Online Tools",
+  description:
+    "Browse A2ZConvertor image, PDF, video, audio and text tools.",
+  alternates: {
+    canonical: absoluteUrl("/tools"),
+  },
+  openGraph: {
+    title: "All Online Tools | A2ZConvertor",
+    description:
+      "Browse A2ZConvertor image, PDF, video, audio and text tools.",
+    url: absoluteUrl("/tools"),
+  },
+};
 
 export default function ToolsPage() {
   return (

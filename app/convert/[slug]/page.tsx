@@ -7,6 +7,7 @@ import ToolRenderer from "@/components/converters/ToolRenderer";
 import { getToolBySlug, tools } from "@/data/tools";
 import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 export async function generateMetadata({
   params,
 }: {
@@ -21,13 +22,13 @@ export async function generateMetadata({
   }
 
   const canonicalPath = `/convert/${tool.slug}`;
-  const canonicalUrl = `https://a2zconvertor.co.uk${canonicalPath}`;
+  const canonicalUrl = absoluteUrl(canonicalPath);
 
   return {
     title: `${tool.title} - Free Online Tool | A2ZConvertor`,
     description: tool.description,
     alternates: {
-      canonical: canonicalPath,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: `${tool.title} - Free Online Tool`,
@@ -82,7 +83,7 @@ export default async function ConvertPage({
       applicationCategory: "WebApplication",
       operatingSystem: "Any",
       description: tool.description,
-      url: `https://a2zconvertor.co.uk/convert/${tool.slug}`,
+      url: absoluteUrl(`/convert/${tool.slug}`),
       offers: {
         "@type": "Offer",
         price: "0",
@@ -91,7 +92,7 @@ export default async function ConvertPage({
       publisher: {
         "@type": "Organization",
         name: "A2ZConvertor",
-        url: "https://a2zconvertor.co.uk",
+        url: SITE_URL,
       },
     }),
   }}

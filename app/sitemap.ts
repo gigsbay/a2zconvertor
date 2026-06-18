@@ -1,42 +1,41 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
+import { absoluteUrl } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://a2zconvertor.co.uk";
-
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: absoluteUrl(),
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/tools`,
+      url: absoluteUrl("/tools"),
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/privacy-policy`,
+      url: absoluteUrl("/privacy-policy"),
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/terms`,
+      url: absoluteUrl("/terms"),
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: absoluteUrl("/contact"),
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
-      url: `${baseUrl}/request-tool`,
+      url: absoluteUrl("/request-tool"),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
@@ -44,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
-    url: `${baseUrl}/convert/${tool.slug}`,
+    url: absoluteUrl(`/convert/${tool.slug}`),
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,

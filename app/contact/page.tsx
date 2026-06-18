@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { absoluteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Contact A2ZConvertor for support, feedback, privacy questions or launch issues.",
+  alternates: {
+    canonical: absoluteUrl("/contact"),
+  },
+  openGraph: {
+    title: "Contact | A2ZConvertor",
+    description:
+      "Contact A2ZConvertor for support, feedback and privacy questions.",
+    url: absoluteUrl("/contact"),
+  },
 };
 
 const contacts = [
