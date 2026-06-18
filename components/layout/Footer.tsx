@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
+import { comparisonPages } from "@/data/comparisonPages";
 
 const popularFooterSlugs = [
   "jpg-to-png",
@@ -97,6 +98,21 @@ export default function Footer() {
               support@a2zconvertor.co.uk
             </a>
           </p>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-8">
+        <h4 className="font-bold text-white">Format guides</h4>
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3 text-sm text-slate-400">
+          {comparisonPages.map((comparison) => (
+            <Link
+              key={comparison.slug}
+              href={`/compare/${comparison.slug}`}
+              className="transition hover:text-white"
+            >
+              {comparison.left} vs {comparison.right}
+            </Link>
+          ))}
         </div>
       </div>
 
