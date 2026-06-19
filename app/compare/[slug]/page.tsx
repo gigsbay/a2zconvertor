@@ -6,6 +6,8 @@ import Navbar from "@/components/layout/Navbar";
 import { comparisonPages, getComparisonPage } from "@/data/comparisonPages";
 import { absoluteUrl } from "@/data/site";
 import { tools } from "@/data/tools";
+import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
+import { getPlacement } from "@/data/monetization";
 
 export function generateStaticParams() {
   return comparisonPages.map((page) => ({ slug: page.slug }));
@@ -46,6 +48,7 @@ export default async function ComparisonPage({
   const relevantTools = comparison.toolSlugs
     .map((toolSlug) => tools.find((tool) => tool.slug === toolSlug))
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
+  const placement = getPlacement("comparison");
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -120,6 +123,12 @@ export default async function ComparisonPage({
               ))}
             </div>
           </section>
+
+          {placement && (
+            <div className="mt-12">
+              <RecommendedSoftwareCard placement={placement} />
+            </div>
+          )}
 
           <section className="mt-16">
             <h2 className="text-3xl font-black">Frequently asked questions</h2>

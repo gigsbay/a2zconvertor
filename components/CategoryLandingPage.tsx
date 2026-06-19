@@ -3,6 +3,9 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { categoryLandingPages, CategoryPageConfig } from "@/data/categoryLandingPages";
 import { tools } from "@/data/tools";
+import NewsletterSignup from "@/components/NewsletterSignup";
+import SponsoredToolCard from "@/components/SponsoredToolCard";
+import { getPlacement } from "@/data/monetization";
 
 export default function CategoryLandingPage({
   config,
@@ -13,6 +16,7 @@ export default function CategoryLandingPage({
   const relatedCategories = categoryLandingPages.filter(
     (page) => page.slug !== config.slug
   );
+  const placement = getPlacement("category");
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -52,6 +56,14 @@ export default function CategoryLandingPage({
           ))}
         </div>
       </section>
+
+      {placement && (
+        <section className="px-6 pb-20">
+          <div className="mx-auto max-w-6xl">
+            <SponsoredToolCard placement={placement} />
+          </div>
+        </section>
+      )}
 
       <section className="border-y border-white/10 bg-slate-900/40 px-6 py-16">
         <div className="mx-auto max-w-4xl">
@@ -105,6 +117,7 @@ export default function CategoryLandingPage({
         </div>
       </section>
 
+      <NewsletterSignup />
       <Footer />
     </main>
   );

@@ -32,10 +32,11 @@ export default function NewsletterSignup({
     >
       <div className={compact ? "" : "mx-auto max-w-4xl"}>
         <h2 className={compact ? "text-xl font-black" : "text-3xl font-black"}>
-          Get new tools and updates
+          Get new free tools and productivity tips.
         </h2>
         <p className="mt-3 max-w-2xl leading-7 text-slate-400">
-          Be first to know when we launch new converters and productivity tools.
+          Be first to know when we launch new converters, PDF tools and
+          browser-based productivity tools.
         </p>
 
         <form
