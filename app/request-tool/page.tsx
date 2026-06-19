@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import RequestToolForm from "@/components/RequestToolForm";
 import { absoluteUrl } from "@/data/site";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import ToolVoting from "@/components/ToolVoting";
 
 export const metadata: Metadata = {
   title: "Request a Tool",
@@ -41,6 +42,7 @@ export default function RequestToolPage() {
         </div>
       </section>
 
+      <ToolVoting />
       <NewsletterSignup />
       <Footer />
     </main>
