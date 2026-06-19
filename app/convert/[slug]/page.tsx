@@ -9,6 +9,8 @@ import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
+import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
+import { getPlacement } from "@/data/monetization";
 export async function generateMetadata({
   params,
 }: {
@@ -62,6 +64,7 @@ export default async function ConvertPage({
   const relatedTools = getRelatedTools(tool);
   const faqs = getToolFaqs(tool.slug, tool);
   const seoContent = getToolSeoContent(tool);
+  const placement = getPlacement("tool");
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -202,6 +205,8 @@ export default async function ConvertPage({
           </div>
         </div>
       </section>
+
+      {placement && <AffiliatePlacementBlock placement={placement} />}
 
       <Footer />
     </main>

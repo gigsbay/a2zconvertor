@@ -3,6 +3,7 @@ import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
 import { categoryLandingPages } from "@/data/categoryLandingPages";
 import { comparisonPages } from "@/data/comparisonPages";
+import { resourcePages } from "@/data/resourcePages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
@@ -42,6 +43,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: absoluteUrl("/resources"),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.75,
+    },
+    {
+      url: absoluteUrl("/advertise"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: absoluteUrl("/partners"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
   ];
 
   const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
@@ -60,6 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  const resources: MetadataRoute.Sitemap = resourcePages.map((page) => ({
+    url: absoluteUrl(`/resources/${page.slug}`),
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const comparisons: MetadataRoute.Sitemap = comparisonPages.map((page) => ({
     url: absoluteUrl(`/compare/${page.slug}`),
     lastModified: new Date(),
@@ -67,5 +93,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...categoryPages, ...comparisons, ...toolPages];
+  return [
+    ...staticPages,
+    ...categoryPages,
+    ...resources,
+    ...comparisons,
+    ...toolPages,
+  ];
 }

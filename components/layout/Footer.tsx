@@ -93,6 +93,21 @@ export default function Footer() {
                 Request a Tool
               </Link>
             </li>
+            <li>
+              <Link href="/resources" className="transition hover:text-white">
+                Resources
+              </Link>
+            </li>
+            <li>
+              <Link href="/advertise" className="transition hover:text-white">
+                Advertise
+              </Link>
+            </li>
+            <li>
+              <Link href="/partners" className="transition hover:text-white">
+                Partners
+              </Link>
+            </li>
           </ul>
           <p className="mt-4 text-sm text-slate-500">
             Email:{" "}
