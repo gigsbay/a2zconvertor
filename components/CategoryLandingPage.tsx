@@ -3,7 +3,6 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { categoryLandingPages, CategoryPageConfig } from "@/data/categoryLandingPages";
 import { tools } from "@/data/tools";
-import NewsletterSignup from "@/components/NewsletterSignup";
 import SponsoredToolCard from "@/components/SponsoredToolCard";
 import { getPlacement } from "@/data/monetization";
 
@@ -116,8 +115,6 @@ export default function CategoryLandingPage({
           </div>
         </div>
       </section>
-
-      <NewsletterSignup />
       <Footer />
     </main>
   );
