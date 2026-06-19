@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import NewsletterSignup from "@/components/NewsletterSignup";
 import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
 import { getPlacement } from "@/data/monetization";
 import { getResourcePage, resourcePages } from "@/data/resourcePages";
@@ -139,7 +138,6 @@ export default async function ResourcePage({
       {primaryPlacement && (
         <AffiliatePlacementBlock placement={primaryPlacement} />
       )}
-      <NewsletterSignup />
       <Footer />
     </main>
   );

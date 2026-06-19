@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import NewsletterSignup from "@/components/NewsletterSignup";
 import { resourcePages } from "@/data/resourcePages";
 import { absoluteUrl } from "@/data/site";
 
@@ -59,7 +58,6 @@ export default function ResourcesPage() {
           ))}
         </div>
       </section>
-      <NewsletterSignup />
       <Footer />
     </main>
   );
