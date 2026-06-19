@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { toolRequestCategories } from "@/data/toolRequests";
 
 export default function RequestToolForm() {
   const [name, setName] = useState("");
@@ -55,12 +56,23 @@ export default function RequestToolForm() {
           onChange={setToolName}
           required
         />
-        <TextField
-          label="Tool category"
-          value={category}
-          onChange={setCategory}
-          placeholder="Image, PDF, audio, video..."
-        />
+        <label className="block">
+          <span className="mb-2 block text-sm font-semibold text-slate-300">
+            Tool category
+          </span>
+          <select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+            className="w-full rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-white outline-none focus:border-blue-500"
+          >
+            <option value="">Select a category</option>
+            {toolRequestCategories.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <label className="mt-5 block">
