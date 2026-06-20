@@ -643,7 +643,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Hashtag Generator create ideas?",
       answer:
-        "It uses keyword combinations, category choices and preset hashtag patterns to create grouped suggestions in your browser.",
+        "The selected Gemini or OpenAI model creates grouped hashtag ideas from your topic and category. Free limited generation may be available, or you can use your own API key.",
     },
     {
       question: "How many hashtags does it generate?",
@@ -660,7 +660,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How are blog titles generated?",
       answer:
-        "The selected OpenAI or Gemini model creates varied title structures using your own API key.",
+        "The selected Gemini or OpenAI model creates varied title structures using free limited generation or your own API key.",
     },
     {
       question: "Can I choose the title style?",
@@ -699,7 +699,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How many sentences are included?",
       answer:
-        "You can choose a short summary length from 2 to 5 extracted sentences.",
+        "The result includes a short summary, bullet summary and key takeaways. Always verify important details against the source text.",
     },
     {
       question: "Is my text uploaded for summarizing?",
@@ -809,7 +809,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   "tiktok-hashtag-generator": [
     {
       question: "What types of TikTok hashtags are generated?",
-      answer: "The tool creates broad topic tags, niche combinations and viral-style discovery tags from your niche and audience.",
+      answer: "The tool creates broad, niche, content-style and audience hashtags from your topic and audience. It does not claim that any tag will create viral results.",
     },
     {
       question: "Will these hashtags make a video viral?",
@@ -841,7 +841,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     },
     {
       question: "Does the bio generator use AI?",
-      answer: "Yes. It uses your selected OpenAI or Gemini model with your own API key.",
+      answer: "Yes. It uses Gemini or OpenAI through the free limited mode when available or through your own API key.",
     },
     {
       question: "Should I edit the generated bio?",

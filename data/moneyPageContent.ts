@@ -141,7 +141,7 @@ export const moneyPageContent: Record<string, MoneyPageContent> = {
   "best-tools-for-students": {
     overview: [
       "Student file problems are usually practical rather than creative: an assignment portal rejects a large PDF, scanned evidence is in the wrong order, or lecture images need to become one document. A small set of focused tools can solve those issues without adding another subscription.",
-      "The safest workflow is to preserve the original, follow the institution's file requirements and inspect every exported page. Rule-based text tools can help surface important sentences, but they should support reading rather than replace it.",
+      "The safest workflow is to preserve the original, follow the institution's file requirements and inspect every exported page. AI text tools can help summarize supplied notes, but they send text to the selected provider and should support reading rather than replace it.",
     ],
     table: {
       headers: ["Student task", "Suggested workflow", "Academic check"],
@@ -149,13 +149,13 @@ export const moneyPageContent: Record<string, MoneyPageContent> = {
         ["Submit multiple documents", "Arrange and merge PDFs", "Confirm required order and page count"],
         ["Meet an upload limit", "Remove unused pages, then compress a copy", "Check citations and small text remain readable"],
         ["Turn photos into a handout", "Order images and create a PDF", "Use clear, correctly oriented source images"],
-        ["Review long notes", "Create a rule-based quick summary", "Read the source and verify context yourself"],
+        ["Review long notes", "Create an AI-assisted quick summary", "Read the source and verify context yourself"],
         ["Prepare diagrams or screenshots", "Crop and resize images", "Retain labels, legends and attribution"],
       ],
     },
     bestFor: [
       { title: "Assignment submission", description: "Combining appendices, forms and written work into one checked PDF." },
-      { title: "Revision preparation", description: "Organising notes and creating quick rule-based summaries for review." },
+      { title: "Revision preparation", description: "Organising notes and creating AI-assisted summaries for review." },
       { title: "Shared computers", description: "Completing common file tasks without installing desktop software." },
     ],
     freeBrowserEnough: [
@@ -173,7 +173,7 @@ export const moneyPageContent: Record<string, MoneyPageContent> = {
     ctaSlugs: ["pdf-merge", "compress-pdf", "image-to-pdf", "text-summarizer"],
     disclosure: "Recommendations on this page prioritise existing free A2ZConvertor tools. A future labelled software placement may be commercial, but it will not change the academic guidance.",
     faqs: [
-      { question: "Can I use the text summarizer instead of reading the source?", answer: "No. It uses rule-based sentence scoring and can miss nuance, argument structure or qualifications. Use it as a review aid and verify every important point in the original." },
+      { question: "Can I use the text summarizer instead of reading the source?", answer: "No. AI summaries can miss nuance, argument structure or qualifications. Use them as a review aid and verify every important point in the original." },
       { question: "How can I avoid a last-minute upload problem?", answer: "Create the final file early, open it on another device if possible, confirm its size and name, and keep the original until the submission is accepted." },
       { question: "Will PDF compression affect citations and diagrams?", answer: "It can reduce image clarity and an image-based method can flatten text. Inspect references, footnotes, equations and detailed figures at normal reading zoom." },
       { question: "Should I upload confidential placement or research documents?", answer: "Follow your university, placement provider or research policy. Use approved offline or institution-managed software where the material is restricted." },
