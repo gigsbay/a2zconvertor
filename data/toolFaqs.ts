@@ -643,7 +643,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Hashtag Generator create ideas?",
       answer:
-        "No. It uses keyword combinations, tone choices and preset hashtag banks to create quick suggestions in your browser.",
+        "It uses keyword combinations, category choices and preset hashtag patterns to create grouped suggestions in your browser.",
     },
     {
       question: "How many hashtags does it generate?",
@@ -665,7 +665,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Can I choose the title style?",
       answer:
-        "Yes. Choose listicle, how-to, beginner guide, comparison or question style before copying a title.",
+        "The generator mixes how-to, listicle, beginner, comparison, mistakes and problem-solution structures in each result set.",
     },
     {
       question: "Are the titles ready to publish?",
@@ -699,7 +699,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How many sentences are included?",
       answer:
-        "You can choose a summary length from 3 to 5 extracted sentences.",
+        "You can choose a short summary length from 2 to 5 extracted sentences.",
     },
     {
       question: "Is my text uploaded for summarizing?",
