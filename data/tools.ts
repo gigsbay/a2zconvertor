@@ -448,7 +448,7 @@ export const tools = [
   name: "Hashtag Generator",
   title: "Hashtag Generator",
   description:
-    "Generate smart, template-based hashtags from topics and keywords.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Keywords",
   outputFormat: "hashtags",
@@ -460,7 +460,7 @@ export const tools = [
   name: "Blog Title Generator",
   title: "Blog Title Generator",
   description:
-    "Create quick blog title ideas from rule-based writing templates.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "titles",
@@ -472,7 +472,7 @@ export const tools = [
   name: "Email Template Generator",
   title: "Email Template Generator",
   description:
-    "Generate a ready-to-edit email draft with a subject line using templates.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Purpose",
   outputFormat: "email",
@@ -484,7 +484,7 @@ export const tools = [
   name: "Text Summarizer",
   title: "Rule-based Text Summarizer",
   description:
-    "Create a quick rule-based summary by extracting important sentences.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Text",
   outputFormat: "summary",
@@ -556,7 +556,7 @@ export const tools = [
   name: "Instagram Caption Generator",
   title: "Instagram Caption Generator",
   description:
-    "Generate free template-based Instagram captions, short captions and CTA ideas.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "captions",
@@ -568,7 +568,7 @@ export const tools = [
   name: "TikTok Hashtag Generator",
   title: "TikTok Hashtag Generator",
   description:
-    "Create broad, niche and discovery-style TikTok hashtag ideas without fake reach promises.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "hashtags",
@@ -580,7 +580,7 @@ export const tools = [
   name: "YouTube Title Generator",
   title: "YouTube Title Generator",
   description:
-    "Generate ten editable YouTube title ideas with style and length guidance.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Video Topic",
   outputFormat: "titles",
@@ -592,7 +592,7 @@ export const tools = [
   name: "Social Media Bio Generator",
   title: "Social Media Bio Generator",
   description:
-    "Create editable bio ideas for Instagram, TikTok, YouTube, LinkedIn and X.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Brand Details",
   outputFormat: "bios",
@@ -604,7 +604,7 @@ export const tools = [
   name: "Content Ideas Generator",
   title: "Content Ideas Generator",
   description:
-    "Generate twenty rule-based content ideas grouped by useful creator formats.",
+    "AI-powered generation using your own OpenAI or Gemini API key.",
   inputFormat: "text",
   inputLabel: "Niche",
   outputFormat: "ideas",

@@ -87,16 +87,16 @@ export const categoryLandingPages: CategoryPageConfig[] = [
     category: "Text Tools",
     title: "Free Smart Text Tools",
     description:
-      "Generate, summarize and transform text with fast rule-based browser tools.",
+      "Generate and summarize text with BYOK AI tools, plus fast browser-based text utilities.",
     intro:
-      "Create quick writing ideas and transform text with template-based tools. These utilities are client-side and do not claim to use artificial intelligence.",
+      "Use your own OpenAI or Gemini API key to generate titles, emails, hashtags and summaries while staying on A2ZConvertor.",
     why: [
-      "Get useful starting points without accounts, paid APIs or external AI services.",
+      "Bring your own API key and choose an approved OpenAI or Gemini model for generation.",
       "Copy results immediately and edit them for your own audience and voice.",
     ],
     faqs: [
-      { question: "Are these AI tools?", answer: "No. They use templates, presets and rule-based text processing in your browser." },
-      { question: "Is pasted text uploaded?", answer: "No. Text transformations and summaries run locally in the page." },
+      { question: "Why is an API key needed?", answer: "AI generation is billed and rate-limited by the provider, so you use your own OpenAI or Gemini API key." },
+      { question: "Does A2ZConvertor store my API key?", answer: "No database stores your key. It remains in memory unless you explicitly save it in this browser." },
       { question: "Can I edit generated results?", answer: "Yes. Generated content is intended as a starting point that you can copy and refine." },
     ],
   },
@@ -105,18 +105,18 @@ export const categoryLandingPages: CategoryPageConfig[] = [
     category: "Social Media Tools",
     title: "Free Social Media Tools",
     description:
-      "Free template-based social media tools for captions, hashtags, titles, bios and content ideas.",
+      "BYOK AI social media tools for captions, hashtags, titles, bios and content ideas.",
     intro:
-      "Plan and write social content with practical idea generators for creators, small businesses, students and marketers. Every tool uses transparent templates and rules rather than paid AI APIs.",
+      "Use your own OpenAI or Gemini API key to generate better captions, hashtags, titles, bios and content ideas for creators, small businesses, students and marketers.",
     why: [
-      "Create useful starting points without accounts, subscriptions or external AI services.",
+      "Generate tailored starting points with your own OpenAI or Gemini API account.",
       "Adapt every suggestion to your real audience, platform, brand voice and goals.",
     ],
     faqs: [
       {
-        question: "Are these social media tools AI-powered?",
+        question: "Why is an API key needed?",
         answer:
-          "No. They use templates, keyword combinations and rule-based generation in your browser.",
+          "The selected OpenAI or Gemini provider performs generation using your own API account.",
       },
       {
         question: "Do these tools guarantee followers or reach?",

@@ -660,7 +660,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How are blog titles generated?",
       answer:
-        "The tool uses writing templates such as listicles, how-to guides, comparisons and questions. It does not use an external API.",
+        "The selected OpenAI or Gemini model creates varied title structures using your own API key.",
     },
     {
       question: "Can I choose the title style?",
@@ -682,7 +682,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How is the email draft created?",
       answer:
-        "The tool uses local templates based on your purpose, recipient type and tone. No external service is contacted.",
+        "The selected OpenAI or Gemini provider creates the email from your purpose, recipient, tone and key message.",
     },
     {
       question: "Can I customize the generated email?",
@@ -694,7 +694,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does this text summarizer work?",
       answer:
-        "No. It creates a quick rule-based summary by scoring sentences with keyword frequency and extracting the strongest sentences.",
+        "The selected AI provider summarizes the supplied text and is instructed to preserve meaning without adding facts.",
     },
     {
       question: "How many sentences are included?",
@@ -704,7 +704,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Is my text uploaded for summarizing?",
       answer:
-        "No. The rule-based summary runs entirely in your browser.",
+        "The text is sent through the A2ZConvertor proxy to your selected provider for this generation request.",
     },
   ],
   "text-case-converter": [
@@ -795,7 +795,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   "instagram-caption-generator": [
     {
       question: "How are Instagram captions generated?",
-      answer: "The tool combines your topic, selected tone and optional emoji setting with writing templates. It does not use AI or an external API.",
+      answer: "The selected OpenAI or Gemini model creates captions from your topic, tone and emoji preference.",
     },
     {
       question: "Are the captions ready to post?",
@@ -823,7 +823,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   "youtube-title-generator": [
     {
       question: "How does the YouTube title generator work?",
-      answer: "It applies your topic to tutorial, listicle, review, beginner and viral-style writing templates in your browser.",
+      answer: "The selected OpenAI or Gemini model creates varied title structures from your topic and style.",
     },
     {
       question: "What does the title length helper show?",
@@ -841,7 +841,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     },
     {
       question: "Does the bio generator use AI?",
-      answer: "No. It uses your brand, niche, tone and platform with transparent writing templates.",
+      answer: "Yes. It uses your selected OpenAI or Gemini model with your own API key.",
     },
     {
       question: "Should I edit the generated bio?",
@@ -855,7 +855,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     },
     {
       question: "Are the ideas customized?",
-      answer: "They use your niche, platform and goal inside rule-based templates. Refine them with real examples and audience knowledge.",
+      answer: "The selected AI model uses your niche, audience, platform and goal. Refine every idea with real examples and audience knowledge.",
     },
     {
       question: "Do these ideas guarantee growth or sales?",
