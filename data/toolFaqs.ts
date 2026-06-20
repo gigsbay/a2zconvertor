@@ -792,7 +792,76 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
         "No. The image is decoded and re-exported locally in your browser.",
     },
   ],
-};
+  "instagram-caption-generator": [
+    {
+      question: "How are Instagram captions generated?",
+      answer: "The tool combines your topic, selected tone and optional emoji setting with writing templates. It does not use AI or an external API.",
+    },
+    {
+      question: "Are the captions ready to post?",
+      answer: "They are starting points. Edit facts, wording and tone so the caption accurately represents your post and account.",
+    },
+    {
+      question: "Can a caption guarantee engagement?",
+      answer: "No. Engagement depends on the content, audience, timing and platform behaviour, not a caption template alone.",
+    },
+  ],
+  "tiktok-hashtag-generator": [
+    {
+      question: "What types of TikTok hashtags are generated?",
+      answer: "The tool creates broad topic tags, niche combinations and viral-style discovery tags from your niche and audience.",
+    },
+    {
+      question: "Will these hashtags make a video viral?",
+      answer: "No. Hashtags can help describe and categorize content, but they cannot guarantee reach, ranking or virality.",
+    },
+    {
+      question: "Should I use every generated hashtag?",
+      answer: "Review the list and keep only tags that accurately match the video and intended audience.",
+    },
+  ],
+  "youtube-title-generator": [
+    {
+      question: "How does the YouTube title generator work?",
+      answer: "It applies your topic to tutorial, listicle, review, beginner and viral-style writing templates in your browser.",
+    },
+    {
+      question: "What does the title length helper show?",
+      answer: "It shows the character count and flags concise titles, helping you notice ideas that may be worth shortening.",
+    },
+    {
+      question: "Do these titles guarantee more views?",
+      answer: "No. Titles should clearly match the video. Performance also depends on the thumbnail, content quality, audience and many other factors.",
+    },
+  ],
+  "social-media-bio-generator": [
+    {
+      question: "Which platforms are supported?",
+      answer: "You can create bio ideas for Instagram, TikTok, YouTube, LinkedIn and X.",
+    },
+    {
+      question: "Does the bio generator use AI?",
+      answer: "No. It uses your brand, niche, tone and platform with transparent writing templates.",
+    },
+    {
+      question: "Should I edit the generated bio?",
+      answer: "Yes. Check platform length limits and make sure every statement accurately reflects your real work, experience or offer.",
+    },
+  ],
+  "content-ideas-generator": [
+    {
+      question: "How many content ideas are generated?",
+      answer: "The tool creates twenty ideas: five educational, five entertaining, five promotional and five personal prompts.",
+    },
+    {
+      question: "Are the ideas customized?",
+      answer: "They use your niche, platform and goal inside rule-based templates. Refine them with real examples and audience knowledge.",
+    },
+    {
+      question: "Do these ideas guarantee growth or sales?",
+      answer: "No. They help with brainstorming only. Results depend on execution, relevance, consistency, offer quality and audience response.",
+    },
+  ],};
 
 export function getToolFaqs(slug: string, tool: ToolFaqContext): ToolFaq[] {
   return (

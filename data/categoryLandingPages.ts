@@ -6,6 +6,7 @@ export type CategoryPageConfig = {
   intro: string;
   why: string[];
   faqs: { question: string; answer: string }[];
+  relatedToolSlugs?: string[];
 };
 
 export const categoryLandingPages: CategoryPageConfig[] = [
@@ -99,7 +100,44 @@ export const categoryLandingPages: CategoryPageConfig[] = [
       { question: "Can I edit generated results?", answer: "Yes. Generated content is intended as a starting point that you can copy and refine." },
     ],
   },
-];
+  {
+    slug: "social-media-tools",
+    category: "Social Media Tools",
+    title: "Free Social Media Tools",
+    description:
+      "Free template-based social media tools for captions, hashtags, titles, bios and content ideas.",
+    intro:
+      "Plan and write social content with practical idea generators for creators, small businesses, students and marketers. Every tool uses transparent templates and rules rather than paid AI APIs.",
+    why: [
+      "Create useful starting points without accounts, subscriptions or external AI services.",
+      "Adapt every suggestion to your real audience, platform, brand voice and goals.",
+    ],
+    faqs: [
+      {
+        question: "Are these social media tools AI-powered?",
+        answer:
+          "No. They use templates, keyword combinations and rule-based generation in your browser.",
+      },
+      {
+        question: "Do these tools guarantee followers or reach?",
+        answer:
+          "No. They provide editable ideas, but results depend on content quality, audience fit, timing and many platform factors.",
+      },
+      {
+        question: "Can businesses and students use the generated ideas?",
+        answer:
+          "Yes. The suggestions are free starting points that should be reviewed and edited for the account, audience and context.",
+      },
+    ],
+    relatedToolSlugs: [
+      "meme-generator",
+      "video-thumbnail-extractor",
+      "resize-image",
+      "hashtag-generator",
+      "text-case-converter",
+      "watermark-image",
+    ],
+  },];
 
 export function getCategoryPage(slug: string) {
   return categoryLandingPages.find((page) => page.slug === slug);
