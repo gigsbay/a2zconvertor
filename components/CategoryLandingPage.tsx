@@ -16,6 +16,9 @@ export default function CategoryLandingPage({
     (page) => page.slug !== config.slug
   );
   const placement = getPlacement("category");
+  const relatedTools = (config.relatedToolSlugs ?? [])
+    .map((slug) => tools.find((tool) => tool.slug === slug))
+    .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -56,6 +59,32 @@ export default function CategoryLandingPage({
         </div>
       </section>
 
+      {relatedTools.length > 0 && (
+        <section className="border-y border-white/10 bg-slate-900/40 px-6 py-16">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-3xl font-black">Useful creator tools</h2>
+            <p className="mt-3 max-w-2xl text-slate-400">
+              Prepare the images, videos and text that support your social
+              media workflow.
+            </p>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedTools.map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={`/convert/${tool.slug}`}
+                  className="rounded-2xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-blue-500/60"
+                >
+                  <p className="text-xs font-semibold uppercase text-blue-300">
+                    {tool.category}
+                  </p>
+                  <h3 className="mt-2 text-xl font-bold">{tool.name}</h3>
+                  <p className="mt-3 text-slate-400">{tool.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       {placement && (
         <section className="px-6 pb-20">
           <div className="mx-auto max-w-6xl">

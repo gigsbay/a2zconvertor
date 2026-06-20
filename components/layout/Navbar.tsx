@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Video Tools", href: "/video-tools" },
   { label: "Audio Tools", href: "/audio-tools" },
   { label: "Text Tools", href: "/text-tools" },
+  { label: "Social Tools", href: "/social-media-tools" },
 ];
 
 export default function Navbar() {
