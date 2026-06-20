@@ -30,19 +30,21 @@ import VideoToGif from "@/components/VideoToGif";
 import VideoCompressor from "@/components/VideoCompressor";
 import AudioConverter from "@/components/AudioConverter";
 import VideoThumbnailExtractor from "@/components/VideoThumbnailExtractor";
-import HashtagGenerator from "@/components/HashtagGenerator";
-import BlogTitleGenerator from "@/components/BlogTitleGenerator";
-import EmailTemplateGenerator from "@/components/EmailTemplateGenerator";
-import TextSummarizer from "@/components/TextSummarizer";
 import TextCaseConverter from "@/components/TextCaseConverter";
 import AvifConverter from "@/components/AvifConverter";
 import ImageColorPicker from "@/components/ImageColorPicker";
 import ImageMetadataRemover from "@/components/ImageMetadataRemover";
-import InstagramCaptionGenerator from "@/components/social/InstagramCaptionGenerator";
-import TiktokHashtagGenerator from "@/components/social/TiktokHashtagGenerator";
-import YoutubeTitleGenerator from "@/components/social/YoutubeTitleGenerator";
-import SocialBioGenerator from "@/components/social/SocialBioGenerator";
-import ContentIdeasGenerator from "@/components/social/ContentIdeasGenerator";
+import {
+  ImprovedBlogTitleGenerator,
+  ImprovedContentIdeasGenerator,
+  ImprovedEmailTemplateGenerator,
+  ImprovedHashtagGenerator,
+  ImprovedInstagramCaptionGenerator,
+  ImprovedSocialBioGenerator,
+  ImprovedTextSummarizer,
+  ImprovedTiktokHashtagGenerator,
+  ImprovedYoutubeTitleGenerator,
+} from "@/components/generators/GeneratorSuite";
 
 type Tool = {
   slug: string;
@@ -87,20 +89,20 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "compress-video": <VideoCompressor />,
   "audio-converter": <AudioConverter />,
   "video-thumbnail-extractor": <VideoThumbnailExtractor />,
-  "hashtag-generator": <HashtagGenerator />,
-  "blog-title-generator": <BlogTitleGenerator />,
-  "email-template-generator": <EmailTemplateGenerator />,
-  "text-summarizer": <TextSummarizer />,
+  "hashtag-generator": <ImprovedHashtagGenerator />,
+  "blog-title-generator": <ImprovedBlogTitleGenerator />,
+  "email-template-generator": <ImprovedEmailTemplateGenerator />,
+  "text-summarizer": <ImprovedTextSummarizer />,
   "text-case-converter": <TextCaseConverter />,
   "avif-to-png": <AvifConverter output="png" />,
   "avif-to-jpg": <AvifConverter output="jpg" />,
   "image-color-picker": <ImageColorPicker />,
   "remove-image-metadata": <ImageMetadataRemover />,
-  "instagram-caption-generator": <InstagramCaptionGenerator />,
-  "tiktok-hashtag-generator": <TiktokHashtagGenerator />,
-  "youtube-title-generator": <YoutubeTitleGenerator />,
-  "social-media-bio-generator": <SocialBioGenerator />,
-  "content-ideas-generator": <ContentIdeasGenerator />,
+  "instagram-caption-generator": <ImprovedInstagramCaptionGenerator />,
+  "tiktok-hashtag-generator": <ImprovedTiktokHashtagGenerator />,
+  "youtube-title-generator": <ImprovedYoutubeTitleGenerator />,
+  "social-media-bio-generator": <ImprovedSocialBioGenerator />,
+  "content-ideas-generator": <ImprovedContentIdeasGenerator />,
 };
   return (
     customTools[tool.slug] ?? (
