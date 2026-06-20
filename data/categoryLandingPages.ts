@@ -85,49 +85,41 @@ export const categoryLandingPages: CategoryPageConfig[] = [
   {
     slug: "text-tools",
     category: "Text Tools",
-    title: "Free Smart Text Tools",
+    title: "AI Text Tools",
     description:
-      "Generate and summarize text with BYOK AI tools, plus fast browser-based text utilities.",
+      "Generate, rewrite and summarize text with real AI using free limited generation or your own API key.",
     intro:
-      "Use your own OpenAI or Gemini API key to generate titles, emails, hashtags and summaries while staying on A2ZConvertor.",
+      "Create titles, emails, hashtags and summaries with Gemini or OpenAI. Use the limited free option when available, or bring your own provider key for more generations.",
     why: [
-      "Bring your own API key and choose an approved OpenAI or Gemini model for generation.",
-      "Copy results immediately and edit them for your own audience and voice.",
+      "Use real AI generation with clear provider and model choices.",
+      "Keep control of usage by choosing the free daily allowance or your own API account.",
     ],
     faqs: [
-      { question: "Why is an API key needed?", answer: "AI generation is billed and rate-limited by the provider, so you use your own OpenAI or Gemini API key." },
-      { question: "Does A2ZConvertor store my API key?", answer: "No database stores your key. It remains in memory unless you explicitly save it in this browser." },
-      { question: "Can I edit generated results?", answer: "Yes. Generated content is intended as a starting point that you can copy and refine." },
+      { question: "Why do I need an API key?", answer: "You do not need one when free limited AI generation is available. For more usage, a Gemini or OpenAI API key connects the tool to your own provider account." },
+      { question: "Does A2ZConvertor store my API key?", answer: "No database stores your key. It stays in memory unless you explicitly choose to save it in this browser's local storage." },
+      { question: "Is free AI unlimited?", answer: "No. Free AI generations have a small daily limit to control service costs and may be disabled when production-safe capacity is unavailable." },
+      { question: "Can I use my ChatGPT Plus subscription?", answer: "Not directly. ChatGPT subscriptions and OpenAI API billing are separate, so BYOK mode requires an OpenAI Platform API key." },
+      { question: "How do I clear my saved key?", answer: "Open AI Provider Settings on any AI tool and select Clear saved AI settings." },
     ],
   },
   {
     slug: "social-media-tools",
     category: "Social Media Tools",
-    title: "Free Social Media Tools",
+    title: "Free AI Social Media Tools",
     description:
-      "BYOK AI social media tools for captions, hashtags, titles, bios and content ideas.",
+      "Create captions, hashtags, titles, bios and content ideas with real Gemini or OpenAI generation.",
     intro:
-      "Use your own OpenAI or Gemini API key to generate better captions, hashtags, titles, bios and content ideas for creators, small businesses, students and marketers.",
+      "Generate editable social content for creators, small businesses, students and marketers. Use free limited Gemini generation when available, or bring your own Gemini or OpenAI API key for more usage.",
     why: [
-      "Generate tailored starting points with your own OpenAI or Gemini API account.",
-      "Adapt every suggestion to your real audience, platform, brand voice and goals.",
+      "Generate tailored starting points with real AI rather than fixed templates.",
+      "Choose a provider and refine every result for your audience, platform and brand voice.",
     ],
     faqs: [
-      {
-        question: "Why is an API key needed?",
-        answer:
-          "The selected OpenAI or Gemini provider performs generation using your own API account.",
-      },
-      {
-        question: "Do these tools guarantee followers or reach?",
-        answer:
-          "No. They provide editable ideas, but results depend on content quality, audience fit, timing and many platform factors.",
-      },
-      {
-        question: "Can businesses and students use the generated ideas?",
-        answer:
-          "Yes. The suggestions are free starting points that should be reviewed and edited for the account, audience and context.",
-      },
+      { question: "Why do I need an API key?", answer: "The free limited mode does not require your key when it is available. BYOK mode uses your own Gemini or OpenAI API account for additional generations." },
+      { question: "Does A2ZConvertor store my API key?", answer: "No database stores your key. It is saved only in this browser when you explicitly select Remember my key on this browser." },
+      { question: "Is free AI unlimited?", answer: "No. Free generation has a daily allowance to control costs and availability." },
+      { question: "Can I use my ChatGPT Plus subscription?", answer: "No. ChatGPT Plus does not automatically include OpenAI API usage or an API key." },
+      { question: "How do I clear my saved key?", answer: "Use Clear saved AI settings inside the provider panel on any AI generator." },
     ],
     relatedToolSlugs: [
       "meme-generator",
