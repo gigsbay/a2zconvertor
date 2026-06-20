@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import Footer from "@/components/layout/Footer";
+import MoneyPageSections from "@/components/MoneyPageSections";
 import Navbar from "@/components/layout/Navbar";
 import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
+import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { getPlacement } from "@/data/monetization";
 import { getResourcePage, resourcePages } from "@/data/resourcePages";
 import { absoluteUrl } from "@/data/site";
@@ -50,6 +52,8 @@ export default async function ResourcePage({
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
   const primaryPlacement = getPlacement("resource", 0);
   const secondaryPlacement = getPlacement("resource", 1);
+  const moneyContent = getMoneyPageContent(resource.slug);
+  const faqs = moneyContent?.faqs ?? resource.faqs;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -66,27 +70,33 @@ export default async function ResourcePage({
             {resource.intro}
           </p>
 
-          <div className="mt-12 grid gap-6">
-            {resource.sections.map((section) => (
-              <section
-                key={section.heading}
-                className="rounded-2xl border border-white/10 bg-slate-900/70 p-7"
-              >
-                <h2 className="text-2xl font-black">{section.heading}</h2>
-                <p className="mt-4 leading-7 text-slate-400">{section.body}</p>
-                <ul className="mt-5 grid gap-3 text-slate-300 sm:grid-cols-3">
-                  {section.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="rounded-xl border border-white/10 bg-slate-950/60 p-4"
-                    >
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
+          {moneyContent ? (
+            <MoneyPageSections content={moneyContent} />
+          ) : (
+            <div className="mt-12 grid gap-6">
+              {resource.sections.map((section) => (
+                <section
+                  key={section.heading}
+                  className="rounded-2xl border border-white/10 bg-slate-900/70 p-7"
+                >
+                  <h2 className="text-2xl font-black">{section.heading}</h2>
+                  <p className="mt-4 leading-7 text-slate-400">
+                    {section.body}
+                  </p>
+                  <ul className="mt-5 grid gap-3 text-slate-300 sm:grid-cols-3">
+                    {section.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="rounded-xl border border-white/10 bg-slate-950/60 p-4"
+                      >
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          )}
 
           <section className="mt-16">
             <h2 className="text-3xl font-black">Related tools</h2>
@@ -122,7 +132,7 @@ export default async function ResourcePage({
           <section className="mt-16">
             <h2 className="text-3xl font-black">Frequently asked questions</h2>
             <div className="mt-6 space-y-4">
-              {resource.faqs.map((faq) => (
+              {faqs.map((faq) => (
                 <div
                   key={faq.question}
                   className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"

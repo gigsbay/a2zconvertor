@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
+import MoneyPageSections from "@/components/MoneyPageSections";
 import Navbar from "@/components/layout/Navbar";
 import { comparisonPages, getComparisonPage } from "@/data/comparisonPages";
+import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { absoluteUrl } from "@/data/site";
 import { tools } from "@/data/tools";
 import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
@@ -49,6 +51,8 @@ export default async function ComparisonPage({
     .map((toolSlug) => tools.find((tool) => tool.slug === toolSlug))
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
   const placement = getPlacement("comparison");
+  const moneyContent = getMoneyPageContent(comparison.slug);
+  const faqs = moneyContent?.faqs ?? comparison.faqs;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -57,7 +61,7 @@ export default async function ComparisonPage({
       <article className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <p className="text-sm font-semibold uppercase text-blue-300">
-            Format comparison
+            {moneyContent ? "Independent comparison" : "Format comparison"}
           </p>
           <h1 className="mt-3 text-5xl font-black tracking-tight">
             {comparison.title}
@@ -66,28 +70,32 @@ export default async function ComparisonPage({
             {comparison.explanation}
           </p>
 
-          <div className="mt-12 overflow-x-auto rounded-2xl border border-white/10">
-            <table className="w-full min-w-[640px] border-collapse text-left">
-              <thead className="bg-slate-900">
-                <tr>
-                  <th className="p-4 text-slate-400">Feature</th>
-                  <th className="p-4 text-xl">{comparison.left}</th>
-                  <th className="p-4 text-xl">{comparison.right}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.rows.map((row) => (
-                  <tr key={row.feature} className="border-t border-white/10">
-                    <th className="p-4 font-semibold text-slate-300">
-                      {row.feature}
-                    </th>
-                    <td className="p-4 text-slate-400">{row.left}</td>
-                    <td className="p-4 text-slate-400">{row.right}</td>
+          {moneyContent ? (
+            <MoneyPageSections content={moneyContent} />
+          ) : (
+            <div className="mt-12 overflow-x-auto rounded-2xl border border-white/10">
+              <table className="w-full min-w-[640px] border-collapse text-left">
+                <thead className="bg-slate-900">
+                  <tr>
+                    <th className="p-4 text-slate-400">Feature</th>
+                    <th className="p-4 text-xl">{comparison.left}</th>
+                    <th className="p-4 text-xl">{comparison.right}</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {comparison.rows.map((row) => (
+                    <tr key={row.feature} className="border-t border-white/10">
+                      <th className="p-4 font-semibold text-slate-300">
+                        {row.feature}
+                      </th>
+                      <td className="p-4 text-slate-400">{row.left}</td>
+                      <td className="p-4 text-slate-400">{row.right}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
           <section className="mt-16">
             <h2 className="text-3xl font-black">Which should you use?</h2>
@@ -133,7 +141,7 @@ export default async function ComparisonPage({
           <section className="mt-16">
             <h2 className="text-3xl font-black">Frequently asked questions</h2>
             <div className="mt-6 space-y-4">
-              {comparison.faqs.map((faq) => (
+              {faqs.map((faq) => (
                 <div
                   key={faq.question}
                   className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"

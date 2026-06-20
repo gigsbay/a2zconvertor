@@ -1,0 +1,350 @@
+export type MoneyPageTable = {
+  headers: [string, string, string];
+  rows: [string, string, string][];
+};
+
+export type MoneyPageContent = {
+  overview: string[];
+  table: MoneyPageTable;
+  bestFor: { title: string; description: string }[];
+  freeBrowserEnough: string[];
+  paidSoftwareBetter: string[];
+  ctaSlugs: string[];
+  disclosure: string;
+  faqs: { question: string; answer: string }[];
+};
+
+export const moneyPageContent: Record<string, MoneyPageContent> = {
+  "best-free-pdf-tools": {
+    overview: [
+      "Free PDF tools are most useful when the job is specific: combine files, remove a page, change page order, add numbering or create a smaller sharing copy. A focused tool can be faster than opening a full document editor because the workflow starts with the file and ends with a download.",
+      "The important distinction is between arranging an existing PDF and editing its underlying content. Browser tools are well suited to page-level operations. Rewriting paragraphs, correcting complex forms, applying certified redaction or managing hundreds of documents usually calls for specialist software.",
+    ],
+    table: {
+      headers: ["Task", "Useful free approach", "Important check"],
+      rows: [
+        ["Combine documents", "Merge PDFs in the required order", "Open the result and verify every file appears"],
+        ["Send only selected pages", "Split or extract a page range", "Confirm page numbering before exporting"],
+        ["Reduce an attachment", "Compress a copy at a suitable quality", "Check readability and the actual file size"],
+        ["Rearrange a document", "Organize pages with a visual page list", "Look for accidental duplicates or deletions"],
+        ["Prepare a final handout", "Add page numbers after arranging pages", "Check number placement on different page sizes"],
+      ],
+    },
+    bestFor: [
+      { title: "Students and applicants", description: "Combining forms, supporting evidence and assignments into the requested order." },
+      { title: "Occasional office tasks", description: "Splitting, rotating or numbering a document without installing a large editor." },
+      { title: "Privacy-conscious quick jobs", description: "Using browser-based processing where the selected A2ZConvertor tool supports it." },
+    ],
+    freeBrowserEnough: [
+      "You have one document or a small group of files.",
+      "The task changes pages rather than rewriting their contents.",
+      "You can inspect the downloaded PDF before sharing it.",
+      "You do not need team approvals, audit trails or automated batches.",
+    ],
+    paidSoftwareBetter: [
+      "You need reliable OCR, certified redaction or advanced form editing.",
+      "The document is very large, confidential or part of a regulated workflow.",
+      "You process many files repeatedly and need watched folders or automation.",
+      "You need signatures, permissions, document comparison or long-term support.",
+    ],
+    ctaSlugs: ["pdf-merge", "pdf-split", "organize-pdf", "compress-pdf"],
+    disclosure: "A2ZConvertor's own tools are linked first. Any future third-party recommendation in the clearly labelled Recommended placement may be commercial, but no unapproved affiliate link is used on this page.",
+    faqs: [
+      { question: "Which free PDF tool should I use first?", answer: "Start with the narrowest operation. Arrange and remove pages first, merge documents next, then compress the final sharing copy so you only compress once." },
+      { question: "Can a free PDF tool edit words inside a PDF?", answer: "The tools in this guide focus mainly on page-level operations. Editing paragraph text, fonts and complex layouts usually requires a full PDF editor." },
+      { question: "How should I check a newly created PDF?", answer: "Open the download, scan the first and last page, verify page order and count, and zoom into any small text or scanned pages before sending it." },
+      { question: "Are browser PDF tools suitable for confidential files?", answer: "Check the processing explanation for the individual tool and your organisation's policy. For highly sensitive or regulated documents, approved offline software may be the safer choice." },
+    ],
+  },
+  "best-pdf-compressor-tools": {
+    overview: [
+      "PDF compression is not one universal operation. A text-heavy exported report, a scanned document and a portfolio full of photographs contain different data, so the same quality setting can produce very different results.",
+      "A trustworthy compressor reports the actual output size and explains its method. A2ZConvertor's compressor renders pages as optimized images, which can significantly reduce image-heavy files but may flatten selectable text. Keep the original and judge the result by readability as well as percentage saved.",
+    ],
+    table: {
+      headers: ["Compression route", "Best for", "Trade-off"],
+      rows: [
+        ["Browser image-based compression", "Scans and visually complex pages", "Text and interactive structure may be flattened"],
+        ["Structure-preserving desktop optimization", "Office exports, fonts and mixed content", "Usually requires installed or paid software"],
+        ["Remove unnecessary pages first", "Documents with appendices or unused sheets", "Content is deleted rather than compressed"],
+        ["Split into smaller documents", "Sending only relevant sections", "Creates multiple files instead of one complete copy"],
+        ["Re-export from the source application", "Documents you originally created", "Requires access to the editable source file"],
+      ],
+    },
+    bestFor: [
+      { title: "Email and portal limits", description: "Creating a smaller copy when a PDF is just over an upload threshold." },
+      { title: "Scanned paperwork", description: "Reducing pages dominated by photographs or scanner output." },
+      { title: "One-off sharing copies", description: "Testing a few quality levels and keeping the clearest acceptable result." },
+    ],
+    freeBrowserEnough: [
+      "The PDF is a one-off file and fits comfortably in browser memory.",
+      "A flattened visual copy is acceptable for the recipient.",
+      "You can compare the original and output page by page.",
+      "You only need a simple quality control rather than detailed image settings.",
+    ],
+    paidSoftwareBetter: [
+      "Selectable text, links, forms, bookmarks or accessibility structure must remain intact.",
+      "You need separate controls for images, fonts and embedded objects.",
+      "You are processing large batches or need predictable archival output.",
+      "The file contains sensitive material that must stay inside an approved offline environment.",
+    ],
+    ctaSlugs: ["compress-pdf", "delete-pdf-pages", "pdf-split", "pdf-to-image"],
+    disclosure: "The Recommended block is a labelled placeholder for future specialist software. It currently contains no tracked affiliate destination and does not affect the guidance on this page.",
+    faqs: [
+      { question: "Why did my compressed PDF become larger?", answer: "The original may already be efficient, or rendering pages into new images may add more data than it removes. The tool should report that result honestly rather than claim a saving." },
+      { question: "What quality setting should I start with?", answer: "Start near the middle, inspect small text and images, then lower quality gradually. The best setting depends on the document, not a universal percentage." },
+      { question: "Will compression keep text selectable?", answer: "Not with an image-rendering method. Each page becomes an image inside a new PDF, so searchable or selectable text may be flattened." },
+      { question: "Should I remove pages before compressing?", answer: "Yes, when those pages are genuinely unnecessary. Removing content first can reduce size without lowering the quality of the pages you keep." },
+    ],
+  },
+  "best-free-image-tools": {
+    overview: [
+      "A good image workflow starts with the destination. A product photo for a website, a transparent logo and a document screenshot need different formats and different levels of compression.",
+      "Focused browser utilities are effective for technical edits such as resizing dimensions, cropping composition, converting formats and removing embedded metadata. They are not replacements for layered design, detailed retouching or colour-managed print production.",
+    ],
+    table: {
+      headers: ["Goal", "Useful free tool", "What to verify"],
+      rows: [
+        ["Faster website image", "Resize, then compress", "Dimensions, clarity and final byte size"],
+        ["Change compatibility", "Convert JPG, PNG or WEBP", "Transparency and colour appearance"],
+        ["Improve framing", "Use visual crop selection", "Subject placement and aspect ratio"],
+        ["Share with less metadata", "Re-render through the metadata remover", "Output format and quality"],
+        ["Prepare a simple graphic", "Add a watermark or meme text", "Text remains readable at the final size"],
+      ],
+    },
+    bestFor: [
+      { title: "Website publishers", description: "Preparing correctly sized images without opening a full design suite." },
+      { title: "Marketplace sellers", description: "Cropping and compressing product images for common upload workflows." },
+      { title: "Everyday sharing", description: "Converting unsupported formats or removing common embedded metadata." },
+    ],
+    freeBrowserEnough: [
+      "You need a single, well-defined edit and a standard output format.",
+      "The image does not require layers, masks or detailed object removal.",
+      "Browser colour handling is adequate for screen use.",
+      "You can compare the preview and downloaded file before publishing.",
+    ],
+    paidSoftwareBetter: [
+      "You need non-destructive layers, precise selections or professional retouching.",
+      "The work requires CMYK, print profiles or controlled colour proofing.",
+      "You need repeatable batch presets for hundreds of images.",
+      "A team needs shared brand templates, asset libraries or approval controls.",
+    ],
+    ctaSlugs: ["resize-image", "compress-image", "crop-image", "remove-image-metadata"],
+    disclosure: "A2ZConvertor tool links are editorial and free to use. Any later software partner will appear only in the existing Recommended placement with a clear label.",
+    faqs: [
+      { question: "Should I resize or compress an image first?", answer: "Resize to the dimensions you actually need, then compress that result. Compressing an oversized image first often wastes data and processing time." },
+      { question: "Which format is best for a website?", answer: "It depends on the asset. JPG is widely compatible for photos, PNG is useful for transparency and sharp graphics, and WEBP can provide efficient modern web delivery." },
+      { question: "Does removing metadata change the picture?", answer: "Canvas re-export removes most embedded metadata but also creates a new image file. Depending on the chosen format and quality, file size or visual detail can change." },
+      { question: "Can browser image tools handle professional print work?", answer: "They are primarily designed for screen-oriented tasks. Print workflows often need colour profiles, bleed, precise resolution and proofing tools found in specialist software." },
+    ],
+  },
+  "best-tools-for-students": {
+    overview: [
+      "Student file problems are usually practical rather than creative: an assignment portal rejects a large PDF, scanned evidence is in the wrong order, or lecture images need to become one document. A small set of focused tools can solve those issues without adding another subscription.",
+      "The safest workflow is to preserve the original, follow the institution's file requirements and inspect every exported page. Rule-based text tools can help surface important sentences, but they should support reading rather than replace it.",
+    ],
+    table: {
+      headers: ["Student task", "Suggested workflow", "Academic check"],
+      rows: [
+        ["Submit multiple documents", "Arrange and merge PDFs", "Confirm required order and page count"],
+        ["Meet an upload limit", "Remove unused pages, then compress a copy", "Check citations and small text remain readable"],
+        ["Turn photos into a handout", "Order images and create a PDF", "Use clear, correctly oriented source images"],
+        ["Review long notes", "Create a rule-based quick summary", "Read the source and verify context yourself"],
+        ["Prepare diagrams or screenshots", "Crop and resize images", "Retain labels, legends and attribution"],
+      ],
+    },
+    bestFor: [
+      { title: "Assignment submission", description: "Combining appendices, forms and written work into one checked PDF." },
+      { title: "Revision preparation", description: "Organising notes and creating quick rule-based summaries for review." },
+      { title: "Shared computers", description: "Completing common file tasks without installing desktop software." },
+    ],
+    freeBrowserEnough: [
+      "The task is a one-off conversion, merge, resize or compression job.",
+      "Your institution accepts the output format produced by the tool.",
+      "You have time to inspect the result before the deadline.",
+      "The material is not restricted by a research, placement or employer policy.",
+    ],
+    paidSoftwareBetter: [
+      "Your course requires specialist annotation, reference management or accessible document authoring.",
+      "You need reliable OCR for a large archive of scans.",
+      "A dissertation or portfolio needs advanced layout and print controls.",
+      "Institution-managed software is required for protected or confidential material.",
+    ],
+    ctaSlugs: ["pdf-merge", "compress-pdf", "image-to-pdf", "text-summarizer"],
+    disclosure: "Recommendations on this page prioritise existing free A2ZConvertor tools. A future labelled software placement may be commercial, but it will not change the academic guidance.",
+    faqs: [
+      { question: "Can I use the text summarizer instead of reading the source?", answer: "No. It uses rule-based sentence scoring and can miss nuance, argument structure or qualifications. Use it as a review aid and verify every important point in the original." },
+      { question: "How can I avoid a last-minute upload problem?", answer: "Create the final file early, open it on another device if possible, confirm its size and name, and keep the original until the submission is accepted." },
+      { question: "Will PDF compression affect citations and diagrams?", answer: "It can reduce image clarity and an image-based method can flatten text. Inspect references, footnotes, equations and detailed figures at normal reading zoom." },
+      { question: "Should I upload confidential placement or research documents?", answer: "Follow your university, placement provider or research policy. Use approved offline or institution-managed software where the material is restricted." },
+    ],
+  },
+  "best-tools-for-small-businesses": {
+    overview: [
+      "Small businesses regularly prepare quotes, invoices, product images, forms and client packs. Focused browser tools can remove friction from these everyday jobs without requiring every team member to learn a full creative or document suite.",
+      "The boundary is governance. A free utility can prepare a file, but it does not provide document approval, retention policies, access control or an audit trail. Businesses should match the tool to the sensitivity and repeatability of the process.",
+    ],
+    table: {
+      headers: ["Business task", "Efficient browser workflow", "Operational check"],
+      rows: [
+        ["Send a proposal pack", "Merge documents and add page numbers", "Check order, branding and version date"],
+        ["Publish product photos", "Crop, resize and compress", "Review detail on mobile and desktop"],
+        ["Share branded previews", "Apply a visible watermark", "Keep an unwatermarked master file"],
+        ["Email a large document", "Create a compressed sharing copy", "Confirm readability and attachment size"],
+        ["Reduce photo metadata", "Re-export through the metadata remover", "Check output quality before publishing"],
+      ],
+    },
+    bestFor: [
+      { title: "Sole traders", description: "Preparing occasional client files without a complex software stack." },
+      { title: "Small ecommerce teams", description: "Standardising product-image dimensions and delivery size." },
+      { title: "Administrative workflows", description: "Combining, numbering and sharing non-sensitive documents quickly." },
+    ],
+    freeBrowserEnough: [
+      "The task is occasional and a staff member can verify the result.",
+      "Files are standard formats and modest enough for the device.",
+      "No approval history or automated retention record is required.",
+      "The workflow complies with the business's privacy and security policy.",
+    ],
+    paidSoftwareBetter: [
+      "Multiple employees need shared presets, permissions and brand controls.",
+      "You need bulk processing, integrations or repeatable automation.",
+      "Documents require signatures, redaction, compliance records or access restrictions.",
+      "Support contracts and predictable vendor accountability matter to the workflow.",
+    ],
+    ctaSlugs: ["pdf-merge", "add-page-numbers-pdf", "compress-image", "watermark-image"],
+    disclosure: "This guide links to free A2ZConvertor tools first. Any future paid software recommendation will use the existing clearly labelled placement and an approved destination rather than an invented affiliate link.",
+    faqs: [
+      { question: "Can a free browser tool be used for client work?", answer: "Yes for suitable low-risk tasks, provided the business checks the output and follows its data-handling policy. Sensitive or regulated files may require approved software." },
+      { question: "What image size should a small business website use?", answer: "Use the displayed dimensions as your starting point rather than uploading the camera original. Test image quality and page speed on both mobile and desktop." },
+      { question: "Is a watermark a complete form of image protection?", answer: "No. It can discourage casual reuse and identify a preview, but it cannot prevent copying or replace contracts and licensing terms." },
+      { question: "When should a business pay for document software?", answer: "Paid software becomes easier to justify when the workflow is frequent, shared by a team, regulated, automated or dependent on vendor support." },
+    ],
+  },
+  "canva-vs-free-image-tools": {
+    overview: [
+      "Canva and focused image utilities solve different parts of a visual workflow. Canva is a broad design environment for arranging text, images and templates. A utility such as a cropper, compressor or format converter is designed to complete one technical file operation with fewer steps.",
+      "The practical choice is not necessarily one or the other. A browser utility can prepare an asset before design work or optimize the exported image afterwards.",
+    ],
+    table: {
+      headers: ["Decision point", "Canva or a design suite", "Focused free image tool"],
+      rows: [
+        ["Create a composed design", "Strong fit for layouts and templates", "Not intended for multi-element design"],
+        ["Resize one existing image", "Possible within a broader editor", "Direct, task-specific workflow"],
+        ["Convert file format", "May be available during export", "Useful when conversion is the only goal"],
+        ["Team brand consistency", "Shared templates and brand features may help", "No shared brand-management layer"],
+        ["Remove metadata or compress output", "May require an additional export step", "Purpose-built for the final technical task"],
+      ],
+    },
+    bestFor: [
+      { title: "Choose Canva", description: "When you need templates, composition, repeated branded designs or collaboration." },
+      { title: "Choose a focused utility", description: "When the image already exists and only needs cropping, resizing, conversion or compression." },
+      { title: "Use both", description: "Prepare source assets with utilities, design the layout, then optimize the final export." },
+    ],
+    freeBrowserEnough: [
+      "You are modifying an existing image rather than creating a full design.",
+      "One clear output is needed and shared templates are unnecessary.",
+      "You can visually inspect the export before publishing.",
+      "The task is format, dimensions, crop, metadata or compression.",
+    ],
+    paidSoftwareBetter: [
+      "You need a reusable brand system and collaborative approvals.",
+      "The project contains many elements, pages or reusable templates.",
+      "You need advanced retouching, vector editing or professional print controls.",
+      "The team needs managed assets, permissions or vendor support.",
+    ],
+    ctaSlugs: ["resize-image", "crop-image", "compress-image", "remove-image-metadata"],
+    disclosure: "Canva is discussed for comparison only. This page does not contain an approved Canva affiliate link; the existing Recommended component remains a clearly labelled placeholder.",
+    faqs: [
+      { question: "Can free image tools replace Canva?", answer: "They can replace narrow operations such as cropping, resizing, converting and compressing. They do not replace template design, multi-element composition or collaboration." },
+      { question: "Should I compress an image before or after designing?", answer: "Usually after the final export. Compressing repeatedly can reduce quality, while optimizing the finished image gives you a result that matches its actual use." },
+      { question: "Do I need an account for A2ZConvertor image tools?", answer: "No account is required for the linked A2ZConvertor tools." },
+      { question: "Which option is better for a one-off product photo?", answer: "A focused crop, resize or compression tool is often enough when the photograph does not need a designed layout or advanced retouching." },
+    ],
+  },
+  "pdf-compressor-online-vs-desktop-software": {
+    overview: [
+      "Online and desktop PDF compressors differ less by the word 'compression' than by the controls around it. A browser tool is convenient for a quick sharing copy. Desktop software can inspect and optimize fonts, images and document structure with more control.",
+      "Always compare the real output, not the label on the button. A smaller file is only useful if its text, diagrams and pages remain fit for the intended recipient.",
+    ],
+    table: {
+      headers: ["Requirement", "Browser compressor", "Desktop software"],
+      rows: [
+        ["Quick one-off job", "Usually the shortest route", "Installation may be unnecessary overhead"],
+        ["Detailed optimization controls", "Often limited to a quality setting", "May separate image, font and object options"],
+        ["Very large or repeated batches", "Bound by browser and device resources", "Usually better suited to automation"],
+        ["Preserve interactive structure", "Depends on the method; image rendering flattens it", "Specialist tools may preserve more structure"],
+        ["Controlled offline environment", "Page must load before browser processing", "Can operate inside an approved local workflow"],
+      ],
+    },
+    bestFor: [
+      { title: "Browser compressor", description: "An occasional, modest file where a flattened visual copy is acceptable." },
+      { title: "Desktop compressor", description: "Large, repeated or structure-sensitive documents requiring detailed controls." },
+      { title: "Source application", description: "Documents you created and can re-export with better image or font settings." },
+    ],
+    freeBrowserEnough: [
+      "You need one smaller copy for email or an upload portal.",
+      "The file opens reliably and can be checked after processing.",
+      "Flattened selectable text is an acceptable trade-off.",
+      "No batch workflow, audit trail or specialist standard is required.",
+    ],
+    paidSoftwareBetter: [
+      "Forms, bookmarks, links, accessibility or searchable text must be preserved.",
+      "The workflow includes many files or repeatable presets.",
+      "You need technical optimization reports or archival standards.",
+      "The document must remain inside an approved offline environment.",
+    ],
+    ctaSlugs: ["compress-pdf", "delete-pdf-pages", "pdf-split"],
+    disclosure: "No desktop product is endorsed or linked commercially here. The Recommended card uses the approved internal placeholder until a relevant partner and destination have been reviewed.",
+    faqs: [
+      { question: "Is desktop compression always better?", answer: "No. It generally offers more control, but a browser tool can be quicker and sufficient for an occasional sharing copy." },
+      { question: "Why does image-based PDF compression flatten text?", answer: "The compressor renders each page and rebuilds it from images. The visual page remains, but the original text objects are no longer preserved." },
+      { question: "Can I compress a PDF without reducing quality?", answer: "Sometimes unnecessary metadata or objects can be removed without visible change, but meaningful reductions in image-heavy files usually involve a quality or resolution trade-off." },
+      { question: "What should I inspect after compression?", answer: "Check small text, diagrams, photographs, page count, orientation and the actual output size. Also test search, links or forms if you expect them to work." },
+    ],
+  },
+  "smallpdf-vs-ilovepdf-alternatives": {
+    overview: [
+      "Smallpdf and iLovePDF are broad online PDF suites. A2ZConvertor takes a more focused approach: individual browser tools for common page operations without requiring an account. The right choice depends on whether you need one straightforward task or a connected document workflow.",
+      "Product plans, limits and features can change, so this guide avoids quoting temporary pricing or upload allowances. Compare the current official terms directly when subscriptions, team features or sensitive documents matter.",
+    ],
+    table: {
+      headers: ["Need", "Broad online PDF suite", "Focused A2ZConvertor tool"],
+      rows: [
+        ["Many connected PDF features", "Convenient within one product ecosystem", "Use separate tools for separate tasks"],
+        ["Quick merge, split or page change", "Available among a larger tool set", "Direct route to the required operation"],
+        ["Account-free workflow", "Current requirements vary by feature and plan", "No account required for linked tools"],
+        ["Advanced editing and signatures", "May be available depending on product and plan", "Not the focus of these free page tools"],
+        ["Clear browser-tool limitations", "Review each provider's current documentation", "Tool pages explain output and known trade-offs"],
+      ],
+    },
+    bestFor: [
+      { title: "Broad suites", description: "Users who want connected features, subscriptions, team workflows or vendor support." },
+      { title: "Focused alternatives", description: "Users who need an occasional merge, split, reorder, rotation or compression task." },
+      { title: "Approved desktop software", description: "Sensitive, regulated or advanced editing work that should stay in a managed environment." },
+    ],
+    freeBrowserEnough: [
+      "Your requirement is one clearly defined page-level operation.",
+      "You do not need an account, cloud history or team workspace.",
+      "The file is manageable on your device and can be checked afterwards.",
+      "Advanced editing, signatures and certified redaction are not required.",
+    ],
+    paidSoftwareBetter: [
+      "You need a connected set of editing, signing and collaboration features.",
+      "Your team values central administration, support and predictable service terms.",
+      "The work includes OCR, redaction, forms or repeated bulk processing.",
+      "A compliance policy requires an approved vendor or offline application.",
+    ],
+    ctaSlugs: ["pdf-merge", "pdf-split", "organize-pdf", "compress-pdf"],
+    disclosure: "Smallpdf and iLovePDF are named for factual comparison. There are no affiliate links to either service on this page, and the labelled Recommended placement uses only the existing internal placeholder.",
+    faqs: [
+      { question: "Is A2ZConvertor a complete replacement for Smallpdf or iLovePDF?", answer: "No. It can cover many focused page and conversion tasks, but broad suites may offer connected editing, signing, account and team features." },
+      { question: "Which option is best for merging a few PDFs?", answer: "A focused merge tool is usually enough when you simply need to order files, combine them and check the download." },
+      { question: "Are the competitors' limits or prices compared here?", answer: "No. Those details can change by plan, country and date. Check each provider's current official pricing and terms before deciding." },
+      { question: "What should I use for certified redaction or signatures?", answer: "Use reputable specialist software that explicitly supports the required legal, security and audit features. A basic page utility is not a substitute." },
+    ],
+  },
+};
+
+export function getMoneyPageContent(slug: string) {
+  return moneyPageContent[slug];
+}
