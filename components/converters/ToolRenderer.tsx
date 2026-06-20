@@ -34,17 +34,7 @@ import TextCaseConverter from "@/components/TextCaseConverter";
 import AvifConverter from "@/components/AvifConverter";
 import ImageColorPicker from "@/components/ImageColorPicker";
 import ImageMetadataRemover from "@/components/ImageMetadataRemover";
-import {
-  ImprovedBlogTitleGenerator,
-  ImprovedContentIdeasGenerator,
-  ImprovedEmailTemplateGenerator,
-  ImprovedHashtagGenerator,
-  ImprovedInstagramCaptionGenerator,
-  ImprovedSocialBioGenerator,
-  ImprovedTextSummarizer,
-  ImprovedTiktokHashtagGenerator,
-  ImprovedYoutubeTitleGenerator,
-} from "@/components/generators/GeneratorSuite";
+import AIGenerator from "@/components/generators/AIGeneratorSuite";
 
 type Tool = {
   slug: string;
@@ -89,20 +79,20 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "compress-video": <VideoCompressor />,
   "audio-converter": <AudioConverter />,
   "video-thumbnail-extractor": <VideoThumbnailExtractor />,
-  "hashtag-generator": <ImprovedHashtagGenerator />,
-  "blog-title-generator": <ImprovedBlogTitleGenerator />,
-  "email-template-generator": <ImprovedEmailTemplateGenerator />,
-  "text-summarizer": <ImprovedTextSummarizer />,
+  "hashtag-generator": <AIGenerator toolSlug="hashtag-generator" />,
+  "blog-title-generator": <AIGenerator toolSlug="blog-title-generator" />,
+  "email-template-generator": <AIGenerator toolSlug="email-template-generator" />,
+  "text-summarizer": <AIGenerator toolSlug="text-summarizer" />,
   "text-case-converter": <TextCaseConverter />,
   "avif-to-png": <AvifConverter output="png" />,
   "avif-to-jpg": <AvifConverter output="jpg" />,
   "image-color-picker": <ImageColorPicker />,
   "remove-image-metadata": <ImageMetadataRemover />,
-  "instagram-caption-generator": <ImprovedInstagramCaptionGenerator />,
-  "tiktok-hashtag-generator": <ImprovedTiktokHashtagGenerator />,
-  "youtube-title-generator": <ImprovedYoutubeTitleGenerator />,
-  "social-media-bio-generator": <ImprovedSocialBioGenerator />,
-  "content-ideas-generator": <ImprovedContentIdeasGenerator />,
+  "instagram-caption-generator": <AIGenerator toolSlug="instagram-caption-generator" />,
+  "tiktok-hashtag-generator": <AIGenerator toolSlug="tiktok-hashtag-generator" />,
+  "youtube-title-generator": <AIGenerator toolSlug="youtube-title-generator" />,
+  "social-media-bio-generator": <AIGenerator toolSlug="social-media-bio-generator" />,
+  "content-ideas-generator": <AIGenerator toolSlug="content-ideas-generator" />,
 };
   return (
     customTools[tool.slug] ?? (

@@ -27,3 +27,49 @@ a {
   color: inherit;
   text-decoration: none;
 }
+html[data-theme="light"] {
+  --background: #f8fafc;
+  --text: #0f172a;
+  --muted: #475569;
+  color-scheme: light;
+}
+
+html[data-theme="light"] body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html[data-theme="light"] .bg-slate-950,
+html[data-theme="light"] .bg-slate-950\/85,
+html[data-theme="light"] .bg-slate-950\/60,
+html[data-theme="light"] .bg-slate-900,
+html[data-theme="light"] .bg-slate-900\/70,
+html[data-theme="light"] .bg-slate-900\/40,
+html[data-theme="light"] .bg-black\/20 {
+  background-color: #ffffff !important;
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-slate-100,
+html[data-theme="light"] .text-slate-200,
+html[data-theme="light"] .text-slate-300 {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-slate-400,
+html[data-theme="light"] .text-slate-500 {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/15 {
+  border-color: #cbd5e1 !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}

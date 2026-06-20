@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "All Tools", href: "/tools" },
@@ -36,6 +37,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <Link
             href="/request-tool"
             className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
@@ -72,6 +74,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="mt-2 flex justify-center"><ThemeToggle /></div>
             <Link
               href="/request-tool"
               onClick={() => setIsOpen(false)}
