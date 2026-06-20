@@ -11,6 +11,13 @@ import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
 import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import { getPlacement } from "@/data/monetization";
+const socialMediaBridgeSlugs = new Set([
+  "meme-generator",
+  "video-thumbnail-extractor",
+  "hashtag-generator",
+  "blog-title-generator",
+  "resize-image",
+]);
 export async function generateMetadata({
   params,
 }: {
@@ -208,6 +215,28 @@ export default async function ConvertPage({
 
       {placement && <AffiliatePlacementBlock placement={placement} />}
 
+      {socialMediaBridgeSlugs.has(tool.slug) && (
+        <section className="px-6 pb-20">
+          <div className="mx-auto max-w-4xl border-l-4 border-blue-400 bg-blue-400/5 p-7">
+            <p className="text-sm font-semibold uppercase text-blue-300">
+              Creator workflow
+            </p>
+            <h2 className="mt-2 text-2xl font-black">
+              Plan the post around this asset
+            </h2>
+            <p className="mt-3 leading-7 text-slate-300">
+              Use free template-based tools for captions, hashtags, video
+              titles, bios and content ideas without paid AI APIs.
+            </p>
+            <Link
+              href="/social-media-tools"
+              className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500"
+            >
+              Explore Social Media Tools
+            </Link>
+          </div>
+        </section>
+      )}
       <Footer />
     </main>
   );

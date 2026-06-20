@@ -38,6 +38,11 @@ import TextCaseConverter from "@/components/TextCaseConverter";
 import AvifConverter from "@/components/AvifConverter";
 import ImageColorPicker from "@/components/ImageColorPicker";
 import ImageMetadataRemover from "@/components/ImageMetadataRemover";
+import InstagramCaptionGenerator from "@/components/social/InstagramCaptionGenerator";
+import TiktokHashtagGenerator from "@/components/social/TiktokHashtagGenerator";
+import YoutubeTitleGenerator from "@/components/social/YoutubeTitleGenerator";
+import SocialBioGenerator from "@/components/social/SocialBioGenerator";
+import ContentIdeasGenerator from "@/components/social/ContentIdeasGenerator";
 
 type Tool = {
   slug: string;
@@ -91,6 +96,11 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "avif-to-jpg": <AvifConverter output="jpg" />,
   "image-color-picker": <ImageColorPicker />,
   "remove-image-metadata": <ImageMetadataRemover />,
+  "instagram-caption-generator": <InstagramCaptionGenerator />,
+  "tiktok-hashtag-generator": <TiktokHashtagGenerator />,
+  "youtube-title-generator": <YoutubeTitleGenerator />,
+  "social-media-bio-generator": <SocialBioGenerator />,
+  "content-ideas-generator": <ContentIdeasGenerator />,
 };
   return (
     customTools[tool.slug] ?? (

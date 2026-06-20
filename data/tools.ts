@@ -551,7 +551,66 @@ export const tools = [
   outputLabel: "Cleaned Image",
   category: "Image Tools",
 },
-];
+{
+  slug: "instagram-caption-generator",
+  name: "Instagram Caption Generator",
+  title: "Instagram Caption Generator",
+  description:
+    "Generate free template-based Instagram captions, short captions and CTA ideas.",
+  inputFormat: "text",
+  inputLabel: "Topic",
+  outputFormat: "captions",
+  outputLabel: "Caption Ideas",
+  category: "Social Media Tools",
+},
+{
+  slug: "tiktok-hashtag-generator",
+  name: "TikTok Hashtag Generator",
+  title: "TikTok Hashtag Generator",
+  description:
+    "Create broad, niche and discovery-style TikTok hashtag ideas without fake reach promises.",
+  inputFormat: "text",
+  inputLabel: "Topic",
+  outputFormat: "hashtags",
+  outputLabel: "Hashtag Ideas",
+  category: "Social Media Tools",
+},
+{
+  slug: "youtube-title-generator",
+  name: "YouTube Title Generator",
+  title: "YouTube Title Generator",
+  description:
+    "Generate ten editable YouTube title ideas with style and length guidance.",
+  inputFormat: "text",
+  inputLabel: "Video Topic",
+  outputFormat: "titles",
+  outputLabel: "Title Ideas",
+  category: "Social Media Tools",
+},
+{
+  slug: "social-media-bio-generator",
+  name: "Social Media Bio Generator",
+  title: "Social Media Bio Generator",
+  description:
+    "Create editable bio ideas for Instagram, TikTok, YouTube, LinkedIn and X.",
+  inputFormat: "text",
+  inputLabel: "Brand Details",
+  outputFormat: "bios",
+  outputLabel: "Bio Ideas",
+  category: "Social Media Tools",
+},
+{
+  slug: "content-ideas-generator",
+  name: "Content Ideas Generator",
+  title: "Content Ideas Generator",
+  description:
+    "Generate twenty rule-based content ideas grouped by useful creator formats.",
+  inputFormat: "text",
+  inputLabel: "Niche",
+  outputFormat: "ideas",
+  outputLabel: "Content Ideas",
+  category: "Social Media Tools",
+},];
 
 export const popularTools = tools;
 
