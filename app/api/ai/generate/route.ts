@@ -4,6 +4,7 @@ import {
   AI_TOOL_SLUGS,
   AIToolSlug,
   DEFAULT_AI_INPUT_LIMIT,
+  DEFAULT_FREE_DAILY_LIMIT,
   SUMMARIZER_INPUT_LIMIT,
 } from "@/utils/aiConfig";
 import {
@@ -12,29 +13,35 @@ import {
   RATE_LIMIT_TTL_SECONDS,
 } from "@/utils/aiRuntime";
 
-export const runtime = "edge";
-
 export async function GET(request: Request) {
-  const config = await getAIRuntimeConfig();
-  if (!config.enabled || !config.kv) {
+  try {
+    const config = await getAIRuntimeConfig();
+    if (!config.enabled || !config.kv) {
+      return NextResponse.json({
+        freeTrialEnabled: false,
+        freeDailyLimit: config.dailyLimit,
+        freeGenerationsRemaining: 0,
+      });
+    }
+
+    const usage = await getAIUsage(
+      request,
+      config.kv,
+      config.salt,
+      config.dailyLimit,
+    );
+    return NextResponse.json({
+      freeTrialEnabled: true,
+      freeDailyLimit: config.dailyLimit,
+      freeGenerationsRemaining: usage.remaining,
+    });
+  } catch {
     return NextResponse.json({
       freeTrialEnabled: false,
-      freeDailyLimit: config.dailyLimit,
+      freeDailyLimit: DEFAULT_FREE_DAILY_LIMIT,
       freeGenerationsRemaining: 0,
     });
   }
-
-  const usage = await getAIUsage(
-    request,
-    config.kv,
-    config.salt,
-    config.dailyLimit,
-  );
-  return NextResponse.json({
-    freeTrialEnabled: true,
-    freeDailyLimit: config.dailyLimit,
-    freeGenerationsRemaining: usage.remaining,
-  });
 }
 
 export async function POST(request: Request) {

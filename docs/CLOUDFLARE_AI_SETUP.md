@@ -37,7 +37,7 @@ Do not run `npm run deploy` manually from a local checkout unless its branch, `w
 
 ## Safe status endpoint
 
-After deployment, open:
+This is the first diagnostic URL to check after every AI-related deployment:
 
 ```txt
 https://a2zconvertor.co.uk/api/ai/status
@@ -61,6 +61,24 @@ A correctly configured new user/day should receive values equivalent to:
 ```
 
 The endpoint never returns secret values, API keys, the rate-limit salt, raw IP addresses or KV keys. `reasonCode` identifies missing runtime configuration safely.
+
+The endpoint is designed to return HTTP 200 JSON even when configuration is missing or a KV read fails. Its safe `reasonCode` values are:
+
+| reasonCode | Meaning |
+| --- | --- |
+| `free_trial_disabled` | `AI_FREE_TRIAL_ENABLED` is not `true`. |
+| `missing_gemini_key` | The runtime cannot see `GEMINI_API_KEY`. |
+| `missing_rate_limit_salt` | The runtime cannot see `AI_RATE_LIMIT_SALT`. |
+| `missing_kv_binding` | The Worker has no `AI_RATE_LIMIT_KV` binding. |
+| `kv_read_failed` | The binding exists, but the current KV read failed. |
+| `invalid_daily_limit` | The daily limit was invalid, so the app safely defaulted to 3. |
+| `unknown_error` | An unexpected runtime error was caught safely. |
+
+## Build-time and runtime configuration
+
+`NEXT_PUBLIC_*` values can be embedded during the Next.js build. The AI key, rate-limit salt, free-trial settings and KV namespace are server-side runtime configuration and must be attached to the deployed Cloudflare Worker. A successful build does not prove that runtime secrets or bindings are present.
+
+The KV binding name must be exactly `AI_RATE_LIMIT_KV`. After changing runtime variables, secrets or bindings, deploy the merged GitHub commit through the normal Cloudflare auto-deploy workflow before checking `/api/ai/status`.
 
 ## Post-deploy verification
 
