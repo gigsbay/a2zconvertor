@@ -6,6 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "All Tools", href: "/tools" },
+  { label: "AI Tools", href: "/ai-tools" },
   { label: "Image Tools", href: "/image-tools" },
   { label: "PDF Tools", href: "/pdf-tools" },
   { label: "Video Tools", href: "/video-tools" },

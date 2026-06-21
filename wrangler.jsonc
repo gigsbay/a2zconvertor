@@ -7,6 +7,11 @@
   "assets": {
     "directory": ".open-next/assets"
   },
+  "kv_namespaces": [
+    {
+      "binding": "AI_RATE_LIMIT_KV"
+    }
+  ],
   "observability": {
     "enabled": true
   }

@@ -85,6 +85,15 @@ export default function CategoryLandingPage({
           </div>
         </section>
       )}
+      {(config.slug === "social-media-tools" || config.slug === "text-tools") && (
+        <section className="px-6 pb-16">
+          <div className="mx-auto max-w-6xl border-l-4 border-emerald-400 bg-emerald-400/5 p-7">
+            <h2 className="text-2xl font-black">Explore all free AI tools</h2>
+            <p className="mt-3 text-slate-300">Use three free Gemini generations per day across writing and social media tools. No account or API key is required.</p>
+            <Link href="/ai-tools" className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Browse Free AI Tools</Link>
+          </div>
+        </section>
+      )}
       {placement && (
         <section className="px-6 pb-20">
           <div className="mx-auto max-w-6xl">

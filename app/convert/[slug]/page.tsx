@@ -11,6 +11,17 @@ import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
 import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import { getPlacement } from "@/data/monetization";
+const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
+  "instagram-caption-generator": [{ href: "/resources/instagram-caption-ideas", label: "Instagram caption ideas guide" }],
+  "tiktok-hashtag-generator": [{ href: "/resources/tiktok-hashtag-ideas", label: "TikTok hashtag ideas guide" }],
+  "youtube-title-generator": [{ href: "/resources/youtube-title-ideas", label: "YouTube title ideas guide" }],
+  "content-ideas-generator": [{ href: "/resources/content-ideas-for-small-businesses", label: "Content ideas for small businesses" }],
+  "social-media-bio-generator": [{ href: "/resources/free-ai-social-media-tools", label: "Free AI social media tools guide" }],
+  "hashtag-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+  "blog-title-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+  "email-template-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+  "text-summarizer": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+};
 const socialMediaBridgeSlugs = new Set([
   "meme-generator",
   "video-thumbnail-extractor",
@@ -72,6 +83,7 @@ export default async function ConvertPage({
   const faqs = getToolFaqs(tool.slug, tool);
   const seoContent = getToolSeoContent(tool);
   const placement = getPlacement("tool");
+  const resourceLinks = aiResourceLinks[tool.slug] ?? [];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -213,6 +225,14 @@ export default async function ConvertPage({
         </div>
       </section>
 
+      {resourceLinks.length > 0 && (
+        <section className="px-6 pb-16">
+          <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-slate-900/70 p-7">
+            <h2 className="text-2xl font-black">Helpful AI guides</h2>
+            <div className="mt-4 flex flex-wrap gap-3">{resourceLinks.map((resource) => <Link key={resource.href} href={resource.href} className="rounded-xl border border-blue-400/30 px-4 py-3 font-semibold text-blue-200 hover:bg-blue-400/10">{resource.label}</Link>)}</div>
+          </div>
+        </section>
+      )}
       {placement && <AffiliatePlacementBlock placement={placement} />}
 
       {socialMediaBridgeSlugs.has(tool.slug) && (
@@ -225,14 +245,14 @@ export default async function ConvertPage({
               Plan the post around this asset
             </h2>
             <p className="mt-3 leading-7 text-slate-300">
-              Use free template-based tools for captions, hashtags, video
-              titles, bios and content ideas without paid AI APIs.
+              Use free Gemini-powered tools for captions, hashtags, video
+              titles, bios and content ideas with three free generations per day.
             </p>
             <Link
-              href="/social-media-tools"
+              href="/ai-tools"
               className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500"
             >
-              Explore Social Media Tools
+              Explore Free AI Tools
             </Link>
           </div>
         </section>

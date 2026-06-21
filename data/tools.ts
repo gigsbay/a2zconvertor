@@ -446,9 +446,9 @@ export const tools = [
 {
   slug: "hashtag-generator",
   name: "Hashtag Generator",
-  title: "Hashtag Generator",
+  title: "Free AI Hashtag Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Keywords",
   outputFormat: "hashtags",
@@ -458,9 +458,9 @@ export const tools = [
 {
   slug: "blog-title-generator",
   name: "Blog Title Generator",
-  title: "Blog Title Generator",
+  title: "Free AI Blog Title Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "titles",
@@ -470,9 +470,9 @@ export const tools = [
 {
   slug: "email-template-generator",
   name: "Email Template Generator",
-  title: "Email Template Generator",
+  title: "Free AI Email Template Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Purpose",
   outputFormat: "email",
@@ -482,9 +482,9 @@ export const tools = [
 {
   slug: "text-summarizer",
   name: "Text Summarizer",
-  title: "AI Text Summarizer",
+  title: "Free AI Text Summarizer",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Text",
   outputFormat: "summary",
@@ -554,9 +554,9 @@ export const tools = [
 {
   slug: "instagram-caption-generator",
   name: "Instagram Caption Generator",
-  title: "Instagram Caption Generator",
+  title: "Free AI Instagram Caption Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "captions",
@@ -566,9 +566,9 @@ export const tools = [
 {
   slug: "tiktok-hashtag-generator",
   name: "TikTok Hashtag Generator",
-  title: "TikTok Hashtag Generator",
+  title: "Free AI TikTok Hashtag Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "hashtags",
@@ -578,9 +578,9 @@ export const tools = [
 {
   slug: "youtube-title-generator",
   name: "YouTube Title Generator",
-  title: "YouTube Title Generator",
+  title: "Free AI YouTube Title Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Video Topic",
   outputFormat: "titles",
@@ -590,9 +590,9 @@ export const tools = [
 {
   slug: "social-media-bio-generator",
   name: "Social Media Bio Generator",
-  title: "Social Media Bio Generator",
+  title: "Free AI Social Media Bio Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Brand Details",
   outputFormat: "bios",
@@ -602,9 +602,9 @@ export const tools = [
 {
   slug: "content-ideas-generator",
   name: "Content Ideas Generator",
-  title: "Content Ideas Generator",
+  title: "Free AI Content Ideas Generator",
   description:
-    "AI-powered generation using free limited Gemini or your own OpenAI/Gemini API key.",
+    "Free Gemini-powered AI generation with three generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Niche",
   outputFormat: "ideas",

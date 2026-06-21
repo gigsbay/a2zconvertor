@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import RequestToolForm from "@/components/RequestToolForm";
 import { absoluteUrl } from "@/data/site";
+import SupportCTA from "@/components/SupportCTA";
 import ToolVoting from "@/components/ToolVoting";
 
 export const metadata: Metadata = {
@@ -42,6 +43,7 @@ export default function RequestToolPage() {
       </section>
 
       <ToolVoting />
+      <SupportCTA />
       <Footer />
     </main>
   );
