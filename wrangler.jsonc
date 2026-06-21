@@ -4,6 +4,12 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-15",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "AI_FREE_TRIAL_ENABLED": "true",
+    "AI_FREE_DAILY_LIMIT": "3",
+    "AI_FREE_MODEL": "gemini-2.5-flash-lite",
+    "NEXT_PUBLIC_BUYMEACOFFEE_URL": "https://buymeacoffee.com/a2zconvertor"
+  },
   "assets": {
     "directory": ".open-next/assets"
   },

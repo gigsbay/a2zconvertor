@@ -1,19 +1,32 @@
 # Cloudflare AI Setup
 
-## Required Worker secrets and variables
+## Runtime configuration split
 
-Configure these on the `a2zconvertor` Worker:
+The AI runtime configuration is intentionally split between committed non-secret variables and dashboard-managed secrets.
+
+### Non-secret runtime variables
+
+These values are stored in `wrangler.jsonc` so Wrangler/OpenNext deployments continue to apply them:
 
 ```txt
-GEMINI_API_KEY=<server-only secret>
-AI_RATE_LIMIT_SALT=<long random server-only secret>
 AI_FREE_TRIAL_ENABLED=true
 AI_FREE_DAILY_LIMIT=3
 AI_FREE_MODEL=gemini-2.5-flash-lite
 NEXT_PUBLIC_BUYMEACOFFEE_URL=https://buymeacoffee.com/a2zconvertor
 ```
 
-`GEMINI_API_KEY` and `AI_RATE_LIMIT_SALT` are secrets. Never use `NEXT_PUBLIC_GEMINI_API_KEY`, and never commit either secret.
+Dashboard plaintext variables can be overwritten during a deployment when they are not represented in the Wrangler configuration. Keep these non-secret values in `wrangler.jsonc` as the deployment source of truth.
+
+### Secrets
+
+Add these encrypted secrets to the deployed `a2zconvertor` Worker in the Cloudflare dashboard:
+
+```txt
+GEMINI_API_KEY=<server-only secret>
+AI_RATE_LIMIT_SALT=<long random server-only secret>
+```
+
+Never put either secret in `wrangler.jsonc`, never use `NEXT_PUBLIC_GEMINI_API_KEY`, and never commit secret values.
 
 The application reads Worker variables and secrets from the Cloudflare/OpenNext runtime environment. `process.env` is used only as a local-development fallback.
 
@@ -27,13 +40,15 @@ AI_RATE_LIMIT_KV
 
 The KV namespace stores only salted SHA-256 identifiers and numeric daily usage counters. It does not store raw IP addresses or API keys. Missing or invalid counter values are treated as zero, and successful generations overwrite the counter with a valid value. Records expire after 48 hours.
 
-`wrangler.jsonc` declares the binding. In Cloudflare Dashboard, confirm the deployed `a2zconvertor` Worker has a KV namespace attached with the exact binding name `AI_RATE_LIMIT_KV`.
+`wrangler.jsonc` declares the binding name but does not guess or commit a namespace ID. In Cloudflare Dashboard, confirm the deployed `a2zconvertor` Worker has the real KV namespace attached with the exact binding name `AI_RATE_LIMIT_KV`. If the binding disappears after deployment, restore that dashboard binding using the existing production namespace.
 
 ## Deploying configuration changes
 
 After changing Worker variables, secrets or bindings, trigger a fresh deployment through the connected GitHub/Cloudflare auto-deploy workflow. Variables and bindings apply to a deployed Worker version; changing dashboard configuration without deploying the intended commit can leave production on an older implementation.
 
 Do not run `npm run deploy` manually from a local checkout unless its branch, `wrangler.jsonc`, secrets and Cloudflare account configuration are fully synchronized with the intended production release.
+
+After deployment, confirm the four non-secret variables still appear in the Worker settings, confirm both encrypted secrets remain configured, and check `/api/ai/status`.
 
 ## Safe status endpoint
 
