@@ -17,11 +17,12 @@ type AIRuntimeEnv = CloudflareEnv & {
 };
 
 export type AIReasonCode =
-  | "TRIAL_DISABLED"
-  | "MISSING_GEMINI_KEY"
-  | "MISSING_RATE_LIMIT_SALT"
-  | "MISSING_KV_BINDING"
-  | "RUNTIME_UNAVAILABLE"
+  | "free_trial_disabled"
+  | "missing_gemini_key"
+  | "missing_rate_limit_salt"
+  | "missing_kv_binding"
+  | "invalid_daily_limit"
+  | "unknown_error"
   | null;
 
 export type AIRuntimeConfig = {
@@ -39,52 +40,58 @@ export type AIRuntimeConfig = {
 };
 
 export async function getAIRuntimeConfig(): Promise<AIRuntimeConfig> {
-  let runtimeEnv: AIRuntimeEnv | undefined;
-  let runtimeAvailable = true;
-
   try {
-    runtimeEnv = (await getCloudflareContext({ async: true })).env as AIRuntimeEnv;
+    let runtimeEnv: AIRuntimeEnv | undefined;
+    try {
+      runtimeEnv = (await getCloudflareContext({ async: true }))
+        .env as AIRuntimeEnv;
+    } catch {
+      runtimeEnv = undefined;
+    }
+
+    const apiKey = readEnv(runtimeEnv, "GEMINI_API_KEY");
+    const salt = readEnv(runtimeEnv, "AI_RATE_LIMIT_SALT");
+    const trialEnabled =
+      readEnv(runtimeEnv, "AI_FREE_TRIAL_ENABLED") === "true";
+    const dailyLimitValue = readEnv(runtimeEnv, "AI_FREE_DAILY_LIMIT");
+    const { dailyLimit, invalid: invalidDailyLimit } =
+      parseDailyLimitDetails(dailyLimitValue);
+    const requestedModel =
+      readEnv(runtimeEnv, "AI_FREE_MODEL") || DEFAULT_FREE_MODEL;
+    const model = ALLOWED_FREE_MODELS.includes(
+      requestedModel as (typeof ALLOWED_FREE_MODELS)[number],
+    )
+      ? requestedModel
+      : DEFAULT_FREE_MODEL;
+    const kv = runtimeEnv?.AI_RATE_LIMIT_KV;
+    const hasKvBinding = Boolean(kv);
+    const hasGeminiKey = Boolean(apiKey);
+    const hasRateLimitSalt = Boolean(salt);
+    const configured = hasKvBinding && hasGeminiKey && hasRateLimitSalt;
+
+    let reasonCode: AIReasonCode = null;
+    if (!trialEnabled) reasonCode = "free_trial_disabled";
+    else if (!hasGeminiKey) reasonCode = "missing_gemini_key";
+    else if (!hasRateLimitSalt) reasonCode = "missing_rate_limit_salt";
+    else if (!hasKvBinding) reasonCode = "missing_kv_binding";
+    else if (invalidDailyLimit) reasonCode = "invalid_daily_limit";
+
+    return {
+      enabled: trialEnabled && configured,
+      configured,
+      dailyLimit,
+      model,
+      apiKey,
+      salt,
+      kv,
+      hasKvBinding,
+      hasGeminiKey,
+      hasRateLimitSalt,
+      reasonCode,
+    };
   } catch {
-    runtimeAvailable = false;
+    return unavailableRuntimeConfig();
   }
-
-  const apiKey = readEnv(runtimeEnv, "GEMINI_API_KEY");
-  const salt = readEnv(runtimeEnv, "AI_RATE_LIMIT_SALT");
-  const trialEnabled = readEnv(runtimeEnv, "AI_FREE_TRIAL_ENABLED") === "true";
-  const dailyLimit = parseDailyLimit(readEnv(runtimeEnv, "AI_FREE_DAILY_LIMIT"));
-  const requestedModel = readEnv(runtimeEnv, "AI_FREE_MODEL") || DEFAULT_FREE_MODEL;
-  const model = ALLOWED_FREE_MODELS.includes(
-    requestedModel as (typeof ALLOWED_FREE_MODELS)[number],
-  )
-    ? requestedModel
-    : DEFAULT_FREE_MODEL;
-  const kv = runtimeEnv?.AI_RATE_LIMIT_KV;
-  const hasKvBinding = Boolean(kv);
-  const hasGeminiKey = Boolean(apiKey);
-  const hasRateLimitSalt = Boolean(salt);
-  const configured = hasKvBinding && hasGeminiKey && hasRateLimitSalt;
-
-  let reasonCode: AIReasonCode = null;
-  if (!trialEnabled) reasonCode = "TRIAL_DISABLED";
-  else if (!hasGeminiKey) reasonCode = "MISSING_GEMINI_KEY";
-  else if (!hasRateLimitSalt) reasonCode = "MISSING_RATE_LIMIT_SALT";
-  else if (!hasKvBinding) {
-    reasonCode = runtimeAvailable ? "MISSING_KV_BINDING" : "RUNTIME_UNAVAILABLE";
-  }
-
-  return {
-    enabled: trialEnabled && configured,
-    configured,
-    dailyLimit,
-    model,
-    apiKey,
-    salt,
-    kv,
-    hasKvBinding,
-    hasGeminiKey,
-    hasRateLimitSalt,
-    reasonCode,
-  };
 }
 
 export async function getAIUsage(
@@ -119,14 +126,36 @@ export async function getAIUsage(
 }
 
 export function parseDailyLimit(value: string) {
-  const parsed = Number.parseInt(value, 10);
-  return Number.isFinite(parsed) && parsed > 0
-    ? Math.min(parsed, 20)
-    : DEFAULT_FREE_DAILY_LIMIT;
+  return parseDailyLimitDetails(value).dailyLimit;
+}
+
+function parseDailyLimitDetails(value: string) {
+  const valid = /^\d+$/.test(value) && Number(value) > 0;
+  const parsed = valid ? Number(value) : Number.NaN;
+  return {
+    dailyLimit: valid ? Math.min(parsed, 20) : DEFAULT_FREE_DAILY_LIMIT,
+    invalid: value.length > 0 && !valid,
+  };
 }
 
 function readEnv(env: AIRuntimeEnv | undefined, name: keyof AIRuntimeEnv) {
   const runtimeValue = env?.[name];
   if (typeof runtimeValue === "string") return runtimeValue.trim();
+  if (typeof process === "undefined") return "";
   return process.env[String(name)]?.trim() || "";
+}
+
+function unavailableRuntimeConfig(): AIRuntimeConfig {
+  return {
+    enabled: false,
+    configured: false,
+    dailyLimit: DEFAULT_FREE_DAILY_LIMIT,
+    model: DEFAULT_FREE_MODEL,
+    apiKey: "",
+    salt: "",
+    hasKvBinding: false,
+    hasGeminiKey: false,
+    hasRateLimitSalt: false,
+    reasonCode: "unknown_error",
+  };
 }
