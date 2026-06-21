@@ -643,7 +643,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Hashtag Generator create ideas?",
       answer:
-        "The selected Gemini or OpenAI model creates grouped hashtag ideas from your topic and category. Free limited generation may be available, or you can use your own API key.",
+        "Gemini creates grouped hashtag ideas from your topic and category. You receive three free generations per day.",
     },
     {
       question: "How many hashtags does it generate?",
@@ -660,7 +660,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How are blog titles generated?",
       answer:
-        "The selected Gemini or OpenAI model creates varied title structures using free limited generation or your own API key.",
+        "Gemini creates varied title structures using the free daily allowance.",
     },
     {
       question: "Can I choose the title style?",
@@ -682,7 +682,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How is the email draft created?",
       answer:
-        "The selected OpenAI or Gemini provider creates the email from your purpose, recipient, tone and key message.",
+        "Gemini creates the email from your purpose, recipient, tone and key message.",
     },
     {
       question: "Can I customize the generated email?",
@@ -694,7 +694,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does this text summarizer work?",
       answer:
-        "The selected AI provider summarizes the supplied text and is instructed to preserve meaning without adding facts.",
+        "Gemini summarizes the supplied text and is instructed to preserve meaning without adding facts.",
     },
     {
       question: "How many sentences are included?",
@@ -795,7 +795,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   "instagram-caption-generator": [
     {
       question: "How are Instagram captions generated?",
-      answer: "The selected OpenAI or Gemini model creates captions from your topic, tone and emoji preference.",
+      answer: "Gemini creates captions from your topic, tone and emoji preference.",
     },
     {
       question: "Are the captions ready to post?",
@@ -823,7 +823,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
   "youtube-title-generator": [
     {
       question: "How does the YouTube title generator work?",
-      answer: "The selected OpenAI or Gemini model creates varied title structures from your topic and style.",
+      answer: "Gemini creates varied title structures from your topic and style.",
     },
     {
       question: "What does the title length helper show?",
@@ -841,7 +841,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     },
     {
       question: "Does the bio generator use AI?",
-      answer: "Yes. It uses Gemini or OpenAI through the free limited mode when available or through your own API key.",
+      answer: "Yes. It uses the owner-funded Gemini connection with a daily free limit.",
     },
     {
       question: "Should I edit the generated bio?",
@@ -855,7 +855,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     },
     {
       question: "Are the ideas customized?",
-      answer: "The selected AI model uses your niche, audience, platform and goal. Refine every idea with real examples and audience knowledge.",
+      answer: "Gemini uses your niche, audience, platform and goal. Refine every idea with real examples and audience knowledge.",
     },
     {
       question: "Do these ideas guarantee growth or sales?",

@@ -1,65 +1,40 @@
 # AI Tools QA
 
-Never commit real provider keys. Run live-provider checks with temporary test
-keys and revoke them afterward if appropriate.
+## Configuration tests
 
-## Common checks for every AI tool
+- With `AI_FREE_TRIAL_ENABLED=false`, confirm Generate is disabled and the API returns a temporary-unavailable error.
+- With the flag enabled but `GEMINI_API_KEY`, `AI_RATE_LIMIT_SALT` or `AI_RATE_LIMIT_KV` missing, confirm AI remains unavailable.
+- With all settings configured, confirm Gemini returns a real structured result.
+- With an invalid Gemini key, confirm a clear configuration error appears and no fake output is shown.
 
-- No generated results appear before Generate.
-- Provider settings appear when no mode has been selected.
-- Free mode appears only when `AI_FREE_TRIAL_ENABLED=true` and `GEMINI_API_KEY`
-  is configured.
-- Free mode uses Gemini 2.5 Flash-Lite and never exposes the owner key.
-- Gemini BYOK succeeds with a valid key.
-- OpenAI BYOK succeeds with a valid key.
-- Missing or invalid keys show a useful error with no fake result.
-- Unknown provider/model/tool requests are rejected.
-- Empty, very short and over-limit inputs are rejected.
-- Loading, Regenerate, individual Copy and Copy all results work.
-- Remember unchecked does not restore the key after refresh.
-- Remember checked restores the key only in that browser.
-- Clear saved AI settings removes saved data and generated results.
-- Provider quota, rate-limit, safety, invalid JSON, timeout and network errors
-  leave the form usable.
-- Dark and light themes are readable at desktop and mobile widths.
+## Daily limit tests
 
-## Tool output checklist
+- Set `AI_FREE_DAILY_LIMIT=3`.
+- Confirm the UI initially reports the remaining allowance.
+- Complete three successful generations from the same browser/network identity.
+- Confirm KV stores only a hashed key and numeric counter with a 48-hour TTL.
+- Confirm the fourth request returns `DAILY_LIMIT_REACHED`, zero remaining and the Support link.
+- Confirm failed Gemini requests do not increment the counter.
 
-| Tool | Test input | Expected output |
-| --- | --- | --- |
-| Hashtag Generator | sustainable gardening for renters | 20-30 unique tags grouped as broad, niche, intent and branded |
-| Blog Title Generator | first-time home budgeting | 10 varied titles using the requested formats |
-| Email Template Generator | invoice follow-up for a client | 5 subjects, full email, shorter version and follow-up |
-| Text Summarizer | 3-5 paragraphs of factual source text | short summary, bullets and key takeaways with no added facts |
-| Instagram Caption Generator | handmade ceramic launch | 5 main captions, 5 short captions, 5 CTAs and optional hashtags |
-| TikTok Hashtag Generator | beginner strength training | broad, niche, content-style and audience tags without viral guarantees |
-| YouTube Title Generator | repairing a bicycle chain | 10 accurate titles with approximate character counts |
-| Social Media Bio Generator | local bakery for LinkedIn | short, professional, creator, punchy and CTA variants |
-| Content Ideas Generator | bookkeeping for freelancers | 20 ideas split across four groups |
+## Tool tests
 
-## Free mode checks
+Test all nine AI tools: hashtag, blog title, email template, summarizer, Instagram caption, TikTok hashtag, YouTube title, social bio and content ideas.
 
-1. Leave `AI_FREE_TRIAL_ENABLED=false`; confirm the free option is hidden.
-2. Set the flag to `true` without `GEMINI_API_KEY`; confirm it remains hidden.
-3. Add the owner Gemini key and set the daily limit to 3; confirm free mode works.
-4. Generate three times from the same test client; confirm the next attempt is
-   rejected by the current isolate and includes a clear limit message.
-5. Set the feature flag back to `false`; confirm BYOK still works.
+For each tool confirm:
 
-The in-memory limit is not a global production guarantee. Repeat limit testing
-after any future KV/D1 rate-limit implementation.
+- no result before Generate
+- no provider, model or API-key controls
+- Free AI 3/day badge
+- useful loading and error states
+- Copy, Copy All and Regenerate behaviour
+- Regenerate disables when no allowance remains
+- no promises of virality, followers, ranking, sales or engagement
 
-## Theme pages
+## Input and layout tests
 
-Check both themes on:
-
-- `/`
-- `/tools`
-- `/image-tools`
-- `/pdf-tools`
-- `/social-media-tools`
-- `/resources`
-- `/resources/best-free-pdf-tools`
-- `/compare/jpg-vs-png`
-- `/request-tool`
-- all nine AI generator pages
+- General input over 1,200 characters shows the free-limit shortening message.
+- Summarizer input over 2,500 characters is rejected.
+- Empty and very short input is rejected.
+- Support CTA, newsletter and internal resource links work.
+- Test mobile widths and keyboard navigation.
+- Test dark and light themes on the homepage, `/tools`, `/ai-tools`, `/social-media-tools`, `/resources`, `/support`, `/request-tool` and every AI generator.

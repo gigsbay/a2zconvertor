@@ -5,6 +5,7 @@ import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import Footer from "@/components/layout/Footer";
 import MoneyPageSections from "@/components/MoneyPageSections";
 import Navbar from "@/components/layout/Navbar";
+import SupportCTA from "@/components/SupportCTA";
 import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
 import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { getPlacement } from "@/data/monetization";
@@ -69,6 +70,11 @@ export default async function ResourcePage({
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
             {resource.intro}
           </p>
+          {relevantTools[0] && (
+            <Link href={`/convert/${relevantTools[0].slug}`} className="mt-7 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">
+              Try the free AI tool
+            </Link>
+          )}
 
           {moneyContent ? (
             <MoneyPageSections content={moneyContent} />
@@ -145,6 +151,7 @@ export default async function ResourcePage({
           </section>
         </div>
       </article>
+      <SupportCTA />
       {primaryPlacement && (
         <AffiliatePlacementBlock placement={primaryPlacement} />
       )}

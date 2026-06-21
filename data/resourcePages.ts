@@ -17,8 +17,58 @@ export const resourcePages: ResourcePage[] = [
   makeResource("how-to-compress-pdf-without-uploading", "How to Compress a PDF Without Uploading It", "Learn how browser-based PDF compression can reduce a file locally and what quality trade-offs to expect.", "Client-side compression keeps the processing workflow on your device after the page loads.", ["compress-pdf", "pdf-split", "delete-pdf-pages"], ["Choose an appropriate quality", "Review flattened text limitations", "Verify the output before deleting the original"]),
   makeResource("how-to-remove-photo-metadata", "How to Remove Photo Metadata in Your Browser", "Remove common EXIF details from photos with a browser canvas re-export.", "Photos can contain camera, date and location metadata that may not be needed when sharing.", ["remove-image-metadata", "image-color-picker", "compress-image"], ["Choose PNG or JPG output", "Understand that re-export can change size", "Check the cleaned download"]),
   makeResource("browser-based-file-conversion", "Browser-Based File Conversion: Privacy and Limits", "Understand how client-side file tools work, their privacy benefits and their performance limits.", "Modern browsers can decode, edit and rebuild many file formats without sending the file to an application server.", ["jpg-to-png", "pdf-merge", "audio-converter", "video-thumbnail-extractor"], ["Files can remain on-device", "Large files still use device memory", "Browser codec support varies"]),
+  makeAIResource("free-ai-social-media-tools", "Best Free AI Social Media Tools for Creators", "Compare free AI tools for captions, hashtags, YouTube titles, bios and practical content planning.", "Free AI social media tools can remove the blank-page problem, but the strongest results still come from clear context and careful editing.", ["instagram-caption-generator", "tiktok-hashtag-generator", "youtube-title-generator", "social-media-bio-generator", "content-ideas-generator"], ["Match each tool to a specific publishing task", "Give Gemini a clear niche, audience and tone", "Treat output as an editable starting point", "Avoid claims that guarantee reach or virality"], [
+    ["Are these social media AI tools free?", "Yes. The current allowance is three successful Gemini generations per day."],
+    ["Will generated content increase my followers?", "No tool can guarantee followers, reach or engagement. Use the ideas to improve your workflow, then judge performance from real audience response."],
+    ["Do I need an account or API key?", "No. The public tools use A2ZConvertor's limited owner-funded Gemini connection."],
+  ]),
+  makeAIResource("instagram-caption-ideas", "Instagram Caption Ideas: A Practical Free AI Guide", "Learn how to create stronger Instagram caption ideas for products, services, events and personal posts.", "A useful caption gives the reader context, a reason to care and a natural next step without sounding forced.", ["instagram-caption-generator", "hashtag-generator", "content-ideas-generator"], ["Start with the real subject of the post", "Choose a tone that matches the account", "Use short captions when the visual carries the story", "Edit facts and calls to action before posting"], [
+    ["What should I enter in the caption generator?", "Describe the post, audience, purpose and preferred tone. Specific context produces more useful captions."],
+    ["Should every Instagram caption include hashtags?", "No. Use only relevant hashtags when they genuinely help categorize the post."],
+    ["Can AI write captions in my brand voice?", "It can suggest a starting point, but you should edit wording, facts and tone to match your real voice."],
+  ]),
+  makeAIResource("tiktok-hashtag-ideas", "TikTok Hashtag Ideas Without Viral Guarantees", "Build relevant TikTok hashtag groups for a niche, audience and content style without relying on fake viral promises.", "TikTok hashtags work best as accurate labels for the content, not as magic switches for distribution.", ["tiktok-hashtag-generator", "hashtag-generator", "content-ideas-generator"], ["Mix broad and niche descriptions", "Describe the intended audience accurately", "Remove tags that do not match the video", "Test performance without assuming causation"], [
+    ["How many TikTok hashtags should I use?", "There is no universal number. Use a concise set that accurately describes the topic, format and intended audience."],
+    ["Can a hashtag make a video viral?", "No. Distribution depends on many factors including the content itself and audience response."],
+    ["Are generated hashtags current trends?", "The generator creates relevant suggestions from your input; it does not claim access to live trend rankings."],
+  ]),
+  makeAIResource("youtube-title-ideas", "YouTube Title Ideas That Stay Accurate", "Create clear YouTube title ideas for tutorials, reviews, beginner guides and list videos without misleading clickbait.", "A strong YouTube title tells the right viewer what the video offers while staying faithful to the actual content.", ["youtube-title-generator", "video-thumbnail-extractor", "content-ideas-generator"], ["Lead with the viewer's problem or outcome", "Keep important words easy to scan", "Avoid claims the video cannot support", "Compare title and thumbnail as one message"], [
+    ["What makes a good YouTube title?", "It should be specific, readable and accurate about what the viewer will learn or see."],
+    ["Should I always keep titles under a fixed length?", "No fixed number guarantees performance, but concise titles are easier to scan and less likely to be truncated."],
+    ["Does the generator create clickbait?", "It is prompted to avoid misleading clickbait, but you remain responsible for checking every title against the video."],
+  ]),
+  makeAIResource("content-ideas-for-small-businesses", "Free AI Content Ideas for Small Businesses", "Plan useful educational, promotional and behind-the-scenes content ideas for a small business.", "Small-business content is easier to sustain when ideas come from customer questions, real work, useful examples and clear offers.", ["content-ideas-generator", "instagram-caption-generator", "social-media-bio-generator"], ["Turn common customer questions into educational posts", "Show process and proof without exposing private data", "Balance useful posts with clear offers", "Adapt each idea to one realistic platform format"], [
+    ["Can AI create a complete content strategy?", "It can help brainstorm, but strategy still needs customer insight, positioning, resources and real performance data."],
+    ["What business information should I avoid entering?", "Do not submit confidential customer, employee, financial or commercially sensitive information."],
+    ["How do I make generated ideas less generic?", "Include your niche, audience, platform, goal and a specific customer problem."],
+  ]),
+  makeAIResource("free-ai-writing-tools", "Best Free AI Writing Tools for Everyday Drafts", "Use free AI writing tools for titles, emails, summaries and hashtags while keeping human review in the workflow.", "Free AI writing tools are most useful for first drafts, alternatives and structure, not for replacing factual checks or professional judgement.", ["blog-title-generator", "email-template-generator", "text-summarizer", "hashtag-generator"], ["Use titles to explore different angles", "Review email tone and every factual detail", "Check summaries against the original source", "Never submit confidential text without permission"], [
+    ["Are AI writing tools accurate?", "They can make mistakes or omit context. Verify facts, names, figures and important claims."],
+    ["Can I use the summarizer instead of reading the source?", "No. Use it as a review aid and confirm important meaning in the original."],
+    ["Is my text used for AI generation?", "Yes. Submitted text is sent through A2ZConvertor's backend to Gemini for the requested generation."],
+  ]),
 ];
 
+function makeAIResource(
+  slug: string,
+  title: string,
+  description: string,
+  intro: string,
+  toolSlugs: string[],
+  bullets: string[],
+  faqs: [string, string][]
+): ResourcePage {
+  return {
+    slug, title, description, intro, toolSlugs,
+    sections: [
+      { heading: "Start with a clear brief", body: "Useful AI output begins with specific context. State the real topic, intended audience, platform and tone instead of relying on one vague keyword.", bullets: bullets.slice(0, 2) },
+      { heading: "Turn suggestions into publishable work", body: "Read every result, remove repetition and rewrite anything that does not sound like you. Check names, facts, promises and calls to action before publishing.", bullets: bullets.slice(2) },
+      { heading: "Use the free allowance wisely", body: "A2ZConvertor provides three successful Gemini generations per day. Combine your requirements into one thoughtful brief and use Regenerate only when a genuinely different result is needed.", bullets: ["No account or API key required", "General inputs are limited to 1,200 characters", "The text summarizer accepts up to 2,500 characters"] },
+      { heading: "What AI cannot promise", body: "Generated ideas cannot guarantee reach, followers, rankings, sales or engagement. Results depend on execution, audience fit, timing, platform behaviour and many factors outside a writing tool.", bullets: ["Verify factual claims", "Protect confidential information", "Measure real outcomes"] },
+    ],
+    faqs: faqs.map(([question, answer]) => ({ question, answer })),
+  };
+}
 function makeResource(
   slug: string,
   title: string,
