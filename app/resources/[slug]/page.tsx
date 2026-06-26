@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
 import Footer from "@/components/layout/Footer";
 import MoneyPageSections from "@/components/MoneyPageSections";
 import Navbar from "@/components/layout/Navbar";
 import SupportCTA from "@/components/SupportCTA";
-import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
+import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import { getMoneyPageContent } from "@/data/moneyPageContent";
-import { getPlacement } from "@/data/monetization";
+import { getAffiliatePlacementsForResource } from "@/data/monetization";
 import { getResourcePage, resourcePages } from "@/data/resourcePages";
 import { absoluteUrl } from "@/data/site";
 import { tools } from "@/data/tools";
@@ -51,8 +50,7 @@ export default async function ResourcePage({
   const relevantTools = resource.toolSlugs
     .map((toolSlug) => tools.find((tool) => tool.slug === toolSlug))
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
-  const primaryPlacement = getPlacement("resource", 0);
-  const secondaryPlacement = getPlacement("resource", 1);
+  const affiliatePlacements = getAffiliatePlacementsForResource(resource.slug);
   const moneyContent = getMoneyPageContent(resource.slug);
   const faqs = moneyContent?.faqs ?? resource.faqs;
 
@@ -128,13 +126,6 @@ export default async function ResourcePage({
               ))}
             </div>
           </section>
-
-          {secondaryPlacement && (
-            <div className="mt-12">
-              <RecommendedSoftwareCard placement={secondaryPlacement} />
-            </div>
-          )}
-
           <section className="mt-16">
             <h2 className="text-3xl font-black">Frequently asked questions</h2>
             <div className="mt-6 space-y-4">
@@ -151,10 +142,19 @@ export default async function ResourcePage({
           </section>
         </div>
       </article>
-      <SupportCTA />
-      {primaryPlacement && (
-        <AffiliatePlacementBlock placement={primaryPlacement} />
+      {affiliatePlacements.length > 0 && (
+        <section className="px-6 pb-16">
+          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">
+            {affiliatePlacements.map((placement) => (
+              <AffiliateRecommendationCard
+                key={placement.id}
+                placement={placement}
+              />
+            ))}
+          </div>
+        </section>
       )}
+      <SupportCTA />
       <Footer />
     </main>
   );

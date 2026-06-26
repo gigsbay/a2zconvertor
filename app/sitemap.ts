@@ -45,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: absoluteUrl("/ai-tools"), lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/support"), lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: absoluteUrl("/affiliate-disclosure"), lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     {
       url: absoluteUrl("/resources"),
       lastModified: new Date(),

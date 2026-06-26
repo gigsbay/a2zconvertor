@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
+import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { categoryLandingPages, CategoryPageConfig } from "@/data/categoryLandingPages";
+import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
-import SponsoredToolCard from "@/components/SponsoredToolCard";
-import { getPlacement } from "@/data/monetization";
 
 export default function CategoryLandingPage({
   config,
@@ -15,7 +15,7 @@ export default function CategoryLandingPage({
   const relatedCategories = categoryLandingPages.filter(
     (page) => page.slug !== config.slug
   );
-  const placement = getPlacement("category");
+  const affiliatePlacements = getAffiliatePlacementsForCategory(config.slug);
   const relatedTools = (config.relatedToolSlugs ?? [])
     .map((slug) => tools.find((tool) => tool.slug === slug))
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
@@ -85,6 +85,7 @@ export default function CategoryLandingPage({
           </div>
         </section>
       )}
+
       {(config.slug === "social-media-tools" || config.slug === "text-tools") && (
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-6xl border-l-4 border-emerald-400 bg-emerald-400/5 p-7">
@@ -94,10 +95,13 @@ export default function CategoryLandingPage({
           </div>
         </section>
       )}
-      {placement && (
+
+      {affiliatePlacements.length > 0 && (
         <section className="px-6 pb-20">
-          <div className="mx-auto max-w-6xl">
-            <SponsoredToolCard placement={placement} />
+          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">
+            {affiliatePlacements.map((placement) => (
+              <AffiliateRecommendationCard key={placement.id} placement={placement} />
+            ))}
           </div>
         </section>
       )}

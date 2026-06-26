@@ -15,7 +15,7 @@ A2ZConvertor exposes owner-funded Gemini generation only. The public UI does not
 
 General AI tools accept up to 1,200 input characters. Text Summarizer accepts up to 2,500. Requests are size-limited, short inputs are rejected and Gemini calls time out after 30 seconds.
 
-The counter combines the current date, `CF-Connecting-IP`, user agent and the private salt, then stores only a SHA-256 hash. Raw IP addresses and API keys are never stored or logged. A counter is written only after Gemini returns a successful JSON result and expires after 48 hours.
+The counter combines the current date, `CF-Connecting-IP`, user agent and the private salt, then stores only a SHA-256 hash. Raw IP addresses and API keys are never stored or logged. A counter is written only after Gemini returns a successful response that is parsed and normalized into a valid AI tool result. Provider errors, malformed JSON and parser failures must not consume quota. Counters expire after 48 hours.
 
 Cloudflare KV is durable but eventually consistent. Simultaneous requests from the same user can briefly exceed the intended allowance. Provider-side quotas and budget alerts remain essential.
 

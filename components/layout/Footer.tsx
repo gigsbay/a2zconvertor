@@ -73,8 +73,16 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-bold">Company</h4>
           <ul className="space-y-2 text-slate-400">
-            <li><Link href="/ai-tools" className="transition hover:text-white">AI Creator Tools</Link></li>
-            <li><Link href="/support" className="transition hover:text-white">Support Us</Link></li>
+            <li>
+              <Link href="/ai-tools" className="transition hover:text-white">
+                AI Creator Tools
+              </Link>
+            </li>
+            <li>
+              <Link href="/support" className="transition hover:text-white">
+                Support Us
+              </Link>
+            </li>
             <li>
               <Link href="/privacy-policy" className="transition hover:text-white">
                 Privacy Policy
@@ -98,6 +106,11 @@ export default function Footer() {
             <li>
               <Link href="/resources" className="transition hover:text-white">
                 Resources
+              </Link>
+            </li>
+            <li>
+              <Link href="/affiliate-disclosure" className="transition hover:text-white">
+                Affiliate Disclosure
               </Link>
             </li>
             <li>
