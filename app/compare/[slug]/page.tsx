@@ -8,8 +8,8 @@ import { comparisonPages, getComparisonPage } from "@/data/comparisonPages";
 import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { absoluteUrl } from "@/data/site";
 import { tools } from "@/data/tools";
-import RecommendedSoftwareCard from "@/components/RecommendedSoftwareCard";
-import { getPlacement } from "@/data/monetization";
+import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
+import { getAffiliatePlacementsForComparison } from "@/data/monetization";
 
 export function generateStaticParams() {
   return comparisonPages.map((page) => ({ slug: page.slug }));
@@ -50,7 +50,7 @@ export default async function ComparisonPage({
   const relevantTools = comparison.toolSlugs
     .map((toolSlug) => tools.find((tool) => tool.slug === toolSlug))
     .filter((tool): tool is (typeof tools)[number] => Boolean(tool));
-  const placement = getPlacement("comparison");
+  const affiliatePlacements = getAffiliatePlacementsForComparison(comparison.slug);
   const moneyContent = getMoneyPageContent(comparison.slug);
   const faqs = moneyContent?.faqs ?? comparison.faqs;
 
@@ -131,10 +131,11 @@ export default async function ComparisonPage({
               ))}
             </div>
           </section>
-
-          {placement && (
-            <div className="mt-12">
-              <RecommendedSoftwareCard placement={placement} />
+          {affiliatePlacements.length > 0 && (
+            <div className="mt-12 grid gap-5 lg:grid-cols-2">
+              {affiliatePlacements.map((placement) => (
+                <AffiliateRecommendationCard key={placement.id} placement={placement} />
+              ))}
             </div>
           )}
 

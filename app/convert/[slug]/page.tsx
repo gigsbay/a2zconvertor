@@ -9,8 +9,8 @@ import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
-import AffiliatePlacementBlock from "@/components/AffiliatePlacementBlock";
-import { getPlacement } from "@/data/monetization";
+import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
+import { getAffiliatePlacementsForTool } from "@/data/monetization";
 const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "instagram-caption-generator": [{ href: "/resources/instagram-caption-ideas", label: "Instagram caption ideas guide" }],
   "tiktok-hashtag-generator": [{ href: "/resources/tiktok-hashtag-ideas", label: "TikTok hashtag ideas guide" }],
@@ -91,7 +91,7 @@ export default async function ConvertPage({
   const relatedTools = getRelatedTools(tool);
   const faqs = getToolFaqs(tool.slug, tool);
   const seoContent = getToolSeoContent(tool);
-  const placement = getPlacement("tool");
+  const affiliatePlacements = getAffiliatePlacementsForTool(tool.slug);
   const resourceLinks = aiResourceLinks[tool.slug] ?? [];
 
   return (
@@ -242,7 +242,15 @@ export default async function ConvertPage({
           </div>
         </section>
       )}
-      {placement && <AffiliatePlacementBlock placement={placement} />}
+      {affiliatePlacements.length > 0 && (
+        <section className="px-6 pb-20">
+          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">
+            {affiliatePlacements.map((placement) => (
+              <AffiliateRecommendationCard key={placement.id} placement={placement} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {socialMediaBridgeSlugs.has(tool.slug) && (
         <section className="px-6 pb-20">

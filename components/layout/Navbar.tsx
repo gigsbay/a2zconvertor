@@ -11,8 +11,6 @@ const navLinks = [
   { label: "PDF Tools", href: "/pdf-tools" },
   { label: "Video Tools", href: "/video-tools" },
   { label: "Audio Tools", href: "/audio-tools" },
-  { label: "Text Tools", href: "/text-tools" },
-  { label: "Social Tools", href: "/social-media-tools" },
 ];
 
 export default function Navbar() {
@@ -39,6 +37,12 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
+          <Link
+            href="/support"
+            className="rounded-full border border-amber-300/30 px-5 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10"
+          >
+            Support Us
+          </Link>
           <Link
             href="/request-tool"
             className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
@@ -76,6 +80,13 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="mt-2 flex justify-center"><ThemeToggle /></div>
+            <Link
+              href="/support"
+              onClick={() => setIsOpen(false)}
+              className="mt-2 rounded-xl border border-amber-300/30 px-4 py-3 text-center text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10"
+            >
+              Support Us
+            </Link>
             <Link
               href="/request-tool"
               onClick={() => setIsOpen(false)}
