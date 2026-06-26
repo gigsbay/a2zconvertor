@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
+import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -8,7 +9,7 @@ import SupportCTA from "@/components/SupportCTA";
 import { AI_TOOL_SLUGS, DEFAULT_FREE_DAILY_LIMIT } from "@/utils/aiConfig";
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
-import { absoluteUrl } from "@/data/site";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Free AI Creator Tools",
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
     description:
       "Use free Gemini-powered creator and writing tools with no account required.",
     url: absoluteUrl("/ai-tools"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free AI Creator Tools | A2ZConvertor",
+    description:
+      "Use free Gemini-powered creator and writing tools with no account required.",
   },
 };
 
@@ -45,6 +52,45 @@ const resourceLinks = [
 export default function AIToolsPage() {
   return <main className="min-h-screen bg-slate-950 text-white">
     <Navbar />
+    <JsonLd
+      data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Free AI Creator Tools",
+          description:
+            "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
+          url: absoluteUrl("/ai-tools"),
+          mainEntity: aiTools.map((tool) => ({
+            "@type": "SoftwareApplication",
+            name: tool.title,
+            applicationCategory: "WebApplication",
+            operatingSystem: "Any",
+            url: absoluteUrl(`/convert/${tool.slug}`),
+          })),
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map(([question, answer]) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: answer,
+            },
+          })),
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "AI Creator Tools", item: absoluteUrl("/ai-tools") },
+          ],
+        },
+      ]}
+    />
     <section className="px-6 pb-14 pt-20">
       <div className="mx-auto max-w-6xl">
         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI {"\u00b7"} {DEFAULT_FREE_DAILY_LIMIT}/day</span>

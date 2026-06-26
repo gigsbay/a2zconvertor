@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: config.description,
   alternates: { canonical: absoluteUrl("/pdf-tools") },
   openGraph: { title: config.title, description: config.description, url: absoluteUrl("/pdf-tools") },
+  twitter: { card: "summary_large_image", title: config.title, description: config.description },
 };
 
 export default function PdfToolsPage() {

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: config.description,
   alternates: { canonical: absoluteUrl("/text-tools") },
   openGraph: { title: config.title, description: config.description, url: absoluteUrl("/text-tools") },
+  twitter: { card: "summary_large_image", title: config.title, description: config.description },
 };
 
 export default function TextToolsPage() {

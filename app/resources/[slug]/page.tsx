@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
+import JsonLd from "@/components/JsonLd";
 import MoneyPageSections from "@/components/MoneyPageSections";
 import Navbar from "@/components/layout/Navbar";
 import SupportCTA from "@/components/SupportCTA";
@@ -9,7 +10,7 @@ import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCar
 import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { getAffiliatePlacementsForResource } from "@/data/monetization";
 import { getResourcePage, resourcePages } from "@/data/resourcePages";
-import { absoluteUrl } from "@/data/site";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 import { tools } from "@/data/tools";
 
 export function generateStaticParams() {
@@ -35,6 +36,11 @@ export async function generateMetadata({
       url,
       type: "article",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: resource.title,
+      description: resource.description,
+    },
   };
 }
 
@@ -57,6 +63,59 @@ export default async function ResourcePage({
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: resource.title,
+            description: resource.description,
+            url: absoluteUrl(`/resources/${resource.slug}`),
+            mainEntityOfPage: absoluteUrl(`/resources/${resource.slug}`),
+            publisher: {
+              "@type": "Organization",
+              name: "A2ZConvertor",
+              url: SITE_URL,
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: SITE_URL,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Resources",
+                item: absoluteUrl("/resources"),
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: resource.title,
+                item: absoluteUrl(`/resources/${resource.slug}`),
+              },
+            ],
+          },
+        ]}
+      />
       <article className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <p className="text-sm font-semibold uppercase text-blue-300">
@@ -70,7 +129,7 @@ export default async function ResourcePage({
           </p>
           {relevantTools[0] && (
             <Link href={`/convert/${relevantTools[0].slug}`} className="mt-7 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">
-              Try the free AI tool
+              Open {relevantTools[0].name}
             </Link>
           )}
 
