@@ -93,6 +93,12 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
   "youtube-title-generator": <AIGenerator toolSlug="youtube-title-generator" />,
   "social-media-bio-generator": <AIGenerator toolSlug="social-media-bio-generator" />,
   "content-ideas-generator": <AIGenerator toolSlug="content-ideas-generator" />,
+  "ai-hook-generator": <AIGenerator toolSlug="ai-hook-generator" />,
+  "ai-carousel-post-generator": <AIGenerator toolSlug="ai-carousel-post-generator" />,
+  "ai-linkedin-post-generator": <AIGenerator toolSlug="ai-linkedin-post-generator" />,
+  "ai-video-script-generator": <AIGenerator toolSlug="ai-video-script-generator" />,
+  "ai-product-description-generator": <AIGenerator toolSlug="ai-product-description-generator" />,
+  "ai-ad-copy-generator": <AIGenerator toolSlug="ai-ad-copy-generator" />,
 };
   return (
     customTools[tool.slug] ?? (
@@ -104,7 +110,7 @@ export default function ToolRenderer({ tool }: { tool: Tool }) {
         outputLabel={tool.outputLabel}
         description={tool.description}
       />
-      
+
     )
   );
 }

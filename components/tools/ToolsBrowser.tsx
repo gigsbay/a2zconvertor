@@ -7,6 +7,7 @@ import { tools } from "@/data/tools";
 
 const preferredCategories = [
   "All",
+  "AI Creator Tools",
   "Image Tools",
   "PDF Tools",
   "Video Tools",

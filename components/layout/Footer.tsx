@@ -73,7 +73,7 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-bold">Company</h4>
           <ul className="space-y-2 text-slate-400">
-            <li><Link href="/ai-tools" className="transition hover:text-white">AI Tools</Link></li>
+            <li><Link href="/ai-tools" className="transition hover:text-white">AI Creator Tools</Link></li>
             <li><Link href="/support" className="transition hover:text-white">Support Us</Link></li>
             <li>
               <Link href="/privacy-policy" className="transition hover:text-white">
