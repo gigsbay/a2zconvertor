@@ -224,7 +224,8 @@ export default function AIGenerator({ toolSlug }: { toolSlug: string }) {
     window.setTimeout(() => setCopied(""), 1500);
   }
 
-  const copyAll = result ? serializeResult(result) : "";
+  const resultEntries = result ? Object.entries(result).map(([key, value]) => [key, Array.isArray(value) ? value.map(formatItem).filter(Boolean) : [formatItem(value)].filter(Boolean)] as const).filter(([, items]) => items.length > 0) : [];
+  const copyAll = resultEntries.length > 0 ? serializeResultEntries(resultEntries) : "";
   const dailyLimit = status?.dailyLimit ?? DEFAULT_FREE_DAILY_LIMIT;
   const limitReached = Boolean(status?.configured && status.remaining === 0);
   const disabled = loading || !status || !status.enabled || !status.configured || status.remaining === 0 || requiredMissing || inputLength > inputLimit;
@@ -242,7 +243,7 @@ export default function AIGenerator({ toolSlug }: { toolSlug: string }) {
     </form>
     <AIAllowanceStatus status={status} />
     {error && <div role="alert" className="mt-5 rounded-xl border border-red-400/30 bg-red-400/10 p-4 text-red-200"><p>{error}</p>{limitReached && <a href={BUY_ME_A_COFFEE_URL} target="_blank" rel="noreferrer" className="mt-3 inline-flex font-semibold text-amber-200 underline">Support A2ZConvertor</a>}</div>}
-    {result && <div className="mt-10 grid gap-8"><div className="flex justify-end"><button type="button" onClick={() => copy(copyAll)} className="rounded-xl border border-white/10 px-4 py-2 text-sm font-semibold text-slate-200">{copied === copyAll ? "Copied" : "Copy all results"}</button></div>{Object.entries(result).map(([key, value]) => <GeneratorResultSection key={key} title={label(key)} items={Array.isArray(value) ? value.map(formatItem) : [formatItem(value)]} copied={copied} onCopy={copy} />)}</div>}
+    {resultEntries.length > 0 && <div className="mt-10 grid gap-8"><div className="flex justify-end"><button type="button" onClick={() => copy(copyAll)} className="rounded-xl border border-white/10 px-4 py-2 text-sm font-semibold text-slate-200">{copied === copyAll ? "Copied" : "Copy all results"}</button></div>{resultEntries.map(([key, items]) => <GeneratorResultSection key={key} title={label(key)} items={items} copied={copied} onCopy={copy} />)}</div>}
   </div>;
 }
 
@@ -271,23 +272,25 @@ function getInitialInputs(config: GeneratorConfig | undefined) {
 }
 
 function formatItem(item: unknown): string {
-  if (typeof item === "string") return item;
+  if (typeof item === "string") return item.trim();
   if (typeof item === "number" || typeof item === "boolean") return String(item);
-  if (Array.isArray(item)) return item.map(formatItem).join("\n");
+  if (Array.isArray(item)) return item.map(formatItem).filter(Boolean).join("\n");
   if (item && typeof item === "object") {
     const entries = Object.entries(item as Record<string, unknown>);
     if ("title" in item) {
-      const record = item as { title?: unknown; characterCount?: unknown };
+      const record = item as { title?: unknown; text?: unknown; characterCount?: unknown };
+      const title = String(record.title ?? "").trim();
+      const text = typeof record.text === "string" ? record.text.trim() : "";
       const count = record.characterCount ? ` (${String(record.characterCount)} characters)` : "";
-      return `${String(record.title ?? "")}${count}`.trim();
+      return [title ? `${title}${count}` : "", text].filter(Boolean).join("\n");
     }
-    return entries.map(([key, value]) => `${label(key)}: ${Array.isArray(value) ? value.map(formatItem).join(", ") : formatItem(value)}`).join("\n");
+    return entries.map(([key, value]) => `${label(key)}: ${Array.isArray(value) ? value.map(formatItem).filter(Boolean).join(", ") : formatItem(value)}`).filter((line) => !line.endsWith(": ")).join("\n");
   }
   return "";
 }
 
-function serializeResult(result: Record<string, unknown>) {
-  return Object.entries(result).map(([key, value]) => `${label(key)}\n${Array.isArray(value) ? value.map(formatItem).join("\n") : formatItem(value)}`).join("\n\n");
+function serializeResultEntries(entries: ReadonlyArray<readonly [string, string[]]>) {
+  return entries.map(([key, items]) => `${label(key)}\n${items.join("\n")}`).join("\n\n");
 }
 
 function label(value: string) { return value.replace(/([A-Z])/g, " $1").replace(/^./, (letter) => letter.toUpperCase()); }

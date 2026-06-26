@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildAIPrompt } from "@/utils/aiPromptBuilders";
+import { parseAIResponse } from "@/utils/aiResponseParser";
 import {
   AI_TOOL_SLUGS,
   AIToolSlug,
@@ -115,7 +116,10 @@ export async function POST(request: Request) {
           },
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: "application/json" },
+            generationConfig: {
+              responseMimeType: "application/json",
+              temperature: 0.6,
+            },
           }),
           signal: controller.signal,
         },
@@ -128,13 +132,20 @@ export async function POST(request: Request) {
         .join("");
       if (!text) return error("Gemini returned no usable text.", 502);
 
-      let result: unknown;
-      try {
-        result = JSON.parse(text.replace(/^```json\s*|\s*```$/g, "").trim());
-      } catch {
-        return error("Gemini returned an invalid response. Please try again.", 502);
+      const parsed = parseAIResponse(toolSlug as AIToolSlug, text);
+      if (!parsed.ok) {
+        if (process.env.NODE_ENV === "development") {
+          console.warn("Gemini response parse failed", {
+            toolSlug,
+            provider: "gemini",
+            model: config.model,
+            parserReason: parsed.reason,
+            responseTextLength: text.length,
+          });
+        }
+        return error("AI response could not be formatted. Please try again.", 502);
       }
-
+      const result = parsed.result;
       const nextCount = usage.used + 1;
       await config.kv.put(usage.key, String(nextCount), {
         expirationTtl: RATE_LIMIT_TTL_SECONDS,
