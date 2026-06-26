@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/layout/Footer";
+import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import { resourcePages } from "@/data/resourcePages";
-import { absoluteUrl } from "@/data/site";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Free File Tools, Guides and Resources",
@@ -16,13 +17,40 @@ export const metadata: Metadata = {
       "Practical guides for choosing browser-based PDF, image, audio and productivity tools.",
     url: absoluteUrl("/resources"),
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free File Tools, Guides and Resources | A2ZConvertor",
+    description:
+      "Practical guides for choosing browser-based PDF, image, audio and productivity tools.",
+  },
 };
 
 export default function ResourcesPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-      <section className="px-6 pb-16 pt-20">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Free File Tools, Guides and Resources",
+          description: metadata.description,
+          url: absoluteUrl("/resources"),
+          mainEntity: resourcePages.map((resource) => ({
+            "@type": "Article",
+            headline: resource.title,
+            description: resource.description,
+            url: absoluteUrl(`/resources/${resource.slug}`),
+          })),
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+              { "@type": "ListItem", position: 2, name: "Resources", item: absoluteUrl("/resources") },
+            ],
+          },
+        }}
+      />      <section className="px-6 pb-16 pt-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase text-blue-300">
             Guides and resources

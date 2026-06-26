@@ -4,8 +4,9 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolsBrowser from "@/components/tools/ToolsBrowser";
+import JsonLd from "@/components/JsonLd";
 import { tools } from "@/data/tools";
-import { absoluteUrl } from "@/data/site";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 
 const categories = Array.from(new Set(tools.map((tool) => tool.category)));
 
@@ -22,13 +23,41 @@ export const metadata: Metadata = {
       "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
     url: absoluteUrl("/tools"),
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "All Online Tools | A2ZConvertor",
+    description:
+      "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
+  },
 };
 
 export default function ToolsPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "All Online Tools",
+          description: metadata.description,
+          url: absoluteUrl("/tools"),
+          mainEntity: tools.map((tool) => ({
+            "@type": "SoftwareApplication",
+            name: tool.title,
+            applicationCategory: "WebApplication",
+            operatingSystem: "Any",
+            url: absoluteUrl(`/convert/${tool.slug}`),
+          })),
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+              { "@type": "ListItem", position: 2, name: "All Tools", item: absoluteUrl("/tools") },
+            ],
+          },
+        }}
+      />
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-14 text-center">

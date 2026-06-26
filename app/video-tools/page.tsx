@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: config.description,
   alternates: { canonical: absoluteUrl("/video-tools") },
   openGraph: { title: config.title, description: config.description, url: absoluteUrl("/video-tools") },
+  twitter: { card: "summary_large_image", title: config.title, description: config.description },
 };
 
 export default function VideoToolsPage() {

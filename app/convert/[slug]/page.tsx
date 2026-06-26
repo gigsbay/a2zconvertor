@@ -10,6 +10,7 @@ import { getToolSeoContent } from "@/data/toolSeoContent";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
+import JsonLd from "@/components/JsonLd";
 import { getAffiliatePlacementsForTool } from "@/data/monetization";
 const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "instagram-caption-generator": [{ href: "/resources/instagram-caption-ideas", label: "Instagram caption ideas guide" }],
@@ -139,7 +140,32 @@ export default async function ConvertPage({
     }),
   }}
 />
-      <section className="px-6 py-24">
+<JsonLd
+  data={{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "All Tools",
+        item: absoluteUrl("/tools"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tool.title,
+        item: absoluteUrl(`/convert/${tool.slug}`),
+      },
+    ],
+  }}
+/>      <section className="px-6 py-24">
   <div className="mx-auto max-w-4xl">
     <ToolRenderer tool={tool} />
   </div>

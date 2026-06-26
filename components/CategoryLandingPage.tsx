@@ -1,10 +1,12 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
+import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { categoryLandingPages, CategoryPageConfig } from "@/data/categoryLandingPages";
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
+import { absoluteUrl, SITE_URL } from "@/data/site";
 
 export default function CategoryLandingPage({
   config,
@@ -23,7 +25,54 @@ export default function CategoryLandingPage({
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: config.title,
+            description: config.description,
+            url: absoluteUrl(`/${config.slug}`),
+            mainEntity: categoryTools.map((tool) => ({
+              "@type": "SoftwareApplication",
+              name: tool.title,
+              applicationCategory: "WebApplication",
+              operatingSystem: "Any",
+              url: absoluteUrl(`/convert/${tool.slug}`),
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: config.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: SITE_URL,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: config.category,
+                item: absoluteUrl(`/${config.slug}`),
+              },
+            ],
+          },
+        ]}
+      />
       <section className="px-6 pb-16 pt-20">
         <div className="mx-auto max-w-6xl">
           <p className="mb-3 text-sm font-semibold uppercase text-blue-300">
