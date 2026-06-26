@@ -85,41 +85,38 @@ export const categoryLandingPages: CategoryPageConfig[] = [
   {
     slug: "text-tools",
     category: "Text Tools",
-    title: "AI Text Tools",
+    title: "Free Online Text Tools",
     description:
-      "Generate and summarize text with free Gemini-powered AI. Three generations per day, no account required.",
+      "Convert, clean and format everyday text in your browser.",
     intro:
-      "Create titles, emails, hashtags and summaries with owner-funded Gemini generation. You receive three free generations per day.",
+      "Use fast browser-based text utilities for case changes and simple formatting, with AI creator tools linked separately when you need generation.",
     why: [
-      "Use real Gemini generation without creating an account or finding an API key.",
-      "Use the clear daily allowance and edit every result before publishing.",
+      "Use lightweight text utilities without creating an account.",
+      "Keep generated AI drafts separate from simple text formatting tasks.",
     ],
     faqs: [
-      { question: "Do I need an API key?", answer: "No. A2ZConvertor uses its backend Gemini connection and does not ask users for provider keys." },
-      { question: "Do I need an account?", answer: "No account is required for the free daily allowance." },
-      { question: "Is free AI unlimited?", answer: "No. Free AI generations have a small daily limit to control service costs and may be disabled when production-safe capacity is unavailable." },
-      { question: "What happens at the daily limit?", answer: "Try again tomorrow or support A2ZConvertor to help fund higher free limits." },
-      { question: "Which AI model is used?", answer: "The public tools use the owner-configured Gemini model." },
+      { question: "What are Text Tools for?", answer: "Text Tools handle quick formatting tasks such as changing case, creating slugs and cleaning copy for reuse." },
+      { question: "Do text utilities need an account?", answer: "No. The browser-based text utilities are free and do not require sign-up." },
+      { question: "Where are AI writing tools listed?", answer: "Gemini-powered writing and creator tools are grouped on the AI Creator Tools page at /ai-tools." },
     ],
-  },
-  {
+  },  {
     slug: "social-media-tools",
     category: "Social Media Tools",
-    title: "Free AI Social Media Tools",
+    title: "Free Social Media Tools",
     description:
-      "Create captions, hashtags, titles, bios and content ideas with free Gemini-powered AI.",
+      "Find creator tools for captions, hashtags, video ideas, bios and social workflows.",
     intro:
-      "Generate editable social content for creators, small businesses, students and marketers with three free Gemini generations per day.",
+      "Explore social media tools for creators, small businesses, students and marketers, with AI creator tools available on the dedicated AI page.",
     why: [
-      "Generate tailored starting points with real AI rather than fixed templates.",
-      "Refine every Gemini-generated result for your audience, platform and brand voice.",
+      "Use focused tools for social media planning, metadata and content creation workflows.",
+      "Use AI Creator Tools when you want Gemini-generated captions, hooks and posts, then edit every draft for your audience.",
     ],
     faqs: [
       { question: "Do I need an API key?", answer: "No. A2ZConvertor uses its backend Gemini connection and does not ask users for provider keys." },
       { question: "Do I need an account?", answer: "No account is required for the free daily allowance." },
-      { question: "Is free AI unlimited?", answer: "No. Free generation has a daily allowance to control costs and availability." },
-      { question: "What happens at the daily limit?", answer: "Try again tomorrow or support A2ZConvertor to help fund higher free limits." },
-      { question: "Which AI model is used?", answer: "The public tools use the owner-configured Gemini model." },
+      { question: "Are Social Media Tools separate from AI Creator Tools?", answer: "Yes. Social Media Tools is a broader category, while /ai-tools focuses on Gemini-powered creator tools." },
+      { question: "Where can I find AI creator tools?", answer: "Use the AI Creator Tools page for captions, hooks, bios, posts and other Gemini-powered drafts." },
+      { question: "Do social tools guarantee growth?", answer: "No. They help with workflow and ideas, but reach and engagement depend on many outside factors." },
     ],
     relatedToolSlugs: [
       "meme-generator",

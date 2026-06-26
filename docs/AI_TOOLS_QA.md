@@ -1,4 +1,4 @@
-# AI Tools QA
+# AI Creator Tools QA
 
 ## Configuration tests
 
@@ -9,9 +9,9 @@
 
 ## Daily limit tests
 
-- Set `AI_FREE_DAILY_LIMIT=3`.
+- Set `AI_FREE_DAILY_LIMIT=5`.
 - Confirm the UI initially reports the remaining allowance.
-- Complete three successful generations from the same browser/network identity.
+- Complete five successful generations from the same browser/network identity.
 - Confirm KV stores only a hashed key and numeric counter with a 48-hour TTL.
 - Confirm the fourth request returns `DAILY_LIMIT_REACHED`, zero remaining and the Support link.
 - Confirm failed Gemini requests do not increment the counter.
@@ -24,7 +24,7 @@ For each tool confirm:
 
 - no result before Generate
 - no provider, model or API-key controls
-- Free AI 3/day badge
+- Free AI 5/day badge
 - useful loading and error states
 - Copy, Copy All and Regenerate behaviour
 - Regenerate disables when no allowance remains

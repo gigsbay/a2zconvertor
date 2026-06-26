@@ -643,7 +643,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Hashtag Generator create ideas?",
       answer:
-        "Gemini creates grouped hashtag ideas from your topic and category. You receive three free generations per day.",
+        "Gemini creates grouped hashtag ideas from your topic and category. You receive five free generations per day.",
     },
     {
       question: "How many hashtags does it generate?",
@@ -860,6 +860,90 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "Do these ideas guarantee growth or sales?",
       answer: "No. They help with brainstorming only. Results depend on execution, relevance, consistency, offer quality and audience response.",
+    },
+  ],
+  "ai-hook-generator": [
+    {
+      question: "What can I use AI Hook Generator for?",
+      answer: "Use it to create opening lines for social posts, short videos, articles, emails or ads. The hooks are editable starting points, not guaranteed performance claims.",
+    },
+    {
+      question: "Does it promise viral hooks?",
+      answer: "No. The tool avoids guaranteed reach or virality claims and focuses on honest, specific opening angles.",
+    },
+    {
+      question: "How do I get better hook ideas?",
+      answer: "Enter a clear topic, audience or platform. The more specific the brief, the easier it is for Gemini to produce useful hooks.",
+    },
+  ],
+  "ai-carousel-post-generator": [
+    {
+      question: "What does the AI Carousel Post Generator create?",
+      answer: "It creates a slide-by-slide carousel outline, caption suggestion and final call to action for your chosen topic and goal.",
+    },
+    {
+      question: "Does it design carousel images?",
+      answer: "No. It writes the structure and copy. You can design the actual carousel in your preferred design tool.",
+    },
+    {
+      question: "Can I use it for Instagram and LinkedIn?",
+      answer: "Yes. Choose a platform and edit the generated copy to match that platform's layout, tone and audience.",
+    },
+  ],
+  "ai-linkedin-post-generator": [
+    {
+      question: "What LinkedIn posts can it draft?",
+      answer: "It can draft short, story-style and professional posts from a topic, audience and tone.",
+    },
+    {
+      question: "Should I publish the post as-is?",
+      answer: "No. Add your real experience, check claims and adjust the voice before publishing on LinkedIn.",
+    },
+    {
+      question: "Can it write company-page posts?",
+      answer: "Yes, but verify product details, dates, policies and brand tone before using the copy publicly.",
+    },
+  ],
+  "ai-video-script-generator": [
+    {
+      question: "What does the AI Video Script Generator output?",
+      answer: "It creates a hook, short script, on-screen text ideas, a CTA and title ideas for short-form video content.",
+    },
+    {
+      question: "Does this tool edit my video?",
+      answer: "No. It creates a script only. You still record, edit and export video in your own video editor.",
+    },
+    {
+      question: "Can it guarantee views?",
+      answer: "No. The script can help structure an idea, but views depend on many factors outside the tool.",
+    },
+  ],
+  "ai-product-description-generator": [
+    {
+      question: "What product details should I enter?",
+      answer: "Enter the real product type, audience, features, benefits and any important limitations. Do not rely on the tool to invent specifications.",
+    },
+    {
+      question: "Can it create SEO product copy?",
+      answer: "It can draft a product description, feature bullets, SEO title and meta description from your supplied details.",
+    },
+    {
+      question: "Will it make up claims?",
+      answer: "The prompt tells Gemini not to invent specifications, discounts or awards, but you should still verify every claim before publishing.",
+    },
+  ],
+  "ai-ad-copy-generator": [
+    {
+      question: "What ad copy does it generate?",
+      answer: "It creates short headlines, primary text options, CTA lines and ad angles for your product, service or offer.",
+    },
+    {
+      question: "Does it guarantee conversions?",
+      answer: "No. It provides editable ad ideas only. Performance depends on offer, targeting, creative, budget and platform rules.",
+    },
+    {
+      question: "Should I check ad policy before using the copy?",
+      answer: "Yes. Review generated copy against the ad platform's policies and your own legal or compliance requirements.",
     },
   ],};
 

@@ -21,6 +21,12 @@ const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "blog-title-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
   "email-template-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
   "text-summarizer": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+  "ai-hook-generator": [{ href: "/resources/ai-hook-ideas", label: "AI hook ideas guide" }],
+  "ai-carousel-post-generator": [{ href: "/resources/carousel-post-ideas", label: "Carousel post ideas guide" }],
+  "ai-linkedin-post-generator": [{ href: "/resources/linkedin-post-ideas", label: "LinkedIn post ideas guide" }],
+  "ai-video-script-generator": [{ href: "/resources/short-video-script-ideas", label: "Short video script ideas guide" }],
+  "ai-product-description-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
+  "ai-ad-copy-generator": [{ href: "/resources/ai-hook-ideas", label: "AI hook ideas guide" }],
 };
 const socialMediaBridgeSlugs = new Set([
   "meme-generator",
@@ -28,8 +34,11 @@ const socialMediaBridgeSlugs = new Set([
   "hashtag-generator",
   "blog-title-generator",
   "resize-image",
-]);
-export async function generateMetadata({
+  "ai-hook-generator",
+  "ai-carousel-post-generator",
+  "ai-linkedin-post-generator",
+  "ai-video-script-generator",
+]);export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -246,13 +255,13 @@ export default async function ConvertPage({
             </h2>
             <p className="mt-3 leading-7 text-slate-300">
               Use free Gemini-powered tools for captions, hashtags, video
-              titles, bios and content ideas with three free generations per day.
+              titles, bios and content ideas with five free generations per day.
             </p>
             <Link
               href="/ai-tools"
               className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500"
             >
-              Explore Free AI Tools
+              Explore Free AI Creator Tools
             </Link>
           </div>
         </section>

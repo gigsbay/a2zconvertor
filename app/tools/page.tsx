@@ -12,14 +12,14 @@ const categories = Array.from(new Set(tools.map((tool) => tool.category)));
 export const metadata: Metadata = {
   title: "All Online Tools",
   description:
-    "Browse A2ZConvertor image, PDF, video, audio, text and social media tools.",
+    "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
   alternates: {
     canonical: absoluteUrl("/tools"),
   },
   openGraph: {
     title: "All Online Tools | A2ZConvertor",
     description:
-      "Browse A2ZConvertor image, PDF, video, audio, text and social media tools.",
+      "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
     url: absoluteUrl("/tools"),
   },
 };
