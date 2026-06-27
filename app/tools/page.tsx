@@ -10,6 +10,8 @@ import { absoluteUrl, SITE_URL } from "@/data/site";
 
 const categories = Array.from(new Set(tools.map((tool) => tool.category)));
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "All Online Tools",
   description:
@@ -42,13 +44,6 @@ export default function ToolsPage() {
           name: "All Online Tools",
           description: metadata.description,
           url: absoluteUrl("/tools"),
-          mainEntity: tools.map((tool) => ({
-            "@type": "SoftwareApplication",
-            name: tool.title,
-            applicationCategory: "WebApplication",
-            operatingSystem: "Any",
-            url: absoluteUrl(`/convert/${tool.slug}`),
-          })),
           breadcrumb: {
             "@type": "BreadcrumbList",
             itemListElement: [

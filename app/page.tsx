@@ -11,6 +11,8 @@ import SupportCTA from "@/components/SupportCTA";
 import JsonLd from "@/components/JsonLd";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "A2ZConvertor - Free Online File, PDF, Image and AI Tools",
   description:

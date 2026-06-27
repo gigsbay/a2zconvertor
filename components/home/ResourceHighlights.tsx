@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { resourcePages } from "@/data/resourcePages";
+import { getResourceSummary } from "@/data/resourceIndex";
 
 const highlightedSlugs = [
   "free-ai-social-media-tools",
@@ -11,8 +11,8 @@ const highlightedSlugs = [
 ];
 
 const highlightedResources = highlightedSlugs
-  .map((slug) => resourcePages.find((resource) => resource.slug === slug))
-  .filter((resource): resource is (typeof resourcePages)[number] => Boolean(resource));
+  .map((slug) => getResourceSummary(slug))
+  .filter((resource): resource is NonNullable<ReturnType<typeof getResourceSummary>> => Boolean(resource));
 
 export default function ResourceHighlights() {
   return (

@@ -6,6 +6,8 @@ import { absoluteUrl } from "@/data/site";
 import SupportCTA from "@/components/SupportCTA";
 import ToolVoting from "@/components/ToolVoting";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Request a Tool",
   description:

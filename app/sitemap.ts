@@ -3,76 +3,80 @@ import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
 import { categoryLandingPages } from "@/data/categoryLandingPages";
 import { comparisonPages } from "@/data/comparisonPages";
-import { resourcePages } from "@/data/resourcePages";
+import { resourceSummaries } from "@/data/resourceIndex";
+
+const LAST_MODIFIED = new Date("2026-06-28T00:00:00.000Z");
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl(),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: absoluteUrl("/tools"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: absoluteUrl("/about"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: absoluteUrl("/privacy-policy"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: absoluteUrl("/terms"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: absoluteUrl("/cookie-policy"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: absoluteUrl("/contact"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
       url: absoluteUrl("/request-tool"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    { url: absoluteUrl("/ai-tools"), lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/support"), lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: absoluteUrl("/affiliate-disclosure"), lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: absoluteUrl("/ai-tools"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.9 },
+    { url: absoluteUrl("/support"), lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.5 },
+    { url: absoluteUrl("/affiliate-disclosure"), lastModified: LAST_MODIFIED, changeFrequency: "yearly", priority: 0.3 },
     {
       url: absoluteUrl("/resources"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.75,
     },
     {
       url: absoluteUrl("/advertise"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: absoluteUrl("/partners"),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.4,
     },
@@ -80,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
     url: absoluteUrl(`/convert/${tool.slug}`),
-    lastModified: new Date(),
+    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -88,22 +92,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const categoryPages: MetadataRoute.Sitemap = categoryLandingPages.map(
     (category) => ({
       url: absoluteUrl(`/${category.slug}`),
-      lastModified: new Date(),
+      lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 0.85,
     })
   );
 
-  const resources: MetadataRoute.Sitemap = resourcePages.map((page) => ({
+  const resources: MetadataRoute.Sitemap = resourceSummaries.map((page) => ({
     url: absoluteUrl(`/resources/${page.slug}`),
-    lastModified: new Date(),
+    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
   const comparisons: MetadataRoute.Sitemap = comparisonPages.map((page) => ({
     url: absoluteUrl(`/compare/${page.slug}`),
-    lastModified: new Date(),
+    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority: 0.65,
   }));

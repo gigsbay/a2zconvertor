@@ -11,10 +11,12 @@ import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Free AI Creator Tools",
   description:
-    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy. Five free generations per day.",
+    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy. Ten free generations per day.",
   alternates: { canonical: absoluteUrl("/ai-tools") },
   openGraph: {
     title: "Free AI Creator Tools | A2ZConvertor",
@@ -61,13 +63,6 @@ export default function AIToolsPage() {
           description:
             "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
           url: absoluteUrl("/ai-tools"),
-          mainEntity: aiTools.map((tool) => ({
-            "@type": "SoftwareApplication",
-            name: tool.title,
-            applicationCategory: "WebApplication",
-            operatingSystem: "Any",
-            url: absoluteUrl(`/convert/${tool.slug}`),
-          })),
         },
         {
           "@context": "https://schema.org",

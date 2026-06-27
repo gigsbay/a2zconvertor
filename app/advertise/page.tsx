@@ -4,6 +4,8 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { absoluteUrl } from "@/data/site";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Advertise with A2ZConvertor",
   description:
