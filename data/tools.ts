@@ -448,7 +448,7 @@ export const tools = [
   name: "AI Hashtag Generator",
   title: "Free AI Hashtag Generator",
   description:
-    "Generate grouped hashtag ideas with 5 free AI generations per day and no account required.",
+    "Generate grouped hashtag ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Keywords",
   outputFormat: "hashtags",
@@ -460,7 +460,7 @@ export const tools = [
   name: "AI Blog Title Generator",
   title: "Free AI Blog Title Generator",
   description:
-    "Generate blog title ideas with 5 free AI generations per day and no account required.",
+    "Generate blog title ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "titles",
@@ -472,7 +472,7 @@ export const tools = [
   name: "AI Email Template Generator",
   title: "Free AI Email Template Generator",
   description:
-    "Draft editable emails with 5 free AI generations per day and no account required.",
+    "Draft editable emails with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Purpose",
   outputFormat: "email",
@@ -484,7 +484,7 @@ export const tools = [
   name: "AI Text Summarizer",
   title: "Free AI Text Summarizer",
   description:
-    "Summarize pasted text with 5 free AI generations per day and no account required.",
+    "Summarize pasted text with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Text",
   outputFormat: "summary",
@@ -544,7 +544,7 @@ export const tools = [
   name: "AI Instagram Caption Generator",
   title: "Free AI Instagram Caption Generator",
   description:
-    "Generate Instagram captions with 5 free AI generations per day and no account required.",
+    "Generate Instagram captions with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "captions",
@@ -556,7 +556,7 @@ export const tools = [
   name: "AI TikTok Hashtag Generator",
   title: "Free AI TikTok Hashtag Generator",
   description:
-    "Generate TikTok hashtag ideas with 5 free AI generations per day and no account required.",
+    "Generate TikTok hashtag ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "hashtags",
@@ -568,7 +568,7 @@ export const tools = [
   name: "AI YouTube Title Generator",
   title: "Free AI YouTube Title Generator",
   description:
-    "Generate YouTube title ideas with 5 free AI generations per day and no account required.",
+    "Generate YouTube title ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Video Topic",
   outputFormat: "titles",
@@ -580,7 +580,7 @@ export const tools = [
   name: "AI Social Media Bio Generator",
   title: "Free AI Social Media Bio Generator",
   description:
-    "Generate social media bios with 5 free AI generations per day and no account required.",
+    "Generate social media bios with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Brand Details",
   outputFormat: "bios",
@@ -592,7 +592,7 @@ export const tools = [
   name: "AI Content Ideas Generator",
   title: "Free AI Content Ideas Generator",
   description:
-    "Generate creator content ideas with 5 free AI generations per day and no account required.",
+    "Generate creator content ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Niche",
   outputFormat: "ideas",
@@ -604,7 +604,7 @@ export const tools = [
   name: "AI Hook Generator",
   title: "Free AI Hook Generator",
   description:
-    "Generate post, video and article hooks with 5 free AI generations per day and no account required.",
+    "Generate post, video and article hooks with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "hooks",
@@ -616,7 +616,7 @@ export const tools = [
   name: "AI Carousel Post Generator",
   title: "Free AI Carousel Post Generator",
   description:
-    "Generate carousel post outlines with 5 free AI generations per day and no account required.",
+    "Generate carousel post outlines with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "carousel",
@@ -628,7 +628,7 @@ export const tools = [
   name: "AI LinkedIn Post Generator",
   title: "Free AI LinkedIn Post Generator",
   description:
-    "Generate LinkedIn post drafts with 5 free AI generations per day and no account required.",
+    "Generate LinkedIn post drafts with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "posts",
@@ -640,7 +640,7 @@ export const tools = [
   name: "AI Video Script Generator",
   title: "Free AI Video Script Generator",
   description:
-    "Generate short-form video scripts with 5 free AI generations per day and no account required.",
+    "Generate short-form video scripts with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Topic",
   outputFormat: "script",
@@ -652,7 +652,7 @@ export const tools = [
   name: "AI Product Description Generator",
   title: "Free AI Product Description Generator",
   description:
-    "Generate product descriptions with 5 free AI generations per day and no account required.",
+    "Generate product descriptions with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Product Details",
   outputFormat: "description",
@@ -664,7 +664,7 @@ export const tools = [
   name: "AI Ad Copy Generator",
   title: "Free AI Ad Copy Generator",
   description:
-    "Generate ad copy ideas with 5 free AI generations per day and no account required.",
+    "Generate ad copy ideas with 10 free AI generations per day and no account required.",
   inputFormat: "text",
   inputLabel: "Offer",
   outputFormat: "ad copy",

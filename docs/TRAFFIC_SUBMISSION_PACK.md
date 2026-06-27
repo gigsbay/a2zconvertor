@@ -1,12 +1,12 @@
 # Traffic Submission Pack
 
-Core positioning: A2ZConvertor is a free browser-based toolkit with file converters, PDF tools, image tools and free AI Creator Tools with 5 daily Gemini-powered generations.
+Core positioning: A2ZConvertor is a free browser-based toolkit with file converters, PDF tools, image tools and free AI Creator Tools with 10 daily Gemini-powered generations.
 
 ## Product Hunt
 
 - Short title: A2ZConvertor - Free Browser Tools and AI Creator Tools
 - One-line description: Free browser-based file converters, PDF tools, image tools and Gemini-powered creator tools.
-- Longer description: A2ZConvertor helps people complete everyday file and creator tasks without creating an account. It includes browser-based PDF tools, image converters, audio/video utilities and free AI Creator Tools for hooks, captions, hashtags, scripts and writing drafts with 5 daily Gemini-powered generations.
+- Longer description: A2ZConvertor helps people complete everyday file and creator tasks without creating an account. It includes browser-based PDF tools, image converters, audio/video utilities and free AI Creator Tools for hooks, captions, hashtags, scripts and writing drafts with 10 daily Gemini-powered generations.
 - Tags/categories: Productivity, AI, Creator Tools, PDF Tools, Image Tools, Utilities
 - Launch angle: A practical free toolkit for students, creators, small businesses and anyone who needs quick browser-based tools.
 - URL to submit: https://www.producthunt.com/posts/new
@@ -26,7 +26,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 
 - Short title: A2ZConvertor AI Creator Tools
 - One-line description: Free Gemini-powered creator tools for hooks, captions, hashtags, scripts and posts.
-- Longer description: A2ZConvertor includes free AI Creator Tools with 5 daily Gemini-powered generations for captions, hashtags, YouTube titles, short video scripts, ad copy, email templates and content ideas.
+- Longer description: A2ZConvertor includes free AI Creator Tools with 10 daily Gemini-powered generations for captions, hashtags, YouTube titles, short video scripts, ad copy, email templates and content ideas.
 - Tags/categories: AI Writing, AI Social Media, AI Productivity, Content Creation
 - Launch angle: Free daily AI tools bundled with practical browser utilities.
 - URL to submit: https://www.toolify.ai/submit
@@ -55,7 +55,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 ## Indie Hackers
 
 - Short title: I launched A2ZConvertor: free browser tools plus AI creator tools
-- One-line description: A free toolkit for file conversion, PDF workflows, image utilities and 5 daily Gemini-powered creator generations.
+- One-line description: A free toolkit for file conversion, PDF workflows, image utilities and 10 daily Gemini-powered creator generations.
 - Longer description: A2ZConvertor started as a practical converter site and now includes AI Creator Tools for hooks, captions, hashtags, scripts and writing drafts. The goal is to help creators, students and small businesses finish small productivity tasks without an account.
 - Tags/categories: Launch, SEO, AI, Productivity, Bootstrapping
 - Launch angle: Building a free SEO-first utility site toward sustainable affiliate/newsletter monetization.
@@ -95,7 +95,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 ## Reddit Launch Post
 
 - Short title: I built a free browser toolkit for PDFs, images and AI creator drafts
-- One-line description: A2ZConvertor has file converters, PDF tools, image tools and 5 free daily Gemini-powered creator generations.
+- One-line description: A2ZConvertor has file converters, PDF tools, image tools and 10 free daily Gemini-powered creator generations.
 - Longer description: I built A2ZConvertor to make quick file and creator tasks less annoying: merge PDFs, compress images, convert formats, generate hooks, write captions, create video scripts and more. It is free to use, no account required, and many file tools run directly in the browser.
 - Tags/categories: r/SideProject, r/ProductivityApps, r/Entrepreneur, r/InternetIsBeautiful where allowed
 - Launch angle: Ask for UX feedback, not votes.
@@ -106,7 +106,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 
 - Short title: Launching A2ZConvertor
 - One-line description: Free browser-based file tools plus AI Creator Tools for everyday productivity.
-- Longer description: I launched A2ZConvertor to help creators, students and small businesses finish small tasks quickly: PDF tools, image converters, audio/video utilities and Gemini-powered AI Creator Tools with 5 free generations per day. No account required.
+- Longer description: I launched A2ZConvertor to help creators, students and small businesses finish small tasks quickly: PDF tools, image converters, audio/video utilities and Gemini-powered AI Creator Tools with 10 free generations per day. No account required.
 - Tags/categories: #Productivity #AITools #CreatorTools #PDFTools #BuildInPublic
 - Launch angle: Useful free tool for practical workflows.
 - URL to submit: https://www.linkedin.com/feed/
@@ -116,7 +116,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 
 - Short title: I launched A2ZConvertor
 - One-line description: Free browser-based converters, PDF tools, image tools and AI Creator Tools.
-- Longer description: I launched A2ZConvertor: a free toolkit for file converters, PDF tools, image tools and Gemini-powered creator drafts. 5 free AI generations/day, no account required. Try it: https://a2zconvertor.co.uk/ai-tools
+- Longer description: I launched A2ZConvertor: a free toolkit for file converters, PDF tools, image tools and Gemini-powered creator drafts. 10 free AI generations/day, no account required. Try it: https://a2zconvertor.co.uk/ai-tools
 - Tags/categories: #BuildInPublic #AITools #Productivity #CreatorTools
 - Launch angle: Simple practical launch thread with 4 screenshots.
 - URL to submit: https://x.com/compose/post

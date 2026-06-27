@@ -107,6 +107,35 @@ export default function PrivacyPolicyPage() {
               </p>
             </PolicySection>
 
+
+            <PolicySection title="AI Creator Tools and Gemini">
+              <p>
+                When you use AI Creator Tools, your prompt and selected inputs
+                may be sent through A2ZConvertor&apos;s server-side integration to
+                Google Gemini to generate the requested output. Do not submit
+                confidential, sensitive or personal information that you are not
+                comfortable sending for AI processing.
+              </p>
+            </PolicySection>
+
+            <PolicySection title="Newsletter forms and Formspree">
+              <p>
+                If newsletter forms are enabled, A2ZConvertor may use Formspree
+                or a similar form provider to receive your email address and
+                subscription request. Newsletter forms are optional and should
+                not be used for sensitive support requests.
+              </p>
+            </PolicySection>
+
+            <PolicySection title="Affiliate and support links">
+              <p>
+                Some pages include clearly labelled affiliate links or support
+                links such as Buy Me a Coffee. If you click an external link,
+                the third-party site may process data under its own privacy
+                terms. Affiliate links may include tracking parameters used to
+                attribute referrals.
+              </p>
+            </PolicySection>
             <PolicySection title="GDPR-style rights">
               <p>
                 Depending on where you live and the data involved, you may have

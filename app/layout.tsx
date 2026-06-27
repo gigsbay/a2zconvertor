@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import AdSenseScript from "@/components/AdSenseScript";
 import CookiePopup from "@/components/CookiePopup";
 import ProductionAnalytics from "@/components/ProductionAnalytics";
 import { SITE_URL } from "@/data/site";
@@ -87,6 +88,7 @@ export default function RootLayout({
         {children}
         <CookiePopup />
         <ProductionAnalytics />
+        <AdSenseScript />
       </body>
     </html>
   );

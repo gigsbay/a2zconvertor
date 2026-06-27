@@ -82,6 +82,23 @@ export default function ContactPage() {
               ))}
             </section>
 
+
+            <section className="rounded-2xl border border-white/10 bg-slate-900/60 p-6">
+              <h2 className="mb-3 text-2xl font-bold text-white">
+                Response expectation
+              </h2>
+              <p className="leading-7">
+                We aim to review genuine support, privacy, partnership and
+                project messages within a few business days. For new feature
+                ideas, use the Request a Tool page so the request is easier to
+                track.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a href="mailto:support@a2zconvertor.co.uk" className="rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white hover:bg-blue-500">Email support</a>
+                <a href="/request-tool" className="rounded-xl border border-white/10 px-4 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Request a tool</a>
+                <a href="/support" className="rounded-xl border border-white/10 px-4 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Support the project</a>
+              </div>
+            </section>
             <section className="rounded-2xl border border-white/10 bg-slate-900/60 p-6">
               <h2 className="mb-3 text-2xl font-bold text-white">
                 Browser-based tools

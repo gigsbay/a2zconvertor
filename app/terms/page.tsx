@@ -74,6 +74,32 @@ export default function TermsPage() {
               </p>
             </TermsSection>
 
+
+            <TermsSection title="AI output limitations">
+              <p>
+                AI Creator Tools provide editable drafts and ideas. AI output
+                may be incomplete, inaccurate, repetitive or unsuitable for your
+                exact use. You are responsible for reviewing, fact-checking and
+                editing generated content before publishing or relying on it.
+              </p>
+            </TermsSection>
+
+            <TermsSection title="No guaranteed outcomes">
+              <p>
+                A2ZConvertor does not guarantee followers, reach, rankings,
+                sales, conversions, engagement, legal compliance, ad approval or
+                any other outcome from AI tools, file tools or resource guides.
+              </p>
+            </TermsSection>
+
+            <TermsSection title="Affiliate and external links">
+              <p>
+                Some pages include clearly labelled affiliate recommendations or
+                links to third-party websites. We may earn a commission at no
+                extra cost to you if you buy through affiliate links. External
+                sites are controlled by their own operators and terms.
+              </p>
+            </TermsSection>
             <TermsSection title="No warranty">
               <p>
                 A2ZConvertor is provided as-is and as available. We aim to keep

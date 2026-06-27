@@ -643,7 +643,7 @@ export const toolFaqs: Record<string, ToolFaq[]> = {
     {
       question: "How does Hashtag Generator create ideas?",
       answer:
-        "Gemini creates grouped hashtag ideas from your topic and category. You receive five free generations per day.",
+        "Gemini creates grouped hashtag ideas from your topic and category. You get 10 free AI generations per day.",
     },
     {
       question: "How many hashtags does it generate?",

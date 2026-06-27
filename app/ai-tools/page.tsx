@@ -95,7 +95,7 @@ export default function AIToolsPage() {
       <div className="mx-auto max-w-6xl">
         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI {"\u00b7"} {DEFAULT_FREE_DAILY_LIMIT}/day</span>
         <h1 className="mt-5 text-5xl font-black md:text-6xl">Free AI Creator Tools</h1>
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Create hooks, captions, hashtags, titles, emails, summaries, bios, product copy and content ideas with Gemini. You receive {DEFAULT_FREE_DAILY_LIMIT} free generations per day, with no account or API key required.</p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Create hooks, captions, hashtags, titles, emails, summaries, bios, product copy and content ideas with Gemini. You get {DEFAULT_FREE_DAILY_LIMIT} free AI generations per day, with no account or API key required.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="#tools" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Browse AI tools</Link>
           <Link href="/support" className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Support free AI</Link>

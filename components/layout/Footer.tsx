@@ -74,6 +74,11 @@ export default function Footer() {
           <h4 className="mb-4 font-bold">Company</h4>
           <ul className="space-y-2 text-slate-400">
             <li>
+              <Link href="/about" className="transition hover:text-white">
+                About
+              </Link>
+            </li>
+            <li>
               <Link href="/ai-tools" className="transition hover:text-white">
                 AI Creator Tools
               </Link>
@@ -91,6 +96,11 @@ export default function Footer() {
             <li>
               <Link href="/terms" className="transition hover:text-white">
                 Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link href="/cookie-policy" className="transition hover:text-white">
+                Cookie Policy
               </Link>
             </li>
             <li>
