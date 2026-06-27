@@ -11,9 +11,6 @@ import { tools } from "@/data/tools";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import { getAffiliatePlacementsForComparison } from "@/data/monetization";
 
-export const dynamic = "force-static";
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return comparisonPages.map((page) => ({ slug: page.slug }));
 }

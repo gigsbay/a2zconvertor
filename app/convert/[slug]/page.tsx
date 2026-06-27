@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ToolRenderer from "@/components/converters/ToolRenderer";
-import { getToolBySlug, tools } from "@/data/tools";
+import { getToolBySlug } from "@/data/tools";
 import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
 import { absoluteUrl, SITE_URL } from "@/data/site";
@@ -29,12 +29,6 @@ const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "ai-product-description-generator": [{ href: "/resources/free-ai-writing-tools", label: "Free AI writing tools guide" }],
   "ai-ad-copy-generator": [{ href: "/resources/ai-hook-ideas", label: "AI hook ideas guide" }],
 };
-export const dynamic = "force-static";
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return tools.map((tool) => ({ slug: tool.slug }));
-}
 
 const socialMediaBridgeSlugs = new Set([
   "meme-generator",

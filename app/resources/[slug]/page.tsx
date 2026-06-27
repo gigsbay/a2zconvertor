@@ -10,16 +10,12 @@ import SupportCTA from "@/components/SupportCTA";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import { getMoneyPageContent } from "@/data/moneyPageContent";
 import { getAffiliatePlacementsForResource } from "@/data/monetization";
-import { getResourcePage } from "@/data/resourcePages";
-import { resourceSummaries } from "@/data/resourceIndex";
+import { getResourcePage, resourcePages } from "@/data/resourcePages";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 import { tools } from "@/data/tools";
 
-export const dynamic = "force-static";
-export const dynamicParams = false;
-
 export function generateStaticParams() {
-  return resourceSummaries.map((resource) => ({ slug: resource.slug }));
+  return resourcePages.map((resource) => ({ slug: resource.slug }));
 }
 
 export async function generateMetadata({
