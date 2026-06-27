@@ -60,12 +60,12 @@ const pdfelement: AffiliatePlacement = {
   title: "Wondershare PDFelement",
   description:
     "Need advanced PDF editing, conversion, signing or protection? PDFelement is a desktop PDF editor for users who need more than basic browser tools.",
-  primaryHref: "https://www.jdoqocy.com/click-101806287-14507427",
+  primaryHref: "https://www.kqzyfj.com/click-101806287-10942755",
   primaryCta: "Try PDFelement",
-  secondaryHref: "https://www.anrdoezrs.net/click-101806287-15904302",
+  secondaryHref: "https://www.anrdoezrs.net/click-101806287-17234740",
   secondaryCta: "View pricing",
   context:
-    "Use A2ZConvertor for quick browser-based PDF tools. For advanced PDF editing, signing, conversion or larger desktop workflows, try PDFelement.",
+    "Use A2ZConvertor for quick browser-based PDF tasks. For advanced desktop PDF editing, conversion, signing and protection, PDFelement may be useful.",
 };
 
 export const pdfPasswordRemover: AffiliatePlacement = {
@@ -74,7 +74,7 @@ export const pdfPasswordRemover: AffiliatePlacement = {
   title: "Wondershare PDF Password Remover",
   description:
     "Need help with protected PDF workflows? Use a dedicated desktop tool when browser-based PDF tools are not enough.",
-  primaryHref: "https://www.anrdoezrs.net/click-101806287-13467294",
+  primaryHref: "https://www.tkqlhce.com/click-101806287-13467294",
   primaryCta: "Try PDF Password Remover",
   context:
     "Only use PDF password tools for documents you own or have permission to access.",
@@ -88,12 +88,12 @@ const filmora: AffiliatePlacement = {
   title: "Wondershare Filmora",
   description:
     "Create, edit and polish videos for YouTube, TikTok, Reels and social content with Filmora.",
-  primaryHref: "https://www.anrdoezrs.net/click-101806287-17060329",
+  primaryHref: "https://www.jdoqocy.com/click-101806287-13985389",
   primaryCta: "Try Filmora",
-  secondaryHref: "https://www.anrdoezrs.net/click-101806287-13985389",
-  secondaryCta: "View features",
+  secondaryHref: "https://www.tkqlhce.com/click-101806287-17014546",
+  secondaryCta: "Try image-to-video",
   context:
-    "After generating your script, hook or title, use Filmora to edit and publish your video. Results still depend on your creative work and audience fit.",
+    "After generating your hook, script or title, use Filmora to edit and polish your video content. Results still depend on your creative work and audience fit.",
 };
 
 const uniconverter: AffiliatePlacement = {
@@ -102,10 +102,10 @@ const uniconverter: AffiliatePlacement = {
   title: "Wondershare UniConverter",
   description:
     "Need desktop video, audio or batch file conversion? UniConverter is useful when browser-based tools are not enough.",
-  primaryHref: "https://www.anrdoezrs.net/click-101806287-15022793",
+  primaryHref: "https://www.anrdoezrs.net/click-101806287-14091623",
   primaryCta: "Try UniConverter",
   context:
-    "Use A2ZConvertor for quick browser-based conversions. For larger files, batch workflows or desktop video/audio conversion, UniConverter may be useful.",
+    "Use A2ZConvertor for quick online conversions. For desktop batch conversion and larger video/audio workflows, UniConverter may be useful.",
 };
 
 const pdfToolSlugs = new Set([
@@ -161,9 +161,9 @@ export function getAffiliatePlacementsForCategory(slug: string) {
 
 export function getAffiliatePlacementsForResource(slug: string) {
   return uniquePlacements([
-    ["best-free-pdf-tools", "best-pdf-compressor-tools"].includes(slug) ? pdfelement : null,
-    slug === "browser-based-file-conversion" ? uniconverter : null,
-    ["short-video-script-ideas", "youtube-title-ideas", "free-ai-social-media-tools", "ai-hook-ideas", "carousel-post-ideas"].includes(slug) ? filmora : null,
+    ["best-free-pdf-tools", "best-pdf-compressor-tools", "how-to-compress-pdf-for-email", "how-to-merge-pdf-files-online", "how-to-convert-image-to-pdf", "best-free-online-file-converters"].includes(slug) ? pdfelement : null,
+    ["browser-based-file-conversion", "best-free-online-file-converters"].includes(slug) ? uniconverter : null,
+    ["short-video-script-ideas", "youtube-title-ideas", "free-ai-social-media-tools", "ai-hook-ideas", "carousel-post-ideas", "how-to-write-better-ai-prompts-for-social-media", "instagram-content-ideas-for-small-business", "tiktok-content-ideas-for-beginners", "youtube-shorts-ideas-for-creators", "ai-ad-copy-examples"].includes(slug) ? filmora : null,
   ]);
 }
 
@@ -193,10 +193,10 @@ function uniquePlacements(placements: Array<AffiliatePlacement | null>) {
 }
 
 export const approvedWondershareAffiliateUrls = {
-  pdfelementHomepage: "https://www.jdoqocy.com/click-101806287-14507427",
-  pdfelementPricing: "https://www.anrdoezrs.net/click-101806287-15904302",
-  pdfPasswordRemover: "https://www.anrdoezrs.net/click-101806287-13467294",
-  filmoraHomepage: "https://www.anrdoezrs.net/click-101806287-17060329",
-  filmoraFeatures: "https://www.anrdoezrs.net/click-101806287-13985389",
-  uniconverter: "https://www.anrdoezrs.net/click-101806287-15022793",
+  pdfelement: "https://www.kqzyfj.com/click-101806287-10942755",
+  protectPdfs: "https://www.anrdoezrs.net/click-101806287-17234740",
+  pdfPasswordRemover: "https://www.tkqlhce.com/click-101806287-13467294",
+  filmoraPricing: "https://www.jdoqocy.com/click-101806287-13985389",
+  filmoraImageToVideo: "https://www.tkqlhce.com/click-101806287-17014546",
+  uniconverterPricing: "https://www.anrdoezrs.net/click-101806287-14091623",
 };

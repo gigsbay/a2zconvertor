@@ -37,7 +37,7 @@ Focus URLs:
 | 22 | LinkedIn post ideas for busy founders | /convert/ai-linkedin-post-generator | Draft a post |
 | 23 | Carousel post ideas for Instagram | /convert/ai-carousel-post-generator | Plan carousel copy |
 | 24 | Turn one topic into content ideas | /convert/content-ideas-generator | Generate ideas |
-| 25 | Free AI tools with daily allowance | /ai-tools | Try 5 free generations |
+| 25 | Free AI tools with 10 daily generations | /ai-tools | Try 10 free generations |
 | 26 | PDF compressor trade-offs explained | /resources/best-pdf-compressor-tools | Compare options |
 | 27 | Browser-based file conversion privacy | /resources/browser-based-file-conversion | Read privacy guide |
 | 28 | Free tools for students and creators | /resources/best-tools-for-students | Explore student tools |
@@ -52,7 +52,7 @@ Focus URLs:
 | 2 | Generate 10 video titles in seconds | /convert/youtube-title-generator | Create titles |
 | 3 | How to write a short video script faster | /convert/ai-video-script-generator | Generate a script |
 | 4 | Free hashtag generator walkthrough | /convert/hashtag-generator | Copy hashtags |
-| 5 | 5 free AI creator tools in one site | /ai-tools | Browse tools |
+| 5 | AI creator tools with 10 daily generations | /ai-tools | Browse tools |
 | 6 | Merge PDFs without installing software | /convert/pdf-merge | Merge a PDF |
 | 7 | Compress a PDF in your browser | /convert/compress-pdf | Compress PDF |
 | 8 | Remove image metadata before sharing | /convert/remove-image-metadata | Clean image metadata |

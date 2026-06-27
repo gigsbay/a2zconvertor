@@ -30,16 +30,15 @@ export default function Hero() {
     <section className="px-6 py-28 text-center">
       <div className="mx-auto max-w-5xl">
         <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
-          {toolCount}+ free tools for everyday file tasks
+          {toolCount}+ free tools plus 10/day AI Creator Tools
         </div>
 
         <h1 className="mb-6 text-5xl font-black tracking-tight md:text-7xl">
-          Convert, Compress & Edit Files Online
+          Free File Tools and AI Creator Tools
         </h1>
 
         <p className="mx-auto mb-10 max-w-3xl text-lg text-slate-400 md:text-xl">
-          A fast, free and secure online toolkit for images, PDFs, videos,
-          audio files and documents.
+          A browser-first toolkit for PDFs, images, video/audio utilities and Gemini-powered creator drafts with 10 free AI generations per day.
         </p>
 
         <div className="relative mx-auto max-w-3xl">
@@ -68,6 +67,12 @@ export default function Hero() {
               ))}
             </div>
           )}
+        </div>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/ai-tools" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Try AI Creator Tools</Link>
+          <Link href="/tools" className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Browse all tools</Link>
+          <Link href="/pdf-tools" className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Open PDF tools</Link>
         </div>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-slate-400">

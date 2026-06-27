@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import MoneyPageSections from "@/components/MoneyPageSections";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import Navbar from "@/components/layout/Navbar";
 import SupportCTA from "@/components/SupportCTA";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
@@ -129,7 +130,7 @@ export default async function ResourcePage({
           </p>
           {relevantTools[0] && (
             <Link href={`/convert/${relevantTools[0].slug}`} className="mt-7 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">
-              Open {relevantTools[0].name}
+              Try the free tool: {relevantTools[0].name}
             </Link>
           )}
 
@@ -201,6 +202,7 @@ export default async function ResourcePage({
           </section>
         </div>
       </article>
+      <NewsletterSignup />
       {affiliatePlacements.length > 0 && (
         <section className="px-6 pb-16">
           <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">

@@ -18,7 +18,7 @@ export const resourcePages: ResourcePage[] = [
   makeResource("how-to-remove-photo-metadata", "How to Remove Photo Metadata in Your Browser", "Remove common EXIF details from photos with a browser canvas re-export.", "Photos can contain camera, date and location metadata that may not be needed when sharing.", ["remove-image-metadata", "image-color-picker", "compress-image"], ["Choose PNG or JPG output", "Understand that re-export can change size", "Check the cleaned download"]),
   makeResource("browser-based-file-conversion", "Browser-Based File Conversion: Privacy and Limits", "Understand how client-side file tools work, their privacy benefits and their performance limits.", "Modern browsers can decode, edit and rebuild many file formats without sending the file to an application server.", ["jpg-to-png", "pdf-merge", "audio-converter", "video-thumbnail-extractor"], ["Files can remain on-device", "Large files still use device memory", "Browser codec support varies"]),
   makeAIResource("free-ai-social-media-tools", "Best Free AI Social Media Tools for Creators", "Compare free AI tools for captions, hashtags, YouTube titles, bios and practical content planning.", "Free AI social media tools can remove the blank-page problem, but the strongest results still come from clear context and careful editing.", ["instagram-caption-generator", "tiktok-hashtag-generator", "youtube-title-generator", "social-media-bio-generator", "content-ideas-generator", "ai-hook-generator", "ai-carousel-post-generator", "ai-video-script-generator"], ["Match each tool to a specific publishing task", "Give Gemini a clear niche, audience and tone", "Treat output as an editable starting point", "Avoid claims that guarantee reach or virality"], [
-    ["Are these social media AI tools free?", "Yes. The current allowance is five successful Gemini generations per day."],
+    ["Are these social media AI tools free?", "Yes. The current allowance is 10 successful Gemini generations per day."],
     ["Will generated content increase my followers?", "No tool can guarantee followers, reach or engagement. Use the ideas to improve your workflow, then judge performance from real audience response."],
     ["Do I need an account or API key?", "No. The public tools use A2ZConvertor's limited owner-funded Gemini connection."],
   ]),
@@ -68,8 +68,69 @@ export const resourcePages: ResourcePage[] = [
     ["Can I use the summarizer instead of reading the source?", "No. Use it as a review aid and confirm important meaning in the original."],
     ["Is my text used for AI generation?", "Yes. Submitted text is sent through A2ZConvertor's backend to Gemini for the requested generation."],
   ]),
+  makeResource("how-to-write-better-ai-prompts-for-social-media", "How to Write Better AI Prompts for Social Media", "Learn practical prompt patterns for better AI captions, hooks, content ideas and social media drafts.", "Better AI results start with clear context: platform, audience, topic, tone, constraints and the action you want the reader to take.", ["ai-hook-generator", "instagram-caption-generator", "content-ideas-generator", "ai-carousel-post-generator"], ["Name the platform and audience", "Add tone and constraints", "Ask for multiple editable options", "Remove fake urgency or unsupported claims"]),
+  makeResource("instagram-content-ideas-for-small-business", "Instagram Content Ideas for Small Business", "Plan practical Instagram posts for local businesses, service providers, shops and solo founders.", "Small-business Instagram content works best when it answers real customer questions, shows proof, explains offers and gives people a reason to trust the business.", ["content-ideas-generator", "instagram-caption-generator", "hashtag-generator", "meme-generator"], ["Educational tips", "Behind-the-scenes proof", "Customer questions", "Offer and product explainers"]),
+  makeResource("tiktok-content-ideas-for-beginners", "TikTok Content Ideas for Beginners", "Find beginner-friendly TikTok content ideas that focus on clarity, usefulness and realistic execution.", "Beginner TikTok content does not need complicated production. Start with one useful idea, a clear hook and a simple format you can repeat.", ["content-ideas-generator", "tiktok-hashtag-generator", "ai-hook-generator", "ai-video-script-generator"], ["Teach one thing", "Show a quick process", "Answer a beginner question", "Use accurate niche hashtags"]),
+  makeResource("youtube-shorts-ideas-for-creators", "YouTube Shorts Ideas for Creators", "Plan YouTube Shorts ideas with hooks, titles and short scripts that stay accurate.", "Shorts work best when one idea is easy to understand quickly. Pair a clear title with a script that delivers what the hook promises.", ["ai-video-script-generator", "youtube-title-generator", "ai-hook-generator", "video-thumbnail-extractor"], ["One clear promise", "Short script outline", "Accurate title", "Useful next step"]),
+  makeResource("ai-ad-copy-examples", "AI Ad Copy Examples and Safer Prompt Ideas", "Use AI ad copy examples for social ads, landing pages and product offers without making fake claims.", "Ad copy should be specific, truthful and easy to verify. AI can help generate angles, but you remain responsible for claims, policies and accuracy.", ["ai-ad-copy-generator", "ai-hook-generator", "ai-product-description-generator", "email-template-generator"], ["Problem-solution angle", "Benefit-led headline", "Objection handling", "Clear call to action"]),
+  makeResource("product-description-examples", "Product Description Examples for Better Online Listings", "Learn simple product description patterns and use AI to draft editable product copy.", "Good product descriptions connect features to real buyer needs without inventing specifications, guarantees or stock claims.", ["ai-product-description-generator", "ai-ad-copy-generator", "text-summarizer", "compress-image"], ["Start with buyer need", "List factual features", "Explain practical benefits", "Add accurate care or usage details"]),
+  makeResource("how-to-compress-pdf-for-email", "How to Compress a PDF for Email", "Reduce PDF file size for email attachments while understanding quality and text trade-offs.", "Email attachment limits vary, so the safest workflow is to keep an original copy, compress a duplicate and check the result before sending.", ["compress-pdf", "pdf-split", "delete-pdf-pages", "pdf-to-image"], ["Check current file size", "Choose a lower quality only when needed", "Remove unnecessary pages", "Open the compressed result"]),
+  makeResource("how-to-merge-pdf-files-online", "How to Merge PDF Files Online", "Combine multiple PDFs into one document with a browser-based workflow.", "Merging PDFs is useful for applications, invoices, scanned pages and study materials when several files need to become one shareable document.", ["pdf-merge", "organize-pdf", "add-page-numbers-pdf", "compress-pdf"], ["Upload files in order", "Recheck sequence", "Download merged PDF", "Compress only if needed"]),
+  makeResource("how-to-convert-image-to-pdf", "How to Convert Image to PDF", "Turn JPG, PNG or WEBP images into a PDF for sharing, printing or uploading.", "Image-to-PDF conversion is useful when a form, portal or recipient expects a document rather than separate image files.", ["image-to-pdf", "compress-image", "resize-image", "pdf-merge"], ["Choose clear source images", "Resize if needed", "Convert to PDF", "Open the downloaded PDF"]),
+  makeResource("how-to-convert-webp-to-jpg", "How to Convert WEBP to JPG", "Convert WEBP images to JPG when a website, app or document workflow does not accept WEBP.", "WEBP is efficient, but JPG is still widely accepted by older forms, editors and upload systems.", ["webp-to-jpg", "webp-to-png", "compress-image", "resize-image"], ["Upload WEBP", "Convert to JPG", "Check transparency loss", "Compress or resize if needed"]),
+  makeResource("how-to-remove-image-metadata", "How to Remove Image Metadata Online", "Remove common EXIF and embedded image metadata with a browser canvas re-export.", "Images can contain camera, date, device and location details. Re-exporting through canvas removes most embedded metadata while creating a new file.", ["remove-image-metadata", "image-color-picker", "compress-image", "resize-image"], ["Upload image", "Choose output format", "Download cleaned copy", "Check quality and file size"]),
+  makeResource("best-free-online-file-converters", "Best Free Online File Converters for Everyday Workflows", "Compare free browser-based converters for images, PDFs, audio, video and creator workflows.", "The best free converter is the one that clearly supports your input, labels the real output and does not pretend to do server-heavy work in the browser.", ["jpg-to-png", "webp-to-jpg", "image-to-pdf", "audio-converter", "video-thumbnail-extractor", "pdf-merge"], ["Check input support", "Confirm output format", "Review privacy model", "Test the downloaded result"]),
 ];
 
+const enhancedResourceSlugs = new Set([
+  "best-free-pdf-tools", "best-pdf-compressor-tools", "free-ai-social-media-tools",
+  "free-ai-writing-tools", "ai-hook-ideas", "short-video-script-ideas",
+  "browser-based-file-conversion", "how-to-write-better-ai-prompts-for-social-media",
+  "instagram-content-ideas-for-small-business", "tiktok-content-ideas-for-beginners",
+  "youtube-shorts-ideas-for-creators", "ai-ad-copy-examples",
+  "product-description-examples", "how-to-compress-pdf-for-email",
+  "how-to-merge-pdf-files-online", "how-to-convert-image-to-pdf",
+  "how-to-convert-webp-to-jpg", "how-to-remove-image-metadata",
+  "best-free-online-file-converters",
+]);
+
+for (const page of resourcePages) {
+  if (!enhancedResourceSlugs.has(page.slug)) continue;
+  page.sections = [
+    ...page.sections,
+    {
+      heading: "Helpful examples",
+      body:
+        "Use the guide as a starting point, then adapt the workflow to your real file, audience, product or publishing context.",
+      bullets: ["Check the input before processing", "Use the linked A2ZConvertor tool", "Review the downloaded or generated result"],
+    },
+    {
+      heading: "When free browser tools are enough",
+      body:
+        "Free browser tools are usually enough for quick, single-file tasks, simple AI drafts, common format changes and everyday PDF or image workflows where advanced editing is not required.",
+      bullets: ["One-off task", "Supported format", "No advanced editing needed"],
+    },
+    {
+      heading: "When desktop software may be better",
+      body:
+        "Desktop software may be better for very large files, batch conversion, OCR, complex layouts, protected documents, professional editing, compliance workflows or formats that browsers cannot export reliably.",
+      bullets: ["Batch workflows", "Advanced editing", "Professional review"],
+    },
+  ];
+  page.faqs = [
+    {
+      question: "Can I use the free tool right away?",
+      answer:
+        "Yes. Use the linked A2ZConvertor tool near the top of this guide. No account is required for the free browser tools.",
+    },
+    {
+      question: "Should I keep my original file or draft?",
+      answer:
+        "Yes. Keep the original until you have checked the downloaded file or edited AI draft and confirmed it fits your needs.",
+    },
+    ...page.faqs,
+  ].slice(0, 6);
+}
 function makeAIResource(
   slug: string,
   title: string,
@@ -84,7 +145,7 @@ function makeAIResource(
     sections: [
       { heading: "Start with a clear brief", body: "Useful AI output begins with specific context. State the real topic, intended audience, platform and tone instead of relying on one vague keyword.", bullets: bullets.slice(0, 2) },
       { heading: "Turn suggestions into publishable work", body: "Read every result, remove repetition and rewrite anything that does not sound like you. Check names, facts, promises and calls to action before publishing.", bullets: bullets.slice(2) },
-      { heading: "Use the free allowance wisely", body: "A2ZConvertor provides five successful Gemini generations per day. Combine your requirements into one thoughtful brief and use Regenerate only when a genuinely different result is needed.", bullets: ["No account or API key required", "General inputs are limited to 1,200 characters", "The text summarizer accepts up to 2,500 characters"] },
+      { heading: "Use the free allowance wisely", body: "A2ZConvertor provides 10 successful Gemini generations per day. Combine your requirements into one thoughtful brief and use Regenerate only when a genuinely different result is needed.", bullets: ["No account or API key required", "General inputs are limited to 1,200 characters", "The text summarizer accepts up to 2,500 characters"] },
       { heading: "What AI cannot promise", body: "Generated ideas cannot guarantee reach, followers, rankings, sales or engagement. Results depend on execution, audience fit, timing, platform behaviour and many factors outside a writing tool.", bullets: ["Verify factual claims", "Protect confidential information", "Measure real outcomes"] },
     ],
     faqs: faqs.map(([question, answer]) => ({ question, answer })),

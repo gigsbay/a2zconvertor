@@ -6,12 +6,12 @@ A2ZConvertor currently uses only approved Wondershare affiliate URLs for live af
 
 | Product | Placement URL |
 | --- | --- |
-| Wondershare PDFelement homepage | `https://www.jdoqocy.com/click-101806287-14507427` |
-| Wondershare PDFelement pricing | `https://www.anrdoezrs.net/click-101806287-15904302` |
-| Wondershare PDF Password Remover | `https://www.anrdoezrs.net/click-101806287-13467294` |
-| Wondershare Filmora homepage | `https://www.anrdoezrs.net/click-101806287-17060329` |
-| Wondershare Filmora features | `https://www.anrdoezrs.net/click-101806287-13985389` |
-| Wondershare UniConverter | `https://www.anrdoezrs.net/click-101806287-15022793` |
+| Wondershare PDFelement 10 - Smart PDF Solutions | `https://www.kqzyfj.com/click-101806287-10942755` |
+| Wondershare Protect Your PDFs / Protect Your Privacy | `https://www.anrdoezrs.net/click-101806287-17234740` |
+| Wondershare PDF Password Remover for Mac | `https://www.tkqlhce.com/click-101806287-13467294` |
+| Filmora Pricing Page | `https://www.jdoqocy.com/click-101806287-13985389` |
+| Filmora AI-Powered Image-to-Video Magic | `https://www.tkqlhce.com/click-101806287-17014546` |
+| Wondershare UniConverter Pricing Page | `https://www.anrdoezrs.net/click-101806287-14091623` |
 
 
 ## Commission Tiers

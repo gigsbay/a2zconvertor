@@ -3,9 +3,11 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import PopularTools from "@/components/home/PopularTools";
 import AIHomeCTA from "@/components/home/AIHomeCTA";
+import ResourceHighlights from "@/components/home/ResourceHighlights";
 import WhyA2Z from "@/components/home/WhyA2Z";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import Footer from "@/components/layout/Footer";
+import SupportCTA from "@/components/SupportCTA";
 import JsonLd from "@/components/JsonLd";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 
@@ -78,8 +80,10 @@ export default function Home() {
       <Hero />
       <PopularTools />
       <AIHomeCTA />
+      <ResourceHighlights />
       <WhyA2Z />
       <HomeFAQ />
+      <SupportCTA />
       <Footer />
     </main>
   );

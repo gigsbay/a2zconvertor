@@ -289,7 +289,7 @@ export default async function ConvertPage({
             </h2>
             <p className="mt-3 leading-7 text-slate-300">
               Use free Gemini-powered tools for captions, hashtags, video
-              titles, bios and content ideas with five free generations per day.
+              titles, bios and content ideas with 10 free generations per day.
             </p>
             <Link
               href="/ai-tools"

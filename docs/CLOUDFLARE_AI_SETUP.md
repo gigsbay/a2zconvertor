@@ -10,7 +10,7 @@ These values are stored in `wrangler.jsonc` so Wrangler/OpenNext deployments con
 
 ```txt
 AI_FREE_TRIAL_ENABLED=true
-AI_FREE_DAILY_LIMIT=5
+AI_FREE_DAILY_LIMIT=10
 AI_FREE_MODEL=gemini-2.5-flash-lite
 NEXT_PUBLIC_BUYMEACOFFEE_URL=https://buymeacoffee.com/a2zconvertor
 ```
@@ -64,9 +64,9 @@ A correctly configured new user/day should receive values equivalent to:
 {
   "enabled": true,
   "configured": true,
-  "dailyLimit": 5,
+  "dailyLimit": 10,
   "used": 0,
-  "remaining": 5,
+  "remaining": 10,
   "model": "gemini-2.5-flash-lite",
   "reasonCode": null,
   "hasKvBinding": true,
@@ -86,7 +86,7 @@ The endpoint is designed to return HTTP 200 JSON even when configuration is miss
 | `missing_rate_limit_salt` | The runtime cannot see `AI_RATE_LIMIT_SALT`. |
 | `missing_kv_binding` | The Worker has no `AI_RATE_LIMIT_KV` binding. |
 | `kv_read_failed` | The binding exists, but the current KV read failed. |
-| `invalid_daily_limit` | The daily limit was invalid, so the app safely defaulted to 5. |
+| `invalid_daily_limit` | The daily limit was invalid, so the app safely defaulted to 10. |
 | `unknown_error` | An unexpected runtime error was caught safely. |
 
 ## Build-time and runtime configuration
@@ -97,8 +97,8 @@ The KV binding name must be exactly `AI_RATE_LIMIT_KV`. After changing runtime v
 
 ## Post-deploy verification
 
-1. Confirm `/api/ai/status` reports `configured: true`, `enabled: true` and `remaining: 5` for a new daily identity.
-2. Open an AI tool and confirm it first shows `Checking free AI allowance...`, then `You have 5 free AI generations left today.`
-3. Complete one successful generation and confirm `remaining` becomes 4.
+1. Confirm `/api/ai/status` reports `configured: true`, `enabled: true` and `remaining: 10` for a new daily identity.
+2. Open an AI tool and confirm it first shows `Checking free AI allowance...`, then `You have 10 free AI generations left today.`
+3. Complete one successful generation and confirm `remaining` becomes 9.
 4. Confirm a failed Gemini request does not reduce the counter.
 5. Complete the daily allowance and confirm the next request is blocked with the support message.
