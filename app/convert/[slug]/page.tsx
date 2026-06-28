@@ -11,6 +11,7 @@ import { absoluteUrl, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import JsonLd from "@/components/JsonLd";
+import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
 import { getAffiliatePlacementsForTool } from "@/data/monetization";
 const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "instagram-caption-generator": [{ href: "/resources/instagram-caption-ideas", label: "Instagram caption ideas guide" }],
@@ -97,6 +98,12 @@ export default async function ConvertPage({
   const seoContent = getToolSeoContent(tool);
   const affiliatePlacements = getAffiliatePlacementsForTool(tool.slug);
   const resourceLinks = aiResourceLinks[tool.slug] ?? [];
+  const isAiTool =
+    tool.category === "AI Tools" ||
+    tool.category === "AI Creator Tools" ||
+    tool.slug.includes("ai") ||
+    tool.name.toLowerCase().includes("ai") ||
+    tool.title.toLowerCase().includes("ai");
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -170,9 +177,18 @@ export default async function ConvertPage({
   }}
 />      <section className="px-6 py-24">
   <div className="mx-auto max-w-4xl">
+    {isAiTool && <QQTubeAffiliateBanner variant="compact" className="mb-8" />}
     <ToolRenderer tool={tool} />
   </div>
 </section>
+
+      {isAiTool && (
+        <section className="px-6 pb-8">
+          <div className="mx-auto max-w-4xl">
+            <QQTubeAffiliateBanner variant="creator" />
+          </div>
+        </section>
+      )}
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl">
@@ -196,6 +212,7 @@ export default async function ConvertPage({
         </div>
       </section>
 
+
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-slate-900/70 p-8">
           <h2 className="mb-4 text-3xl font-black">
@@ -209,6 +226,7 @@ export default async function ConvertPage({
           </div>
         </div>
       </section>
+
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-6xl">
