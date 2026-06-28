@@ -5,6 +5,8 @@ import { absoluteUrl } from "@/data/site";
 
 const config = getCategoryPage("social-media-tools")!;
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: config.title,
   description: config.description,

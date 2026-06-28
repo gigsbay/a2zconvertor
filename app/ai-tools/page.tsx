@@ -5,16 +5,20 @@ import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
 import SupportCTA from "@/components/SupportCTA";
 import { AI_TOOL_SLUGS, DEFAULT_FREE_DAILY_LIMIT } from "@/utils/aiConfig";
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
 import { absoluteUrl, SITE_URL } from "@/data/site";
+import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Free AI Creator Tools",
   description:
-    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy. Five free generations per day.",
+    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy. Ten free generations per day.",
   alternates: { canonical: absoluteUrl("/ai-tools") },
   openGraph: {
     title: "Free AI Creator Tools | A2ZConvertor",
@@ -61,13 +65,6 @@ export default function AIToolsPage() {
           description:
             "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
           url: absoluteUrl("/ai-tools"),
-          mainEntity: aiTools.map((tool) => ({
-            "@type": "SoftwareApplication",
-            name: tool.title,
-            applicationCategory: "WebApplication",
-            operatingSystem: "Any",
-            url: absoluteUrl(`/convert/${tool.slug}`),
-          })),
         },
         {
           "@context": "https://schema.org",
@@ -103,14 +100,25 @@ export default function AIToolsPage() {
       </div>
     </section>
 
+    <section className="px-6 pb-12">
+      <div className="mx-auto max-w-6xl">
+        <QQTubeAffiliateBanner variant="social" />
+      </div>
+    </section>
+
     <section id="tools" className="px-6 pb-20">
       <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {aiTools.map((tool) => <Link key={tool.slug} href={`/convert/${tool.slug}`} className="flex min-h-56 flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-6 hover:border-blue-500/60">
-          <p className="text-xs font-bold uppercase text-blue-300">{tool.category}</p>
-          <h2 className="mt-3 text-xl font-bold">{tool.name}</h2>
-          <p className="mt-3 text-slate-400">{tool.description}</p>
-          <span className="mt-auto pt-5 font-semibold text-blue-300">Try free AI tool</span>
-        </Link>)}
+        {aiTools.map((tool) => (
+          <article key={tool.slug} className="flex min-h-56 flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60">
+            <p className="text-xs font-bold uppercase text-blue-300">{tool.category}</p>
+            <h2 className="mt-3 text-xl font-bold">{tool.name}</h2>
+            <p className="mt-3 text-slate-400">{tool.description}</p>
+            <div className="mt-auto flex flex-wrap gap-3 pt-5">
+              <Link href={`/convert/${tool.slug}`} className="font-semibold text-blue-300">Try free AI tool</Link>
+              <a href={QQTUBE_AFFILIATE_URL} target="_blank" rel={SPONSORED_LINK_REL} className="rounded-full border border-purple-400/40 px-3 py-1 text-xs font-bold text-purple-200 hover:bg-purple-500/10">Grow Social Media</a>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
 
@@ -144,6 +152,11 @@ export default function AIToolsPage() {
         </div>
       </section>
     )}
+    <section className="px-6 pb-16">
+      <div className="mx-auto max-w-6xl">
+        <QQTubeAffiliateBanner variant="youtube" />
+      </div>
+    </section>
     <NewsletterSignup />
     <SupportCTA />
     <Footer />

@@ -3,8 +3,10 @@ import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
-import { resourcePages } from "@/data/resourcePages";
+import { resourceSummaries } from "@/data/resourceIndex";
 import { absoluteUrl, SITE_URL } from "@/data/site";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Free File Tools, Guides and Resources",
@@ -36,12 +38,6 @@ export default function ResourcesPage() {
           name: "Free File Tools, Guides and Resources",
           description: metadata.description,
           url: absoluteUrl("/resources"),
-          mainEntity: resourcePages.map((resource) => ({
-            "@type": "Article",
-            headline: resource.title,
-            description: resource.description,
-            url: absoluteUrl(`/resources/${resource.slug}`),
-          })),
           breadcrumb: {
             "@type": "BreadcrumbList",
             itemListElement: [
@@ -66,7 +62,7 @@ export default function ResourcesPage() {
       </section>
       <section className="px-6 pb-20">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
-          {resourcePages.map((resource) => (
+          {resourceSummaries.map((resource) => (
             <Link
               key={resource.slug}
               href={`/resources/${resource.slug}`}

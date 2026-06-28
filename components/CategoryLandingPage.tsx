@@ -33,13 +33,6 @@ export default function CategoryLandingPage({
             name: config.title,
             description: config.description,
             url: absoluteUrl(`/${config.slug}`),
-            mainEntity: categoryTools.map((tool) => ({
-              "@type": "SoftwareApplication",
-              name: tool.title,
-              applicationCategory: "WebApplication",
-              operatingSystem: "Any",
-              url: absoluteUrl(`/convert/${tool.slug}`),
-            })),
           },
           {
             "@context": "https://schema.org",

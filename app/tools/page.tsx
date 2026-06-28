@@ -7,8 +7,21 @@ import ToolsBrowser from "@/components/tools/ToolsBrowser";
 import JsonLd from "@/components/JsonLd";
 import { tools } from "@/data/tools";
 import { absoluteUrl, SITE_URL } from "@/data/site";
+import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
 
 const categories = Array.from(new Set(tools.map((tool) => tool.category)));
+
+function isAiTool(tool: (typeof tools)[number]) {
+  return (
+    tool.category === "AI Tools" ||
+    tool.category === "AI Creator Tools" ||
+    tool.slug.includes("ai") ||
+    tool.name.toLowerCase().includes("ai") ||
+    tool.title.toLowerCase().includes("ai")
+  );
+}
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "All Online Tools",
@@ -42,13 +55,6 @@ export default function ToolsPage() {
           name: "All Online Tools",
           description: metadata.description,
           url: absoluteUrl("/tools"),
-          mainEntity: tools.map((tool) => ({
-            "@type": "SoftwareApplication",
-            name: tool.title,
-            applicationCategory: "WebApplication",
-            operatingSystem: "Any",
-            url: absoluteUrl(`/convert/${tool.slug}`),
-          })),
           breadcrumb: {
             "@type": "BreadcrumbList",
             itemListElement: [
@@ -109,17 +115,22 @@ function StaticToolsFallback() {
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool) => (
-          <Link
+          <article
             key={tool.slug}
-            href={`/convert/${tool.slug}`}
-            className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+            className="flex min-h-56 flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-6"
           >
             <div className="mb-3 text-sm font-semibold text-blue-400">
               {tool.category}
             </div>
             <h2 className="mb-2 text-2xl font-bold">{tool.name}</h2>
             <p className="text-slate-400">{tool.description}</p>
-          </Link>
+            <div className="mt-auto flex flex-wrap gap-3 pt-5">
+              <Link href={`/convert/${tool.slug}`} className="font-semibold text-blue-300">Open tool</Link>
+              {isAiTool(tool) && (
+                <a href={QQTUBE_AFFILIATE_URL} target="_blank" rel={SPONSORED_LINK_REL} className="rounded-full border border-purple-400/40 px-3 py-1 text-xs font-bold text-purple-200 hover:bg-purple-500/10">Grow Social Media</a>
+              )}
+            </div>
+          </article>
         ))}
       </div>
     </div>
