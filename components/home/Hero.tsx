@@ -30,7 +30,7 @@ export default function Hero() {
     <section className="px-6 py-28 text-center">
       <div className="mx-auto max-w-5xl">
         <div className="mb-6 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
-          {toolCount}+ free tools plus 10/day AI Creator Tools
+          {toolCount}+ free tools plus AI Creator Tools
         </div>
 
         <h1 className="mb-6 text-5xl font-black tracking-tight md:text-7xl">
@@ -38,7 +38,7 @@ export default function Hero() {
         </h1>
 
         <p className="mx-auto mb-10 max-w-3xl text-lg text-slate-400 md:text-xl">
-          A browser-first toolkit for PDFs, images, video/audio utilities and Gemini-powered creator drafts with 10 free AI generations per day.
+          A browser-first toolkit for PDFs, images, video/audio utilities and Gemini-powered creator drafts with daily free usage available.
         </p>
 
         <div className="relative mx-auto max-w-3xl">

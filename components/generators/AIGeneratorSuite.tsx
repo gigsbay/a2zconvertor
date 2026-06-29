@@ -198,7 +198,7 @@ export default function AIGenerator({ toolSlug }: { toolSlug: string }) {
     event.preventDefault();
     if (!status) { setError("Checking free AI allowance. Please try again in a moment."); return; }
     if (!status.enabled || !status.configured) { setError("Free AI is temporarily unavailable."); return; }
-    if (status.remaining === 0) { setError("Daily free AI limit reached. Please try again tomorrow or support A2ZConvertor."); return; }
+    if (status.remaining === 0) { setError("Daily free AI limit reached. Please try again tomorrow or support A2ZConvertor to help keep AI tools free."); return; }
     if (requiredMissing) { setError("Please fill in the required field before generating."); return; }
     if (inputLength > inputLimit) { setError("Please shorten your input to stay within the free AI limit."); return; }
     setLoading(true);
@@ -226,15 +226,14 @@ export default function AIGenerator({ toolSlug }: { toolSlug: string }) {
 
   const resultEntries = result ? Object.entries(result).map(([key, value]) => [key, Array.isArray(value) ? value.map(formatItem).filter(Boolean) : [formatItem(value)].filter(Boolean)] as const).filter(([, items]) => items.length > 0) : [];
   const copyAll = resultEntries.length > 0 ? serializeResultEntries(resultEntries) : "";
-  const dailyLimit = status?.dailyLimit ?? DEFAULT_FREE_DAILY_LIMIT;
   const limitReached = Boolean(status?.configured && status.remaining === 0);
   const disabled = loading || !status || !status.enabled || !status.configured || status.remaining === 0 || requiredMissing || inputLength > inputLimit;
 
   return <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6 sm:p-8">
     <div className="flex flex-wrap items-start justify-between gap-4"><div>
-      <span className="inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI {"\u00b7"} {dailyLimit}/day</span>
+      <span className="inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI generation available</span>
       <h1 className="mt-4 text-4xl font-black">{config.title}</h1>
-      <p className="mt-4 max-w-2xl text-slate-400">{config.description} You get {dailyLimit} free generations per day. No account or API key is required.</p>
+      <p className="mt-4 max-w-2xl text-slate-400">{config.description} Daily free usage limit applies. No account or API key is required.</p>
     </div><a href={BUY_ME_A_COFFEE_URL} target="_blank" rel="noreferrer" className="rounded-xl border border-amber-300/30 px-4 py-2 text-sm font-semibold text-amber-200 hover:bg-amber-300/10">Support free AI</a></div>
     <form onSubmit={generate} className="mt-8 grid gap-4 md:grid-cols-2">
       {config.fields.map((field) => <FieldControl key={field.name} field={field} value={inputs[field.name] ?? ""} inputLimit={inputLimit} onChange={(value) => setInputs({ ...inputs, [field.name]: value })} />)}
@@ -262,8 +261,8 @@ function FieldControl({ field, value, inputLimit, onChange }: { field: Field; va
 function AIAllowanceStatus({ status }: { status: AIStatus | null }) {
   if (!status) return <p className="mt-4 text-sm text-slate-400">Checking free AI allowance...</p>;
   if (!status.enabled || !status.configured) return <p className="mt-4 text-sm text-slate-400">Free AI is temporarily unavailable.</p>;
-  if (status.remaining === 0) return <p className="mt-4 text-sm text-amber-200">Daily free AI limit reached. Please try again tomorrow or <Link href="/support" className="font-semibold underline">support A2ZConvertor</Link>.</p>;
-  return <p className="mt-4 text-sm text-slate-400">You have {status.remaining} free AI generations left today.</p>;
+  if (status.remaining === 0) return <p className="mt-4 text-sm text-amber-200">Daily free AI limit reached. Please try again tomorrow or <Link href="/support" className="font-semibold underline">support A2ZConvertor to help keep AI tools free</Link>.</p>;
+  return <p className="mt-4 text-sm text-slate-400">Free AI generation available. Daily free usage limit applies.</p>;
 }
 
 function getInitialInputs(config: GeneratorConfig | undefined) {

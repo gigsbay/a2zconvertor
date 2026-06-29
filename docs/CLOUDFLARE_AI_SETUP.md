@@ -98,7 +98,7 @@ The KV binding name must be exactly `AI_RATE_LIMIT_KV`. After changing runtime v
 ## Post-deploy verification
 
 1. Confirm `/api/ai/status` reports `configured: true`, `enabled: true` and `remaining: 10` for a new daily identity.
-2. Open an AI tool and confirm it first shows `Checking free AI allowance...`, then `You have 10 free AI generations left today.`
+2. Open an AI tool and confirm it first shows `Checking free AI allowance...`, then `Free AI generation available. Daily free usage limit applies.`
 3. Complete one successful generation and confirm `remaining` becomes 9.
 4. Confirm a failed Gemini request does not reduce the counter.
 5. Complete the daily allowance and confirm the next request is blocked with the support message.

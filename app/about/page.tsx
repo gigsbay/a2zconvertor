@@ -44,7 +44,7 @@ const sections = [
   {
     title: "How AI Creator Tools work",
     body:
-      "AI Creator Tools use A2ZConvertor's configured Gemini connection to generate editable drafts such as hooks, captions, titles, scripts, emails and summaries. You get 10 free AI generations per day. AI output should be reviewed, edited and fact-checked before publishing.",
+      "AI Creator Tools use A2ZConvertor's configured Gemini connection to generate editable drafts such as hooks, captions, titles, scripts, emails and summaries. Daily free usage limit applies. AI output should be reviewed, edited and fact-checked before publishing.",
   },
   {
     title: "How the site is funded",

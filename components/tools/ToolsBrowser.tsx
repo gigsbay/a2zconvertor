@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { tools } from "@/data/tools";
 import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
+import { getToolActionLabel } from "@/utils/toolActions";
 
 const preferredCategories = [
   "All",
@@ -107,7 +108,7 @@ export default function ToolsBrowser() {
 
             <p className="text-slate-400">{tool.description}</p>
             <div className="mt-auto flex flex-wrap gap-3 pt-5">
-              <Link href={`/convert/${tool.slug}`} className="font-semibold text-blue-300">Open tool</Link>
+              <Link href={`/convert/${tool.slug}`} className="rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-500">{isAiTool(tool) ? getToolActionLabel(tool) : "Open tool"}</Link>
               {isAiTool(tool) && (
                 <a href={QQTUBE_AFFILIATE_URL} target="_blank" rel={SPONSORED_LINK_REL} className="rounded-full border border-purple-400/40 px-3 py-1 text-xs font-bold text-purple-200 hover:bg-purple-500/10">Grow Social Media</a>
               )}
