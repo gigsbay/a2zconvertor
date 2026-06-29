@@ -7,7 +7,17 @@ import { categoryLandingPages, CategoryPageConfig } from "@/data/categoryLanding
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
 import { absoluteUrl, SITE_URL } from "@/data/site";
+import { getToolActionLabel } from "@/utils/toolActions";
 
+function isAiTool(tool: (typeof tools)[number]) {
+  return (
+    tool.category === "AI Tools" ||
+    tool.category === "AI Creator Tools" ||
+    tool.slug.includes("ai") ||
+    tool.name.toLowerCase().includes("ai") ||
+    tool.title.toLowerCase().includes("ai")
+  );
+}
 export default function CategoryLandingPage({
   config,
 }: {
@@ -94,7 +104,7 @@ export default function CategoryLandingPage({
               <h2 className="text-xl font-bold">{tool.name}</h2>
               <p className="mt-3 text-slate-400">{tool.description}</p>
               <span className="mt-auto pt-5 text-sm font-semibold text-blue-300">
-                Open tool
+                {isAiTool(tool) ? getToolActionLabel(tool) : "Open tool"}
               </span>
             </Link>
           ))}
@@ -132,7 +142,7 @@ export default function CategoryLandingPage({
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-6xl border-l-4 border-emerald-400 bg-emerald-400/5 p-7">
             <h2 className="text-2xl font-black">Explore AI Creator Tools</h2>
-            <p className="mt-3 text-slate-300">Use 10 free Gemini generations per day for creator drafts, captions, hooks and content ideas. No account or API key is required.</p>
+            <p className="mt-3 text-slate-300">Use free Gemini-powered generation for creator drafts, captions, hooks and content ideas. Daily free usage limit applies. No account or API key is required.</p>
             <Link href="/ai-tools" className="mt-5 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Browse Free AI Creator Tools</Link>
           </div>
         </section>

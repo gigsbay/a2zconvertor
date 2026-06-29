@@ -37,7 +37,7 @@ Focus URLs:
 | 22 | LinkedIn post ideas for busy founders | /convert/ai-linkedin-post-generator | Draft a post |
 | 23 | Carousel post ideas for Instagram | /convert/ai-carousel-post-generator | Plan carousel copy |
 | 24 | Turn one topic into content ideas | /convert/content-ideas-generator | Generate ideas |
-| 25 | Free AI tools with 10 daily generations | /ai-tools | Try 10 free generations |
+| 25 | Free AI creator tools with daily free usage | /ai-tools | Try free AI tools |
 | 26 | PDF compressor trade-offs explained | /resources/best-pdf-compressor-tools | Compare options |
 | 27 | Browser-based file conversion privacy | /resources/browser-based-file-conversion | Read privacy guide |
 | 28 | Free tools for students and creators | /resources/best-tools-for-students | Explore student tools |

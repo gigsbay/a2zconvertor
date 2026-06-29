@@ -24,7 +24,7 @@ For each tool confirm:
 
 - no result before Generate
 - no provider, model or API-key controls
-- Free AI 10/day badge
+- Free AI badge
 - useful loading and error states
 - Copy, Copy All and Regenerate behaviour
 - Regenerate disables when no allowance remains

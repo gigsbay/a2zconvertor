@@ -7,18 +7,19 @@ import Navbar from "@/components/layout/Navbar";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
 import SupportCTA from "@/components/SupportCTA";
-import { AI_TOOL_SLUGS, DEFAULT_FREE_DAILY_LIMIT } from "@/utils/aiConfig";
+import { AI_TOOL_SLUGS } from "@/utils/aiConfig";
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
 import { absoluteUrl, SITE_URL } from "@/data/site";
 import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
+import { getToolActionLabel } from "@/utils/toolActions";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Free AI Creator Tools",
   description:
-    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy. Ten free generations per day.",
+    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
   alternates: { canonical: absoluteUrl("/ai-tools") },
   openGraph: {
     title: "Free AI Creator Tools | A2ZConvertor",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 const aiTools = AI_TOOL_SLUGS.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
 
 const faqs = [
-  ["Are these AI creator tools free?", `Yes. A2ZConvertor currently provides ${DEFAULT_FREE_DAILY_LIMIT} owner-funded Gemini generations per day at no charge.`],
+  ["Are these AI creator tools free?", "Yes. A2ZConvertor provides free AI generation with a daily usage limit to keep the service available."],
   ["Do these tools guarantee growth?", "No. They create editable ideas and drafts, but they cannot guarantee followers, reach, engagement, rankings or sales."],
   ["Do I need to create an account or add an API key?", "No. The public tools work through A2ZConvertor's configured Gemini connection."],
   ["What happens when I reach the daily limit?", "Try again the next day, or support A2ZConvertor to help fund higher free limits."],
@@ -90,9 +91,9 @@ export default function AIToolsPage() {
     />
     <section className="px-6 pb-14 pt-20">
       <div className="mx-auto max-w-6xl">
-        <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI {"\u00b7"} {DEFAULT_FREE_DAILY_LIMIT}/day</span>
+        <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-sm font-bold text-emerald-300">Free AI Creator Tools</span>
         <h1 className="mt-5 text-5xl font-black md:text-6xl">Free AI Creator Tools</h1>
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Create hooks, captions, hashtags, titles, emails, summaries, bios, product copy and content ideas with Gemini. You get {DEFAULT_FREE_DAILY_LIMIT} free AI generations per day, with no account or API key required.</p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Generate captions, hooks, scripts, hashtags and content ideas with Gemini. Daily free usage limit applies, with no account or API key required.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href="#tools" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Browse AI tools</Link>
           <Link href="/support" className="rounded-xl border border-white/10 px-5 py-3 font-semibold text-slate-200 hover:border-blue-500/60">Support free AI</Link>
@@ -114,7 +115,7 @@ export default function AIToolsPage() {
             <h2 className="mt-3 text-xl font-bold">{tool.name}</h2>
             <p className="mt-3 text-slate-400">{tool.description}</p>
             <div className="mt-auto flex flex-wrap gap-3 pt-5">
-              <Link href={`/convert/${tool.slug}`} className="font-semibold text-blue-300">Try free AI tool</Link>
+              <Link href={`/convert/${tool.slug}`} className="rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-500">{getToolActionLabel(tool)}</Link>
               <a href={QQTUBE_AFFILIATE_URL} target="_blank" rel={SPONSORED_LINK_REL} className="rounded-full border border-purple-400/40 px-3 py-1 text-xs font-bold text-purple-200 hover:bg-purple-500/10">Grow Social Media</a>
             </div>
           </article>

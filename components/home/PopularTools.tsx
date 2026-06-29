@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { tools } from "@/data/tools";
+import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
+import { getToolActionLabel } from "@/utils/toolActions";
 
 type Tool = (typeof tools)[number];
 
@@ -15,6 +17,15 @@ const popularTools = [
 
 const recentlyAddedTools = tools.slice(-8).reverse();
 
+function isAiTool(tool: Tool) {
+  return (
+    tool.category === "AI Tools" ||
+    tool.category === "AI Creator Tools" ||
+    tool.slug.includes("ai") ||
+    tool.name.toLowerCase().includes("ai") ||
+    tool.title.toLowerCase().includes("ai")
+  );
+}
 function ToolSection({
   title,
   description,
@@ -43,10 +54,9 @@ function ToolSection({
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {tools.map((tool) => (
-            <Link
+            <article
               key={tool.slug}
-              href={`/convert/${tool.slug}`}
-              className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60 hover:bg-slate-900"
+              className="flex min-h-64 flex-col rounded-2xl border border-white/10 bg-slate-900/70 p-6 transition hover:border-blue-500/60 hover:bg-slate-900"
             >
               <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-300">
                 {tool.category}
@@ -57,7 +67,25 @@ function ToolSection({
               <p className="text-sm leading-6 text-slate-400">
                 {tool.description}
               </p>
-            </Link>
+              <div className="mt-auto flex flex-wrap gap-3 pt-5">
+                <Link
+                  href={`/convert/${tool.slug}`}
+                  className="rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-500"
+                >
+                  {isAiTool(tool) ? getToolActionLabel(tool) : "Open tool"}
+                </Link>
+                {isAiTool(tool) && (
+                  <a
+                    href={QQTUBE_AFFILIATE_URL}
+                    target="_blank"
+                    rel={SPONSORED_LINK_REL}
+                    className="rounded-full border border-purple-400/40 px-3 py-2 text-xs font-bold text-purple-200 hover:bg-purple-500/10"
+                  >
+                    Grow Social Media
+                  </a>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </div>

@@ -214,7 +214,7 @@ function dailyLimitError() {
   return NextResponse.json(
     {
       error:
-        "Daily free AI limit reached. Please try again tomorrow or support A2ZConvertor to help us increase free limits.",
+        "Daily free AI limit reached. Please try again tomorrow or support A2ZConvertor to help keep AI tools free.",
       code: "DAILY_LIMIT_REACHED",
       supportUrl: "/support",
       freeGenerationsRemaining: 0,

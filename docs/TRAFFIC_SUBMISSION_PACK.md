@@ -95,7 +95,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 ## Reddit Launch Post
 
 - Short title: I built a free browser toolkit for PDFs, images and AI creator drafts
-- One-line description: A2ZConvertor has file converters, PDF tools, image tools and 10 free daily Gemini-powered creator generations.
+- One-line description: A2ZConvertor has file converters, PDF tools, image tools and Gemini-powered creator tools with daily free usage.
 - Longer description: I built A2ZConvertor to make quick file and creator tasks less annoying: merge PDFs, compress images, convert formats, generate hooks, write captions, create video scripts and more. It is free to use, no account required, and many file tools run directly in the browser.
 - Tags/categories: r/SideProject, r/ProductivityApps, r/Entrepreneur, r/InternetIsBeautiful where allowed
 - Launch angle: Ask for UX feedback, not votes.
@@ -106,7 +106,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 
 - Short title: Launching A2ZConvertor
 - One-line description: Free browser-based file tools plus AI Creator Tools for everyday productivity.
-- Longer description: I launched A2ZConvertor to help creators, students and small businesses finish small tasks quickly: PDF tools, image converters, audio/video utilities and Gemini-powered AI Creator Tools with 10 free generations per day. No account required.
+- Longer description: I launched A2ZConvertor to help creators, students and small businesses finish small tasks quickly: PDF tools, image converters, audio/video utilities and Gemini-powered AI Creator Tools with daily free usage. No account required.
 - Tags/categories: #Productivity #AITools #CreatorTools #PDFTools #BuildInPublic
 - Launch angle: Useful free tool for practical workflows.
 - URL to submit: https://www.linkedin.com/feed/
@@ -116,7 +116,7 @@ Core positioning: A2ZConvertor is a free browser-based toolkit with file convert
 
 - Short title: I launched A2ZConvertor
 - One-line description: Free browser-based converters, PDF tools, image tools and AI Creator Tools.
-- Longer description: I launched A2ZConvertor: a free toolkit for file converters, PDF tools, image tools and Gemini-powered creator drafts. 10 free AI generations/day, no account required. Try it: https://a2zconvertor.co.uk/ai-tools
+- Longer description: I launched A2ZConvertor: a free toolkit for file converters, PDF tools, image tools and Gemini-powered creator drafts. Daily free AI usage available, no account required. Try it: https://a2zconvertor.co.uk/ai-tools
 - Tags/categories: #BuildInPublic #AITools #Productivity #CreatorTools
 - Launch angle: Simple practical launch thread with 4 screenshots.
 - URL to submit: https://x.com/compose/post
