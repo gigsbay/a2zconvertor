@@ -9,7 +9,7 @@ import HomeFAQ from "@/components/home/HomeFAQ";
 import Footer from "@/components/layout/Footer";
 import SupportCTA from "@/components/SupportCTA";
 import JsonLd from "@/components/JsonLd";
-import { absoluteUrl, SITE_URL } from "@/data/site";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 
 export const dynamic = "force-static";
 
@@ -25,12 +25,14 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "A2ZConvertor",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "A2ZConvertor - Free Online File, PDF, Image and AI Tools",
     description:
       "Free browser-based converters, PDF tools, image tools and AI Creator Tools.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

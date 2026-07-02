@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import AdSenseScript from "@/components/AdSenseScript";
 import CookiePopup from "@/components/CookiePopup";
 import ProductionAnalytics from "@/components/ProductionAnalytics";
-import { SITE_URL } from "@/data/site";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,6 +56,7 @@ export const metadata: Metadata = {
     siteName: "A2ZConvertor",
     type: "website",
     locale: "en_GB",
+    images: [DEFAULT_OG_IMAGE],
   },
 
   twitter: {
@@ -63,6 +64,7 @@ export const metadata: Metadata = {
     title: "A2ZConvertor - Free Online Image and PDF Tools",
     description:
       "Convert, compress and edit images and PDFs online for free.",
+    images: [DEFAULT_OG_IMAGE],
   },
 
   robots: {

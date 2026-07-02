@@ -12,6 +12,7 @@ const requiredFiles = [
   "app/resources/[slug]/page.tsx",
   "app/tools/page.tsx",
   "app/ai-tools/page.tsx",
+  "app/launch/page.tsx",
   "app/pdf-tools/page.tsx",
   "app/image-tools/page.tsx",
   "app/video-tools/page.tsx",

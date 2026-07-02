@@ -7,12 +7,16 @@ import ToolRenderer from "@/components/converters/ToolRenderer";
 import { getToolBySlug } from "@/data/tools";
 import { getToolFaqs } from "@/data/toolFaqs";
 import { getToolSeoContent } from "@/data/toolSeoContent";
-import { absoluteUrl, SITE_URL } from "@/data/site";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 import { getRelatedTools } from "@/data/relatedTools";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
 import JsonLd from "@/components/JsonLd";
 import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
+import NewsletterSignup from "@/components/NewsletterSignup";
+import SupportCTA from "@/components/SupportCTA";
 import { getAffiliatePlacementsForTool } from "@/data/monetization";
+import { getAiClickContent } from "@/data/aiClickContent";
+
 const aiResourceLinks: Record<string, { href: string; label: string }[]> = {
   "instagram-caption-generator": [{ href: "/resources/instagram-caption-ideas", label: "Instagram caption ideas guide" }],
   "tiktok-hashtag-generator": [{ href: "/resources/tiktok-hashtag-ideas", label: "TikTok hashtag ideas guide" }],
@@ -72,11 +76,13 @@ export async function generateMetadata({
       siteName: "A2ZConvertor",
       type: "website",
       locale: "en_GB",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: `${tool.title} - Free Online Tool`,
       description: tool.description,
+    images: [DEFAULT_OG_IMAGE],
     },
   };
 }
@@ -97,7 +103,12 @@ export default async function ConvertPage({
   const faqs = getToolFaqs(tool.slug, tool);
   const seoContent = getToolSeoContent(tool);
   const affiliatePlacements = getAffiliatePlacementsForTool(tool.slug);
-  const resourceLinks = aiResourceLinks[tool.slug] ?? [];
+  const aiClick = getAiClickContent(tool.slug);
+  const defaultResourceLinks = aiResourceLinks[tool.slug] ?? [];
+  const resourceLinks = aiClick?.resourceLinks ?? defaultResourceLinks;
+  const relatedAiTools = (aiClick?.relatedAiSlugs ?? [])
+    .map((relatedSlug) => getToolBySlug(relatedSlug))
+    .filter((related): related is NonNullable<ReturnType<typeof getToolBySlug>> => Boolean(related));
   const isAiTool =
     tool.category === "AI Tools" ||
     tool.category === "AI Creator Tools" ||
@@ -186,6 +197,40 @@ export default async function ConvertPage({
         <section className="px-6 pb-8">
           <div className="mx-auto max-w-4xl">
             <QQTubeAffiliateBanner variant="creator" />
+          </div>
+        </section>
+      )}
+
+
+      {aiClick && (
+        <section className="px-6 pb-16">
+          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+              <p className="text-sm font-bold uppercase text-blue-300">Sample use cases</p>
+              <ul className="mt-4 space-y-3 text-slate-300">
+                {aiClick.useCases.map((item) => (
+                  <li key={item} className="leading-7">{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+              <p className="text-sm font-bold uppercase text-emerald-300">Try this if you want to...</p>
+              <ul className="mt-4 space-y-3 text-slate-300">
+                {aiClick.tryIf.map((item) => (
+                  <li key={item} className="leading-7">{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+              <p className="text-sm font-bold uppercase text-purple-300">Related AI tools</p>
+              <div className="mt-4 grid gap-3">
+                {relatedAiTools.map((related) => (
+                  <Link key={related.slug} href={`/convert/${related.slug}`} className="rounded-xl border border-white/10 px-4 py-3 font-semibold text-slate-200 hover:border-blue-500/60">
+                    {related.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       )}
@@ -318,6 +363,15 @@ export default async function ConvertPage({
             >
               Explore Free AI Creator Tools
             </Link>
+          </div>
+        </section>
+      )}
+
+      {aiClick && (
+        <section className="px-6 pb-20">
+          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-2">
+            <NewsletterSignup compact />
+            <SupportCTA compact />
           </div>
         </section>
       )}
