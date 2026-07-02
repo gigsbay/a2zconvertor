@@ -10,32 +10,37 @@ import SupportCTA from "@/components/SupportCTA";
 import { AI_TOOL_SLUGS } from "@/utils/aiConfig";
 import { getAffiliatePlacementsForCategory } from "@/data/monetization";
 import { tools } from "@/data/tools";
-import { absoluteUrl, SITE_URL } from "@/data/site";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
 import { getToolActionLabel } from "@/utils/toolActions";
+import { getAiClickContent, priorityAiToolSlugs } from "@/data/aiClickContent";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Free AI Creator Tools",
   description:
-    "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
+    "Free browser-based AI creator tools for captions, hashtags, hooks, scripts and content ideas.",
   alternates: { canonical: absoluteUrl("/ai-tools") },
   openGraph: {
     title: "Free AI Creator Tools | A2ZConvertor",
     description:
-      "Use free Gemini-powered creator and writing tools with no account required.",
+      "Free browser-based tools for AI-powered captions, hashtags, hooks, scripts and content ideas.",
     url: absoluteUrl("/ai-tools"),
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free AI Creator Tools | A2ZConvertor",
     description:
-      "Use free Gemini-powered creator and writing tools with no account required.",
+      "Free browser-based tools for AI-powered captions, hashtags, hooks, scripts and content ideas.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
 const aiTools = AI_TOOL_SLUGS.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
+const priorityAiTools = priorityAiToolSlugs.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
+const featuredUseCases = priorityAiToolSlugs.flatMap((slug) => getAiClickContent(slug)?.useCases.slice(0, 1) ?? []).slice(0, 6);
 
 const faqs = [
   ["Are these AI creator tools free?", "Yes. A2ZConvertor provides free AI generation with a daily usage limit to keep the service available."],
@@ -64,7 +69,7 @@ export default function AIToolsPage() {
           "@type": "CollectionPage",
           name: "Free AI Creator Tools",
           description:
-            "Free Gemini-powered AI creator tools for hooks, captions, hashtags, titles, posts, emails, summaries and product copy.",
+            "Free browser-based AI creator tools for captions, hashtags, hooks, scripts and content ideas.",
           url: absoluteUrl("/ai-tools"),
         },
         {
@@ -123,6 +128,49 @@ export default function AIToolsPage() {
       </div>
     </section>
 
+
+    <section className="px-6 pb-20">
+      <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 lg:col-span-2">
+          <p className="text-sm font-bold uppercase text-emerald-300">Sample use cases</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {featuredUseCases.map((item) => (
+              <p key={item} className="rounded-xl border border-white/10 bg-slate-950/60 p-4 leading-7 text-slate-300">{item}</p>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+          <p className="text-sm font-bold uppercase text-blue-300">Try this if you want to...</p>
+          <ul className="mt-5 space-y-3 text-slate-300">
+            <li>Create a first draft instead of staring at a blank page.</li>
+            <li>Compare several angles before publishing a post or video.</li>
+            <li>Keep ideas editable and honest, with no guaranteed growth claims.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section className="px-6 pb-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <h2 className="text-3xl font-black">Best AI tools to try first</h2>
+            <p className="mt-3 max-w-2xl text-slate-400">Start with the focused tools most creators use for social posts, scripts and planning.</p>
+          </div>
+          <Link href="/resources/free-ai-social-media-tools" className="font-semibold text-blue-300 hover:text-blue-200">Read the social media guide</Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {priorityAiTools.map((tool) => (
+            <Link key={tool.slug} href={`/convert/${tool.slug}`} className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 transition hover:border-blue-500/60">
+              <p className="text-xs font-bold uppercase text-blue-300">{tool.category}</p>
+              <h3 className="mt-2 text-xl font-bold">{tool.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{tool.description}</p>
+              <span className="mt-4 inline-flex rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white">{getToolActionLabel(tool)}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
     <section className="border-y border-white/10 bg-slate-900/40 px-6 py-16">
       <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
         <div className="md:col-span-1">

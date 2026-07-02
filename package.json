@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:routes": "node scripts/check-routes.mjs",
+    "check": "npm run check:routes",
    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
 "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },

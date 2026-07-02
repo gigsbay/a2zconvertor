@@ -16,6 +16,15 @@ const popularTools = [
 ].filter(Boolean);
 
 const recentlyAddedTools = tools.slice(-8).reverse();
+const firstToolSlugs = [
+  "hashtag-generator",
+  "instagram-caption-generator",
+  "ai-hook-generator",
+  "png-to-jpg",
+  "jpg-to-png",
+  "compress-pdf",
+] as const;
+const firstTools = firstToolSlugs.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is Tool => Boolean(tool));
 
 function isAiTool(tool: Tool) {
   return (
@@ -93,9 +102,37 @@ function ToolSection({
   );
 }
 
+function BestToolsToTryFirst() {
+  return (
+    <section className="px-6 py-16">
+      <div className="mx-auto max-w-7xl rounded-3xl border border-white/10 bg-slate-900/50 p-6 sm:p-8">
+        <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight md:text-4xl">Best tools to try first</h2>
+            <p className="mt-3 max-w-2xl text-slate-400">Start with fast, high-intent tools that show what A2ZConvertor can do for creator, PDF and image workflows.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/ai-tools" className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-500">AI Creator Tools</Link>
+            <Link href="/pdf-tools" className="rounded-xl border border-white/10 px-4 py-2 text-sm font-bold text-slate-200 hover:border-blue-500/60">PDF Tools</Link>
+          </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {firstTools.map((tool) => (
+            <Link key={tool.slug} href={`/convert/${tool.slug}`} className="rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:border-blue-500/60">
+              <p className="text-xs font-bold uppercase text-blue-300">{tool.category}</p>
+              <h3 className="mt-2 text-xl font-bold">{tool.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{tool.description}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 export default function PopularTools() {
   return (
     <>
+      <BestToolsToTryFirst />
       <ToolSection
         title="Popular Tools"
         description="Start with commonly used converters, compressors and file editing tools across the current A2ZConvertor library."

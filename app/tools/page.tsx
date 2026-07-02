@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ToolsBrowser from "@/components/tools/ToolsBrowser";
 import JsonLd from "@/components/JsonLd";
 import { tools } from "@/data/tools";
-import { absoluteUrl, SITE_URL } from "@/data/site";
+import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
 import { getToolActionLabel } from "@/utils/toolActions";
 
@@ -36,12 +36,14 @@ export const metadata: Metadata = {
     description:
       "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
     url: absoluteUrl("/tools"),
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "All Online Tools | A2ZConvertor",
     description:
       "Browse A2ZConvertor image, PDF, video, audio, text, social media and AI creator tools.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
