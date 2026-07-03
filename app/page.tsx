@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "A2ZConvertor - Free Online File, PDF, Image and AI Tools",
   description:
     "Use free browser-based file converters, PDF tools, image tools and Gemini-powered AI Creator Tools with no account required.",
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: absoluteUrl() },
   openGraph: {
     title: "A2ZConvertor - Free Online File, PDF, Image and AI Tools",
     description:
