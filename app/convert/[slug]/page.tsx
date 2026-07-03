@@ -62,12 +62,17 @@ export async function generateMetadata({
 
   const canonicalPath = `/convert/${tool.slug}`;
   const canonicalUrl = absoluteUrl(canonicalPath);
+  const isIndexable = tool.isLive === true && tool.indexable === true;
 
   return {
     title: `${tool.title} - Free Online Tool | A2ZConvertor`,
     description: tool.description,
     alternates: {
       canonical: canonicalUrl,
+    },
+    robots: {
+      index: isIndexable,
+      follow: true,
     },
     openGraph: {
       title: `${tool.title} - Free Online Tool`,
@@ -115,6 +120,7 @@ export default async function ConvertPage({
     tool.slug.includes("ai") ||
     tool.name.toLowerCase().includes("ai") ||
     tool.title.toLowerCase().includes("ai");
+  const toolIntro = tool.indexable ? getIndexableToolIntro(tool) : null;
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -193,6 +199,19 @@ export default async function ConvertPage({
   </div>
 </section>
 
+
+      {toolIntro && (
+        <section className="px-6 pb-16">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-slate-900/70 p-7">
+            <h2 className="text-3xl font-black">About this {tool.name} tool</h2>
+            <div className="mt-5 space-y-4 leading-7 text-slate-300">
+              {toolIntro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       {isAiTool && (
         <section className="px-6 pb-8">
           <div className="mx-auto max-w-4xl">
@@ -378,4 +397,13 @@ export default async function ConvertPage({
       <Footer />
     </main>
   );
+}
+function getIndexableToolIntro(tool: NonNullable<ReturnType<typeof getToolBySlug>>) {
+  const input = tool.inputLabel || tool.inputFormat.toUpperCase();
+  const output = tool.outputLabel || tool.outputFormat.toUpperCase();
+
+  return [
+    `${tool.name} helps you turn ${input} files into ${output} output directly from the browser. It is intended for everyday conversion tasks where you need a quick result without installing a full editor or creating an account. Upload your file, review the output settings shown by the tool, then download the converted file and check it before sharing or uploading it somewhere important.`,
+    `This page is kept indexable because the tool has a focused purpose, working client-side functionality and unique guidance for this conversion workflow. It is useful for common tasks such as preparing images for forms, websites, documents, email attachments or compatibility with apps that expect a different format. For best results, keep an original copy of your file and use the related tools below when you need to resize, compress, rotate or convert another format next.`,
+  ];
 }

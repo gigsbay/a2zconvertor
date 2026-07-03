@@ -1,4 +1,4 @@
-export const tools = [
+const rawTools = [
   {
     slug: "jpg-to-png",
     name: "JPG to PNG",
@@ -671,6 +671,28 @@ export const tools = [
   outputLabel: "Ad Copy",
   category: "AI Creator Tools",
 },];
+
+export const indexableToolSlugs = new Set([
+  "jpg-to-png",
+  "png-to-jpg",
+  "webp-to-jpg",
+  "webp-to-png",
+  "jpg-to-webp",
+  "png-to-webp",
+  "compress-image",
+  "resize-image",
+  "crop-image",
+  "rotate-image",
+  "image-to-base64",
+  "favicon-generator",
+  "pdf-to-image",
+]);
+
+export const tools = rawTools.map((tool) => ({
+  ...tool,
+  isLive: true,
+  indexable: indexableToolSlugs.has(tool.slug),
+}));
 
 export const popularTools = tools;
 
