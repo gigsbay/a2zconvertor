@@ -44,6 +44,12 @@ export const metadata: Metadata = {
     "A2ZConvertor",
   ],
 
+  verification: {
+    other: {
+      "p:domain_verify": "305e567c4cf88c255291674d5e49329e",
+    },
+  },
+
   alternates: {
     canonical: SITE_URL,
   },
@@ -86,7 +92,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script dangerouslySetInnerHTML={{ __html: `try{document.documentElement.dataset.theme=localStorage.getItem("a2z-theme")||"dark"}catch{}` }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{document.documentElement.dataset.theme=localStorage.getItem("a2z-theme")||"dark"}catch{}`,
+          }}
+        />
         {children}
         <CookiePopup />
         <ProductionAnalytics />
