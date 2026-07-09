@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import AdSenseScript from "@/components/AdSenseScript";
 import CookiePopup from "@/components/CookiePopup";
@@ -10,6 +11,8 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const GTM_ID = "GTM-MQ45H2SF";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -91,8 +94,18 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <GoogleTagManager gtmId={GTM_ID} />
       <body className="min-h-full flex flex-col">
-        <script
+     <noscript>
+  <iframe
+    src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+    height="0"
+    width="0"
+    style={{ display: "none", visibility: "hidden" }}
+    title="Google Tag Manager"
+  />
+</noscript>
+   <script
           dangerouslySetInnerHTML={{
             __html: `try{document.documentElement.dataset.theme=localStorage.getItem("a2z-theme")||"dark"}catch{}`,
           }}

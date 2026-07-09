@@ -13,6 +13,8 @@ const requiredFiles = [
   "app/tools/page.tsx",
   "app/ai-tools/page.tsx",
   "app/launch/page.tsx",
+  "app/blog/page.tsx",
+  "app/blog/[slug]/page.tsx",
   "app/pdf-tools/page.tsx",
   "app/image-tools/page.tsx",
   "app/video-tools/page.tsx",
@@ -33,6 +35,17 @@ const requiredToolSlugs = [
   "ai-ad-copy-generator",
 ];
 
+
+const requiredBlogSlugs = [
+  "how-to-convert-jpg-to-png-online",
+  "how-to-compress-images-for-email",
+  "how-to-resize-images-for-instagram",
+  "how-to-convert-pdf-to-image",
+  "jpg-vs-png",
+  "webp-vs-jpg",
+  "how-to-create-a-favicon",
+  "how-to-reduce-image-file-size",
+];
 const requiredResourceSlugs = [
   "how-to-compress-pdf-for-email",
   "ai-ad-copy-examples",
@@ -63,6 +76,11 @@ for (const slug of requiredResourceSlugs) {
   }
 }
 
+
+const blogSource = read("data/blogPosts.ts");
+for (const slug of requiredBlogSlugs) {
+  if (!blogSource.includes(`slug: "${slug}"`)) failures.push(`Missing blog slug: ${slug}`);
+}
 if (failures.length > 0) {
   console.error("Route inventory check failed:");
   for (const failure of failures) console.error(`- ${failure}`);
