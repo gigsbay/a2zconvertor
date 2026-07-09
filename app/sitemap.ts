@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "@/data/blogPosts";
 import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
 
@@ -11,6 +12,7 @@ const indexableStaticPages = [
   { path: "/tools", changeFrequency: "weekly", priority: 0.9 },
   { path: "/image-tools", changeFrequency: "weekly", priority: 0.85 },
   { path: "/pdf-tools", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.75 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.4 },
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
@@ -34,5 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }));
 
-  return [...staticPages, ...toolPages];
+
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: absoluteUrl(`/blog/${post.slug}`),
+    lastModified: new Date(post.updatedAt ?? post.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+  return [...staticPages, ...toolPages, ...blogPages];
 }
