@@ -15,6 +15,7 @@ const requiredFiles = [
   "app/launch/page.tsx",
   "app/blog/page.tsx",
   "app/blog/[slug]/page.tsx",
+  "data/blogIndex.ts",
   "app/pdf-tools/page.tsx",
   "app/image-tools/page.tsx",
   "app/video-tools/page.tsx",
@@ -77,7 +78,7 @@ for (const slug of requiredResourceSlugs) {
 }
 
 
-const blogSource = read("data/blogPosts.ts");
+const blogSource = `${read("data/blogIndex.ts")}\n${read("data/blogPosts.ts")}`;
 for (const slug of requiredBlogSlugs) {
   if (!blogSource.includes(`slug: "${slug}"`)) failures.push(`Missing blog slug: ${slug}`);
 }

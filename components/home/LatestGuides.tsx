@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { blogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogIndex";
 
-const latestPosts = blogPosts.slice(0, 3);
+const latestPosts = blogSummaries.slice(0, 3);
 
 export default function LatestGuides() {
   return (

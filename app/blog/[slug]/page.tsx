@@ -4,14 +4,16 @@ import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
-import { blogPosts, getBlogPost, getRelatedBlogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogIndex";
+import { getBlogPost, getRelatedBlogPosts } from "@/data/blogPosts";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return blogSummaries.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({

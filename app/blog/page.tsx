@@ -3,10 +3,11 @@ import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
-import { blogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogIndex";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 
 export const dynamic = "force-static";
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: "A2ZConvertor Blog - File Conversion Guides and Online Tool Tips",
@@ -63,7 +64,7 @@ export default function BlogPage() {
 
       <section className="px-6 pb-20">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
+          {blogSummaries.map((post) => (
             <article key={post.slug} className="flex min-h-80 flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950/40 p-6 transition hover:border-blue-500/60">
               <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wide text-blue-300">
                 <span>{post.category}</span>
