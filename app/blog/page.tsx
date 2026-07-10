@@ -9,14 +9,14 @@ import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "A2ZConvertor Blog",
+  title: "A2ZConvertor Blog - File Conversion Guides and Online Tool Tips",
   description:
-    "Helpful guides for image conversion, PDF tools, file compression, resizing, online tools and productivity.",
+    "Simple guides for image conversion, PDF tools, file compression, resizing, favicons and online productivity.",
   alternates: { canonical: absoluteUrl("/blog") },
   openGraph: {
-    title: "A2ZConvertor Blog",
+    title: "A2ZConvertor Blog - File Conversion Guides and Online Tool Tips",
     description:
-      "Helpful guides for image conversion, PDF tools, file compression, resizing, online tools and productivity.",
+      "Simple guides for image conversion, PDF tools, file compression, resizing, favicons and online productivity.",
     url: absoluteUrl("/blog"),
     siteName: "A2ZConvertor",
     type: "website",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "A2ZConvertor Blog",
+    title: "A2ZConvertor Blog - File Conversion Guides and Online Tool Tips",
     description:
-      "Helpful guides for image conversion, PDF tools, file compression, resizing, online tools and productivity.",
+      "Simple guides for image conversion, PDF tools, file compression, resizing, favicons and online productivity.",
     images: [DEFAULT_OG_IMAGE],
   },
 };
@@ -39,7 +39,7 @@ export default function BlogPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "A2ZConvertor Blog",
+          name: "A2ZConvertor Blog - File Conversion Guides and Online Tool Tips",
           description: metadata.description,
           url: absoluteUrl("/blog"),
           breadcrumb: {
