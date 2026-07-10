@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "@/data/blogPosts";
+import { blogSummaries } from "@/data/blogIndex";
 import { tools } from "@/data/tools";
 import { absoluteUrl } from "@/data/site";
 
@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
 
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+  const blogPages: MetadataRoute.Sitemap = blogSummaries.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.updatedAt ?? post.publishedAt),
     changeFrequency: "monthly",

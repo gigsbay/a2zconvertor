@@ -9,9 +9,9 @@ const navLinks = [
   { label: "AI Creator Tools", href: "/ai-tools" },
   { label: "Image Tools", href: "/image-tools" },
   { label: "PDF Tools", href: "/pdf-tools" },
-  { label: "Blog", href: "/blog" },
   { label: "Video Tools", href: "/video-tools" },
   { label: "Audio Tools", href: "/audio-tools" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
