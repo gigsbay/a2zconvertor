@@ -2,27 +2,36 @@
 
 ## Publisher ID Location
 
-Set the approved Google AdSense publisher/client ID in Cloudflare as:
+The approved Google AdSense publisher/client ID is loaded globally from `components/AdSenseScript.tsx`:
 
-`NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-xxxxxxxxxxxxxxxx`
+`ca-pub-3170454283323014`
 
-Do not hardcode the publisher ID in source code unless there is a deliberate reason later.
+This ID is public in the official AdSense verification snippet. Do not add private credentials or unrelated ad platform secrets to source control.
+
+## Global Verification Script
+
+The global layout renders `AdSenseScript` once. The component uses Next.js `Script` with:
+
+- `strategy="afterInteractive"`
+- `crossOrigin="anonymous"`
+- `id="google-adsense-loader"`
+
+The script is production-only and does not render during local development.
 
 ## Cloudflare Configuration
 
-Add the public build/runtime variable in Cloudflare project settings after AdSense approval. Redeploy through the normal GitHub/Cloudflare pipeline. Do not change the deployment command.
+No deployment command or Cloudflare deployment configuration change is required for the verification script. Redeploy through the normal GitHub/Cloudflare pipeline after merging.
 
 ## Current Code Behaviour
 
-- `components/AdSenseScript.tsx` checks `NEXT_PUBLIC_ADSENSE_CLIENT_ID`.
+- `components/AdSenseScript.tsx` loads the official AdSense script with the approved publisher ID.
 - It returns `null` in development.
-- It returns `null` when the env var is missing.
-- It loads the AdSense script only when the env var exists in production.
+- It loads globally from `app/layout.tsx` only once.
 - No visible ad units are placed yet.
 
 ## ads.txt
 
-After Google provides the publisher ID, add `app/ads.txt/route.ts` or an equivalent static file with the exact `ads.txt` content Google supplies. Do not guess the value.
+After Google provides the publisher ID entry, add `app/ads.txt/route.ts` or an equivalent static file with the exact `ads.txt` content Google supplies. Do not guess the value.
 
 ## Recommended Initial Placements After Approval
 
