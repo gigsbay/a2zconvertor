@@ -10,13 +10,12 @@ This ID is public in the official AdSense verification snippet. Do not add priva
 
 ## Global Verification Script
 
-The global layout renders `AdSenseScript` once. The component uses Next.js `Script` with:
+The global layout renders `AdSenseScript` once inside the document `<head>`. The component emits server-rendered verification markup with:
 
-- `strategy="afterInteractive"`
-- `crossOrigin="anonymous"`
-- `id="google-adsense-loader"`
+- `<link rel="preload" ... as="script">`
+- `<script async ... crossorigin="anonymous"></script>`
 
-The script is production-only and does not render during local development.
+The script is production-only and does not render during local development. It is intentionally server-rendered so Google AdSense can see the real script tag in View Source.
 
 ## Cloudflare Configuration
 
@@ -27,6 +26,7 @@ No deployment command or Cloudflare deployment configuration change is required 
 - `components/AdSenseScript.tsx` loads the official AdSense script with the approved publisher ID.
 - It returns `null` in development.
 - It loads globally from `app/layout.tsx` only once.
+- The actual AdSense `<script async ...>` tag appears in production page source.
 - No visible ad units are placed yet.
 
 ## ads.txt
