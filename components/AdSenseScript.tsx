@@ -1,6 +1,5 @@
-import Script from "next/script";
-
-const ADSENSE_CLIENT_ID = "ca-pub-3170454283323014";
+const ADSENSE_SCRIPT_SRC =
+  "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3170454283323014";
 
 export default function AdSenseScript() {
   if (process.env.NODE_ENV !== "production") {
@@ -8,11 +7,9 @@ export default function AdSenseScript() {
   }
 
   return (
-    <Script
-      id="google-adsense-loader"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-      strategy="afterInteractive"
-      crossOrigin="anonymous"
-    />
+    <>
+      <link rel="preload" href={ADSENSE_SCRIPT_SRC} as="script" crossOrigin="anonymous" />
+      <script async src={ADSENSE_SCRIPT_SRC} crossOrigin="anonymous" />
+    </>
   );
 }
