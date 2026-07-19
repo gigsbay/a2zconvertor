@@ -686,6 +686,21 @@ export const indexableToolSlugs = new Set([
   "image-to-base64",
   "favicon-generator",
   "pdf-to-image",
+  "hashtag-generator",
+  "blog-title-generator",
+  "email-template-generator",
+  "text-summarizer",
+  "instagram-caption-generator",
+  "tiktok-hashtag-generator",
+  "youtube-title-generator",
+  "social-media-bio-generator",
+  "content-ideas-generator",
+  "ai-hook-generator",
+  "ai-carousel-post-generator",
+  "ai-linkedin-post-generator",
+  "ai-video-script-generator",
+  "ai-product-description-generator",
+  "ai-ad-copy-generator",
 ]);
 
 export const tools = rawTools.map((tool) => ({
