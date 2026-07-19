@@ -1,22 +1,30 @@
 import type { MetadataRoute } from "next";
-import { blogSummaries } from "@/data/blogIndex";
-import { tools } from "@/data/tools";
+import { comparisonSummaries } from "@/data/comparisonIndex";
+import { resourceSummaries } from "@/data/resourceIndex";
 import { absoluteUrl } from "@/data/site";
+import { tools } from "@/data/tools";
 
-const LAST_MODIFIED = new Date("2026-06-28T00:00:00.000Z");
+const LAST_MODIFIED = new Date("2026-07-19T00:00:00.000Z");
 
 export const dynamic = "force-static";
 
 const indexableStaticPages = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/tools", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/ai-tools", changeFrequency: "weekly", priority: 0.9 },
   { path: "/image-tools", changeFrequency: "weekly", priority: 0.85 },
   { path: "/pdf-tools", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/blog", changeFrequency: "weekly", priority: 0.75 },
+  { path: "/video-tools", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/audio-tools", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/resources", changeFrequency: "weekly", priority: 0.75 },
+  { path: "/launch", changeFrequency: "monthly", priority: 0.65 },
   { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.4 },
   { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/cookie-policy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/support", changeFrequency: "monthly", priority: 0.45 },
+  { path: "/affiliate-disclosure", changeFrequency: "yearly", priority: 0.25 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -33,15 +41,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl(`/convert/${tool.slug}`),
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: tool.category === "AI Creator Tools" ? 0.85 : 0.8,
     }));
 
-
-  const blogPages: MetadataRoute.Sitemap = blogSummaries.map((post) => ({
-    url: absoluteUrl(`/blog/${post.slug}`),
-    lastModified: new Date(post.updatedAt ?? post.publishedAt),
+  const comparisonPages: MetadataRoute.Sitemap = comparisonSummaries.map((page) => ({
+    url: absoluteUrl(`/compare/${page.slug}`),
+    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
-  return [...staticPages, ...toolPages, ...blogPages];
+
+  const resourcePages: MetadataRoute.Sitemap = resourceSummaries.map((page) => ({
+    url: absoluteUrl(`/resources/${page.slug}`),
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "monthly",
+    priority: 0.72,
+  }));
+
+  return [...staticPages, ...toolPages, ...comparisonPages, ...resourcePages];
 }
