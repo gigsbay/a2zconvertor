@@ -153,7 +153,10 @@ export default async function ResourcePage({
                   <p className="mt-4 leading-7 text-slate-400">
                     {section.body}
                   </p>
-                  <ul className="mt-5 grid gap-3 text-slate-300 sm:grid-cols-3">
+                  <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-slate-300">
+                    Key points
+                  </h3>
+                  <ul className="mt-3 grid gap-3 text-slate-300 sm:grid-cols-3">
                     {section.bullets.map((bullet) => (
                       <li
                         key={bullet}
