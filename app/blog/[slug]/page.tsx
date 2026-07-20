@@ -122,6 +122,15 @@ export default async function BlogPostPage({
             </div>
             <h1 className="mt-5 text-5xl font-black tracking-tight md:text-6xl">{post.title}</h1>
             <p className="mt-6 text-lg leading-8 text-slate-300">{post.description}</p>
+            <div className="mt-8 rounded-3xl border border-blue-400/20 bg-blue-400/5 p-6">
+              <p className="text-sm font-bold uppercase tracking-wide text-blue-300">What you will learn</p>
+              <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-300 sm:grid-cols-2">
+                <p>How to choose the right file format, size and quality for this task.</p>
+                <p>When to use the linked A2ZConvertor tool and when another workflow is better.</p>
+                <p>Common mistakes that cause rejected uploads, blurry images or oversized files.</p>
+                <p>Practical SEO and sharing tips for websites, email and social platforms.</p>
+              </div>
+            </div>
           </div>
         </header>
 
