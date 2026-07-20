@@ -1,3 +1,4 @@
+import ToolBadge from "@/components/ToolBadge";
 import { QQTUBE_AFFILIATE_URL, SPONSORED_LINK_REL } from "@/utils/affiliate";
 
 type QQTubeAffiliateBannerVariant = "social" | "youtube" | "creator" | "compact";
@@ -5,35 +6,30 @@ type QQTubeAffiliateBannerVariant = "social" | "youtube" | "creator" | "compact"
 const variantCopy: Record<
   QQTubeAffiliateBannerVariant,
   {
-    badge: string;
     title: string;
     description: string;
     cta: string;
   }
 > = {
   social: {
-    badge: "Sponsored",
     title: "Social Media Growth Tools",
     description:
       "Explore creator-friendly tools for promoting your content and improving your online visibility across social platforms.",
     cta: "Explore Creator Growth Tools",
   },
   youtube: {
-    badge: "Affiliate Partner",
     title: "Grow Your YouTube Channel",
     description:
       "Discover tools that can support your video promotion workflow and help more people find your content.",
     cta: "Grow Social Media",
   },
   creator: {
-    badge: "Creator Tool",
     title: "Boost Your Creator Journey",
     description:
       "Pair AI drafts from A2ZConvertor with creator growth tools designed for content promotion and visibility.",
     cta: "Improve Your Online Visibility",
   },
   compact: {
-    badge: "Sponsored",
     title: "Promote Your Content",
     description:
       "Explore social media growth tools for creators after generating your next idea or draft.",
@@ -53,7 +49,7 @@ export default function QQTubeAffiliateBanner({
 
   return (
     <aside
-      className={`rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-950/60 via-slate-950 to-slate-900 p-6 shadow-lg shadow-purple-950/10 ${className}`}
+      className={`rounded-2xl border border-amber-300/25 bg-gradient-to-br from-amber-950/40 via-slate-950 to-slate-900 p-6 shadow-lg shadow-amber-950/10 ${className}`}
     >
       <div
         className={
@@ -63,16 +59,8 @@ export default function QQTubeAffiliateBanner({
         }
       >
         <div>
-          <span className="inline-flex rounded-full border border-purple-300/30 bg-purple-400/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-purple-200">
-            {copy.badge}
-          </span>
-          <h2
-            className={
-              isCompact
-                ? "mt-3 text-2xl font-black text-white"
-                : "mt-4 text-3xl font-black text-white"
-            }
-          >
+          <ToolBadge kind="affiliate" />
+          <h2 className={isCompact ? "mt-3 text-2xl font-black text-white" : "mt-4 text-3xl font-black text-white"}>
             {copy.title}
           </h2>
           <p className="mt-3 max-w-2xl leading-7 text-slate-300">
@@ -88,7 +76,7 @@ export default function QQTubeAffiliateBanner({
           href={QQTUBE_AFFILIATE_URL}
           target="_blank"
           rel={SPONSORED_LINK_REL}
-          className="inline-flex justify-center rounded-xl bg-purple-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-purple-500"
+          className="inline-flex justify-center rounded-xl bg-amber-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-amber-200"
         >
           {copy.cta}
         </a>

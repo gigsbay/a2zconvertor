@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
+import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
+import ToolBadge from "@/components/ToolBadge";
 import Navbar from "@/components/layout/Navbar";
 import { blogSummaries } from "@/data/blogIndex";
 import { getBlogPost, getRelatedBlogPosts } from "@/data/blogPosts";
@@ -187,8 +189,9 @@ export default async function BlogPostPage({
             <h2 className="text-3xl font-black">Related tools</h2>
             <div className="mt-5 grid gap-3">
               {post.toolLinks.map((tool) => (
-                <Link key={tool.href} href={tool.href} className="rounded-2xl border border-blue-400/30 bg-blue-400/5 p-5 font-semibold text-blue-100 hover:bg-blue-400/10">
-                  {tool.label}
+                <Link key={tool.href} href={tool.href} className="rounded-2xl border border-blue-400/30 bg-blue-400/5 p-5 hover:bg-blue-400/10">
+                  <ToolBadge kind="free" />
+                  <span className="mt-3 block font-semibold text-blue-100">{tool.label}</span>
                 </Link>
               ))}
               <Link href="/tools" className="rounded-2xl border border-white/10 bg-slate-950/60 p-5 font-semibold text-slate-200 hover:border-blue-500/60">
@@ -208,6 +211,11 @@ export default async function BlogPostPage({
               ))}
             </div>
           </div>
+        </div>
+      </section>
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <QQTubeAffiliateBanner variant="creator" />
         </div>
       </section>
       <Footer />

@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import MoneyPageSections from "@/components/MoneyPageSections";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
+import ToolBadge from "@/components/ToolBadge";
 import Navbar from "@/components/layout/Navbar";
 import SupportCTA from "@/components/SupportCTA";
 import AffiliateRecommendationCard from "@/components/AffiliateRecommendationCard";
@@ -60,6 +62,10 @@ export default async function ResourcePage({
   const affiliatePlacements = getAffiliatePlacementsForResource(resource.slug);
   const moneyContent = getMoneyPageContent(resource.slug);
   const faqs = moneyContent?.faqs ?? resource.faqs;
+  const relatedResources = resourcePages
+    .filter((candidate) => candidate.slug !== resource.slug)
+    .filter((candidate) => candidate.toolSlugs.some((toolSlug) => resource.toolSlugs.includes(toolSlug)))
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -175,9 +181,7 @@ export default async function ResourcePage({
                   href={`/convert/${tool.slug}`}
                   className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 hover:border-blue-500/60"
                 >
-                  <p className="text-xs font-semibold uppercase text-blue-300">
-                    {tool.category}
-                  </p>
+                  <ToolBadge kind={tool.category === "AI Creator Tools" ? "ai" : "free"} />
                   <h3 className="mt-2 text-xl font-bold">{tool.name}</h3>
                   <p className="mt-3 leading-6 text-slate-400">
                     {tool.description}
@@ -186,6 +190,37 @@ export default async function ResourcePage({
               ))}
             </div>
           </section>
+          <section className="mt-16">
+            <QQTubeAffiliateBanner variant="creator" />
+          </section>
+
+
+          {relatedResources.length > 0 && (
+            <section className="mt-16">
+              <h2 className="text-3xl font-black">Related articles</h2>
+              <p className="mt-3 max-w-2xl text-slate-400">
+                Keep learning with nearby guides that use similar tools or file
+                workflows.
+              </p>
+              <div className="mt-6 grid gap-5 md:grid-cols-3">
+                {relatedResources.map((related) => (
+                  <Link
+                    key={related.slug}
+                    href={`/resources/${related.slug}`}
+                    className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 hover:border-purple-400/50"
+                  >
+                    <p className="text-sm font-bold uppercase text-purple-300">
+                      Resource guide
+                    </p>
+                    <h3 className="mt-2 font-bold text-white">{related.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-400">
+                      {related.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
           <section className="mt-16">
             <h2 className="text-3xl font-black">Frequently asked questions</h2>
             <div className="mt-6 space-y-4">

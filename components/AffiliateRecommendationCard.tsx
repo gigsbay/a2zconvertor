@@ -1,4 +1,5 @@
-﻿import { AffiliatePlacement } from "@/data/monetization";
+import ToolBadge from "@/components/ToolBadge";
+import { AffiliatePlacement } from "@/data/monetization";
 
 const affiliateRel = "sponsored nofollow noopener noreferrer";
 
@@ -8,10 +9,8 @@ export default function AffiliateRecommendationCard({
   placement: AffiliatePlacement;
 }) {
   return (
-    <aside className="rounded-2xl border border-amber-300/20 bg-amber-300/5 p-6">
-      <p className="text-xs font-bold uppercase tracking-wide text-amber-200">
-        {placement.label}
-      </p>
+    <aside className="rounded-2xl border border-amber-300/25 bg-amber-300/5 p-6">
+      <ToolBadge kind="affiliate" />
       <h3 className="mt-2 text-2xl font-black text-white">{placement.title}</h3>
       <p className="mt-3 leading-7 text-slate-300">{placement.context}</p>
       <p className="mt-3 leading-7 text-slate-400">{placement.description}</p>
@@ -34,15 +33,16 @@ export default function AffiliateRecommendationCard({
             href={placement.secondaryHref}
             target="_blank"
             rel={affiliateRel}
-            className="rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5"
+            className="rounded-xl border border-amber-300/25 px-5 py-3 text-sm font-semibold text-amber-100 hover:bg-amber-300/10"
           >
             {placement.secondaryCta}
           </a>
         )}
       </div>
       <p className="mt-4 text-xs leading-5 text-slate-500">
-        This page may contain affiliate links. If you buy through these links,
-        A2ZConvertor may earn a commission at no extra cost to you.
+        Affiliate disclosure: this page may contain affiliate links. If you buy
+        through these links, A2ZConvertor may earn a commission at no extra cost
+        to you.
       </p>
     </aside>
   );
