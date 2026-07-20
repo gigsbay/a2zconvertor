@@ -140,17 +140,56 @@ function makeAIResource(
   bullets: string[],
   faqs: [string, string][]
 ): ResourcePage {
+  const keyword = title.replace(/[:].*$/, "").toLowerCase();
+  const primaryTool = toolSlugs[0] ?? "ai-hook-generator";
   return {
     slug, title, description, intro, toolSlugs,
     sections: [
-      { heading: "Start with a clear brief", body: "Useful AI output begins with specific context. State the real topic, intended audience, platform and tone instead of relying on one vague keyword.", bullets: bullets.slice(0, 2) },
-      { heading: "Turn suggestions into publishable work", body: "Read every result, remove repetition and rewrite anything that does not sound like you. Check names, facts, promises and calls to action before publishing.", bullets: bullets.slice(2) },
-      { heading: "Use the free allowance wisely", body: "A2ZConvertor provides 10 successful Gemini generations per day. Combine your requirements into one thoughtful brief and use Regenerate only when a genuinely different result is needed.", bullets: ["No account or API key required", "General inputs are limited to 1,200 characters", "The text summarizer accepts up to 2,500 characters"] },
-      { heading: "What AI cannot promise", body: "Generated ideas cannot guarantee reach, followers, rankings, sales or engagement. Results depend on execution, audience fit, timing, platform behaviour and many factors outside a writing tool.", bullets: ["Verify factual claims", "Protect confidential information", "Measure real outcomes"] },
+      {
+        heading: `${title}: what this guide helps you do`,
+        body: `${intro} The practical goal is not to publish machine-made text as-is. The goal is to move from a blank page to a useful draft, then edit it with your own judgement, customer knowledge and brand voice. For creators, students and small businesses, ${keyword} works best when the prompt includes the platform, audience, offer, tone and the one action you want someone to take. A helpful workflow is to start with the linked A2ZConvertor tool, review the suggestions, remove generic lines and keep only the parts that sound believable for your real situation.`,
+        bullets: bullets.slice(0, 3),
+      },
+      {
+        heading: `How to plan ${keyword} before using a generator`,
+        body: `Before opening a generator, write one plain sentence that describes the post, video, email or page you are creating. Add who it is for, what they already know and what they should do next. This small brief usually improves the result more than repeatedly clicking regenerate. If you are using an A2ZConvertor AI Creator Tool such as ${primaryTool}, keep the input specific but avoid confidential customer, employee, financial or private business information.`,
+        bullets: ["Name the platform", "Describe the audience", "Add the desired tone"],
+      },
+      {
+        heading: "Step-by-step workflow",
+        body: `Open the relevant A2ZConvertor tool from this page, enter a focused brief and generate a first set of ideas. Read the result slowly. Delete anything exaggerated, vague or off-brand. Keep phrases that explain the value clearly. If the output is close but not finished, adjust the prompt with one correction rather than starting from scratch. After editing, compare the result with the real content you are publishing so the promise, facts and call to action all line up.`,
+        bullets: ["Start with one clear brief", "Edit before publishing", "Check every claim"],
+      },
+      {
+        heading: "Practical examples",
+        body: `A local service business might ask for Instagram captions that explain a before-and-after job without naming the customer. A student group might ask for content ideas for a project update. A creator might use a YouTube title generator to compare tutorial, review and beginner-friendly angles. In each case, the useful output is not the longest one; it is the one that matches the audience and can be verified.`,
+        bullets: ["Local business posts", "Student project updates", "Creator scripts and titles"],
+      },
+      {
+        heading: "Common mistakes to avoid",
+        body: `The most common mistake is treating generated copy as finished copy. Another is asking for broad ideas without context, which usually creates bland results. Avoid fake urgency, unrealistic promises, unsupported statistics and claims about guaranteed reach, ranking, followers or sales. If the content mentions a product, price, date, legal point or technical feature, verify it from the source before publishing.`,
+        bullets: ["Do not publish unchecked drafts", "Avoid guaranteed-growth claims", "Verify facts and offers"],
+      },
+      {
+        heading: "When free browser tools are enough",
+        body: `Free browser tools are enough when you need ideas, outlines, captions, hooks, short scripts, summaries or editable first drafts. They are especially helpful for solo creators and small teams that need momentum but still want control over the final wording. Use the free tools for brainstorming and structure, then rely on human review for judgement, positioning and final approval.`,
+        bullets: ["First drafts", "Idea generation", "Light editing workflows"],
+      },
+      {
+        heading: "When a specialist platform may be better",
+        body: `A specialist platform may be better when you need team approvals, campaign analytics, scheduled publishing, brand governance, compliance review or large-scale content operations. A2ZConvertor is intentionally lightweight. It helps with the draft or idea stage, while publishing systems and professional software can handle deeper workflows when your process becomes more complex.`,
+        bullets: ["Team approval", "Publishing calendars", "Analytics and reporting"],
+      },
+      {
+        heading: "Conclusion",
+        body: `${title} is most useful when you treat the output as a starting point, not a replacement for your own judgement. Use the linked tools to create options quickly, then edit for accuracy, tone and usefulness. A clear brief, a careful review and a real example from your own work will beat a generic prompt almost every time.`,
+        bullets: ["Use AI as a draft helper", "Keep your voice", "Publish only checked content"],
+      },
     ],
     faqs: faqs.map(([question, answer]) => ({ question, answer })),
   };
 }
+
 function makeResource(
   slug: string,
   title: string,
@@ -159,24 +198,69 @@ function makeResource(
   toolSlugs: string[],
   bullets: string[]
 ): ResourcePage {
+  const keyword = title.replace(/[:].*$/, "").toLowerCase();
+  const firstTool = toolSlugs[0] ?? "tools";
   return {
     slug,
     title,
     description,
     intro,
     sections: [
-      { heading: "What to look for", body: "Choose tools that clearly state where processing happens, what format is downloaded and whether quality or editability changes.", bullets },
-      { heading: "A practical workflow", body: "Start with a copy of the original file, use the narrowest tool for the task and inspect the result before sharing it.", bullets: ["Keep the original", "Use realistic settings", "Open the downloaded result"] },
+      {
+        heading: `${title}: the practical problem`,
+        body: `${intro} Most people arrive at this kind of guide because a normal file task has become a blocker: an upload limit, a format requirement, a document that is hard to share, an image that loads slowly or a file that does not open where it needs to. The best answer is usually not a complicated software setup. It is a focused workflow that keeps the original safe, uses the right free browser tool and checks the result before sending it anywhere important.`,
+        bullets,
+      },
+      {
+        heading: `How to approach ${keyword}`,
+        body: `Start by checking the destination. An email attachment, application portal, website CMS, classroom upload, social post or client handoff may each need a different output. Once you know the requirement, use a relevant A2ZConvertor tool such as ${firstTool} from this page. Work on a copy, not the only original, and keep the downloaded result clearly named so you can compare it later.`,
+        bullets: ["Check the destination", "Keep the original", "Name the output clearly"],
+      },
+      {
+        heading: "Step-by-step workflow",
+        body: `Open the linked tool, upload the file and wait for the browser to finish processing. Download the result, then open it before you attach, publish or submit it. Look for the details that matter: page order, text readability, image sharpness, transparent areas, file size, orientation and whether the format is accepted by the destination. If something is wrong, go back to the original file instead of repeatedly processing a low-quality copy.`,
+        bullets: ["Upload", "Download", "Preview before sharing"],
+      },
+      {
+        heading: "Practical examples",
+        body: `A student might merge lecture notes before uploading an assignment pack. A small business might compress product photos before adding them to a website. A freelancer might remove image metadata before sending samples to a client. A family member might convert a PDF page into an image so it is easier to preview in a message. These are everyday cases where a narrow browser tool is faster than opening a full editor.`,
+        bullets: ["Student uploads", "Business images", "Client-ready files"],
+      },
+      {
+        heading: "Tips for better results",
+        body: `Use the original file whenever possible, because every extra conversion can reduce quality or add confusion. Choose the format for the job: JPG for broad photo compatibility, PNG for sharp graphics or transparency, WEBP for modern web images and PDF when page layout matters. If the file is large, decide whether the issue is pixel dimensions, compression quality or unnecessary pages before changing settings.`,
+        bullets: ["Start from the original", "Choose the right format", "Fix the real size problem"],
+      },
+      {
+        heading: "Common mistakes",
+        body: `Do not assume every conversion makes a file smaller. Do not delete the original before the new file is accepted. Do not skip the preview just because the download completed. Also avoid sending more information than needed: crop extra space, remove unnecessary pages and consider metadata removal when sharing photos publicly.`,
+        bullets: ["Conversion is not always compression", "Preview every result", "Share only what is needed"],
+      },
+      {
+        heading: "When free browser tools are enough",
+        body: `Free browser tools are usually enough for one-off conversions, quick PDF organization, image resizing, metadata removal, page extraction and simple compression. They are ideal when you need a clean result quickly and the file size is reasonable for your device. They are also useful on shared or locked-down computers where installing desktop software is not practical.`,
+        bullets: ["One-off file tasks", "Simple edits", "No installation needed"],
+      },
+      {
+        heading: "When desktop software may be better",
+        body: `Desktop software may be better for batch jobs, very large files, OCR, complex page layouts, advanced color control, legal review, accessibility tagging or protected documents. Browser tools are intentionally focused. If a file is business-critical or part of a regulated workflow, use A2ZConvertor for quick preparation and a specialist app for final review.`,
+        bullets: ["Batch processing", "OCR and complex layouts", "Professional review"],
+      },
+      {
+        heading: "Conclusion",
+        body: `${title} works best when you use a simple, careful process: identify the requirement, use the right A2ZConvertor tool, preview the output and keep the original until the job is finished. The point is not to use more tools. It is to remove the file problem without creating a new one.`,
+        bullets: ["Pick the right tool", "Check the result", "Keep the original"],
+      },
     ],
     toolSlugs,
     faqs: [
-      { question: "Are browser tools always free?", answer: "A2ZConvertor tools are free, while recommended third-party software may offer paid plans." },
-      { question: "Do my files leave my device?", answer: "The linked A2ZConvertor tools are designed for browser-based processing where supported." },
-      { question: "When should I use desktop software?", answer: "Desktop software may be better for very large files, batch workflows or advanced editing." },
+      { question: `What is the best free way to handle ${keyword}?`, answer: `Use a focused browser tool that matches the actual task, then preview the downloaded result before sharing or submitting it.` },
+      { question: "Do I need to install software?", answer: "No for simple tasks. The linked A2ZConvertor tools are designed for quick browser-based workflows where the format is supported." },
+      { question: "Should I keep my original file?", answer: "Yes. Keep the original until you have checked the output and confirmed it works for your upload, email, website or document workflow." },
+      { question: "When should I use paid desktop software?", answer: "Use desktop software for batch processing, OCR, complex edits, very large files, protected documents or professional review workflows." },
     ],
   };
 }
-
 export function getResourcePage(slug: string) {
   return resourcePages.find((page) => page.slug === slug);
 }

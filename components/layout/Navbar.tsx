@@ -15,41 +15,11 @@ type ExplorerCategory = {
 };
 
 const explorerCategories: ExplorerCategory[] = [
-  {
-    key: "image",
-    label: "Image",
-    href: "/image-tools",
-    icon: "image",
-    match: (tool) => tool.category === "Image Tools",
-  },
-  {
-    key: "pdf",
-    label: "PDF",
-    href: "/pdf-tools",
-    icon: "pdf",
-    match: (tool) => tool.category === "PDF Tools",
-  },
-  {
-    key: "video",
-    label: "Video",
-    href: "/video-tools",
-    icon: "video",
-    match: (tool) => tool.category === "Video Tools",
-  },
-  {
-    key: "audio",
-    label: "Audio",
-    href: "/audio-tools",
-    icon: "audio",
-    match: (tool) => tool.category === "Audio Tools",
-  },
-  {
-    key: "ai",
-    label: "AI Creator",
-    href: "/ai-tools",
-    icon: "ai",
-    match: (tool) => tool.category === "AI Creator Tools",
-  },
+  { key: "image", label: "Image", href: "/image-tools", icon: "image", match: (tool) => tool.category === "Image Tools" },
+  { key: "pdf", label: "PDF", href: "/pdf-tools", icon: "pdf", match: (tool) => tool.category === "PDF Tools" },
+  { key: "video", label: "Video", href: "/video-tools", icon: "video", match: (tool) => tool.category === "Video Tools" },
+  { key: "audio", label: "Audio", href: "/audio-tools", icon: "audio", match: (tool) => tool.category === "Audio Tools" },
+  { key: "ai", label: "AI Creator", href: "/ai-tools", icon: "ai", match: (tool) => tool.category === "AI Creator Tools" },
   {
     key: "social",
     label: "Social Growth",
@@ -68,7 +38,7 @@ const utilityLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(explorerCategories[0].key);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const explorerTools = useMemo(
     () =>
@@ -79,7 +49,7 @@ export default function Navbar() {
     [],
   );
 
-  const active = explorerTools.find((category) => category.key === activeCategory) ?? explorerTools[0];
+  const active = explorerTools.find((category) => category.key === activeCategory);
 
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
@@ -88,26 +58,39 @@ export default function Navbar() {
           A2Z<span className="text-blue-500">Convertor</span>
         </Link>
 
-        <div className="hidden items-center gap-3 text-sm text-slate-300 lg:flex">
-          {utilityLinks.map((link) => (
-            <Link key={link.label} href={link.href} className="rounded-full px-3 py-2 transition hover:bg-white/5 hover:text-white">
-              {link.label}
-            </Link>
-          ))}
+        <div className="hidden items-center gap-2 text-sm text-slate-300 lg:flex" onMouseLeave={() => setActiveCategory(null)}>
+          {explorerTools.map((category) => {
+            const selected = category.key === activeCategory;
+            return (
+              <button
+                key={category.key}
+                type="button"
+                onMouseEnter={() => setActiveCategory(category.key)}
+                onClick={() => setActiveCategory(selected ? null : category.key)}
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-semibold transition ${
+                  selected
+                    ? "border-blue-400/60 bg-blue-500/15 text-white"
+                    : "border-transparent text-slate-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <CategoryIcon icon={category.icon} />
+                {category.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
+          {utilityLinks.map((link) => (
+            <Link key={link.label} href={link.href} className="text-sm font-semibold text-slate-300 transition hover:text-white">
+              {link.label}
+            </Link>
+          ))}
           <ThemeToggle />
-          <Link
-            href="/support"
-            className="rounded-full border border-amber-300/30 px-5 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10"
-          >
+          <Link href="/support" className="rounded-full border border-amber-300/30 px-5 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
             Support Us
           </Link>
-          <Link
-            href="/request-tool"
-            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
-          >
+          <Link href="/request-tool" className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">
             Request New Tool
           </Link>
         </div>
@@ -127,65 +110,68 @@ export default function Navbar() {
         </button>
       </div>
 
-      <div className="hidden border-t border-white/10 lg:block">
-        <div className="mx-auto max-w-7xl px-6 py-3">
-          <div className="flex flex-wrap items-center gap-2">
-            {explorerTools.map((category) => {
-              const selected = category.key === active.key;
-              return (
-                <button
-                  key={category.key}
-                  type="button"
-                  onClick={() => setActiveCategory(category.key)}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                    selected
-                      ? "border-blue-400/60 bg-blue-500/15 text-white"
-                      : "border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 hover:text-white"
-                  }`}
-                >
-                  <CategoryIcon icon={category.icon} />
-                  {category.label}
-                </button>
-              );
-            })}
-          </div>
+      {active && (
+        <div className="absolute left-0 right-0 top-20 hidden border-y border-white/10 bg-slate-950/98 shadow-2xl shadow-slate-950/60 lg:block" onMouseEnter={() => setActiveCategory(active.key)} onMouseLeave={() => setActiveCategory(null)}>
+          <div className="mx-auto grid max-w-7xl gap-6 px-6 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-blue-300">
+                    <CategoryIcon icon={active.icon} /> {active.label} tools
+                  </p>
+                  <h2 className="mt-2 text-2xl font-black text-white">Choose a {active.label.toLowerCase()} tool</h2>
+                </div>
+                <Link href={active.href} className="rounded-xl border border-white/10 px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400/60">
+                  View category
+                </Link>
+              </div>
 
-          <div className="mt-3 flex items-center gap-3 overflow-x-auto pb-1">
-            <Link href={active.href} className="shrink-0 rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-slate-200 hover:border-blue-400/60">
-              View all {active.label}
-            </Link>
-            {active.tools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/convert/${tool.slug}`}
-                className="group flex min-w-fit items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-blue-400/50 hover:text-white"
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {active.tools.map((tool) => (
+                  <Link key={tool.slug} href={`/convert/${tool.slug}`} className="rounded-2xl border border-white/10 bg-slate-900/70 p-4 transition hover:border-blue-400/50 hover:bg-slate-900">
+                    <ToolBadge kind={tool.category === "AI Creator Tools" ? "ai" : "free"} className="px-2 py-0.5 text-[10px]" />
+                    <span className="mt-3 block font-bold text-white">{tool.name}</span>
+                    <span className="mt-1 block text-sm leading-5 text-slate-400">{tool.description}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <aside className="rounded-2xl border border-amber-300/25 bg-amber-300/5 p-5">
+              <ToolBadge kind="affiliate" />
+              <h3 className="mt-3 text-xl font-black text-white">Recommended Partner</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                Explore creator growth tools separately from A2ZConvertor free browser tools.
+              </p>
+              <a
+                href="https://www.qqtube.com/?ref=5094651"
+                target="_blank"
+                rel="sponsored nofollow noopener noreferrer"
+                className="mt-4 inline-flex rounded-xl bg-amber-300 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-amber-200"
               >
-                <span>{tool.name}</span>
-                {tool.category === "AI Creator Tools" ? <ToolBadge kind="ai" className="px-2 py-0.5 text-[10px]" /> : null}
-              </Link>
-            ))}
+                Grow Social Media
+              </a>
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                Affiliate Disclosure: A2ZConvertor may earn a commission if you purchase through this partner link.
+              </p>
+            </aside>
           </div>
         </div>
-      </div>
+      )}
 
       {isOpen && (
-        <div className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-white/10 px-6 py-4 lg:hidden">
+        <div className="border-t border-white/10 px-6 py-4 lg:hidden">
           <div className="mx-auto grid max-w-7xl gap-4">
             <div className="grid grid-cols-2 gap-2">
               {utilityLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/5 hover:text-white"
-                >
+                <Link key={link.label} href={link.href} onClick={() => setIsOpen(false)} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/5 hover:text-white">
                   {link.label}
                 </Link>
               ))}
             </div>
 
             {explorerTools.map((category) => (
-              <details key={category.key} className="rounded-2xl border border-white/10 bg-slate-900/60 p-4" open={category.key === "image"}>
+              <details key={category.key} className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-bold text-white">
                   <span className="flex items-center gap-2"><CategoryIcon icon={category.icon} /> {category.label}</span>
                   <span className="text-xs text-slate-500">{category.tools.length} tools</span>
@@ -195,18 +181,19 @@ export default function Navbar() {
                     View all {category.label}
                   </Link>
                   {category.tools.map((tool) => (
-                    <Link
-                      key={tool.slug}
-                      href={`/convert/${tool.slug}`}
-                      onClick={() => setIsOpen(false)}
-                      className="rounded-xl px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
-                    >
+                    <Link key={tool.slug} href={`/convert/${tool.slug}`} onClick={() => setIsOpen(false)} className="rounded-xl px-3 py-2 text-sm text-slate-300 hover:bg-white/5 hover:text-white">
                       {tool.name}
                     </Link>
                   ))}
                 </div>
               </details>
             ))}
+
+            <aside className="rounded-2xl border border-amber-300/25 bg-amber-300/5 p-4">
+              <ToolBadge kind="affiliate" />
+              <p className="mt-2 font-bold text-white">Recommended Partner</p>
+              <p className="mt-1 text-sm leading-6 text-slate-400">Affiliate Disclosure: partner links are separate from free A2ZConvertor tools.</p>
+            </aside>
 
             <div className="mt-2 flex justify-center"><ThemeToggle /></div>
             <Link href="/support" onClick={() => setIsOpen(false)} className="rounded-xl border border-amber-300/30 px-4 py-3 text-center text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
