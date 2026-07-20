@@ -151,6 +151,51 @@ export const blogPosts: BlogPost[] = seeds.map((seed) => ({
 }));
 
 function buildIntro(seed: BlogPostSeed) {
+  const tailoredIntros: Record<string, string[]> = {
+    "how-to-convert-jpg-to-png-online": [
+      "Need to convert a JPG to PNG online? It is a quick job, but it helps to know what will actually change. A PNG copy is useful for screenshots, graphics, logos and upload forms that specifically request PNG. It will not magically sharpen a blurry photograph, but it gives you the format and compatibility you need without installing an editor.",
+      "Keep the original JPG, create a PNG copy, then open the new file before using it. That gives you a clean version for a website, school project, document or design tool while leaving the source image untouched.",
+      "This guide explains when JPG to PNG conversion makes sense, how to do it for free, and how to avoid choosing PNG when a smaller JPG or WEBP file would be the better fit."
+    ],
+    "how-to-compress-images-for-email": [
+      "A photo that looks perfectly normal on your phone can be too large for an email attachment. That is why people hit upload limits when sending forms, receipts, job-application documents, property photos or screenshots. Compressing the image reduces its file size so the email is easier to send and download.",
+      "The aim is not to make every image tiny. It is to remove unnecessary weight while keeping text, faces and important details clear. A good compressed image should still look trustworthy when the recipient opens it on a laptop or phone.",
+      "Below, you will find a practical way to compress images for email, choose a sensible attachment size, and know when resizing the photo first will give a better result."
+    ],
+    "how-to-resize-images-for-instagram": [
+      "Resizing an image for Instagram is about more than fitting a number into a box. A photo can look great in your camera roll and still lose the subject, headline or product detail when Instagram crops it for a post, Story or profile picture.",
+      "Taking a minute to prepare the image gives you control over what people see. It is especially helpful for small businesses, creators and anyone adding text to a graphic, because small lettering and edge details can disappear quickly on a phone screen.",
+      "This guide covers useful Instagram image sizes, how to resize a photo online, and simple checks that keep posts looking clear instead of rushed."
+    ],
+    "how-to-convert-pdf-to-image": [
+      "Sometimes a PDF is the right file to keep, but the wrong file to share. If someone needs to see a single page in a chat, presentation, support ticket or website preview, turning that page into an image is often faster than asking them to download and open the whole document.",
+      "A PDF-to-image conversion preserves the look of the page, including its layout, pictures and headings. It is useful for visual sharing, but it does not keep selectable text, form fields or searchability, so the original PDF should stay safely stored.",
+      "Here is how to convert PDF pages to images online, check the result for readability, and choose an output that is light enough to share without losing the detail people need."
+    ],
+    "jpg-vs-png": [
+      "JPG vs PNG is one of those choices that seems small until a logo gets a solid background, a screenshot turns fuzzy, or a web page becomes unnecessarily slow. Neither format is universally better; they are designed for different kinds of images.",
+      "JPG is usually the practical choice for photographs because it keeps file sizes manageable. PNG is often the safer choice for logos, screenshots, text-heavy graphics and transparent backgrounds. Knowing that distinction saves a lot of trial and error.",
+      "This comparison gives you a clear, plain-English answer to when to use JPG or PNG, how they affect quality and file size, and when it is worth converting between the two."
+    ],
+    "webp-vs-jpg": [
+      "Choosing between WEBP and JPG usually comes down to one question: do you need the smallest possible website image, or the broadest possible compatibility? Both formats are useful, but they solve different problems for site owners and everyday file sharing.",
+      "WEBP can often deliver a lighter image for the same visual quality, which helps on image-heavy pages and slower mobile connections. JPG remains dependable for email, downloads and platforms where you want a familiar file that opens almost everywhere.",
+      "This guide compares WEBP vs JPG without the jargon, so you can make a sensible choice for your website, blog images, product photos or client handoff."
+    ],
+    "how-to-create-a-favicon": [
+      "A favicon is the small icon beside a page title in a browser tab. It is easy to overlook while building a website, but it makes a real difference when visitors have several tabs open or save your page as a bookmark.",
+      "The best favicons are simple and recognisable at a glance: a letter, symbol or pared-back version of your logo. Fine text, busy backgrounds and tiny details tend to disappear once the icon is reduced to tab size.",
+      "This guide shows how to create a favicon from an image, choose a source that will still look good at a small size, and add a more polished finishing touch to a website or portfolio."
+    ],
+    "how-to-reduce-image-file-size": [
+      "Large images slow website pages, exceed upload limits, fill inboxes and make people on mobile data wait. Reducing image file size solves those issues, provided the result still looks clear where it will actually be used.",
+      "The key is to identify why the file is large. Oversized dimensions call for resizing; an unnecessarily heavy image calls for compression; and a web image may benefit from a more efficient format. Doing the right job first produces a better-looking result than repeatedly compressing the same file.",
+      "In this guide, you will learn how to make an image smaller without losing noticeable quality, plus practical checks that protect text, logos and important details."
+    ]
+  };
+
+  const tailored = tailoredIntros[seed.slug];
+  if (tailored) return tailored;
   return [
     `${seed.title.replace(/:.*$/, "")} sounds simple until a platform rejects the file, an email attachment is too large, or a website image looks softer than expected. If you are ${seed.audience}, the small choices around format, size and quality can make the difference between a smooth upload and a frustrating retry.`,
     `This guide is written for the practical moment: you have a real file, you need a clean result, and you do not want to install a heavy editor for one task. You will learn what problem the workflow solves, how to prepare the file, how to use the right A2ZConvertor tool, and what to check before you share the result.`,

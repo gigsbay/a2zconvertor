@@ -79,7 +79,7 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="hidden shrink-0 items-center gap-5 xl:flex">
+        <div className="hidden shrink-0 items-center gap-8 xl:flex">
           {utilityLinks.map((link) => (
             <Link key={link.label} href={link.href} className="whitespace-nowrap text-sm font-semibold text-slate-300 transition hover:text-white">
               {link.label}
