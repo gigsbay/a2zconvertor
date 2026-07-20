@@ -161,6 +161,7 @@ function buildIntro(seed: BlogPostSeed) {
 function buildContent(seed: BlogPostSeed): BlogPost["content"] {
   const sectionHeadings = [
     "The problem this solves",
+    "Detailed guide",
     "Step-by-step workflow",
     "Practical tips",
     "Real-world example",
@@ -191,6 +192,10 @@ function bodyFor(seed: BlogPostSeed, heading: string) {
       `The important thing is to choose the fix that matches the real problem. If the issue is compatibility, conversion helps. If the issue is file size, compression or resizing is usually better. If the issue is presentation, cropping, format choice or page export may matter more than making the file smaller.`,
       `A2ZConvertor is designed for these focused jobs. Instead of opening a full editing suite, you can use ${toolNames} to ${seed.practicalUse}. The result should still be checked, because no converter can know every upload rule, brand guideline or document requirement you are working with.`
     ];
+  }
+
+  if (heading === "Detailed guide") {
+    return detailedGuideFor(seed);
   }
 
   if (heading === "Step-by-step workflow") {
@@ -270,6 +275,73 @@ function bodyFor(seed: BlogPostSeed, heading: string) {
     `Read one nearby guide if you are preparing a file for a public website, a client handoff, a school portal or a social media profile. Small quality choices become more visible in those contexts.`,
     `The articles below are selected from the same practical family as this guide, so they should help you avoid repeated uploads and unclear output choices.`
   ];
+}
+
+function detailedGuideFor(seed: BlogPostSeed) {
+  switch (seed.slug) {
+    case "how-to-convert-jpg-to-png-online":
+      return [
+        "Converting JPG to PNG online is useful when you need a cleaner image format for screenshots, simple graphics, icons, transparent design work or uploads that specifically ask for PNG. JPG is excellent for normal photos, but it does not support transparency and it can soften sharp text or interface details after repeated saves.",
+        "If you are preparing a logo draft, product graphic, app screenshot or school project, start with the original JPG and use the JPG to PNG Converter. The conversion creates a PNG copy that is easier to reuse in documents, presentations and design tools. Keep in mind that PNG files can be larger, so choose PNG for compatibility and clarity rather than automatic file-size reduction.",
+        "A good SEO image workflow is simple: use a descriptive file name, keep the image dimensions sensible, add useful alt text on your website, and avoid uploading huge files when a smaller version would look the same on screen. If the PNG becomes too large, use Compress Image after conversion and check the result before publishing.",
+        "The most common mistake is expecting PNG to improve a blurry photo. Conversion can change the file format, but it cannot restore detail that is missing from the original image. Use PNG when you need transparency, crisp edges or platform compatibility; use JPG when the image is a normal photograph and small file size matters more."
+      ];
+    case "how-to-compress-images-for-email":
+      return [
+        "Large image attachments are one of the easiest ways to make an email bounce, upload slowly or annoy the person receiving it. Many phones save photos at several megabytes each, which is far more than most invoices, application forms, homework images or support screenshots need. Compressing images for email helps you send files faster while keeping them clear enough to read.",
+        "Open the Compress Image tool, upload the photo, and download the smaller version. If you are sending several images, compress them one by one and give each file a clear name. For email, the best result is usually not the tiniest possible file; it is the smallest file that still lets the recipient see faces, text, labels or product details without squinting.",
+        "For job applications, tenancy documents, school submissions and business emails, always preview the compressed image before attaching it. Zoom in on any text or numbers. If it looks too soft, return to the original and use less aggressive compression or resize the image dimensions instead of pushing quality too low.",
+        "Email deliverability also improves when attachments are sensible. Smaller files download faster on mobile data, reduce failed sends, and make the message feel more professional. If the email platform still complains, consider sending fewer images, using a PDF, or resizing extremely large photos before compression."
+      ];
+    case "how-to-resize-images-for-instagram":
+      return [
+        "Instagram rewards images that fit its frames cleanly. A photo can be sharp on your camera roll but still look awkward after Instagram crops it into a square post, vertical story or profile image. Resizing before upload gives you more control over what people actually see in the feed.",
+        "Use Resize Image when your photo is too large, oddly shaped or prepared for a different platform. For feed posts, square and portrait formats are common. For stories and reels covers, vertical layouts usually work better. The goal is to keep the subject, headline text or product detail inside the safe area instead of letting the app crop it automatically.",
+        "Creators and small businesses should check the image on a phone-sized preview before posting. Text that looks readable on a laptop can become tiny on mobile. If the edges matter, use Crop Image first, then resize the finished crop. If the file remains large after resizing, Compress Image can make it easier to upload.",
+        "For SEO and social discovery, the visual quality still matters. Clean images improve click-through, profile trust and product presentation. Resizing is not about making every image smaller; it is about matching the platform so the final post looks intentional."
+      ];
+    case "how-to-convert-pdf-to-image":
+      return [
+        "Converting PDF to image is handy when you need to show one page quickly without asking someone to open a full PDF. It is useful for document previews, lesson materials, presentation slides, thumbnails, website screenshots, support tickets and social posts where an image is easier to handle than a PDF attachment.",
+        "Use PDF to Image when layout matters but editing does not. Upload the PDF, export the page as an image, and check that text, diagrams and page edges are readable. If you need only one page, avoid sharing the whole document. A single image preview is often faster and clearer for the recipient.",
+        "For websites, PDF page images can help create visual previews, but use them carefully. Large images can slow pages down, so compress the exported image if it is going online. Use clear file names and descriptive surrounding text so readers and search engines understand what the preview shows.",
+        "Do not use PDF to image when you need selectable text, form fields or accessibility features. The output is a visual copy of the page. For archiving, contracts or documents that must remain searchable, keep the original PDF and share the image only as a preview."
+      ];
+    case "jpg-vs-png":
+      return [
+        "The JPG vs PNG choice comes up constantly because both formats are common, but they solve different problems. JPG is usually best for photographs and smaller web images. PNG is usually better for screenshots, logos, graphics, transparent backgrounds and images with sharp edges or text.",
+        "If you are uploading a product photo, blog image or travel picture, JPG is often the practical choice because it keeps file size manageable. If you are saving a logo, app screenshot, icon, chart or graphic with flat colours, PNG often looks cleaner. The right answer depends on the image content, not just the file extension.",
+        "For website SEO, file size and clarity both matter. A huge PNG photo can slow a page down, while an over-compressed JPG logo can look fuzzy and unprofessional. Convert JPG to PNG when you need PNG compatibility. Convert PNG to JPG when you need a smaller file for a normal photo or a platform that does not require transparency.",
+        "The simplest rule is this: photos usually belong in JPG or WEBP, while graphics and transparency often belong in PNG. When in doubt, export both, compare the file size and preview the image at the size people will actually see it."
+      ];
+    case "webp-vs-jpg":
+      return [
+        "WEBP vs JPG is mainly a website performance question. JPG is widely recognised, easy to share and accepted almost everywhere. WEBP can often deliver similar visual quality at a smaller file size, which can help pages load faster and improve the user experience on slower connections.",
+        "Use JPG when compatibility matters most: email attachments, older systems, simple downloads, forms and situations where the recipient may not know what WEBP is. Use WEBP when you control the website or platform and want lighter images for faster page speed.",
+        "For SEO, faster pages can support better engagement because visitors are less likely to leave while images load. That does not mean every image must be WEBP. It means website owners should test image quality, file size and browser support before publishing. Use JPG to WEBP for performance, and WEBP to JPG when you need broader compatibility.",
+        "A sensible workflow is to keep your original image, create a WEBP version for the website, and keep a JPG copy for sharing or backup. Compress oversized files after conversion if the page still feels heavy."
+      ];
+    case "how-to-create-a-favicon":
+      return [
+        "A favicon is small, but it makes a website feel finished. It appears in browser tabs, bookmarks, search results, saved shortcuts and sometimes mobile screens. Without one, a site can look unfinished next to competitors, even if the actual content is good.",
+        "The best favicon starts with a simple square image. Avoid tiny text, thin lines and busy backgrounds because the icon will often display at very small sizes. A clear letter, symbol, mark or simplified logo usually works better than a full detailed design.",
+        "Use the Favicon Generator to create the icon from a JPG, PNG or WEBP image. If your source logo has a transparent background, PNG is usually the best starting point. If the file is a normal photo, crop it tightly first so the subject remains visible at browser-tab size.",
+        "For website SEO and brand trust, favicons are a small quality signal. They help users recognise your site in crowded tabs and bookmarks. After creating the favicon, upload it to your website and test it in a real browser tab rather than only judging it at full size."
+      ];
+    case "how-to-reduce-image-file-size":
+      return [
+        "Reducing image file size is one of the fastest ways to make websites, emails and upload forms easier to use. Large images slow down pages, waste storage, fail form limits and make mobile users wait. The trick is to reduce size without making the image look obviously damaged.",
+        "Start by asking why the file is large. If the dimensions are huge, resize first. If the format is inefficient for the content, convert it. If the dimensions are already right but the file is still heavy, compress it. This order gives cleaner results than repeatedly compressing the same image.",
+        "Use Compress Image for quick size reduction, Resize Image when the image dimensions are too large, and JPG to WEBP when you are preparing website images. For screenshots or graphics with text, preview carefully because aggressive compression can make edges look rough.",
+        "For SEO, smaller images can improve page speed, but quality still matters. A blurry product image, unreadable chart or damaged logo can hurt trust. Aim for the smallest file that still looks clear at the final display size, and keep the original in case you need a better version later."
+      ];
+    default:
+      return [
+        `This guide focuses on a practical file task: ${seed.practicalUse}. The best workflow is to understand the target platform, use the right browser tool, and preview the result before sharing.`,
+        `Use ${seed.toolLinks.map((tool) => tool.label).join(" or ")} when you need a fast, focused result without installing heavy software.`,
+        "Keep the original file, use descriptive file names, and check quality before uploading the final version."
+      ];
+  }
 }
 
 function faqFor(seed: BlogPostSeed) {
