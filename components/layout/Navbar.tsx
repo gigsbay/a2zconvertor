@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
 import ToolBadge from "@/components/ToolBadge";
 import { tools } from "@/data/tools";
 
@@ -80,13 +79,12 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="hidden shrink-0 items-center gap-2 xl:flex">
+        <div className="hidden shrink-0 items-center gap-5 xl:flex">
           {utilityLinks.map((link) => (
             <Link key={link.label} href={link.href} className="whitespace-nowrap text-sm font-semibold text-slate-300 transition hover:text-white">
               {link.label}
             </Link>
           ))}
-          <ThemeToggle />
           <Link href="/support" className="whitespace-nowrap rounded-full border border-amber-300/30 px-4 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
             Support Us
           </Link>
@@ -194,8 +192,6 @@ export default function Navbar() {
               <p className="mt-2 font-bold text-white">Recommended Partner</p>
               <p className="mt-1 text-sm leading-6 text-slate-400">Affiliate Disclosure: partner links are separate from free A2ZConvertor tools.</p>
             </aside>
-
-            <div className="mt-2 flex justify-center"><ThemeToggle /></div>
             <Link href="/support" onClick={() => setIsOpen(false)} className="rounded-xl border border-amber-300/30 px-4 py-3 text-center text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
               Support Us
             </Link>
