@@ -6,8 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import QQTubeAffiliateBanner from "@/components/QQTubeAffiliateBanner";
 import ToolBadge from "@/components/ToolBadge";
 import Navbar from "@/components/layout/Navbar";
-import { blogSummaries } from "@/data/blogIndex";
-import { getBlogPost, getRelatedBlogPosts } from "@/data/blogPosts";
+import { blogPosts, getBlogPost, getRelatedBlogPosts } from "@/data/blogPosts";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/data/site";
 
 export const dynamic = "force-static";
@@ -15,7 +14,7 @@ export const dynamicParams = false;
 export const revalidate = false;
 
 export function generateStaticParams() {
-  return blogSummaries.map((post) => ({ slug: post.slug }));
+  return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -133,6 +132,21 @@ export default async function BlogPostPage({
                 {post.content.intro.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+              </div>
+              <div className="mt-6 rounded-2xl border border-blue-400/20 bg-blue-400/5 p-5 leading-7 text-slate-300">
+                <p className="font-semibold text-white">Useful tools for this guide</p>
+                <p className="mt-2">
+                  Start with{" "}
+                  {post.toolLinks.map((tool, index) => (
+                    <span key={tool.href}>
+                      <Link href={tool.href} className="font-semibold text-blue-300 hover:text-blue-200">
+                        {tool.label}
+                      </Link>
+                      {index < post.toolLinks.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                  {" "}or browse the <Link href="/tools" className="font-semibold text-blue-300 hover:text-blue-200">full A2ZConvertor tools directory</Link> if you need a different converter, compressor or PDF tool.
+                </p>
               </div>
               <div className="mt-10 space-y-10">
                 {post.content.sections.map((section) => (

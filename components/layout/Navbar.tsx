@@ -52,13 +52,13 @@ export default function Navbar() {
   const active = explorerTools.find((category) => category.key === activeCategory);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="text-2xl font-black tracking-tight">
+    <nav className="sticky top-0 z-50 overflow-x-clip border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-none items-center justify-between gap-3 px-4 2xl:max-w-7xl 2xl:px-6">
+        <Link href="/" className="shrink-0 text-xl font-black tracking-tight 2xl:text-2xl">
           A2Z<span className="text-blue-500">Convertor</span>
         </Link>
 
-        <div className="hidden items-center gap-2 text-sm text-slate-300 lg:flex" onMouseLeave={() => setActiveCategory(null)}>
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-1 text-sm text-slate-300 xl:flex" onMouseLeave={() => setActiveCategory(null)}>
           {explorerTools.map((category) => {
             const selected = category.key === activeCategory;
             return (
@@ -67,7 +67,7 @@ export default function Navbar() {
                 type="button"
                 onMouseEnter={() => setActiveCategory(category.key)}
                 onClick={() => setActiveCategory(selected ? null : category.key)}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-semibold transition ${
+                className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-2 font-semibold whitespace-nowrap transition 2xl:gap-2 2xl:px-4 ${
                   selected
                     ? "border-blue-400/60 bg-blue-500/15 text-white"
                     : "border-transparent text-slate-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
@@ -80,17 +80,17 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
           {utilityLinks.map((link) => (
-            <Link key={link.label} href={link.href} className="text-sm font-semibold text-slate-300 transition hover:text-white">
+            <Link key={link.label} href={link.href} className="whitespace-nowrap text-sm font-semibold text-slate-300 transition hover:text-white">
               {link.label}
             </Link>
           ))}
           <ThemeToggle />
-          <Link href="/support" className="rounded-full border border-amber-300/30 px-5 py-2.5 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
+          <Link href="/support" className="whitespace-nowrap rounded-full border border-amber-300/30 px-4 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-300/10">
             Support Us
           </Link>
-          <Link href="/request-tool" className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">
+          <Link href="/request-tool" className="whitespace-nowrap rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">
             Request New Tool
           </Link>
         </div>
@@ -100,7 +100,7 @@ export default function Navbar() {
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-white lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-white xl:hidden"
         >
           <span className="flex w-5 flex-col gap-1.5">
             <span className="h-0.5 rounded-full bg-current" />
@@ -111,7 +111,7 @@ export default function Navbar() {
       </div>
 
       {active && (
-        <div className="absolute left-0 right-0 top-20 hidden border-y border-white/10 bg-slate-950/98 shadow-2xl shadow-slate-950/60 lg:block" onMouseEnter={() => setActiveCategory(active.key)} onMouseLeave={() => setActiveCategory(null)}>
+        <div className="absolute left-0 right-0 top-16 hidden border-y border-white/10 bg-slate-950/98 shadow-2xl shadow-slate-950/60 xl:block" onMouseEnter={() => setActiveCategory(active.key)} onMouseLeave={() => setActiveCategory(null)}>
           <div className="mx-auto grid max-w-7xl gap-6 px-6 py-6 lg:grid-cols-[minmax(0,1fr)_300px]">
             <div>
               <div className="flex items-center justify-between gap-4">
@@ -160,7 +160,7 @@ export default function Navbar() {
       )}
 
       {isOpen && (
-        <div className="border-t border-white/10 px-6 py-4 lg:hidden">
+        <div className="border-t border-white/10 px-6 py-4 xl:hidden">
           <div className="mx-auto grid max-w-7xl gap-4">
             <div className="grid grid-cols-2 gap-2">
               {utilityLinks.map((link) => (
