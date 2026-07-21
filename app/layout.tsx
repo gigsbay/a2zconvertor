@@ -108,11 +108,20 @@ export default function RootLayout({
     title="Google Tag Manager"
   />
 </noscript>
-   <script
-          dangerouslySetInnerHTML={{
-            __html: `try{document.documentElement.dataset.theme=localStorage.getItem("a2z-theme")||"dark"}catch{}`,
-          }}
-        />
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      try {
+        const theme = localStorage.getItem('a2z-theme') || 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      } catch {
+        document.documentElement.dataset.theme = 'dark';
+        document.documentElement.classList.add('dark');
+      }
+    `,
+  }}
+/>
         {children}
         <CookiePopup />
         <ProductionAnalytics />
