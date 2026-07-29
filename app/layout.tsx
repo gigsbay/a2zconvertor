@@ -111,14 +111,8 @@ export default function RootLayout({
 <script
   dangerouslySetInnerHTML={{
     __html: `
-      try {
-        const theme = localStorage.getItem('a2z-theme') || 'dark';
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      } catch {
-        document.documentElement.dataset.theme = 'dark';
-        document.documentElement.classList.add('dark');
-      }
+      document.documentElement.dataset.theme='dark';
+      document.documentElement.classList.add('dark');
     `,
   }}
 />
