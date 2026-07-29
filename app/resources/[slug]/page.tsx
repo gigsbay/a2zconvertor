@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import { articles } from "@/data/articles";
 import { absoluteUrl } from "@/data/site";
 
+
 export const dynamic = "force-static";
 
 
@@ -21,11 +22,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 
+  const { slug } = await params;
+
   const article = articles.find(
-    (item) => item.slug === params.slug
+    (item) => item.slug === slug
   );
 
   if (!article) {
@@ -39,32 +42,24 @@ export async function generateMetadata({
     alternates: {
       canonical: absoluteUrl(`/resources/${article.slug}`),
     },
-
-    openGraph: {
-      title: `${article.title} | A2ZConvertor`,
-      description: article.description,
-      url: absoluteUrl(`/resources/${article.slug}`),
-      type: "article",
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `${article.title} | A2ZConvertor`,
-      description: article.description,
-    },
   };
 }
 
 
-
-export default function ArticlePage({
+export default async function ArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
 
+  const { slug } = await params;
+
+  console.log("SLUG:", slug);
+  console.log("ARTICLES:", articles);
+
+
   const article = articles.find(
-    (item) => item.slug === params.slug
+    (item) => item.slug === slug
   );
 
 
@@ -74,64 +69,38 @@ export default function ArticlePage({
 
 
   return (
-
     <main className="min-h-screen bg-slate-950 text-white">
 
       <Navbar />
-
 
       <JsonLd
         data={{
           "@context": "https://schema.org",
           "@type": "Article",
-
           headline: article.title,
-
           description: article.description,
-
-          datePublished: article.date,
-
           author: {
             "@type": "Organization",
             name: "A2ZConvertor",
           },
-
-          publisher: {
-            "@type": "Organization",
-            name: "A2ZConvertor",
-          },
-
-          mainEntityOfPage: absoluteUrl(
-            `/resources/${article.slug}`
-          ),
         }}
       />
 
 
       <article className="mx-auto max-w-4xl px-6 py-16">
 
-        <h1 className="text-4xl font-black leading-tight md:text-5xl">
+        <h1 className="text-4xl font-black">
           {article.title}
         </h1>
-
 
         <p className="mt-4 text-slate-400">
           {article.date} · {article.category}
         </p>
 
 
-        <div
-          className="
-          prose 
-          prose-invert 
-          mt-10 
-          max-w-none
-          whitespace-pre-line
-          "
-        >
+        <div className="prose prose-invert mt-10 max-w-none whitespace-pre-line">
           {article.content}
         </div>
-
 
       </article>
 
@@ -139,6 +108,5 @@ export default function ArticlePage({
       <Footer />
 
     </main>
-
   );
 }
