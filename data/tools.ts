@@ -527,18 +527,7 @@ const rawTools = [
   outputLabel: "JPG Image",
   category: "Image Tools",
 },
-{
-  slug: "crop-pdf",
-  name: "Crop PDF",
-  title: "Crop PDF",
-  description:
-    "Crop PDF page boxes visually or with margins and download the cropped PDF.",
-  inputFormat: "pdf",
-  inputLabel: "PDF",
-  outputFormat: "pdf",
-  outputLabel: "Cropped PDF",
-  category: "PDF Tools",
-},
+
 {
   slug: "instagram-caption-generator",
   name: "AI Instagram Caption Generator",
@@ -703,7 +692,12 @@ export const indexableToolSlugs = new Set([
   "ai-ad-copy-generator",
 ]);
 
-export const tools = rawTools.map((tool) => ({
+// Remove accidental duplicate slugs safely
+const uniqueTools = Array.from(
+  new Map(rawTools.map((tool) => [tool.slug, tool])).values()
+);
+
+export const tools = uniqueTools.map((tool) => ({
   ...tool,
   isLive: true,
   indexable: indexableToolSlugs.has(tool.slug),

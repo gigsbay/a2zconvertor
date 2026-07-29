@@ -185,6 +185,12 @@ export const resourceSummaries: ResourceSummary[] = [
     description:
       "Compare free browser-based converters for images, PDFs, audio, video and creator workflows.",
   },
+  {
+  slug: "jpg-vs-png-which-image-format-should-you-use",
+  title: "JPG vs PNG: Which Image Format Should You Use?",
+  description:
+    "Learn the difference between JPG and PNG images and when to use each format."
+},
 ];
 
 export function getResourceSummary(slug: string) {
