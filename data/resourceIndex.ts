@@ -5,6 +5,13 @@ export type ResourceSummary = {
 };
 
 export const resourceSummaries: ResourceSummary[] = [
+  
+  {
+ slug:"how-to-reduce-image-size-for-website",
+ title:"How to Reduce Image Size for Website Without Losing Quality",
+ description:
+ "Learn how to optimize website images for faster loading while keeping good visual quality."
+},
   {
     slug: "best-free-pdf-tools",
     title: "Best Free PDF Tools for Everyday Tasks",

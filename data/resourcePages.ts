@@ -80,6 +80,23 @@ export const resourcePages: ResourcePage[] = [
   makeResource("how-to-convert-webp-to-jpg", "How to Convert WEBP to JPG", "Convert WEBP images to JPG when a website, app or document workflow does not accept WEBP.", "WEBP is efficient, but JPG is still widely accepted by older forms, editors and upload systems.", ["webp-to-jpg", "webp-to-png", "compress-image", "resize-image"], ["Upload WEBP", "Convert to JPG", "Check transparency loss", "Compress or resize if needed"]),
   makeResource("how-to-remove-image-metadata", "How to Remove Image Metadata Online", "Remove common EXIF and embedded image metadata with a browser canvas re-export.", "Images can contain camera, date, device and location details. Re-exporting through canvas removes most embedded metadata while creating a new file.", ["remove-image-metadata", "image-color-picker", "compress-image", "resize-image"], ["Upload image", "Choose output format", "Download cleaned copy", "Check quality and file size"]),
   makeResource("best-free-online-file-converters", "Best Free Online File Converters for Everyday Workflows", "Compare free browser-based converters for images, PDFs, audio, video and creator workflows.", "The best free converter is the one that clearly supports your input, labels the real output and does not pretend to do server-heavy work in the browser.", ["jpg-to-png", "webp-to-jpg", "image-to-pdf", "audio-converter", "video-thumbnail-extractor", "pdf-merge"], ["Check input support", "Confirm output format", "Review privacy model", "Test the downloaded result"]),
+makeResource(
+"how-to-reduce-image-size-for-website",
+"How to Reduce Image Size for Website Without Losing Quality",
+"Learn how to optimize website images for faster loading while keeping good visual quality.",
+"Large images slow websites. Optimizing dimensions and formats improves performance.",
+[
+"compress-image",
+"resize-image",
+"webp-to-jpg",
+"jpg-to-webp"
+],
+[
+"Resize before uploading",
+"Use modern formats",
+"Compress original images"
+]
+),
 ];
 
 const enhancedResourceSlugs = new Set([
