@@ -149,7 +149,6 @@ export const blogPosts: BlogPost[] = seeds.map((seed) => ({
   ...seed,
   content: buildContent(seed),
 }));
-
 function buildIntro(seed: BlogPostSeed) {
   const tailoredIntros: Record<string, string[]> = {
     "how-to-convert-jpg-to-png-online": [

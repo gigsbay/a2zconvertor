@@ -23,6 +23,14 @@
   },
   "dynamicRoutes": [
     {
+      "page": "/blog/[slug]",
+      "regex": "^/blog/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/compare/[slug]",
       "regex": "^/compare/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -67,10 +75,22 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
       "page": "/advertise",
       "regex": "^/advertise(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/advertise(?:/)?$"
+    },
+    {
+      "page": "/affiliate-disclosure",
+      "regex": "^/affiliate\\-disclosure(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/affiliate\\-disclosure(?:/)?$"
     },
     {
       "page": "/ai-tools",
@@ -85,16 +105,34 @@
       "namedRegex": "^/api/ai/generate(?:/)?$"
     },
     {
+      "page": "/api/ai/status",
+      "regex": "^/api/ai/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/ai/status(?:/)?$"
+    },
+    {
       "page": "/audio-tools",
       "regex": "^/audio\\-tools(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/audio\\-tools(?:/)?$"
     },
     {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
       "page": "/contact",
       "regex": "^/contact(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/cookie-policy",
+      "regex": "^/cookie\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cookie\\-policy(?:/)?$"
     },
     {
       "page": "/favicon.ico",
@@ -107,6 +145,12 @@
       "regex": "^/image\\-tools(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/image\\-tools(?:/)?$"
+    },
+    {
+      "page": "/launch",
+      "regex": "^/launch(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/launch(?:/)?$"
     },
     {
       "page": "/partners",
